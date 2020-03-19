@@ -1,7 +1,29 @@
-mass2mz <- function(exact_mass, adduct) {
+mass2mz <- function(x, adduct = "[M+H]+") {
   
-  # get all rules for adduct calculation
-  adduct_rules_all <- adduct_rules_all()
+  adduct_rules_all <- c(adductRules(polarity = "positive"),
+                        adductRules(polarity = "negative"))
+
+  # check if adduct suppplied is in the list of valid adducts
+  if(!adduct %in% names(adduct_rules_all)) {
+    
+    stop(paste0("Unknown adduct: ", adduct))
+    
+  }
+  
+  # retrieve multiplicative and additive part for calculation
+  mass_multi <- adduct_rules_all[[adduct]]$mass_multi
+  mass_add <- adduct_rules_all[[adduct]]$mass_add
+  
+  ion_mass <- x * mass_multi + mass_add
+  
+  ion_mass
+  
+}
+
+mz2mass <- function(x, adduct = "[M+H]+") {
+  
+  adduct_rules_all <- c(adductRules(polarity = "positive"),
+                        adductRules(polarity = "negative"))
   
   # check if adduct suppplied is in the list of valid adducts
   if(!adduct %in% names(adduct_rules_all)) {
@@ -14,49 +36,53 @@ mass2mz <- function(exact_mass, adduct) {
   mass_multi <- adduct_rules_all[[adduct]]$mass_multi
   mass_add <- adduct_rules_all[[adduct]]$mass_add
   
-  ion_mass <- exact_mass * mass_multi + mass_add
+  exact_mass <- (x - mass_add) / mass_multi
   
-  return(ion_mass)
+  exact_mass
   
 }
 
-mz2mass <- function(ion_mass, adduct) {
+adductRules <- function(polarity = c("positive", "negative")) {
   
-  # get all rules for adduct calculation
-  adduct_rules_all <- adduct_rules_all()
-  
-  # check if adduct suppplied is in the list of valid adducts
-  if(!adduct %in% names(adduct_rules_all)) {
+  # check polarity
+  if(polarity == "positive") {
     
-    stop(paste0("Unknown adduct: ", adduct))
+    adduct_list <- .adductRulesPos()
+    
+    return(adduct_list)
+    
+  } else if(polarity == "negative") {
+    
+    adduct_list <- .adductRulesNeg()
+    
+    return(adduct_list)
+    
+  } else {
+    
+    stop("Unknown value for parameter polarity, use either 'positive' or 'negative'")
     
   }
   
-  # retrieve multiplicative and additive part for calculation
-  mass_multi <- adduct_rules_all[[adduct]]$mass_multi
-  mass_add <- adduct_rules_all[[adduct]]$mass_add
-  
-  exact_mass <- (ion_mass - mass_add) / mass_multi
-  
-  return(exact_mass)
-  
 }
 
-adduct_rules_all <- function() {
+adductNames <- function(polarity = c("positive", "negative")) {
   
-  # get adduct lists
-  adduct_list_neg <- adduct_rules_neg()
-  adduct_list_pos <- adduct_rules_pos()
-  
-  adduct_list <- append(adduct_list_pos,
-                        adduct_list_neg)
-  
-  ## return values
-  adduct_list
-  
+  if(polarity == "positive") {
+    
+    return(names(.adductRulesPos()))
+    
+  } else if(polarity == "negative") {
+    
+    return(names(.adductRulesNeg()))
+   
+  } else {
+    
+    stop("Unknown value for parameter polarity, use either 'positive' or 'negative'")
+    
+  }
 }
 
-adduct_rules_pos <- function() {
+.adductRulesPos <- function() {
   
   ## create list with all the adduct definitoins
   adduct_list <- list(
@@ -240,7 +266,7 @@ adduct_rules_pos <- function() {
   
 }
 
-adduct_rules_neg <- function() {
+.adductRulesNeg <- function() {
   
   ## create list with all the adduct definitoins
   adduct_list <- list(
@@ -334,23 +360,3 @@ adduct_rules_neg <- function() {
   
 }
 
-get_adduct_names <- function(mode ="all") {
-  
-  if(mode == "all") {
-    
-    return(names(adduct_rules_all()))
-    
-  } else if(mode == "positive") {
-    
-    return(names(adduct_rules_pos()))
-    
-  } else if(mode == "negative") {
-    
-    return(names(adduct_rules_neg()))
-    
-  } else {
-    
-    stop("Unknown ion mode")
-    
-  }
-}
