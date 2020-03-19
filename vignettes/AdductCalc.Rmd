@@ -1,0 +1,45 @@
+---
+title: "AdductCalc"
+BiocStyle::html_document:
+    number_sections: true
+    toc_float: true
+    toc_depth: 2
+vignette: >
+  %\VignetteIndexEntry{AdductCalc}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r style, message = FALSE, echo = FALSE, warning = FALSE, results = "asis"}
+library("BiocStyle")
+library("knitr")
+library("rmarkdown")
+opts_chunk$set(message = FALSE, error = FALSE, warning = FALSE,
+               cache = FALSE, fig.width = 7, fig.height = 7) 
+```
+
+# Calculation of adduct masses
+
+## From neutral mass to m/z
+
+```{r setup}
+library(metabolomicsUtils)
+```
+
+## From m/z to neutral mass
+
+# User defined adduct rules
+
+If the adduct of interest is not covered in the supplied
+
+## test test etst
+
+```{r userdefined}
+adduct_definition <- list("[M+H]+" = list(mass_multi = 1,
+                                          mass_add =  rcdk::get.formula("H", charge = 1)@mass,
+                                          formula_add = "H",
+                                          formula_sub = "C0",
+                                          charge = 1))
+```
+
+# Test 2
