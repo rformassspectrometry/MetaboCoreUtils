@@ -1,18 +1,47 @@
-#' @title Create list with all adduct calculation rules (all rules)
-#' 
-#' This function returns a list with rules for the calculation of adducts. 
-#' It is required for the calculation of adduct m/z values from exact masses 
-#' and the other way round. This list contains all rules for both ionization 
-#' modes.
-#' 
-#' 
-#' @author Michael Witting, \email{michael.witting@@helmholtz-muenchen.de}
-#'
-#' @seealso \code{\link{adduct_rules_pos}}
-#' @seealso \code{\link{adduct_rules_neg}}
-#' @seealso \code{\link{get_adduct_names}}
-#'
-#' @export
+mass2mz <- function(exact_mass, adduct) {
+  
+  # get all rules for adduct calculation
+  adduct_rules_all <- adduct_rules_all()
+  
+  # check if adduct suppplied is in the list of valid adducts
+  if(!adduct %in% names(adduct_rules_all)) {
+    
+    stop(paste0("Unknown adduct: ", adduct))
+    
+  }
+  
+  # retrieve multiplicative and additive part for calculation
+  mass_multi <- adduct_rules_all[[adduct]]$mass_multi
+  mass_add <- adduct_rules_all[[adduct]]$mass_add
+  
+  ion_mass <- exact_mass * mass_multi + mass_add
+  
+  return(ion_mass)
+  
+}
+
+mz2mass <- function(ion_mass, adduct) {
+  
+  # get all rules for adduct calculation
+  adduct_rules_all <- adduct_rules_all()
+  
+  # check if adduct suppplied is in the list of valid adducts
+  if(!adduct %in% names(adduct_rules_all)) {
+    
+    stop(paste0("Unknown adduct: ", adduct))
+    
+  }
+  
+  # retrieve multiplicative and additive part for calculation
+  mass_multi <- adduct_rules_all[[adduct]]$mass_multi
+  mass_add <- adduct_rules_all[[adduct]]$mass_add
+  
+  exact_mass <- (ion_mass - mass_add) / mass_multi
+  
+  return(exact_mass)
+  
+}
+
 adduct_rules_all <- function() {
   
   # get adduct lists
@@ -27,22 +56,6 @@ adduct_rules_all <- function() {
   
 }
 
-
-#' @title Create list with all adduct calculation rules (positive ionisation)
-#' 
-#' This function returns a list with rules for the calculation of adducts. 
-#' It is required for the calculation of adduct m/z values from exact masses 
-#' and the other way round. This list contains all rules for the positive 
-#' ionization mode.
-#' 
-#' 
-#' @author Michael Witting, \email{michael.witting@@helmholtz-muenchen.de}
-#'
-#' @seealso \code{\link{adduct_rules_all}}
-#' @seealso \code{\link{adduct_rules_neg}}
-#' @seealso \code{\link{get_adduct_names}}
-#'
-#' @export
 adduct_rules_pos <- function() {
   
   ## create list with all the adduct definitoins
@@ -102,15 +115,15 @@ adduct_rules_pos <- function() {
                            formula_sub = "C0",
                            charge = 2),
     "[M+C4H6N2+2H]2+"= list(mass_multi = 1 / 2,
-                           mass_add = (2 * 1.007276 + 2 * 41.02655) / 2,
-                           formula_add = "C4H8N2",
-                           formula_sub = "C0",
-                           charge = 2),
+                            mass_add = (2 * 1.007276 + 2 * 41.02655) / 2,
+                            formula_add = "C4H8N2",
+                            formula_sub = "C0",
+                            charge = 2),
     "[M+C6H9N3+2H]2+" = list(mass_multi = 1 / 2,
-                           mass_add = (2 * 1.007276 + 3 * 41.02655) / 2,
-                           formula_add = "C6H11N3",
-                           formula_sub = "C0",
-                           charge = 2),
+                             mass_add = (2 * 1.007276 + 3 * 41.02655) / 2,
+                             formula_add = "C6H11N3",
+                             formula_sub = "C0",
+                             charge = 2),
     
     # single charged -----------------------------------------------------------
     "[M+H]+"        = list(mass_multi = 1,
@@ -119,10 +132,10 @@ adduct_rules_pos <- function() {
                            formula_sub = "C0",
                            charge = 1),
     "[M+Li]+"       = list(mass_multi = 1,
-                            mass_add =  7.015456,
-                            formula_add = "Li",
-                            formula_sub = "C0",
-                            charge = 1),
+                           mass_add =  7.015456,
+                           formula_add = "Li",
+                           formula_sub = "C0",
+                           charge = 1),
     "[M+2Li-H]+"    = list(mass_multi = 1,
                            mass_add =  2 * 1.007276 -  1.007276,
                            formula_add = "Li2",
@@ -144,10 +157,10 @@ adduct_rules_pos <- function() {
                            formula_sub = "C0",
                            charge = 1),
     "[M+CH4O+H]+"  = list(mass_multi = 1,
-                           mass_add = 1.007276 + 32.02621,
-                           formula_add = "Na",
-                           formula_sub = "C0",
-                           charge = 1),
+                          mass_add = 1.007276 + 32.02621,
+                          formula_add = "Na",
+                          formula_sub = "C0",
+                          charge = 1),
     "[M+K]+"        = list(mass_multi = 1,
                            mass_add = 38.96316,
                            formula_add = "K",
@@ -169,25 +182,25 @@ adduct_rules_pos <- function() {
                            formula_sub = "C0",
                            charge = 1),
     "[M+C2H3N+Na]+"   = list(mass_multi = 1,
-                           mass_add = 22.98922 + 41.02655,
-                           formula_add = "C2H3NNa",
-                           formula_sub = "C0",
-                           charge = 1),
+                             mass_add = 22.98922 + 41.02655,
+                             formula_add = "C2H3NNa",
+                             formula_sub = "C0",
+                             charge = 1),
     "[M+2K-H]+"     = list(mass_multi = 1,
                            mass_add = 2 * 38.96316 - 1.007276,
                            formula_add = "K2",
                            formula_sub = "H",
                            charge = 1),
     "[M+C2H6OS+H]+"   = list(mass_multi = 1,
-                           masS_add = 1.007276 + 78.01394,
-                           formula_add = "C2H7OS",
-                           formula_sub = "C0",
-                           charge = 1),
+                             masS_add = 1.007276 + 78.01394,
+                             formula_add = "C2H7OS",
+                             formula_sub = "C0",
+                             charge = 1),
     "[M+C4H6N2+H]+"   = list(mass_multi = 1,
-                           mass_add = 1.007276 + 2 * 41.02655,
-                           formula_add = "C2H4N",
-                           formula_sub = "C0",
-                           charge = 1),
+                             mass_add = 1.007276 + 2 * 41.02655,
+                             formula_add = "C2H4N",
+                             formula_sub = "C0",
+                             charge = 1),
     
     # dimers -------------------------------------------------------------------
     "[2M+H]+"       = list(mass_multi = 2,
@@ -211,37 +224,22 @@ adduct_rules_pos <- function() {
                            formula_sub = "C0",
                            charge = 1),
     "[2M+C2H3N+H]+"   = list(mass_multi = 2,
-                           mass_add = 1.007276 + 41.02655,
-                           formula_add = "C2H4N",
-                           formula_sub = "C0",
-                           charge = 1),
+                             mass_add = 1.007276 + 41.02655,
+                             formula_add = "C2H4N",
+                             formula_sub = "C0",
+                             charge = 1),
     "[2M+C2H3N+Na]+"  = list(mass_multi = 2,
-                           mass_add = 22.98922 + 41.02655,
-                           formula_add = "C2H3NNa",
-                           formula_sub = "C0",
-                           charge = 1)
-    )
+                             mass_add = 22.98922 + 41.02655,
+                             formula_add = "C2H3NNa",
+                             formula_sub = "C0",
+                             charge = 1)
+  )
   
   ## return values
   adduct_list
   
 }
 
-#' @title Create list with all adduct calculation rules (negative ion model)
-#' 
-#' This function returns a list with rules for the calculation of adducts. 
-#' It is required for the calculation of adduct m/z values from exact masses 
-#' and the other way round. This list contains all rules for the negative 
-#' ionization mode.
-#' 
-#' 
-#' @author Michael Witting, \email{michael.witting@@helmholtz-muenchen.de}
-#'
-#' @seealso \code{\link{adduct_rules_all}}
-#' @seealso \code{\link{adduct_rules_pos}}
-#' @seealso \code{\link{get_adduct_names}}
-#'
-#' @export
 adduct_rules_neg <- function() {
   
   ## create list with all the adduct definitoins
@@ -292,20 +290,20 @@ adduct_rules_neg <- function() {
                            formula_sub = "C0",
                            charge = -1),
     "[M+C2H3O2]-"    = list(mass_multi = 1,
-                           mass_add = 59.01385,
-                           formula_add = "C2H3O2",
-                           formula_sub = "C0",
-                           charge = -1),
+                            mass_add = 59.01385,
+                            formula_add = "C2H3O2",
+                            formula_sub = "C0",
+                            charge = -1),
     "[M+Br]-"       = list(mass_multi = 1,
                            mass_add = 78.91889,
                            formula_add = "Br",
                            formula_sub = "C0",
                            charge = -1),
     "[M+C2F3O2]-"= list(mass_multi = 1,
-                           mass_add = 112.9856,
-                           formula_add = "C2F3O2",
-                           formula_sub = "C0",
-                           charge = -1),
+                        mass_add = 112.9856,
+                        formula_add = "C2F3O2",
+                        formula_sub = "C0",
+                        charge = -1),
     
     # dimers -------------------------------------------------------------------
     "[2M-H]-"       = list(mass_multi = 2,
@@ -314,15 +312,15 @@ adduct_rules_neg <- function() {
                            formula_sub = "H",
                            charge = -1),
     "[2M+CHO2]-" = list(mass_multi = 2,
-                           mass_add = 44.9982,
-                           formula_add = "CHO2",
-                           formula_sub = "C0",
-                           charge = -1),
+                        mass_add = 44.9982,
+                        formula_add = "CHO2",
+                        formula_sub = "C0",
+                        charge = -1),
     "[2M+C2H3O2]-"= list(mass_multi = 2,
-                           mass_add = 59.01385,
-                           formula_add = "C2H3O2",
-                           formula_sub = "C0",
-                           charge = -1),
+                         mass_add = 59.01385,
+                         formula_add = "C2H3O2",
+                         formula_sub = "C0",
+                         charge = -1),
     
     # trimers ------------------------------------------------------------------
     "[3M-H]-"      = list(mass_multi = 3 ,
@@ -336,35 +334,19 @@ adduct_rules_neg <- function() {
   
 }
 
-#' @title Return current adduct naming
-#' 
-#' This function returns either all or only positive or negative ionization 
-#' mode adduct names used in this package.
-#' 
-#' @param mode Ionization mode for which the adduct names shall be returned, 
-#' either \code{all}, \code{positive} or \code{negative}
-#' 
-#' 
-#' @author Michael Witting, \email{michael.witting@@helmholtz-muenchen.de}
-#'
-#' @seealso \code{\link{adduct_rules}}
-#' @seealso \code{\link{adduct_rules_pos}}
-#' @seealso \code{\link{adduct_rules_neg}}
-#'
-#' @export
 get_adduct_names <- function(mode ="all") {
-
+  
   if(mode == "all") {
     
-    return(names(metabolomicsUtils::adduct_rules_all()))
+    return(names(adduct_rules_all()))
     
   } else if(mode == "positive") {
     
-    return(names(metabolomicsUtils::adduct_rules_pos()))
+    return(names(adduct_rules_pos()))
     
   } else if(mode == "negative") {
     
-    return(names(metabolomicsUtils::adduct_rules_neg()))
+    return(names(adduct_rules_neg()))
     
   } else {
     
