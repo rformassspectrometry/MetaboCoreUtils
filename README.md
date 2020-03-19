@@ -11,5 +11,8 @@ across various R packages.
 
 Contributions are generally welcome, but should follow the [contribution
 guidelines](https://rformassspectrometry.github.io/RforMassSpectrometry/articles/RforMassSpectrometry.html#contributions).
+Also, please check the coding style guidelines in the [RforMassSpectrometry
+vignette](https://rformassspectrometry.github.io/RforMassSpectrometry/articles/RforMassSpectrometry.html).
+
 
 ## External contributors

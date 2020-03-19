@@ -1,0 +1,31 @@
+Package: MetaboCoreUtils
+Title: Core Utils for Metabolomics Data
+Version: 0.0.1
+Description: MetaboCoreUtils defines metabolomics-related core functionality
+    which is provided as low-level functions to allow a data
+    structure-independent usage across various R packages.
+Authors@R: c(person(given = "Johannes", family = "Rainer",
+                    email = "Johannes.Rainer@eurac.edu",
+                    role = c("aut", "cre"),
+                    comment = c(ORCID = "0000-0002-6977-7147")),
+             person(given = "Micheal", family = "Witting",
+                    email = "michael.witting@helmholtz-muenchen.de",
+                    role = c("aut", "cre")))
+Author: Michael Witting and Johannes Rainer.
+Maintainer: RforMassSpectrometry Package Maintainer
+    <maintainer@rformassspectrometry.org>
+Depends:
+    R (>= 3.6.0)
+Imports:
+    methods,
+Suggests:
+    testthat,
+    knitr
+License: Artistic-2.0
+LazyData: yes
+VignetteBuilder: knitr
+BugReports: https://github.com/RforMassSpectrometry/MetaboCoreUtils/issues
+URL: https://github.com/RforMassSpectrometry/MetaboCoreUtils
+biocViews: Infrastructure, Metabolomics, MassSpectrometry
+Roxygen: list(markdown=TRUE)
+RoxygenNote: 7.0.2
