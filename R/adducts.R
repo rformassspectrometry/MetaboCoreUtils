@@ -1,7 +1,37 @@
+#' @title Calculate mass-to-charge ratio
+#'
+#' @description
+#'
+#' `mass2mz` calculates the m/z value from a neutral mass and an adduct 
+#'      definition.
+#'
+#' @param x `numeric` neutral mass for which the adduct m/z shall be calculated.
+#'
+#' @param adduct `character` Valid adduct definition.
+#'
+#' @return `numeric` m/z value calculated
+#'
+#' @author Michael Witting
+#'
+#' @export
+#'
+#' @examples
+#'
+#' exact_mass <- 100
+#' adduct <- "[M+H]+"
+#' 
+#' ## Calculate m/z of [M+H]+ adduct from neutral mass
+#' mass2mz(exact_mass, adduct)
+#' 
+#' exact_mass <- 100
+#' adduct <- "[M+Na]+"
+#' 
+#' ## Calculate m/z of [M+Na]+ adduct from neutral mass
+#' mass2mz(exact_mass, adduct)
 mass2mz <- function(x, adduct = "[M+H]+") {
   
-  adduct_rules_all <- c(adductRules(polarity = "positive"),
-                        adductRules(polarity = "negative"))
+  adduct_rules_all <- c(.adductRules(polarity = "positive"),
+                        .adductRules(polarity = "negative"))
 
   # check if adduct suppplied is in the list of valid adducts
   if(!adduct %in% names(adduct_rules_all)) {
@@ -20,10 +50,40 @@ mass2mz <- function(x, adduct = "[M+H]+") {
   
 }
 
+#' @title Calculate neutral mass
+#'
+#' @description
+#'
+#' `mz2mass` calculates the neutral mass from a given m/z value and adduct 
+#'      definition
+#'
+#' @param x `numeric` m/z value for which the neutral mass shall be calculated.
+#'
+#' @param adduct `character` Valid adduct definition.
+#'
+#' @return `numeric` neutral mass calculated
+#'
+#' @author Michael Witting
+#'
+#' @export
+#'
+#' @examples
+#'
+#' ion_mass <- 100
+#' adduct <- "[M+H]+"
+#' 
+#' ## Calculate m/z of [M+H]+ adduct from neutral mass
+#' mz2mass(ion_mass, adduct)
+#' 
+#' ion_mass <- 100
+#' adduct <- "[M+Na]+"
+#' 
+#' ## Calculate m/z of [M+Na]+ adduct from neutral mass
+#' mz2mass(ion_mass, adduct)
 mz2mass <- function(x, adduct = "[M+H]+") {
   
-  adduct_rules_all <- c(adductRules(polarity = "positive"),
-                        adductRules(polarity = "negative"))
+  adduct_rules_all <- c(.adductRules(polarity = "positive"),
+                        .adductRules(polarity = "negative"))
   
   # check if adduct suppplied is in the list of valid adducts
   if(!adduct %in% names(adduct_rules_all)) {
@@ -42,7 +102,51 @@ mz2mass <- function(x, adduct = "[M+H]+") {
   
 }
 
-adductRules <- function(polarity = c("positive", "negative")) {
+#' @title Retrieve names of adducts
+#'
+#' @description
+#'
+#' `adductNames` allows to retrieve all valid adduct names currently supported
+#'
+#' @param polarity `character` Definition of ion mode, either "positive" or "negative"
+#'
+#' @return `character` A vector of all valid adduct names for the selected ion
+#'     mode
+#'
+#' @author Michael Witting
+#'
+#' @export
+#'
+#' @examples
+#'
+#' ## retrieve names of adduct names in positive ion mode
+#' adductNames(polarity = "positive")
+#' 
+#' ## retrieve names of adduct names in negative ion mode
+#' adductNames(polarity = "negative)
+#' 
+adductNames <- function(polarity = c("positive", "negative")) {
+  
+  if(polarity == "positive") {
+    
+    return(names(.adductRulesPos()))
+    
+  } else if(polarity == "negative") {
+    
+    return(names(.adductRulesNeg()))
+    
+  } else {
+    
+    stop("Unknown value for parameter polarity, use either 'positive' or 'negative'")
+    
+  }
+}
+
+
+#===============================================================================
+# Private functions
+#===============================================================================
+.adductRules <- function(polarity = c("positive", "negative")) {
   
   # check polarity
   if(polarity == "positive") {
@@ -63,23 +167,6 @@ adductRules <- function(polarity = c("positive", "negative")) {
     
   }
   
-}
-
-adductNames <- function(polarity = c("positive", "negative")) {
-  
-  if(polarity == "positive") {
-    
-    return(names(.adductRulesPos()))
-    
-  } else if(polarity == "negative") {
-    
-    return(names(.adductRulesNeg()))
-   
-  } else {
-    
-    stop("Unknown value for parameter polarity, use either 'positive' or 'negative'")
-    
-  }
 }
 
 .adductRulesPos <- function() {
