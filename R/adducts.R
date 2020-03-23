@@ -141,11 +141,12 @@ adductNames <- function(polarity = c("positive", "negative")) {
   } 
 }
 
-
 #===============================================================================
 # Private functions
 #===============================================================================
 .adductRules <- function(polarity = c("positive", "negative")) {
+  
+  polarity <- match.arg(polarity)
   
   # check polarity
   if(polarity == "positive") {
@@ -160,12 +161,7 @@ adductNames <- function(polarity = c("positive", "negative")) {
     
     return(adduct_list)
     
-  } else {
-    
-    stop("Unknown value for parameter polarity, use either 'positive' or 'negative'")
-    
   }
-  
 }
 
 .adductRulesPos <- function() {
@@ -249,7 +245,7 @@ adductNames <- function(polarity = c("positive", "negative")) {
                            formula_sub = "C0",
                            charge = 1),
     "[M+2Li-H]+"    = list(mass_multi = 1,
-                           mass_add =  2 * 1.007276 -  1.007276,
+                           mass_add =  2 * 7.015456 -  1.007276,
                            formula_add = "Li2",
                            formula_sub = "H",
                            charge = 1),
@@ -259,7 +255,7 @@ adductNames <- function(polarity = c("positive", "negative")) {
                            formula_sub = "C0",
                            charge = 1),
     "[M+H2O+H]+"   = list(mass_multi = 1,
-                          mass_add = 19.01784,
+                          mass_add = 18.01056 + 1.007276,
                           formula_add = "H3O",
                           formula_sub = "C0",
                           charge = 1),
@@ -270,7 +266,7 @@ adductNames <- function(polarity = c("positive", "negative")) {
                            charge = 1),
     "[M+CH4O+H]+"  = list(mass_multi = 1,
                           mass_add = 1.007276 + 32.02621,
-                          formula_add = "Na",
+                          formula_add = "CH5O",
                           formula_sub = "C0",
                           charge = 1),
     "[M+K]+"        = list(mass_multi = 1,
@@ -289,7 +285,7 @@ adductNames <- function(polarity = c("positive", "negative")) {
                            formula_sub = "H",
                            charge = 1),
     "[M+C3H8O+H]+"  = list(mass_multi = 1,
-                           mass_add = 1.007276 + 60.05751,
+                           mass_add = 60.05751 + 1.007276,
                            formula_add = "C3H9O",
                            formula_sub = "C0",
                            charge = 1),
@@ -310,7 +306,7 @@ adductNames <- function(polarity = c("positive", "negative")) {
                              charge = 1),
     "[M+C4H6N2+H]+"   = list(mass_multi = 1,
                              mass_add = 1.007276 + 2 * 41.02655,
-                             formula_add = "C2H4N",
+                             formula_add = "C4H7N2",
                              formula_sub = "C0",
                              charge = 1),
     
@@ -344,7 +340,14 @@ adductNames <- function(polarity = c("positive", "negative")) {
                              mass_add = 22.98922 + 41.02655,
                              formula_add = "C2H3NNa",
                              formula_sub = "C0",
-                             charge = 1)
+                             charge = 1),
+    
+    # trimers -------------------------------------------------------------------
+    "[3M+H]+"       = list(mass_multi = 3,
+                           mass_add = 1.007276,
+                           formula_add = "H",
+                           formula_sub = "C0",
+                           charge = 1)
   )
   
   ## return values
