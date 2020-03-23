@@ -7,7 +7,8 @@
 #'
 #' @param x `numeric` neutral mass for which the adduct m/z shall be calculated.
 #'
-#' @param adduct `character` Valid adduct definition.
+#' @param adduct `character` Valid adduct definition. valid adduct definition; 
+#'     supported values are returned by [adductNames()]
 #'
 #' @return `numeric` m/z value calculated
 #'
@@ -59,7 +60,7 @@ mass2mz <- function(x, adduct = "[M+H]+") {
 #'
 #' @param x `numeric` m/z value for which the neutral mass shall be calculated.
 #'
-#' @param adduct `character` Valid adduct definition.
+#' @inheritParams mass2mz
 #'
 #' @return `numeric` neutral mass calculated
 #'
@@ -88,7 +89,7 @@ mz2mass <- function(x, adduct = "[M+H]+") {
   # check if adduct suppplied is in the list of valid adducts
   if(!adduct %in% names(adduct_rules_all)) {
     
-    stop(paste0("Unknown adduct: ", adduct))
+    stop("Unknown adduct: ", adduct)
     
   }
   
@@ -127,6 +128,8 @@ mz2mass <- function(x, adduct = "[M+H]+") {
 #' 
 adductNames <- function(polarity = c("positive", "negative")) {
   
+  polarity <- match.arg(polarity)
+  
   if(polarity == "positive") {
     
     return(names(.adductRulesPos()))
@@ -135,11 +138,7 @@ adductNames <- function(polarity = c("positive", "negative")) {
     
     return(names(.adductRulesNeg()))
     
-  } else {
-    
-    stop("Unknown value for parameter polarity, use either 'positive' or 'negative'")
-    
-  }
+  } 
 }
 
 
