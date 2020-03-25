@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function reference • MetaboCoreUtils</title>
+<title>Calculate neutral mass — mz2mass • MetaboCoreUtils</title>
 
 
 <!-- jquery -->
@@ -35,7 +35,10 @@
 
 
 
-<meta property="og:title" content="Function reference" />
+<meta property="og:title" content="Calculate neutral mass — mz2mass" />
+<meta property="og:description" content="mz2mass calculates the neutral mass from a given m/z value and adduct
+definition" />
+<meta name="twitter:card" content="summary" />
 
 
 
@@ -54,7 +57,7 @@
   </head>
 
   <body>
-    <div class="container template-reference-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -104,60 +107,66 @@
       </header>
 
 <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Reference</h1>
+    <h1>Calculate neutral mass</h1>
+    <small class="dont-index">Source: <a href='https://github.com/RforMassSpectrometry/MetaboCoreUtils/blob/master/R/adducts.R'><code>R/adducts.R</code></a></small>
+    <div class="hidden name"><code>mz2mass.Rd</code></div>
     </div>
 
-    <table class="ref-index">
+    <div class="ref-description">
+    <p><code>mz2mass</code> calculates the neutral mass from a given m/z value and adduct
+definition</p>
+    </div>
 
-    <colgroup>
-      
-      <col class="alias" />
-      <col class="title" />
-    </colgroup>
+    <pre class="usage"><span class='fu'>mz2mass</span>(<span class='no'>x</span>, <span class='kw'>adduct</span> <span class='kw'>=</span> <span class='st'>"[M+H]+"</span>)</pre>
 
-    <tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      <tr>
-        
-        <td>
-          <p><code><a href="adductNames.html">adductNames()</a></code> </p>
-        </td>
-        <td><p>Retrieve names of adducts</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="mass2mz.html">mass2mz()</a></code> </p>
-        </td>
-        <td><p>Calculate mass-to-charge ratio</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="matchSimilar.html">matchSimilar()</a></code> </p>
-        </td>
-        <td><p>Match numeric values allowing an acceptable difference</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="mz2mass.html">mz2mass()</a></code> </p>
-        </td>
-        <td><p>Calculate neutral mass</p></td>
-      </tr>
-    </tbody>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>x</th>
+      <td><p><code>numeric</code> m/z value for which the neutral mass shall be calculated.</p></td>
+    </tr>
+    <tr>
+      <th>adduct</th>
+      <td><p><code>character</code> specifying the name of the adduct;
+supported values are returned by <code>adductNames()</code></p></td>
+    </tr>
     </table>
-  </div>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p><code>numeric</code> representing the calculated neutral mass.</p>
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p><code>mass2mz()</code> for the reverse calculation, <code>adductNames()</code> for
+supported adduct definitions.</p></div>
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'>
+<span class='no'>ion_mass</span> <span class='kw'>&lt;-</span> <span class='fl'>100</span>
+<span class='no'>adduct</span> <span class='kw'>&lt;-</span> <span class='st'>"[M+H]+"</span>
+
+<span class='co'>## Calculate m/z of [M+H]+ adduct from neutral mass</span>
+<span class='fu'>mz2mass</span>(<span class='no'>ion_mass</span>, <span class='no'>adduct</span>)</div><div class='output co'>#&gt; [1] 98.99272</div><div class='input'>
+<span class='no'>ion_mass</span> <span class='kw'>&lt;-</span> <span class='fl'>100</span>
+<span class='no'>adduct</span> <span class='kw'>&lt;-</span> <span class='st'>"[M+Na]+"</span>
+
+<span class='co'>## Calculate m/z of [M+Na]+ adduct from neutral mass</span>
+<span class='fu'>mz2mass</span>(<span class='no'>ion_mass</span>, <span class='no'>adduct</span>)</div><div class='output co'>#&gt; [1] 77.01078</div></pre>
+  </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#section-all-functions">All functions</a></li>
+      <li><a href="#arguments">Arguments</a></li>
+      <li><a href="#value">Value</a></li>
+      <li><a href="#see-also">See also</a></li>
+      <li><a href="#examples">Examples</a></li>
     </ul>
+
+    <h2>Author</h2>
+    <p>Michael Witting</p>
   </div>
 </div>
 

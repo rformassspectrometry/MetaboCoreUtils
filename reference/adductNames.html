@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function reference • MetaboCoreUtils</title>
+<title>Retrieve names of adducts — adductNames • MetaboCoreUtils</title>
 
 
 <!-- jquery -->
@@ -35,7 +35,10 @@
 
 
 
-<meta property="og:title" content="Function reference" />
+<meta property="og:title" content="Retrieve names of adducts — adductNames" />
+<meta property="og:description" content="adductNames returns all supported adduct definitions that can be used by
+mass2mz() and mz2mass()." />
+<meta name="twitter:card" content="summary" />
 
 
 
@@ -54,7 +57,7 @@
   </head>
 
   <body>
-    <div class="container template-reference-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -104,60 +107,45 @@
       </header>
 
 <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Reference</h1>
+    <h1>Retrieve names of adducts</h1>
+    <small class="dont-index">Source: <a href='https://github.com/RforMassSpectrometry/MetaboCoreUtils/blob/master/R/adducts.R'><code>R/adducts.R</code></a></small>
+    <div class="hidden name"><code>adductNames.Rd</code></div>
     </div>
 
-    <table class="ref-index">
+    <div class="ref-description">
+    <p><code>adductNames</code> returns all supported adduct definitions that can be used by
+<code>mass2mz()</code> and <code>mz2mass()</code>.</p>
+    </div>
 
-    <colgroup>
-      
-      <col class="alias" />
-      <col class="title" />
-    </colgroup>
+    <pre class="usage"><span class='fu'>adductNames</span>(<span class='kw'>polarity</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"positive"</span>, <span class='st'>"negative"</span>))</pre>
 
-    <tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      <tr>
-        
-        <td>
-          <p><code><a href="adductNames.html">adductNames()</a></code> </p>
-        </td>
-        <td><p>Retrieve names of adducts</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="mass2mz.html">mass2mz()</a></code> </p>
-        </td>
-        <td><p>Calculate mass-to-charge ratio</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="matchSimilar.html">matchSimilar()</a></code> </p>
-        </td>
-        <td><p>Match numeric values allowing an acceptable difference</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="mz2mass.html">mz2mass()</a></code> </p>
-        </td>
-        <td><p>Calculate neutral mass</p></td>
-      </tr>
-    </tbody>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>polarity</th>
+      <td><p><code><a href='https://rdrr.io/r/base/character.html'>character(1)</a></code> definint the ion mode, either <code>"positive"</code> or
+<code>"negative"</code>.</p></td>
+    </tr>
     </table>
-  </div>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p><code>character</code> vector with all valid adduct names for the selected ion
+mode.</p>
+
+  </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#section-all-functions">All functions</a></li>
+      <li><a href="#arguments">Arguments</a></li>
+      <li><a href="#value">Value</a></li>
     </ul>
+
+    <h2>Author</h2>
+    <p>Michael Witting</p>
   </div>
 </div>
 
