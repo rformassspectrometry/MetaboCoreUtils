@@ -17,7 +17,6 @@ Maintainer: RforMassSpectrometry Package Maintainer
 Depends:
     R (>= 3.6.0)
 Imports:
-    methods,
     MsCoreUtils
 Suggests:
     testthat,
