@@ -1,7 +1,7 @@
 test_that("correct parsing of chemical formula", {
   
   # formula to list
-  formula_list <- formula2list("C6H12O6")
+  formula_list <- countElements("C6H12O6")
   
   expect_equal(formula_list[["C"]], 6)
   expect_equal(formula_list[["H"]], 12)
@@ -12,7 +12,7 @@ test_that("correct parsing of chemical formula", {
                     "H" = 12,
                     "O" = 6)
   
-  expect_equal(list2formula(formula_list), "C6H12O6")
+  expect_equal(pasteElements(formula_list), "C6H12O6")
   
   # standardize formula
   expect_equal(standardizeFormula("H12C6O6"), "C6H12O6")

@@ -2,7 +2,7 @@
 #'
 #' @description
 #'
-#' `formula2list` This function parses a chemical into a named vector
+#' `countElements` This function parses a chemical into a named vector
 #'
 #' @param x `character` Single string with chemical
 #'
@@ -10,15 +10,15 @@
 #'
 #' @author Michael Witting
 #' 
-#' @import stringr str_extract_all str_extract
+#' @importFrom stringr str_extract_all str_extract
 #'
 #' @export
 #'
 #' @examples
 #'
-#' formula2list("C6H12O6")
-#' formula2list("C11H12N2O2")
-formula2list <- function(x) {
+#' countElements("C6H12O6")
+#' countElements("C11H12N2O2")
+countElements <- function(x) {
   
   # regex pattern to isolate all elements
   element_pattern <- "([A][cglmrstu]|[B][aehikr]?|[C][adeflmnorsu]?|[D][bsy]|[E][rsu]|[F][elmr]?|[G][ade]|[H][efgos]?|[I][nr]?|[K][r]?|[L][airuv]|[M][cdgnot]|[N][abdehiop]?|[O][gs]?|[P][abdmortu]?|[R][abefghnu]|[S][bcegimnr]?|[T][abcehilms]|[U]|[V]|[W]|[X][e]|[Y][b]?|[Z][nr])([0-9]*)"
@@ -47,7 +47,7 @@ formula2list <- function(x) {
 #'
 #' @description
 #'
-#' `list2formula` This function creates a chemical formula from a parsed list
+#' `pasteElements` This function creates a chemical formula from a parsed list
 #'
 #' @param x `character` A named vector containing the number of elements
 #'
@@ -55,15 +55,17 @@ formula2list <- function(x) {
 #'
 #' @author Michael Witting
 #' 
-#' @import stringr str_extract_all str_extract
+#' @importFrom  stringr str_extract_all str_extract
 #'
 #' @export
 #'
 #' @examples
 #' 
 #' elements <- c("C" = 6, "H" = 12, "O" = 6)
-#' list2formula(elements)
-list2formula <- function(x) {
+#' pasteElements(elements)
+pasteElements <- function(x) {
+  
+  if (is.null(names(x))) stop("'x' should be a named vector")
   
   # create empty string to append parts of chem_formula
   chem_formula <- ""
@@ -121,7 +123,7 @@ list2formula <- function(x) {
 standardizeFormula <- function(chem_formula) {
   
   # parse and reconstruct
-  formula_list <- formula2list(chem_formula)
-  list2formula(formula_list)
+  formula_list <- countElements(chem_formula)
+  pasteElements(formula_list)
 
 }
