@@ -22,7 +22,6 @@ jobs:
       - name: Query dependencies
         run: |
           install.packages('remotes')
-	  devtools::install_github("RforMassSpectrometry/MsCoreUtils")
           saveRDS(remotes::dev_package_deps(dependencies = TRUE), ".github/depends.Rds", version = 2)
         shell: Rscript {0}
 
@@ -38,6 +37,7 @@ jobs:
           install.packages(c("remotes"))
           remotes::install_deps(dependencies = TRUE)
           remotes::install_cran("covr")
+          remotes::install_github("RforMassSpectrometry/MsCoreUtils")
         shell: Rscript {0}
 
       - name: Test coverage
