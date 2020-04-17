@@ -18,6 +18,14 @@ mode.
 \code{adductNames} returns all supported adduct definitions that can be used by
 \code{\link[=mass2mz]{mass2mz()}} and \code{\link[=mz2mass]{mz2mass()}}.
 }
+\examples{
+
+## retrieve names of adduct names in positive ion mode
+adductNames(polarity = "positive")
+
+## retrieve names of adduct names in negative ion mode
+adductNames(polarity = "negative")
+}
 \author{
 Michael Witting
 }

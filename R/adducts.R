@@ -126,7 +126,7 @@ mz2mass <- function(x, adduct = "[M+H]+") {
 #' adductNames(polarity = "positive")
 #'
 #' ## retrieve names of adduct names in negative ion mode
-#' adductNames(polarity = "negative)
+#' adductNames(polarity = "negative")
 adductNames <- function(polarity = c("positive", "negative")) {
     names(.adductRules(polarity))
 }
