@@ -22,6 +22,7 @@ jobs:
       - name: Query dependencies
         run: |
           install.packages('remotes')
+	  devtools::install_github("RforMassSpectrometry/MsCoreUtils")
           saveRDS(remotes::dev_package_deps(dependencies = TRUE), ".github/depends.Rds", version = 2)
         shell: Rscript {0}
 
