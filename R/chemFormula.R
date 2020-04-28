@@ -113,17 +113,122 @@ pasteElements <- function(x) {
 #'
 #' @author Michael Witting
 #' 
-#' @import stringr str_extract_all str_extract
+#' @importFrom stringr str_extract_all str_extract
 #'
 #' @export
 #'
 #' @examples
 #' 
-#' standardizeFromula("C6O6H12")
-standardizeFormula <- function(chem_formula) {
+#' standardizeFormula("C6O6H12")
+standardizeFormula <- function(x) {
   
   # parse and reconstruct
-  formula_list <- countElements(chem_formula)
+  formula_list <- countElements(x)
   pasteElements(formula_list)
 
+}
+
+#' @title Check if one formula is contained in another
+#' 
+#' @description 
+#' 
+#' `containsElements` checks if one sum formula is contained in another.
+#' 
+#' @param x `character` Single string with a chemical formula
+#' @param y `character` Single string with a chemical formula that shall be 
+#'     contained in `x`
+#' 
+#' @return `logical` TRUE if `y` is contained in `x`
+#' 
+#' @author Michael Witting
+#' 
+#' @export
+#' 
+#' @examples 
+#' containsElements("C6H12O6", "H2O")
+#' containsElements("C6H12O6", "NH3")
+containsElements <- function(x, y) {
+  
+  # parse both formmula
+  x <- countElements(x)
+  y <- countElements(y)
+  
+  formula_concat <- c(x, y * -1)
+  
+  # subtract formula from each other
+  result <- tapply(formula_concat, names(formula_concat), sum)
+  
+  all(result >= 0)
+
+}
+
+#' @title subtract two chemical formula
+#' 
+#' @description 
+#' 
+#' `subtractElements` subtracts one chemical formula from another.
+#' 
+#' @param x `character` Single string with chemical formula
+#' @param y `character`  Single string with chemical formula that should be 
+#'     subtracted from `x`
+#' 
+#' @return `character` Resulting formula
+#' 
+#' @author Michael Witting
+#' 
+#' @export
+#' 
+#' @examples 
+#' subtractElements("C6H12O6", "H2O")
+#' subtractElements("C6H12O6", "NH3")
+subtractElements <- function(x, y) {
+  
+  # sanity checks for formulas
+  if(!containsElements(x, y)) {
+    return(NA_character_)
+  }
+  
+  # parse both formmula
+  x <- countElements(x)
+  y <- countElements(y)
+  
+  formula_concat <- c(x, y * -1)
+  
+  # subtract formula from each other
+  result <- tapply(formula_concat, names(formula_concat), sum)
+  
+  pasteElements(result)
+  
+}
+
+#' @title subtract two chemical formula
+#' 
+#' @description 
+#' 
+#' `addElements` Add one chemical formula to another.
+#' 
+#' @param x `character` Single string with chemical formula
+#' @param y `character` Singel string with chemical formula
+#' 
+#' @return `character` Resulting formula
+#' 
+#' @author Michael Witting
+#' 
+#' @export
+#' 
+#' @examples 
+#' addElements("C6H12O6", "Na")
+addElements <- function(x, y) {
+
+  # parse both formmula
+  x <- countElements(x)
+  y <- countElements(y)
+  
+  formula_concat <- c(x, y)
+  
+  # subtract formula from each other
+  result <- tapply(formula_concat, names(formula_concat), sum)
+  
+  pasteElements(result)
+  
 }

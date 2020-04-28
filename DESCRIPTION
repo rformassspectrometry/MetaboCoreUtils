@@ -8,9 +8,10 @@ Authors@R: c(person(given = "Johannes", family = "Rainer",
                     email = "Johannes.Rainer@eurac.edu",
                     role = c("aut", "cre"),
                     comment = c(ORCID = "0000-0002-6977-7147")),
-             person(given = "Micheal", family = "Witting",
+             person(given = "Michael", family = "Witting",
                     email = "michael.witting@helmholtz-muenchen.de",
-                    role = c("aut", "cre")))
+                    role = c("aut", "cre"),
+                    comment = c(ORCID = "0000-0002-1462-4426")))
 Author: Michael Witting and Johannes Rainer.
 Maintainer: RforMassSpectrometry Package Maintainer
     <maintainer@rformassspectrometry.org>
@@ -18,7 +19,8 @@ Depends:
     R (>= 3.6.0)
 Imports:
     methods,
-    MsCoreUtils
+    MsCoreUtils,
+    stringr
 Suggests:
     testthat,
     knitr
