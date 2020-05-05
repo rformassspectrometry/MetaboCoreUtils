@@ -7,3 +7,5 @@
 ^pkgdown$
 ^playground$
 ^revdep$
+^.*\.Rproj$
+^\.Rproj\.user$
