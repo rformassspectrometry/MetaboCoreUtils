@@ -2,17 +2,20 @@
 #'
 #' @description
 #'
-#' `mass2mz` calculates the m/z value from a neutral mass and an adduct 
-#'      definition.
+#' `mass2mz` calculates the m/z value from a neutral mass and an adduct
+#' definition.
 #'
 #' @param x `numeric` neutral mass for which the adduct m/z shall be calculated.
 #'
-#' @param adduct `character` Valid adduct definition. valid adduct definition; 
+#' @param adduct `character` specifying the name of the adduct;
 #'     supported values are returned by [adductNames()]
 #'
-#' @return `numeric` m/z value calculated
+#' @return `numeric` representing the calculated m/z value.
 #'
 #' @author Michael Witting
+#'
+#' @seealso [mz2mass()] for the reverse calculation, [adductNames()] for
+#'     supported adduct definitions.
 #'
 #' @export
 #'
@@ -20,51 +23,51 @@
 #'
 #' exact_mass <- 100
 #' adduct <- "[M+H]+"
-#' 
+#'
 #' ## Calculate m/z of [M+H]+ adduct from neutral mass
 #' mass2mz(exact_mass, adduct)
-#' 
+#'
 #' exact_mass <- 100
 #' adduct <- "[M+Na]+"
-#' 
+#'
 #' ## Calculate m/z of [M+Na]+ adduct from neutral mass
 #' mass2mz(exact_mass, adduct)
 mass2mz <- function(x, adduct = "[M+H]+") {
-  
+
   adduct_rules_all <- c(.adductRules(polarity = "positive"),
                         .adductRules(polarity = "negative"))
 
   # check if adduct suppplied is in the list of valid adducts
-  if(!adduct %in% names(adduct_rules_all)) {
-    
-    stop(paste0("Unknown adduct: ", adduct))
-    
-  }
-  
+  if(!adduct %in% names(adduct_rules_all))
+    stop("Unknown adduct: ", adduct)
+
   # retrieve multiplicative and additive part for calculation
   mass_multi <- adduct_rules_all[[adduct]]$mass_multi
   mass_add <- adduct_rules_all[[adduct]]$mass_add
-  
+
   ion_mass <- x * mass_multi + mass_add
-  
+
   ion_mass
-  
+
 }
 
 #' @title Calculate neutral mass
 #'
 #' @description
 #'
-#' `mz2mass` calculates the neutral mass from a given m/z value and adduct 
-#'      definition
+#' `mz2mass` calculates the neutral mass from a given m/z value and adduct
+#' definition
 #'
 #' @param x `numeric` m/z value for which the neutral mass shall be calculated.
 #'
 #' @inheritParams mass2mz
 #'
-#' @return `numeric` neutral mass calculated
+#' @return `numeric` representing the calculated neutral mass.
 #'
 #' @author Michael Witting
+#'
+#' @seealso [mass2mz()] for the reverse calculation, [adductNames()] for
+#'     supported adduct definitions.
 #'
 #' @export
 #'
@@ -72,47 +75,46 @@ mass2mz <- function(x, adduct = "[M+H]+") {
 #'
 #' ion_mass <- 100
 #' adduct <- "[M+H]+"
-#' 
+#'
 #' ## Calculate m/z of [M+H]+ adduct from neutral mass
 #' mz2mass(ion_mass, adduct)
-#' 
+#'
 #' ion_mass <- 100
 #' adduct <- "[M+Na]+"
-#' 
+#'
 #' ## Calculate m/z of [M+Na]+ adduct from neutral mass
 #' mz2mass(ion_mass, adduct)
 mz2mass <- function(x, adduct = "[M+H]+") {
-  
+
   adduct_rules_all <- c(.adductRules(polarity = "positive"),
                         .adductRules(polarity = "negative"))
-  
+
   # check if adduct suppplied is in the list of valid adducts
-  if(!adduct %in% names(adduct_rules_all)) {
-    
+  if(!adduct %in% names(adduct_rules_all))
     stop("Unknown adduct: ", adduct)
-    
-  }
-  
+
   # retrieve multiplicative and additive part for calculation
   mass_multi <- adduct_rules_all[[adduct]]$mass_multi
   mass_add <- adduct_rules_all[[adduct]]$mass_add
-  
+
   exact_mass <- (x - mass_add) / mass_multi
-  
+
   exact_mass
-  
+
 }
 
 #' @title Retrieve names of adducts
 #'
 #' @description
 #'
-#' `adductNames` allows to retrieve all valid adduct names currently supported
+#' `adductNames` returns all supported adduct definitions that can be used by
+#' [mass2mz()] and [mz2mass()].
 #'
-#' @param polarity `character` Definition of ion mode, either "positive" or "negative"
+#' @param polarity `character(1)` defining the ion mode, either `"positive"` or
+#'     `"negative"`.
 #'
-#' @return `character` A vector of all valid adduct names for the selected ion
-#'     mode
+#' @return `character` vector with all valid adduct names for the selected ion
+#'     mode.
 #'
 #' @author Michael Witting
 #'
@@ -122,53 +124,41 @@ mz2mass <- function(x, adduct = "[M+H]+") {
 #'
 #' ## retrieve names of adduct names in positive ion mode
 #' adductNames(polarity = "positive")
-#' 
+#'
 #' ## retrieve names of adduct names in negative ion mode
-#' adductNames(polarity = "negative)
-#' 
+#' adductNames(polarity = "negative")
 adductNames <- function(polarity = c("positive", "negative")) {
-  
-  polarity <- match.arg(polarity)
-  
-  if(polarity == "positive") {
-    
-    return(names(.adductRulesPos()))
-    
-  } else if(polarity == "negative") {
-    
-    return(names(.adductRulesNeg()))
-    
-  } 
+    names(.adductRules(polarity))
 }
 
 #===============================================================================
 # Private functions
 #===============================================================================
 .adductRules <- function(polarity = c("positive", "negative")) {
-  
+
   polarity <- match.arg(polarity)
-  
+
   # check polarity
-  if(polarity == "positive") {
-    
+  if (polarity == "positive") {
+
     adduct_list <- .adductRulesPos()
-    
+
     return(adduct_list)
-    
+
   } else if(polarity == "negative") {
-    
+
     adduct_list <- .adductRulesNeg()
-    
+
     return(adduct_list)
-    
+
   }
 }
 
 .adductRulesPos <- function() {
-  
+
   ## create list with all the adduct definitoins
   adduct_list <- list(
-    
+
     # triple charged -----------------------------------------------------------
     "[M+3H]3+"      = list(mass_multi = 1 / 3,
                            mass_add = 3 * 1.007276 / 3,
@@ -190,7 +180,7 @@ adductNames <- function(polarity = c("positive", "negative")) {
                            formula_add = "Na3",
                            formula_sub = "C0",
                            charge = 3),
-    
+
     # double charged -----------------------------------------------------------
     "[M+2H]2+"      = list(mass_multi = 1 / 2,
                            mass_add = 2 * 1.007276 / 2,
@@ -232,7 +222,7 @@ adductNames <- function(polarity = c("positive", "negative")) {
                              formula_add = "C6H11N3",
                              formula_sub = "C0",
                              charge = 2),
-    
+
     # single charged -----------------------------------------------------------
     "[M+H]+"        = list(mass_multi = 1,
                            mass_add =  1.007276,
@@ -309,7 +299,7 @@ adductNames <- function(polarity = c("positive", "negative")) {
                              formula_add = "C4H7N2",
                              formula_sub = "C0",
                              charge = 1),
-    
+
     # dimers -------------------------------------------------------------------
     "[2M+H]+"       = list(mass_multi = 2,
                            mass_add = 1.007276,
@@ -341,7 +331,7 @@ adductNames <- function(polarity = c("positive", "negative")) {
                              formula_add = "C2H3NNa",
                              formula_sub = "C0",
                              charge = 1),
-    
+
     # trimers -------------------------------------------------------------------
     "[3M+H]+"       = list(mass_multi = 3,
                            mass_add = 1.007276,
@@ -349,14 +339,14 @@ adductNames <- function(polarity = c("positive", "negative")) {
                            formula_sub = "C0",
                            charge = 1)
   )
-  
+
   ## return values
   adduct_list
-  
+
 }
 
 .adductRulesNeg <- function() {
-  
+
   ## create list with all the adduct definitoins
   adduct_list <- list(
     # triple charged -----------------------------------------------------------
@@ -365,14 +355,14 @@ adductNames <- function(polarity = c("positive", "negative")) {
                            formula_add = "C0",
                            formula_sub = "H3",
                            charge = -3),
-    
+
     # double charged -----------------------------------------------------------
     "[M-2H]2-"      = list(mass_multi = 1 / 2,
                            mass_add = - 2 * 1.007276 / 2,
                            formula_add = "C0",
                            formula_sub = "H2",
                            charge = -2),
-    
+
     # single charged -----------------------------------------------------------
     "[M-H]-"        = list(mass_multi = 1 ,
                            mass_add = - 1.007276,
@@ -419,7 +409,7 @@ adductNames <- function(polarity = c("positive", "negative")) {
                         formula_add = "C2F3O2",
                         formula_sub = "C0",
                         charge = -1),
-    
+
     # dimers -------------------------------------------------------------------
     "[2M-H]-"       = list(mass_multi = 2,
                            mass_add =  - 1.007276,
@@ -436,16 +426,15 @@ adductNames <- function(polarity = c("positive", "negative")) {
                          formula_add = "C2H3O2",
                          formula_sub = "C0",
                          charge = -1),
-    
+
     # trimers ------------------------------------------------------------------
     "[3M-H]-"      = list(mass_multi = 3 ,
                           mass_add = - 1.007276,
                           formula_add = "C0",
                           formula_sub = "H",
                           charge = -1))
-  
+
   ## return values
   adduct_list
-  
-}
 
+}

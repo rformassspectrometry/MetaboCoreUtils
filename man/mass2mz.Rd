@@ -9,11 +9,11 @@ mass2mz(x, adduct = "[M+H]+")
 \arguments{
 \item{x}{\code{numeric} neutral mass for which the adduct m/z shall be calculated.}
 
-\item{adduct}{\code{character} Valid adduct definition. valid adduct definition;
+\item{adduct}{\code{character} specifying the name of the adduct;
 supported values are returned by \code{\link[=adductNames]{adductNames()}}}
 }
 \value{
-\code{numeric} m/z value calculated
+\code{numeric} representing the calculated m/z value.
 }
 \description{
 \code{mass2mz} calculates the m/z value from a neutral mass and an adduct
@@ -32,6 +32,10 @@ adduct <- "[M+Na]+"
 
 ## Calculate m/z of [M+Na]+ adduct from neutral mass
 mass2mz(exact_mass, adduct)
+}
+\seealso{
+\code{\link[=mz2mass]{mz2mass()}} for the reverse calculation, \code{\link[=adductNames]{adductNames()}} for
+supported adduct definitions.
 }
 \author{
 Michael Witting

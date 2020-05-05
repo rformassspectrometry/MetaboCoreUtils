@@ -2,23 +2,27 @@
 % Please edit documentation in R/chemFormula.R
 \name{countElements}
 \alias{countElements}
-\title{Parse a chemical formula into a named vector}
+\title{Count elements in a chemical formula}
 \usage{
 countElements(x)
 }
 \arguments{
-\item{x}{\code{character} Single string with chemical}
+\item{x}{\code{character(1)} representing a chemical formula.}
 }
 \value{
-\code{numeric} A named list containing the parsed chemical formula
+\code{integer} with the element counts (names being elements).
 }
 \description{
-\code{countElements} This function parses a chemical into a named vector
+\code{countElements} parses a string representing a chemical formula into a named
+vector of element counts.
 }
 \examples{
 
 countElements("C6H12O6")
 countElements("C11H12N2O2")
+}
+\seealso{
+\code{\link[=pasteElements]{pasteElements()}}
 }
 \author{
 Michael Witting

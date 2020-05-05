@@ -7,14 +7,24 @@
 adductNames(polarity = c("positive", "negative"))
 }
 \arguments{
-\item{polarity}{\code{character} Definition of ion mode, either "positive" or "negative"}
+\item{polarity}{\code{character(1)} defining the ion mode, either \code{"positive"} or
+\code{"negative"}.}
 }
 \value{
-\code{character} A vector of all valid adduct names for the selected ion
-mode
+\code{character} vector with all valid adduct names for the selected ion
+mode.
 }
 \description{
-\code{adductNames} allows to retrieve all valid adduct names currently supported
+\code{adductNames} returns all supported adduct definitions that can be used by
+\code{\link[=mass2mz]{mass2mz()}} and \code{\link[=mz2mass]{mz2mass()}}.
+}
+\examples{
+
+## retrieve names of adduct names in positive ion mode
+adductNames(polarity = "positive")
+
+## retrieve names of adduct names in negative ion mode
+adductNames(polarity = "negative")
 }
 \author{
 Michael Witting

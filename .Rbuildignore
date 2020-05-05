@@ -7,5 +7,4 @@
 ^pkgdown$
 ^playground$
 ^revdep$
-^.*\.Rproj$
-^\.Rproj\.user$
+^\.github$

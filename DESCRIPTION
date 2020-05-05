@@ -24,6 +24,8 @@ Imports:
 Suggests:
     testthat,
     knitr
+Remotes:
+    RforMassSpectrometry/MsCoreUtils
 License: Artistic-2.0
 LazyData: yes
 VignetteBuilder: knitr

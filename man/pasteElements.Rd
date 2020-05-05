@@ -7,18 +7,22 @@
 pasteElements(x)
 }
 \arguments{
-\item{x}{\code{character} A named vector containing the number of elements}
+\item{x}{\code{integer} with element counts, names being individual elements.}
 }
 \value{
-\code{character} Single string with the chemical formula
+\code{character(1)} with the chemical formula.
 }
 \description{
-\code{pasteElements} This function creates a chemical formula from a parsed list
+\code{pasteElements} creates a chemical formula from element counts (such as
+returned by \code{\link[=countElements]{countElements()}}).
 }
 \examples{
 
 elements <- c("C" = 6, "H" = 12, "O" = 6)
 pasteElements(elements)
+}
+\seealso{
+\code{\link[=countElements]{countElements()}}
 }
 \author{
 Michael Witting
