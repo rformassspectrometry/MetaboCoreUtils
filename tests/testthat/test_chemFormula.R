@@ -16,6 +16,8 @@ test_that("correct parsing of chemical formula", {
 
   # standardize formula
   expect_equal(standardizeFormula("H12C6O6"), "C6H12O6")
+  
+})
 
 test_that("correct formula mathematics", {
 
