@@ -110,7 +110,7 @@ mz2mass <- function(x, adduct = "[M+H]+") {
 #' `adductNames` returns all supported adduct definitions that can be used by
 #' [mass2mz()] and [mz2mass()].
 #'
-#' @param polarity `character(1)` definint the ion mode, either `"positive"` or
+#' @param polarity `character(1)` defining the ion mode, either `"positive"` or
 #'     `"negative"`.
 #'
 #' @return `character` vector with all valid adduct names for the selected ion
