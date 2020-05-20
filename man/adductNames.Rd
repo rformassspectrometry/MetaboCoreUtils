@@ -7,7 +7,7 @@
 adductNames(polarity = c("positive", "negative"))
 }
 \arguments{
-\item{polarity}{\code{character(1)} definint the ion mode, either \code{"positive"} or
+\item{polarity}{\code{character(1)} defining the ion mode, either \code{"positive"} or
 \code{"negative"}.}
 }
 \value{
