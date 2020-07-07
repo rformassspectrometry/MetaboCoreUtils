@@ -32,11 +32,14 @@ adduct <- "[M+Na]+"
 
 ## Calculate m/z of [M+Na]+ adduct from neutral mass
 mass2mz(exact_mass, adduct)
+
+## Calculate m/z of multiple adducts from neutral mass
+mass2mz(exact_mass, adduct = adductNames())
 }
 \seealso{
 \code{\link[=mz2mass]{mz2mass()}} for the reverse calculation, \code{\link[=adductNames]{adductNames()}} for
 supported adduct definitions.
 }
 \author{
-Michael Witting
+Michael Witting, Johannes Rainer
 }
