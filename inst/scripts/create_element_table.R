@@ -1,5 +1,8 @@
 library(xml2)
 
+# xml file with isotopes can be retrieved from
+# https://github.com/BlueObelisk/bodr/blob/master/bodr/isotopes/isotopes.xml
+
 pg <- read_xml("E:/Project Data/Bio-Chemoinformatics/R/Packages/MetaboCoreUtils/inst/isotopes/isotopes.xml")
 
 # get all the <record>s
@@ -29,15 +32,15 @@ for(element in elements) {
     
     element_df <- rbind.data.frame(element_df, cbind.data.frame(element = element_name,
                                                                 isotope = isotope_name,
-                                                                exact.mass = exactMass,
-                                                                rel.abundance = relAbundance))
+                                                                exact_mass = exactMass,
+                                                                rel_abundance = relAbundance))
     
     
     
   }
 }
 
-element_df <- element_df[which(!is.na(element_df$rel.abundance)),]
+element_df <- element_df[which(!is.na(element_df$rel_abundance)),]
 
 write.table(element_df, file = "../isotopes/isotope_definition.txt", sep = "\t",
             row.names = FALSE)

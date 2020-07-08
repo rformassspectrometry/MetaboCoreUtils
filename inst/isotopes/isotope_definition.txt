@@ -1,4 +1,4 @@
-"element"	"isotope"	"exact.mass"	"rel.abundance"
+"element"	"isotope"	"exact_mass"	"rel_abundance"
 "H"	"H1"	1.007825032	99.9885
 "H"	"H2"	2.014101778	0.0115
 "He"	"He3"	3.016029319	0.000137
