@@ -1,5 +1,3 @@
-
-
 library(xml2)
 
 pg <- read_xml("E:/Project Data/Bio-Chemoinformatics/R/Packages/MetaboCoreUtils/inst/isotopes/isotopes.xml")
