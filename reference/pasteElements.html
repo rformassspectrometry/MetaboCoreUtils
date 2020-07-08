@@ -73,7 +73,7 @@ returned by countElements())." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">MetaboCoreUtils</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.2</span>
       </span>
     </div>
 
@@ -119,10 +119,10 @@ returned by countElements())." />
 
     <div class="ref-description">
     <p><code>pasteElements</code> creates a chemical formula from element counts (such as
-returned by <code><a href='countElements.html'>countElements()</a></code>).</p>
+returned by <code>countElements()</code>).</p>
     </div>
 
-    <pre class="usage"><span class='fu'>pasteElements</span>(<span class='no'>x</span>)</pre>
+    <pre class="usage"><span class='fu'>pasteElements</span>(<span class='kw'>x</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -138,12 +138,15 @@ returned by <code><a href='countElements.html'>countElements()</a></code>).</p>
     <p><code><a href='https://rdrr.io/r/base/character.html'>character(1)</a></code> with the chemical formula.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='countElements.html'>countElements()</a></code></p></div>
+    <div class='dont-index'><p><code>countElements()</code></p></div>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Michael Witting</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='no'>elements</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"C"</span> <span class='kw'>=</span> <span class='fl'>6</span>, <span class='st'>"H"</span> <span class='kw'>=</span> <span class='fl'>12</span>, <span class='st'>"O"</span> <span class='kw'>=</span> <span class='fl'>6</span>)
-<span class='fu'>pasteElements</span>(<span class='no'>elements</span>)</div><div class='output co'>#&gt; [1] "C6H12O6"</div></pre>
+<span class='kw'>elements</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"C"</span> = <span class='fl'>6</span>, <span class='st'>"H"</span> = <span class='fl'>12</span>, <span class='st'>"O"</span> = <span class='fl'>6</span>)
+<span class='fu'>pasteElements</span>(<span class='kw'>elements</span>)</div><div class='output co'>#&gt; [1] "C6H12O6"</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
