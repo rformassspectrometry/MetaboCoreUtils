@@ -25,11 +25,19 @@ test_that("correct formula mathematics", {
   expect_equal(containsElements("C6H12O6", "H2O"), TRUE)
   expect_equal(containsElements("C6H12O6", "NH3"), FALSE)
 
-  # check formula subtraction
+  # check formula subtraction (single formulae)
   expect_equal(subtractElements("C6H12O6", "H2O"), "C6H10O5")
   expect_equal(subtractElements("C6H12O6", "NH3"), NA_character_)
+  
+  # check formula subtration (multiple formulae)
+  expect_equal(subtractElements("C6H12O6", c("H2O", "H2O")), "C6H8O4")
+  expect_equal(subtractElements("C6H12O6", c("H2O", "NH3")), NA_character_)
 
-  # check formula addition
+  # check formula addition (single formula)
   expect_equal(addElements("C6H12O6", "Na"), "C6H12O6Na")
+  
+  #check formula addition (multiple formulae)
+  expect_equal(addElements(c("C6H12O6", "Na")), "C6H12O6Na")
+  expect_equal(addElements("C6H12O6", c("H2O", "Na")), "C6H14O7Na")
 
 })

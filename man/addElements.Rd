@@ -4,12 +4,12 @@
 \alias{addElements}
 \title{subtract two chemical formula}
 \usage{
-addElements(x, y)
+addElements(x, y = NA)
 }
 \arguments{
-\item{x}{\code{character} Single string with chemical formula}
+\item{x}{\code{character} Vector with 1 or more chemical formulae to be added}
 
-\item{y}{\code{character} Singel string with chemical formula}
+\item{y}{\code{character} Vector with 1 or more chemical formulae to be added}
 }
 \value{
 \code{character} Resulting formula

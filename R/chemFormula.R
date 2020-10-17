@@ -174,8 +174,8 @@ containsElements <- function(x, y) {
 #' `subtractElements` subtracts one chemical formula from another.
 #'
 #' @param x `character` Single string with chemical formula
-#' @param y `character`  Single string with chemical formula that should be
-#'     subtracted from `x`
+#' @param y `character`  Single or multiple strings with chemical formula that
+#'     should be subtracted from `x`
 #'
 #' @return `character` Resulting formula
 #'
@@ -187,6 +187,12 @@ containsElements <- function(x, y) {
 #' subtractElements("C6H12O6", "H2O")
 #' subtractElements("C6H12O6", "NH3")
 subtractElements <- function(x, y) {
+  
+  if(length(y) > 1) {
+    
+    y <- addElements(y)
+    
+  }
 
   # sanity checks for formulas
   if(!containsElements(x, y)) {
@@ -212,8 +218,8 @@ subtractElements <- function(x, y) {
 #'
 #' `addElements` Add one chemical formula to another.
 #'
-#' @param x `character` Single string with chemical formula
-#' @param y `character` Singel string with chemical formula
+#' @param x `character` Vector with 1 or more chemical formulae to be added
+#' @param y `character` Vector with 1 or more chemical formulae to be added
 #'
 #' @return `character` Resulting formula
 #'
@@ -223,17 +229,29 @@ subtractElements <- function(x, y) {
 #'
 #' @examples
 #' addElements("C6H12O6", "Na")
-addElements <- function(x, y) {
-
-  # parse both formmula
-  x <- countElements(x)
-  y <- countElements(y)
-
-  formula_concat <- c(x, y)
-
-  # subtract formula from each other
-  result <- tapply(formula_concat, names(formula_concat), sum)
-
-  pasteElements(result)
-
+addElements <- function(x, y = NA) {
+  
+  if(length(y) == 1 && is.na(y)) {
+    
+    # parse both formmula
+    x <- lapply(x, countElements)
+    
+    # subtract formula from each other
+    result <- tapply(unlist(x), names(unlist(x)), sum)
+    
+    pasteElements(result)
+    
+  } else {
+    
+    x <- c(x,y)
+    
+    # parse both formmula
+    x <- lapply(x, countElements)
+    
+    # subtract formula from each other
+    result <- tapply(unlist(x), names(unlist(x)), sum)
+    
+    pasteElements(result)
+    
+  }
 }
