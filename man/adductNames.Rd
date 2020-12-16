@@ -2,7 +2,7 @@
 % Please edit documentation in R/adducts.R
 \name{adductNames}
 \alias{adductNames}
-\title{Retrieve names of adducts}
+\title{Retrieve names of supported adducts}
 \usage{
 adductNames(polarity = c("positive", "negative"))
 }

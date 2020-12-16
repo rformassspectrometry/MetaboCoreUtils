@@ -1,9 +1,13 @@
 # MetaboCoreutils 0.0
 
+## MetaboCoreUtils 0.0.3
+
+- Refactor `mass2mz` and `mz2mass` to support calculation of multiple adducts
+  for multiple input values.
+
 ## MetaboCoreUtils 0.0.2
 
 - Vectorize `mass2mz` and `mz2mass` and additional performance improvement.
-
 
 ## MetaboCoreUtils 0.0.1
 

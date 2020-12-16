@@ -7,10 +7,13 @@
 #'
 #' @param x `numeric` neutral mass for which the adduct m/z shall be calculated.
 #'
-#' @param adduct `character` specifying the name of the adduct;
-#'     supported values are returned by [adductNames()]
+#' @param adduct `character` specifying the name(s) of the adduct(s) for which
+#'     the m/z should be calculated; supported values are returned by
+#'     [adductNames()]
 #'
-#' @return `numeric` representing the calculated m/z value.
+#' @return numeric `matrix` with same number of rows than elements in `x` and
+#'     number of columns being equal to the length of `adduct`. Each column
+#'     thus represents the m/z of `x` for each defined `adduct`.
 #'
 #' @author Michael Witting, Johannes Rainer
 #'
@@ -21,7 +24,7 @@
 #'
 #' @examples
 #'
-#' exact_mass <- 100
+#' exact_mass <- c(100, 200, 250)
 #' adduct <- "[M+H]+"
 #'
 #' ## Calculate m/z of [M+H]+ adduct from neutral mass
@@ -39,7 +42,8 @@ mass2mz <- function(x, adduct = "[M+H]+") {
     idx <- match(adduct, names(.ADDUCTS_ADD))
     if (any(is.na(idx)))
         stop("Unknown adduct: ", paste0(adduct[is.na(idx)], collapse = ";"))
-    x * .ADDUCTS_MULT[idx] + .ADDUCTS_ADD[idx]
+    outer(x, .ADDUCTS_MULT[idx]) +
+        rep(unname(.ADDUCTS_ADD[idx]), each = length(x))
 }
 
 #' @title Calculate neutral mass
@@ -47,15 +51,17 @@ mass2mz <- function(x, adduct = "[M+H]+") {
 #' @description
 #'
 #' `mz2mass` calculates the neutral mass from a given m/z value and adduct
-#' definition
+#' definition.
 #'
 #' @param x `numeric` m/z value for which the neutral mass shall be calculated.
 #'
 #' @inheritParams mass2mz
 #'
-#' @return `numeric` representing the calculated neutral mass.
+#' @return numeric `matrix` with same number of rows than elements in `x` and
+#'     number of columns being equal to the length of `adduct`. Each column
+#'     thus represents the neutral mass of `x` for each defined `adduct`.
 #'
-#' @author Michael Witting
+#' @author Michael Witting, Johannes Rainer
 #'
 #' @seealso [mass2mz()] for the reverse calculation, [adductNames()] for
 #'     supported adduct definitions.
@@ -64,7 +70,7 @@ mass2mz <- function(x, adduct = "[M+H]+") {
 #'
 #' @examples
 #'
-#' ion_mass <- 100
+#' ion_mass <- c(100, 200, 300)
 #' adduct <- "[M+H]+"
 #'
 #' ## Calculate m/z of [M+H]+ adduct from neutral mass
@@ -79,10 +85,11 @@ mz2mass <- function(x, adduct = "[M+H]+") {
     idx <- match(adduct, names(.ADDUCTS_ADD))
     if (any(is.na(idx)))
         stop("Unknown adduct: ", paste0(adduct[is.na(idx)], collapse = ";"))
-    (x - .ADDUCTS_ADD[idx]) / .ADDUCTS_MULT[idx]
+    outer(x, .ADDUCTS_ADD[idx], "-") /
+        rep(unname(.ADDUCTS_MULT[idx]), each = length(x))
 }
 
-#' @title Retrieve names of adducts
+#' @title Retrieve names of supported adducts
 #'
 #' @description
 #'

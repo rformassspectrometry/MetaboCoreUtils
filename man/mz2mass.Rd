@@ -9,19 +9,22 @@ mz2mass(x, adduct = "[M+H]+")
 \arguments{
 \item{x}{\code{numeric} m/z value for which the neutral mass shall be calculated.}
 
-\item{adduct}{\code{character} specifying the name of the adduct;
-supported values are returned by \code{\link[=adductNames]{adductNames()}}}
+\item{adduct}{\code{character} specifying the name(s) of the adduct(s) for which
+the m/z should be calculated; supported values are returned by
+\code{\link[=adductNames]{adductNames()}}}
 }
 \value{
-\code{numeric} representing the calculated neutral mass.
+numeric \code{matrix} with same number of rows than elements in \code{x} and
+number of columns being equal to the length of \code{adduct}. Each column
+thus represents the neutral mass of \code{x} for each defined \code{adduct}.
 }
 \description{
 \code{mz2mass} calculates the neutral mass from a given m/z value and adduct
-definition
+definition.
 }
 \examples{
 
-ion_mass <- 100
+ion_mass <- c(100, 200, 300)
 adduct <- "[M+H]+"
 
 ## Calculate m/z of [M+H]+ adduct from neutral mass
@@ -38,5 +41,5 @@ mz2mass(ion_mass, adduct)
 supported adduct definitions.
 }
 \author{
-Michael Witting
+Michael Witting, Johannes Rainer
 }
