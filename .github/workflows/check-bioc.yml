@@ -37,6 +37,7 @@ env:
   has_testthat: 'true'
   run_covr: 'true'
   run_pkgdown: 'true'
+  run_bioccheck: 'false'
   has_RUnit: 'false'
   cache-version: 'cache-v1'
 
@@ -233,6 +234,7 @@ jobs:
         shell: Rscript {0}
 
       - name: Run BiocCheck
+        if:  env.run_bioccheck == 'true'
         run: |
           BiocCheck::BiocCheck(
               dir('check', 'tar.gz$', full.names = TRUE),
