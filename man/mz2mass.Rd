@@ -15,8 +15,9 @@ the m/z should be calculated; supported values are returned by
 }
 \value{
 numeric \code{matrix} with same number of rows than elements in \code{x} and
-number of columns being equal to the length of \code{adduct}. Each column
-thus represents the neutral mass of \code{x} for each defined \code{adduct}.
+number of columns being equal to the length of \code{adduct} (adduct names
+are used as column names. Each column thus represents the neutral mass
+of \code{x} for each defined \code{adduct}.
 }
 \description{
 \code{mz2mass} calculates the neutral mass from a given m/z value and adduct

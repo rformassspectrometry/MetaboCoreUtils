@@ -12,8 +12,9 @@
 #'     [adductNames()]
 #'
 #' @return numeric `matrix` with same number of rows than elements in `x` and
-#'     number of columns being equal to the length of `adduct`. Each column
-#'     thus represents the m/z of `x` for each defined `adduct`.
+#'     number of columns being equal to the length of `adduct` (adduct names
+#'     are used as column names). Each column thus represents the m/z of `x`
+#'     for each defined `adduct`.
 #'
 #' @author Michael Witting, Johannes Rainer
 #'
@@ -58,8 +59,9 @@ mass2mz <- function(x, adduct = "[M+H]+") {
 #' @inheritParams mass2mz
 #'
 #' @return numeric `matrix` with same number of rows than elements in `x` and
-#'     number of columns being equal to the length of `adduct`. Each column
-#'     thus represents the neutral mass of `x` for each defined `adduct`.
+#'     number of columns being equal to the length of `adduct` (adduct names
+#'     are used as column names. Each column thus represents the neutral mass
+#'     of `x` for each defined `adduct`.
 #'
 #' @author Michael Witting, Johannes Rainer
 #'

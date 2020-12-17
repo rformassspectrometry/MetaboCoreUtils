@@ -15,8 +15,9 @@ the m/z should be calculated; supported values are returned by
 }
 \value{
 numeric \code{matrix} with same number of rows than elements in \code{x} and
-number of columns being equal to the length of \code{adduct}. Each column
-thus represents the m/z of \code{x} for each defined \code{adduct}.
+number of columns being equal to the length of \code{adduct} (adduct names
+are used as column names). Each column thus represents the m/z of \code{x}
+for each defined \code{adduct}.
 }
 \description{
 \code{mass2mz} calculates the m/z value from a neutral mass and an adduct
