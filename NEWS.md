@@ -4,6 +4,8 @@
 
 - Refactor `mass2mz` and `mz2mass` to support calculation of multiple adducts
   for multiple input values.
+- Add functions `adducts` to return a `data.frame` with the (built-in) adduct
+  definitions.
 
 ## MetaboCoreUtils 0.0.2
 

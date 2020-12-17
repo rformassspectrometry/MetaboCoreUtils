@@ -2,21 +2,27 @@
 % Please edit documentation in R/adducts.R
 \name{adductNames}
 \alias{adductNames}
+\alias{adducts}
 \title{Retrieve names of supported adducts}
 \usage{
 adductNames(polarity = c("positive", "negative"))
+
+adducts(polarity = c("positive", "negative"))
 }
 \arguments{
 \item{polarity}{\code{character(1)} defining the ion mode, either \code{"positive"} or
 \code{"negative"}.}
 }
 \value{
-\code{character} vector with all valid adduct names for the selected ion
-mode.
+for \code{adductNames}: \code{character} vector with all valid adduct names
+for the selected ion mode. For \code{adducts}: \code{data.frame} with the adduct
+definitions.
 }
 \description{
 \code{adductNames} returns all supported adduct definitions that can be used by
 \code{\link[=mass2mz]{mass2mz()}} and \code{\link[=mz2mass]{mz2mass()}}.
+
+\code{adducts} returns a \code{data.frame} with the adduct definitions.
 }
 \examples{
 
@@ -27,5 +33,5 @@ adductNames(polarity = "positive")
 adductNames(polarity = "negative")
 }
 \author{
-Michael Witting
+Michael Witting, Johannes Rainer
 }

@@ -74,3 +74,13 @@ test_that("correct calculation of neutral mass", {
     expect_error(mz2mass(4, "some"), "Unknown adduct")
     expect_error(mz2mass(4, c("some", "[M+H]+")), "Unknown adduct")
 })
+
+test_that("adducts works", {
+    expect_error(adducts(polarity = "some"))
+    res <- adducts()
+    expect_true(is.data.frame(res))
+    expect_equal(res, .ADDUCTS[.ADDUCTS$positive, ])
+    res <- adducts(polarity = "negative")
+    expect_true(is.data.frame(res))
+    expect_equal(res, .ADDUCTS[!.ADDUCTS$positive, ])
+})
