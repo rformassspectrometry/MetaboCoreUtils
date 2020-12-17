@@ -65,6 +65,12 @@ test_that("correct calculation of neutral mass", {
     expect_equal(colnames(res), rownames(.ADDUCTS[!.ADDUCTS$positive, ]))
     expect_true(nrow(res) == 1)
 
+    x <- c(123, 453, 342)
+    mzs <- mass2mz(x, "[M+H]+")
+    expect_equal(x, mz2mass(mzs[, 1], "[M+H]+")[, 1])
+    mzs <- mass2mz(x, "[M+Cl]-")
+    expect_equal(x, mz2mass(mzs[, 1], "[M+Cl]-")[, 1])
+
     expect_error(mz2mass(4, "some"), "Unknown adduct")
     expect_error(mz2mass(4, c("some", "[M+H]+")), "Unknown adduct")
 })
