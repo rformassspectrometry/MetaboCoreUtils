@@ -3,7 +3,7 @@
 ## MetaboCoreUtils 0.0.3
 
 - Refactor `mass2mz` and `mz2mass` to support calculation of multiple adducts
-  for multiple input values.
+  for multiple input values as well as user defined adduct definition.
 - Add functions `adducts` to return a `data.frame` with the (built-in) adduct
   definitions.
 

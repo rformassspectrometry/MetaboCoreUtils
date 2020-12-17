@@ -9,9 +9,11 @@ mz2mass(x, adduct = "[M+H]+")
 \arguments{
 \item{x}{\code{numeric} m/z value for which the neutral mass shall be calculated.}
 
-\item{adduct}{\code{character} specifying the name(s) of the adduct(s) for which
-the m/z should be calculated; supported values are returned by
-\code{\link[=adductNames]{adductNames()}}}
+\item{adduct}{either a \code{character} specifying the name(s) of the adduct(s)
+for which the m/z should be calculated or a \code{data.frame} with the adduct
+definition. See \code{\link[=adductNames]{adductNames()}} for supported adduct names and the
+description for more information on the expected format if a \code{data.frame}
+is provided.}
 }
 \value{
 numeric \code{matrix} with same number of rows than elements in \code{x} and
@@ -22,6 +24,11 @@ of \code{x} for each defined \code{adduct}.
 \description{
 \code{mz2mass} calculates the neutral mass from a given m/z value and adduct
 definition.
+
+Custom adduct definitions can be passed to the \code{adduct} parameter in form of
+a \code{data.frame}. This \code{data.frame} is expected to have columns \code{"mass_add"}
+and \code{"mass_multi"} defining the \emph{additive} and \emph{multiplicative} part of the
+calculation. See \code{\link[=adducts]{adducts()}} for examples.
 }
 \examples{
 
@@ -36,6 +43,11 @@ adduct <- "[M+Na]+"
 
 ## Calculate m/z of [M+Na]+ adduct from neutral mass
 mz2mass(ion_mass, adduct)
+
+## Provide a custom adduct definition.
+adds <- data.frame(mass_add = c(1, 2, 3), mass_multi = c(1, 2, 0.5))
+rownames(adds) <- c("a", "b", "c")
+mz2mass(c(100, 200), adds)
 }
 \seealso{
 \code{\link[=mass2mz]{mass2mz()}} for the reverse calculation, \code{\link[=adductNames]{adductNames()}} for

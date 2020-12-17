@@ -9,9 +9,11 @@ mass2mz(x, adduct = "[M+H]+")
 \arguments{
 \item{x}{\code{numeric} neutral mass for which the adduct m/z shall be calculated.}
 
-\item{adduct}{\code{character} specifying the name(s) of the adduct(s) for which
-the m/z should be calculated; supported values are returned by
-\code{\link[=adductNames]{adductNames()}}}
+\item{adduct}{either a \code{character} specifying the name(s) of the adduct(s)
+for which the m/z should be calculated or a \code{data.frame} with the adduct
+definition. See \code{\link[=adductNames]{adductNames()}} for supported adduct names and the
+description for more information on the expected format if a \code{data.frame}
+is provided.}
 }
 \value{
 numeric \code{matrix} with same number of rows than elements in \code{x} and
@@ -22,6 +24,11 @@ for each defined \code{adduct}.
 \description{
 \code{mass2mz} calculates the m/z value from a neutral mass and an adduct
 definition.
+
+Custom adduct definitions can be passed to the \code{adduct} parameter in form of
+a \code{data.frame}. This \code{data.frame} is expected to have columns \code{"mass_add"}
+and \code{"mass_multi"} defining the \emph{additive} and \emph{multiplicative} part of the
+calculation. See \code{\link[=adducts]{adducts()}} for examples.
 }
 \examples{
 
@@ -39,6 +46,11 @@ mass2mz(exact_mass, adduct)
 
 ## Calculate m/z of multiple adducts from neutral mass
 mass2mz(exact_mass, adduct = adductNames())
+
+## Provide a custom adduct definition.
+adds <- data.frame(mass_add = c(1, 2, 3), mass_multi = c(1, 2, 0.5))
+rownames(adds) <- c("a", "b", "c")
+mass2mz(c(100, 200), adds)
 }
 \seealso{
 \code{\link[=mz2mass]{mz2mass()}} for the reverse calculation, \code{\link[=adductNames]{adductNames()}} for

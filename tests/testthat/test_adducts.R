@@ -84,3 +84,26 @@ test_that("adducts works", {
     expect_true(is.data.frame(res))
     expect_equal(res, .ADDUCTS[!.ADDUCTS$positive, ])
 })
+
+test_that(".process_adduct_arg works", {
+    expect_error(.process_adduct_arg(4), "data.frame")
+    expect_error(.process_adduct_arg(data.frame()), "not found")
+
+    res <- .process_adduct_arg(c("[M+H]+", "[M+Na]+"))
+    expect_true(is.list(res))
+    adds <- adducts()[c("[M+H]+", "[M+Na]+"), ]
+    a <- adds$mass_add
+    b <- adds$mass_multi
+    names(a) <- rownames(adds)
+    names(b) <- rownames(adds)
+    expect_equal(res, list(add = a, mult = b))
+
+    df <- data.frame(mass_multi = 1:3, mass_add = 4)
+    rownames(df) <- c("a", "b", "c")
+    res <- .process_adduct_arg(df)
+    a <- df$mass_multi
+    b <- df$mass_add
+    names(a) <- rownames(df)
+    names(b) <- rownames(df)
+    expect_equal(res, list(add = b, mult = a))
+})
