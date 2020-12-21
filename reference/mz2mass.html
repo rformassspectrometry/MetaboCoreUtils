@@ -41,7 +41,11 @@
 
 <meta property="og:title" content="Calculate neutral mass — mz2mass" />
 <meta property="og:description" content="mz2mass calculates the neutral mass from a given m/z value and adduct
-definition" />
+definition.
+Custom adduct definitions can be passed to the adduct parameter in form of
+a data.frame. This data.frame is expected to have columns &quot;mass_add&quot;
+and &quot;mass_multi&quot; defining the additive and multiplicative part of the
+calculation. See adducts() for examples." />
 
 
 
@@ -73,19 +77,13 @@ definition" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">MetaboCoreUtils</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.3</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li>
@@ -95,7 +93,7 @@ definition" />
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/RforMassSpectrometry/MetaboCoreUtils/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -119,10 +117,14 @@ definition" />
 
     <div class="ref-description">
     <p><code>mz2mass</code> calculates the neutral mass from a given m/z value and adduct
-definition</p>
+definition.</p>
+<p>Custom adduct definitions can be passed to the <code>adduct</code> parameter in form of
+a <code>data.frame</code>. This <code>data.frame</code> is expected to have columns <code>"mass_add"</code>
+and <code>"mass_multi"</code> defining the <em>additive</em> and <em>multiplicative</em> part of the
+calculation. See <code><a href='adductNames.html'>adducts()</a></code> for examples.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>mz2mass</span>(<span class='kw'>x</span>, adduct = <span class='st'>"[M+H]+"</span>)</pre>
+    <pre class="usage"><span class='fu'>mz2mass</span><span class='op'>(</span><span class='va'>x</span>, adduct <span class='op'>=</span> <span class='st'>"[M+H]+"</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -133,36 +135,53 @@ definition</p>
     </tr>
     <tr>
       <th>adduct</th>
-      <td><p><code>character</code> specifying the name of the adduct;
-supported values are returned by <code>adductNames()</code></p></td>
+      <td><p>either a <code>character</code> specifying the name(s) of the adduct(s)
+for which the m/z should be calculated or a <code>data.frame</code> with the adduct
+definition. See <code><a href='adductNames.html'>adductNames()</a></code> for supported adduct names and the
+description for more information on the expected format if a <code>data.frame</code>
+is provided.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p><code>numeric</code> representing the calculated neutral mass.</p>
+    <p>numeric <code>matrix</code> with same number of rows than elements in <code>x</code> and
+number of columns being equal to the length of <code>adduct</code> (adduct names
+are used as column names. Each column thus represents the neutral mass
+of <code>x</code> for each defined <code>adduct</code>.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code>mass2mz()</code> for the reverse calculation, <code>adductNames()</code> for
+    <div class='dont-index'><p><code><a href='mass2mz.html'>mass2mz()</a></code> for the reverse calculation, <code><a href='adductNames.html'>adductNames()</a></code> for
 supported adduct definitions.</p></div>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
-    <p>Michael Witting</p>
+    <p>Michael Witting, Johannes Rainer</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='kw'>ion_mass</span> <span class='op'>&lt;-</span> <span class='fl'>100</span>
-<span class='kw'>adduct</span> <span class='op'>&lt;-</span> <span class='st'>"[M+H]+"</span>
+<span class='va'>ion_mass</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>100</span>, <span class='fl'>200</span>, <span class='fl'>300</span><span class='op'>)</span>
+<span class='va'>adduct</span> <span class='op'>&lt;-</span> <span class='st'>"[M+H]+"</span>
 
 <span class='co'>## Calculate m/z of [M+H]+ adduct from neutral mass</span>
-<span class='fu'>mz2mass</span>(<span class='kw'>ion_mass</span>, <span class='kw'>adduct</span>)</div><div class='output co'>#&gt;   [M+H]+ 
-#&gt; 98.99272 </div><div class='input'>
-<span class='kw'>ion_mass</span> <span class='op'>&lt;-</span> <span class='fl'>100</span>
-<span class='kw'>adduct</span> <span class='op'>&lt;-</span> <span class='st'>"[M+Na]+"</span>
+<span class='fu'>mz2mass</span><span class='op'>(</span><span class='va'>ion_mass</span>, <span class='va'>adduct</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;         [M+H]+
+#&gt; [1,]  98.99272
+#&gt; [2,] 198.99272
+#&gt; [3,] 298.99272</div><div class='input'>
+<span class='va'>ion_mass</span> <span class='op'>&lt;-</span> <span class='fl'>100</span>
+<span class='va'>adduct</span> <span class='op'>&lt;-</span> <span class='st'>"[M+Na]+"</span>
 
 <span class='co'>## Calculate m/z of [M+Na]+ adduct from neutral mass</span>
-<span class='fu'>mz2mass</span>(<span class='kw'>ion_mass</span>, <span class='kw'>adduct</span>)</div><div class='output co'>#&gt;  [M+Na]+ 
-#&gt; 77.01078 </div></pre>
+<span class='fu'>mz2mass</span><span class='op'>(</span><span class='va'>ion_mass</span>, <span class='va'>adduct</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;       [M+Na]+
+#&gt; [1,] 77.01078</div><div class='input'>
+<span class='co'>## Provide a custom adduct definition.</span>
+<span class='va'>adds</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>mass_add <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>2</span>, <span class='fl'>3</span><span class='op'>)</span>, mass_multi <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>2</span>, <span class='fl'>0.5</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>rownames</a></span><span class='op'>(</span><span class='va'>adds</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"a"</span>, <span class='st'>"b"</span>, <span class='st'>"c"</span><span class='op'>)</span>
+<span class='fu'>mz2mass</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>100</span>, <span class='fl'>200</span><span class='op'>)</span>, <span class='va'>adds</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;        a  b   c
+#&gt; [1,]  99 49 194
+#&gt; [2,] 199 99 394</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -178,7 +197,7 @@ supported adduct definitions.</p></div>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.9000.</p>
 </div>
 
       </footer>

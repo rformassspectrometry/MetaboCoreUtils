@@ -73,19 +73,13 @@ to the Hill notation system." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">MetaboCoreUtils</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.3</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li>
@@ -95,7 +89,7 @@ to the Hill notation system." />
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/RforMassSpectrometry/MetaboCoreUtils/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -122,7 +116,7 @@ to the Hill notation system." />
 to the Hill notation system.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>standardizeFormula</span>(<span class='kw'>x</span>)</pre>
+    <pre class="usage"><span class='fu'>standardizeFormula</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -138,14 +132,15 @@ to the Hill notation system.</p>
     <p><code>character</code> Single string with the standardized chemical formula.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code>pasteElements()</code> <code>countElements()</code></p></div>
+    <div class='dont-index'><p><code><a href='pasteElements.html'>pasteElements()</a></code> <code><a href='countElements.html'>countElements()</a></code></p></div>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>Michael Witting</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='fu'>standardizeFormula</span>(<span class='st'>"C6O6H12"</span>)</div><div class='output co'>#&gt; [1] "C6H12O6"</div></pre>
+<span class='fu'>standardizeFormula</span><span class='op'>(</span><span class='st'>"C6O6H12"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] "C6H12O6"</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -161,7 +156,7 @@ to the Hill notation system.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.9000.</p>
 </div>
 
       </footer>
