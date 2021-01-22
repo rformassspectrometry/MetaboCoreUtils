@@ -14,7 +14,20 @@ internalStandards(mix = "QReSS")
 }
 \description{
 \code{internalStandards} returns a table with metabolite standards available
-in commercial internal standard mixes
+in commercial internal standard mixes. The returned data frame contains
+the following columns.
+- \code{"name"} name of the standard
+-  \code{"formula_salt"} chemical formula of the salt that was used to produce
+the standard mix
+- \code{"formula_metabolite"} chemical formula of the metabolite in free form
+- \code{"smiles_salt"} SMILES of the salt that was used to produced the
+standard mix
+- \code{"smiles_metabolite"} SMILES of the metabolite in free form
+- \code{"mol_weight_salt"} molecular (average) weight of the salt (can be used
+for calculation of molar concentration, etc.)
+- \code{"exact_mass_metabolite"} exact mass of free metabolites
+- \code{"conc"} concentration of the metabolite in µg/mL (of salt form)
+- \code{"mix"} name of internal standard mix
 }
 \examples{
 
