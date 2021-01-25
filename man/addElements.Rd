@@ -2,9 +2,9 @@
 % Please edit documentation in R/chemFormula.R
 \name{addElements}
 \alias{addElements}
-\title{subtract two chemical formula}
+\title{Combine chemical formulae}
 \usage{
-addElements(x, y = NA)
+addElements(x, y = NA_character_)
 }
 \arguments{
 \item{x}{\code{character} Vector with 1 or more chemical formulae to be added}
@@ -18,7 +18,10 @@ addElements(x, y = NA)
 \code{addElements} Add one chemical formula to another.
 }
 \examples{
+
 addElements("C6H12O6", "Na")
+
+addElements("C6H12O6", c("Na", "H2O"))
 }
 \author{
 Michael Witting

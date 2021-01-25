@@ -2,12 +2,13 @@
 % Please edit documentation in R/internalStandards.R
 \name{internalStandards}
 \alias{internalStandards}
-\title{Get internal standards}
+\title{Get definitions for internal standards}
 \usage{
 internalStandards(mix = "QReSS")
 }
 \arguments{
-\item{mix}{\code{character} Name of the internal standard mix that shall be returned}
+\item{mix}{\code{character(1)} Name of the internal standard mix that shall be
+returned. One of \code{\link[=internalStandardMixNames]{internalStandardMixNames()}}.}
 }
 \value{
 \code{data.frame} data on internal standards
@@ -15,24 +16,29 @@ internalStandards(mix = "QReSS")
 \description{
 \code{internalStandards} returns a table with metabolite standards available
 in commercial internal standard mixes. The returned data frame contains
-the following columns.
-- \code{"name"} name of the standard
--  \code{"formula_salt"} chemical formula of the salt that was used to produce
+the following columns:
+\itemize{
+\item \code{"name"}: the name of the standard
+\item \code{"formula_salt"}: chemical formula of the salt that was used to produce
 the standard mix
-- \code{"formula_metabolite"} chemical formula of the metabolite in free form
-- \code{"smiles_salt"} SMILES of the salt that was used to produced the
+\item \code{"formula_metabolite"}: chemical formula of the metabolite in free form
+\item \code{"smiles_salt"}: SMILES of the salt that was used to produced the
 standard mix
-- \code{"smiles_metabolite"} SMILES of the metabolite in free form
-- \code{"mol_weight_salt"} molecular (average) weight of the salt (can be used
+\item \code{"smiles_metabolite"}: SMILES of the metabolite in free form
+\item \code{"mol_weight_salt"}: molecular (average) weight of the salt (can be used
 for calculation of molar concentration, etc.)
-- \code{"exact_mass_metabolite"} exact mass of free metabolites
-- \code{"conc"} concentration of the metabolite in µg/mL (of salt form)
-- \code{"mix"} name of internal standard mix
+\item \code{"exact_mass_metabolite"}: exact mass of free metabolites
+\item \code{"conc"}: concentration of the metabolite in ug/mL (of salt form)
+\item \code{"mix"}: name of internal standard mix
+}
 }
 \examples{
 
 internalStandards(mix = "QReSS")
 internalStandards(mix = "UltimateSplashOne")
+}
+\seealso{
+\code{\link[=internalStandardMixNames]{internalStandardMixNames()}} for provided internal standard mixes.
 }
 \author{
 Michael Witting

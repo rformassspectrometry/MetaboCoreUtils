@@ -2,7 +2,7 @@
 % Please edit documentation in R/internalStandards.R
 \name{internalStandardMixNames}
 \alias{internalStandardMixNames}
-\title{Get names of internal standard mixes supported}
+\title{Get names of internal standard mixes provided by the package}
 \usage{
 internalStandardMixNames()
 }
@@ -10,12 +10,12 @@ internalStandardMixNames()
 \code{character} names of available IS mixes
 }
 \description{
-\code{mixNames} returns a table with metabolite standards available
-in commercial internal standard mixes
+\code{internalStandardMixNames} returns available names of internal standard
+mixes provided by the \code{MetaboCoreUtils} package.
 }
 \examples{
 
-mixNames()
+internalStandardMixNames()
 }
 \author{
 Michael Witting
