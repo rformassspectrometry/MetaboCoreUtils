@@ -19,7 +19,9 @@ should be subtracted from \code{x}}
 \code{subtractElements} subtracts one chemical formula from another.
 }
 \examples{
+
 subtractElements("C6H12O6", "H2O")
+
 subtractElements("C6H12O6", "NH3")
 }
 \author{

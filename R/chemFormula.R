@@ -85,11 +85,11 @@ pasteElements <- function(x) {
     }
     ## get all remaining elements
     restElements <- names(x)
-    restElements <- restElements[!restElements %in%
-                                 c("C", "H", "N", "O", "S", "P")]
+    restElements <- restElements[
+        !restElements %in% c("C", "H", "N", "O", "S", "P")]
     ## iterate through all remaining elements in alphabetical order
     for (atom in sort(restElements)) {
-        if(x[[atom]] > 0) {
+        if (x[[atom]] > 0) {
             if (x[[atom]] == 1) {
                 chem_formula <- paste0(chem_formula, atom)
             } else {
@@ -133,6 +133,7 @@ standardizeFormula <- function(x) {
 #' `containsElements` checks if one sum formula is contained in another.
 #'
 #' @param x `character` Single string with a chemical formula
+#'
 #' @param y `character` Single string with a chemical formula that shall be
 #'     contained in `x`
 #'
@@ -143,6 +144,7 @@ standardizeFormula <- function(x) {
 #' @export
 #'
 #' @examples
+#'
 #' containsElements("C6H12O6", "H2O")
 #' containsElements("C6H12O6", "NH3")
 containsElements <- function(x, y) {
@@ -172,23 +174,23 @@ containsElements <- function(x, y) {
 #' @export
 #'
 #' @examples
+#'
 #' subtractElements("C6H12O6", "H2O")
+#'
 #' subtractElements("C6H12O6", "NH3")
 subtractElements <- function(x, y) {
-  if(length(y) > 1) {
-    y <- addElements(y)
-  }
-  ## sanity checks for formulas
-  if(!containsElements(x, y)) {
-    return(NA_character_)
-  }
-  ## parse both formmula
-  x <- countElements(x)
-  y <- countElements(y)
-  formula_concat <- c(x, y * -1)
-  ## subtract formula from each other
-  result <- tapply(formula_concat, names(formula_concat), sum)
-  pasteElements(result)
+    if (length(y) > 1)
+        y <- addElements(y)
+    ## sanity checks for formulas
+    if (!containsElements(x, y))
+        return(NA_character_)
+    ## parse both formmula
+    x <- countElements(x)
+    y <- countElements(y)
+    formula_concat <- c(x, y * -1)
+    ## subtract formula from each other
+    result <- tapply(formula_concat, names(formula_concat), sum)
+    pasteElements(result)
 }
 
 #' @title Combine chemical formulae

@@ -1,3 +1,9 @@
+# MetaboCoreutils 0.99
+
+## MetaboCoreUtils 0.99.0
+
+- Add package vignette and prepare for Bioconductor submission.
+
 # MetaboCoreutils 0.0
 
 ## MetaboCoreUtils 0.0.3

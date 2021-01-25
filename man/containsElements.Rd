@@ -19,6 +19,7 @@ contained in \code{x}}
 \code{containsElements} checks if one sum formula is contained in another.
 }
 \examples{
+
 containsElements("C6H12O6", "H2O")
 containsElements("C6H12O6", "NH3")
 }
