@@ -1,6 +1,6 @@
 Package: MetaboCoreUtils
 Title: Core Utils for Metabolomics Data
-Version: 0.0.2
+Version: 0.0.3
 Description: MetaboCoreUtils defines metabolomics-related core functionality
     which is provided as low-level functions to allow a data
     structure-independent usage across various R packages.
@@ -18,15 +18,12 @@ Maintainer: RforMassSpectrometry Package Maintainer
 Depends:
     R (>= 3.6.0)
 Imports:
-    MsCoreUtils,
     stringr
 Suggests:
     testthat,
     knitr
-Remotes:
-    RforMassSpectrometry/MsCoreUtils
 License: Artistic-2.0
-LazyData: yes
+LazyData: no
 VignetteBuilder: knitr
 BugReports: https://github.com/RforMassSpectrometry/MetaboCoreUtils/issues
 URL: https://github.com/RforMassSpectrometry/MetaboCoreUtils

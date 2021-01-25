@@ -2,6 +2,7 @@
 
 export(addElements)
 export(adductNames)
+export(adducts)
 export(containsElements)
 export(countElements)
 export(internalStandardMixNames)
