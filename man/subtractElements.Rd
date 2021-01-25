@@ -9,8 +9,8 @@ subtractElements(x, y)
 \arguments{
 \item{x}{\code{character} Single string with chemical formula}
 
-\item{y}{\code{character}  Single string with chemical formula that should be
-subtracted from \code{x}}
+\item{y}{\code{character}  Single or multiple strings with chemical formula that
+should be subtracted from \code{x}}
 }
 \value{
 \code{character} Resulting formula

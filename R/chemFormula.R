@@ -22,6 +22,15 @@
 #' countElements("C6H12O6")
 #' countElements("C11H12N2O2")
 countElements <- function(x) {
+    x <- x[!is.na(x)]
+    lx <- length(x)
+    if (!lx)
+        return(integer())
+    if (lx > 1) {
+        warning("'countElements' supports only a single character string as ",
+                "input. Returning result for 'x[1]'.")
+        x <- x[1L]
+    }
     ## regex pattern to isolate all elements
     element_pattern <- "([A][cglmrstu]|[B][aehikr]?|[C][adeflmnorsu]?|[D][bsy]|[E][rsu]|[F][elmr]?|[G][ade]|[H][efgos]?|[I][nr]?|[K][r]?|[L][airuv]|[M][cdgnot]|[N][abdehiop]?|[O][gs]?|[P][abdmortu]?|[R][abefghnu]|[S][bcegimnr]?|[T][abcehilms]|[U]|[V]|[W]|[X][e]|[Y][b]?|[Z][nr])([0-9]*)"
     ## extract all matching pattern
@@ -65,7 +74,7 @@ pasteElements <- function(x) {
     ## create empty string to append parts of chem_formula
     chem_formula <- ""
     ## first C H N O S P, then elements by alphabetical order
-    for(atom in c("C", "H", "N", "O", "S", "P")) {
+    for (atom in c("C", "H", "N", "O", "S", "P")) {
         if (atom %in% names(x) && x[[atom]] > 0) {
             if (x[[atom]] == 1) {
                 chem_formula <- paste0(chem_formula, atom)
@@ -153,8 +162,8 @@ containsElements <- function(x, y) {
 #' `subtractElements` subtracts one chemical formula from another.
 #'
 #' @param x `character` Single string with chemical formula
-#' @param y `character`  Single string with chemical formula that should be
-#'     subtracted from `x`
+#' @param y `character`  Single or multiple strings with chemical formula that
+#'     should be subtracted from `x`
 #'
 #' @return `character` Resulting formula
 #'
@@ -166,27 +175,31 @@ containsElements <- function(x, y) {
 #' subtractElements("C6H12O6", "H2O")
 #' subtractElements("C6H12O6", "NH3")
 subtractElements <- function(x, y) {
-    ## sanity checks for formulas
-    if(!containsElements(x, y)) {
-        return(NA_character_)
-    }
-    ## parse both formmula
-    x <- countElements(x)
-    y <- countElements(y)
-    formula_concat <- c(x, y * -1)
-    ## subtract formula from each other
-    result <- tapply(formula_concat, names(formula_concat), sum)
-    pasteElements(result)
+  if(length(y) > 1) {
+    y <- addElements(y)
+  }
+  ## sanity checks for formulas
+  if(!containsElements(x, y)) {
+    return(NA_character_)
+  }
+  ## parse both formmula
+  x <- countElements(x)
+  y <- countElements(y)
+  formula_concat <- c(x, y * -1)
+  ## subtract formula from each other
+  result <- tapply(formula_concat, names(formula_concat), sum)
+  pasteElements(result)
 }
 
-#' @title subtract two chemical formula
+#' @title Combine chemical formulae
 #'
 #' @description
 #'
 #' `addElements` Add one chemical formula to another.
 #'
-#' @param x `character` Single string with chemical formula
-#' @param y `character` Singel string with chemical formula
+#' @param x `character` Vector with 1 or more chemical formulae to be added
+#'
+#' @param y `character` Vector with 1 or more chemical formulae to be added
 #'
 #' @return `character` Resulting formula
 #'
@@ -195,13 +208,12 @@ subtractElements <- function(x, y) {
 #' @export
 #'
 #' @examples
+#'
 #' addElements("C6H12O6", "Na")
-addElements <- function(x, y) {
-    ## parse both formmula
-    x <- countElements(x)
-    y <- countElements(y)
-    formula_concat <- c(x, y)
-    ## subtract formula from each other
-    result <- tapply(formula_concat, names(formula_concat), sum)
+#'
+#' addElements("C6H12O6", c("Na", "H2O"))
+addElements <- function(x, y = NA_character_) {
+    x <- unlist(lapply(c(x, y), countElements))
+    result <- tapply(x, names(x), sum)
     pasteElements(result)
 }

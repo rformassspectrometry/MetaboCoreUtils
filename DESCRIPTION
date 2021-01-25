@@ -1,6 +1,6 @@
 Package: MetaboCoreUtils
 Title: Core Utils for Metabolomics Data
-Version: 0.0.3
+Version: 0.0.4
 Description: MetaboCoreUtils defines metabolomics-related core functionality
     which is provided as low-level functions to allow a data
     structure-independent usage across various R packages.
