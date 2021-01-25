@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Combine chemical formulae — addElements • MetaboCoreUtils</title>
+<title>Get names of internal standard mixes provided by the package — internalStandardMixNames • MetaboCoreUtils</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,9 @@
 
 
 
-<meta property="og:title" content="Combine chemical formulae — addElements" />
-<meta property="og:description" content="addElements Add one chemical formula to another." />
+<meta property="og:title" content="Get names of internal standard mixes provided by the package — internalStandardMixNames" />
+<meta property="og:description" content="internalStandardMixNames returns available names of internal standard
+mixes provided by the MetaboCoreUtils package." />
 
 
 
@@ -107,43 +108,30 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Combine chemical formulae</h1>
-    <small class="dont-index">Source: <a href='https://github.com/RforMassSpectrometry/MetaboCoreUtils/blob/master/R/chemFormula.R'><code>R/chemFormula.R</code></a></small>
-    <div class="hidden name"><code>addElements.Rd</code></div>
+    <h1>Get names of internal standard mixes provided by the package</h1>
+    <small class="dont-index">Source: <a href='https://github.com/RforMassSpectrometry/MetaboCoreUtils/blob/master/R/internalStandards.R'><code>R/internalStandards.R</code></a></small>
+    <div class="hidden name"><code>internalStandardMixNames.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p><code>addElements</code> Add one chemical formula to another.</p>
+    <p><code>internalStandardMixNames</code> returns available names of internal standard
+mixes provided by the <code>MetaboCoreUtils</code> package.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>addElements</span><span class='op'>(</span><span class='va'>x</span>, y <span class='op'>=</span> <span class='cn'>NA_character_</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>internalStandardMixNames</span><span class='op'>(</span><span class='op'>)</span></pre>
 
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>x</th>
-      <td><p><code>character</code> Vector with 1 or more chemical formulae to be added</p></td>
-    </tr>
-    <tr>
-      <th>y</th>
-      <td><p><code>character</code> Vector with 1 or more chemical formulae to be added</p></td>
-    </tr>
-    </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p><code>character</code> Resulting formula</p>
+    <p><code>character</code> names of available IS mixes</p>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>Michael Witting</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='fu'>addElements</span><span class='op'>(</span><span class='st'>"C6H12O6"</span>, <span class='st'>"Na"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] "C6H12O6Na"</div><div class='input'>
-<span class='fu'>addElements</span><span class='op'>(</span><span class='st'>"C6H12O6"</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Na"</span>, <span class='st'>"H2O"</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] "C6H14O7Na"</div></pre>
+<span class='fu'>internalStandardMixNames</span><span class='op'>(</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] "QReSS"             "UltimateSplashOne"</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
