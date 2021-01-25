@@ -47,6 +47,8 @@ adducts returns a data.frame with the adduct definitions." />
 
 
 
+
+
 <!-- mathjax -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script>
@@ -145,20 +147,25 @@ definitions.</p>
     <pre class="examples"><div class='input'>
 <span class='co'>## retrieve names of adduct names in positive ion mode</span>
 <span class='fu'>adductNames</span><span class='op'>(</span>polarity <span class='op'>=</span> <span class='st'>"positive"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;  [1] "[M+3H]3+"        "[M+2H+Na]3+"     "[M+H+Na2]3+"     "[M+Na3]3+"      
-#&gt;  [5] "[M+2H]2+"        "[M+H+NH4]2+"     "[M+H+K]2+"       "[M+H+Na]2+"     
-#&gt;  [9] "[M+C2H3N+2H]2+"  "[M+2Na]2+"       "[M+C4H6N2+2H]2+" "[M+C6H9N3+2H]2+"
-#&gt; [13] "[M+H]+"          "[M+Li]+"         "[M+2Li-H]+"      "[M+NH4]+"       
-#&gt; [17] "[M+H2O+H]+"      "[M+Na]+"         "[M+CH4O+H]+"     "[M+K]+"         
-#&gt; [21] "[M+C2H3N+H]+"    "[M+2Na-H]+"      "[M+C3H8O+H]+"    "[M+C2H3N+Na]+"  
-#&gt; [25] "[M+2K-H]+"       "[M+C2H6OS+H]+"   "[M+C4H6N2+H]+"   "[2M+H]+"        
-#&gt; [29] "[2M+NH4]+"       "[2M+Na]+"        "[2M+K]+"         "[2M+C2H3N+H]+"  
-#&gt; [33] "[2M+C2H3N+Na]+"  "[3M+H]+"        </div><div class='input'>
+</div><div class='output co'>#&gt;  [1] "[M+3H]3+"          "[M+2H+Na]3+"       "[M+H+Na2]3+"      
+#&gt;  [4] "[M+Na3]3+"         "[M+2H]2+"          "[M+H+NH4]2+"      
+#&gt;  [7] "[M+H+K]2+"         "[M+H+Na]2+"        "[M+C2H3N+2H]2+"   
+#&gt; [10] "[M+2Na]2+"         "[M+C4H6N2+2H]2+"   "[M+C6H9N3+2H]2+"  
+#&gt; [13] "[M+H]+"            "[M+Li]+"           "[M+2Li-H]+"       
+#&gt; [16] "[M+NH4]+"          "[M+H2O+H]+"        "[M+Na]+"          
+#&gt; [19] "[M+CH4O+H]+"       "[M+K]+"            "[M+C2H3N+H]+"     
+#&gt; [22] "[M+2Na-H]+"        "[M+C3H8O+H]+"      "[M+C2H3N+Na]+"    
+#&gt; [25] "[M+2K-H]+"         "[M+C2H6OS+H]+"     "[M+C4H6N2+H]+"    
+#&gt; [28] "[2M+H]+"           "[2M+NH4]+"         "[2M+Na]+"         
+#&gt; [31] "[2M+K]+"           "[2M+C2H3N+H]+"     "[2M+C2H3N+Na]+"   
+#&gt; [34] "[3M+H]+"           "[M+H-NH3]+"        "[M+H-H2O]+"       
+#&gt; [37] "[M+H-Hexose-H2O]+"</div><div class='input'>
 <span class='co'>## retrieve names of adduct names in negative ion mode</span>
 <span class='fu'>adductNames</span><span class='op'>(</span>polarity <span class='op'>=</span> <span class='st'>"negative"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;  [1] "[M-3H]3-"     "[M-2H]2-"     "[M-H]-"       "[M+Na-2H]-"   "[M+Cl]-"     
-#&gt;  [6] "[M+K-2H]-"    "[M+C2H3N-H]-" "[M+CHO2]-"    "[M+C2H3O2]-"  "[M+Br]-"     
-#&gt; [11] "[M+C2F3O2]-"  "[2M-H]-"      "[2M+CHO2]-"   "[2M+C2H3O2]-" "[3M-H]-"     </div></pre>
+</div><div class='output co'>#&gt;  [1] "[M-3H]3-"      "[M-2H]2-"      "[M-H]-"        "[M+Na-2H]-"   
+#&gt;  [5] "[M+Cl]-"       "[M+K-2H]-"     "[M+C2H3N-H]-"  "[M+CHO2]-"    
+#&gt;  [9] "[M+C2H3O2]-"   "[M+Br]-"       "[M+C2F3O2]-"   "[2M-H]-"      
+#&gt; [13] "[2M+CHO2]-"    "[2M+C2H3O2]-"  "[3M-H]-"       "[M-H+HCOONa]-"</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
