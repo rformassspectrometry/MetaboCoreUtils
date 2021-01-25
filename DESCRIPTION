@@ -2,26 +2,31 @@ Package: MetaboCoreUtils
 Title: Core Utils for Metabolomics Data
 Version: 0.0.4
 Description: MetaboCoreUtils defines metabolomics-related core functionality
-    which is provided as low-level functions to allow a data
-    structure-independent usage across various R packages.
-Authors@R: c(person(given = "Johannes", family = "Rainer",
-                    email = "Johannes.Rainer@eurac.edu",
-                    role = c("aut", "cre"),
-                    comment = c(ORCID = "0000-0002-6977-7147")),
+    provided as low-level functions to allow a data structure-independent usage
+    across various R packages. This includes functions to calculate between ion
+    (adduct) and compound mass-to-charge ratios and masses or functions to work
+    with chemical formulas. The package provides also a set of adduct
+    definitions and information on some commercially available internal
+    standard mixes commonly used in MS experiments.
+Authors@R:
+    c(person(given = "Johannes", family = "Rainer",
+                     email = "Johannes.Rainer@eurac.edu",
+                     role = c("aut", "cre"),
+                     comment = c(ORCID = "0000-0002-6977-7147")),
              person(given = "Michael", family = "Witting",
                     email = "michael.witting@helmholtz-muenchen.de",
-                    role = c("aut", "cre"),
+                    role = c("aut"),
                     comment = c(ORCID = "0000-0002-1462-4426")))
 Author: Michael Witting and Johannes Rainer.
-Maintainer: RforMassSpectrometry Package Maintainer
-    <maintainer@rformassspectrometry.org>
 Depends:
-    R (>= 3.6.0)
+    R (>= 4.0.0)
 Imports:
     stringr
 Suggests:
+    BiocStyle,
     testthat,
-    knitr
+    knitr,
+    rmarkdown
 License: Artistic-2.0
 LazyData: no
 VignetteBuilder: knitr
