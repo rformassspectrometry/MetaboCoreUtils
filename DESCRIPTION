@@ -18,7 +18,7 @@ Authors@R:
                     role = c("aut"),
                     comment = c(ORCID = "0000-0002-1462-4426")))
 Depends:
-    R (>= 4.1)
+    R (>= 4.0)
 Imports:
     stringr,
     utils
