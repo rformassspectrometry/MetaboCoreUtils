@@ -1,5 +1,9 @@
 # MetaboCoreutils 0.99
 
+## MetaboCoreUtils 0.99.1
+
+- Add `[M+H-2(H2O)]+` adduct definition.
+
 ## MetaboCoreUtils 0.99.0
 
 - Add package vignette and prepare for Bioconductor submission.
