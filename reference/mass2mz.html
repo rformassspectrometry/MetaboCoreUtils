@@ -85,7 +85,7 @@ calculation. See adducts() for examples." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">MetaboCoreUtils</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.99.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.99.1</span>
       </span>
     </div>
 
@@ -200,8 +200,8 @@ supported adduct definitions.</p></div>
 #&gt; [1,]      179.0212      183.0604 201.0073  218.0338 222.9892 238.9632
 #&gt;      [2M+C2H3N+H]+ [2M+C2H3N+Na]+  [3M+H]+ [M+H-NH3]+ [M+H-H2O]+
 #&gt; [1,]      242.0338       264.0158 301.0073   83.98073   82.99671
-#&gt;      [M+H-Hexose-H2O]+
-#&gt; [1,]         -61.04555</div><div class='input'>
+#&gt;      [M+H-Hexose-H2O]+ [M+H-H4O2]+ [M+H-CH2O2]+
+#&gt; [1,]         -61.04555    64.98615      55.0018</div><div class='input'>
 <span class='co'>## Provide a custom adduct definition.</span>
 <span class='va'>adds</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>mass_add <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>2</span>, <span class='fl'>3</span><span class='op'>)</span>, mass_multi <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>2</span>, <span class='fl'>0.5</span><span class='op'>)</span><span class='op'>)</span>
 <span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>rownames</a></span><span class='op'>(</span><span class='va'>adds</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"a"</span>, <span class='st'>"b"</span>, <span class='st'>"c"</span><span class='op'>)</span>
