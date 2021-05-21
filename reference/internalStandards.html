@@ -74,6 +74,7 @@ for calculation of molar concentration, etc.)
 
 
 
+
   
 
   
@@ -96,7 +97,7 @@ for calculation of molar concentration, etc.)
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">MetaboCoreUtils</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.99.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.0</span>
       </span>
     </div>
 
@@ -157,14 +158,14 @@ for calculation of molar concentration, etc.)</p></li>
 
     </div>
 
-    <pre class="usage"><span class='fu'>internalStandards</span><span class='op'>(</span>mix <span class='op'>=</span> <span class='st'>"QReSS"</span><span class='op'>)</span></pre>
+    <div class="ref-usage sourceCode"><pre class='sourceCode r'><code><span class='fu'>internalStandards</span><span class='op'>(</span>mix <span class='op'>=</span> <span class='st'>"QReSS"</span><span class='op'>)</span></code></pre></div>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>mix</th>
-      <td><p><code><a href='https://rdrr.io/r/base/character.html'>character(1)</a></code> Name of the internal standard mix that shall be
+      <td><p><code>character(1)</code> Name of the internal standard mix that shall be
 returned. One of <code><a href='internalStandardMixNames.html'>internalStandardMixNames()</a></code>.</p></td>
     </tr>
     </table>
@@ -180,383 +181,385 @@ returned. One of <code><a href='internalStandardMixNames.html'>internalStandardM
     <p>Michael Witting</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
-<span class='fu'>internalStandards</span><span class='op'>(</span>mix <span class='op'>=</span> <span class='st'>"QReSS"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;                                                              name
-#&gt; 1                                 L-Alanine (13C3, 99%; 15N, 99%)
-#&gt; 2                1,4-Butanediamine (putrescine)Â·2HCl (13C4, 99%)
-#&gt; 3                                   Creatinine (N-methyl-D3, 98%)
-#&gt; 4                             EthanolamineÂ·HCl (1,1,2,2-D4, 98%)
-#&gt; 5                                  GuanosineÂ·2H2O (15N5, 96-98%)
-#&gt; 6                                        Hypoxanthine (13C5, 99%)
-#&gt; 7                                           L-Leucine (13C6, 99%)
-#&gt; 8                                L-Phenylalanine (ring-13C6, 99%)
-#&gt; 9                                         Thymine (1,3-15N2, 98%)
-#&gt; 10                                      L-Tryptophan (13C11, 99%)
-#&gt; 11                                    L-Tyrosine (ring-13C6, 99%)
-#&gt; 12                          Vitamin B3 (nicotinamide) (13C6, 99%)
-#&gt; 13                         Citric acid (1,5,6-carboxyl-13C3, 99%)
-#&gt; 14                                       Fumaric acid (13C4, 99%)
-#&gt; 15                        Indole-3-acetic acid (phenyl-13C6, 99%)
-#&gt; 16 Î±-Ketoglutaric acid, disodium salt (1,2,3,4-13C4, 99%) CP 97%
-#&gt; 17                                Sodium palmitate (U-13C16, 98%)
-#&gt; 18                                    Sodium pyruvate (13C3, 99%)
-#&gt;      formula_salt formula_metabolite
-#&gt; 1     [13C]3H7NO2        [13C]3H7NO2
-#&gt; 2  [13C]4H14Cl2N2        [13C]4H12N2
-#&gt; 3       C4H4D3N3O          C4H4D3N3O
-#&gt; 4        C2H8ClNO             C2H7NO
-#&gt; 5  C10H17[15N]5O7     C10H13[15N]5O5
-#&gt; 6     [13C]5H4N4O        [13C]5H4N4O
-#&gt; 7    [13C]6H13NO2       [13C]6H13NO2
-#&gt; 8  C3[13C]6H11NO2     C3[13C]6H11NO2
-#&gt; 9    C5H6[15N]2O2       C5H6[15N]2O2
-#&gt; 10 [13C]11H12N2O2     [13C]11H12N2O2
-#&gt; 11 C3[13C]6H11NO3     C3[13C]6H11NO3
-#&gt; 12    [13C]6H5NO2        [13C]6H5NO2
-#&gt; 13   C3[13C]3H8O7       C3[13C]3H8O7
-#&gt; 14     [13C]4H4O4         [13C]4H4O4
-#&gt; 15  C4[13C]6H9NO2      C4[13C]6H9NO2
-#&gt; 16 C[13C]4H4Na2O5        C[13C]4H6O5
-#&gt; 17 [13C]16H31NaO2       [13C]16H32O2
-#&gt; 18   [13C]3H3NaO3         [13C]3H4O3
-#&gt;                                                                                                                     smiles_salt
-#&gt; 1                                                                                                   [13CH3][13C@H](N)[13C](O)=O
-#&gt; 2                                                                          [Cl-].[Cl-].[NH3+][13CH2][13CH2][13CH2][13CH2][NH3+]
-#&gt; 3                                                                                                [2H]C([2H])([2H])N1CC(=O)N=C1N
-#&gt; 4                                                                                           [Cl-].[H]C([H])([NH3+])C([H])([H])O
-#&gt; 5                                           O.O.[15NH2]C1=[15N]C2=C([15N]=C[15N]2[C@@H]2O[C@H](CO)[C@@H](O)[C@H]2O)C(=O)[15NH]1
-#&gt; 6                                                                                      O=[13C]1N=[13CH]N[13C]2=[13C]1N[13CH]=N2
-#&gt; 7                                                                             [13CH3][13CH]([13CH3])[13CH2][13C@H](N)[13C](O)=O
-#&gt; 8                                                                      N[C@@H](C[13C]1=[13CH][13CH]=[13CH][13CH]=[13CH]1)C(O)=O
-#&gt; 9                                                                                                    CC1=C[15NH]C(=O)[15NH]C1=O
-#&gt; 10                                           N[13C@@H]([13CH2][13C]1=[13CH]N[13C]2=[13C]1[13CH]=[13CH][13CH]=[13CH]2)[13C](O)=O
-#&gt; 11                                                                   N[C@@H](C[13C]1=[13CH][13CH]=[13C](O)[13CH]=[13CH]1)C(O)=O
-#&gt; 12                                                                                O[13C](=O)[13C]1=[13CH][13CH]=[13CH]N=[13CH]1
-#&gt; 13                                                                                       O[13C](=O)CC(O)(C[13C](O)=O)[13C](O)=O
-#&gt; 14                                                                                        O[13C](=O)\\[13CH]=[13CH]\\[13C](O)=O
-#&gt; 15                                                                         OC(=O)CC1=CN[13C]2=[13CH][13CH]=[13CH][13CH]=[13C]12
-#&gt; 16                                                                    [Na+].[Na+].[O-]C(=O)[13CH2][13CH2][13C](=O)[13C]([O-])=O
-#&gt; 17 [Na+].[13CH3][13CH2][13CH2][13CH2][13CH2][13CH2][13CH2][13CH2][13CH2][13CH2][13CH2][13CH2][13CH2][13CH2][13CH2][13C]([O-])=O
-#&gt; 18                                                                                          [Na+].[13CH3][13C](=O)[13C]([O-])=O
-#&gt;                                                                                                      smiles_metabolite
-#&gt; 1                                                                                          [13CH3][13C@H](N)[13C](O)=O
-#&gt; 2                                                                                       N[13CH2][13CH2][13CH2][13CH2]N
-#&gt; 3                                                                                       [2H]C([2H])([2H])N1CC(=O)N=C1N
-#&gt; 4                                                                                             [H]C([H])(N)C([H])([H])O
-#&gt; 5                                      [15NH2]C1=[15N]C2=C([15N]=C[15N]2[C@@H]2O[C@H](CO)[C@@H](O)[C@H]2O)C(=O)[15NH]1
-#&gt; 6                                                                             O=[13C]1N=[13CH]N[13C]2=[13C]1N[13CH]=N2
-#&gt; 7                                                                    [13CH3][13CH]([13CH3])[13CH2][13C@H](N)[13C](O)=O
-#&gt; 8                                                             N[C@@H](C[13C]1=[13CH][13CH]=[13CH][13CH]=[13CH]1)C(O)=O
-#&gt; 9                                                                                           CC1=C[15NH]C(=O)[15NH]C1=O
-#&gt; 10                                  N[13C@@H]([13CH2][13C]1=[13CH]N[13C]2=[13C]1[13CH]=[13CH][13CH]=[13CH]2)[13C](O)=O
-#&gt; 11                                                          N[C@@H](C[13C]1=[13CH][13CH]=[13C](O)[13CH]=[13CH]1)C(O)=O
-#&gt; 12                                                                       O[13C](=O)[13C]1=[13CH][13CH]=[13CH]N=[13CH]1
-#&gt; 13                                                                              O[13C](=O)CC(O)(C[13C](O)=O)[13C](O)=O
-#&gt; 14                                                                               O[13C](=O)\\[13CH]=[13CH]\\[13C](O)=O
-#&gt; 15                                                                OC(=O)CC1=CN[13C]2=[13CH][13CH]=[13CH][13CH]=[13C]12
-#&gt; 16                                                                             OC(=O)[13CH2][13CH2][13C](=O)[13C](O)=O
-#&gt; 17 [13CH3][13CH2][13CH2][13CH2][13CH2][13CH2][13CH2][13CH2][13CH2][13CH2][13CH2][13CH2][13CH2][13CH2][13CH2][13C](O)=O
-#&gt; 18                                                                                          [13CH3][13C](=O)[13C](O)=O
-#&gt;    mol_weight_salt exact_mass_metabolite conc   mix
-#&gt; 1           92.071              92.05774  100 QReSS
-#&gt; 2          165.040              92.11347   10 QReSS
-#&gt; 3          116.138             116.07774  100 QReSS
-#&gt; 4           97.540              61.05276   10 QReSS
-#&gt; 5          324.240             288.07684    2 QReSS
-#&gt; 6          141.076             141.05528   10 QReSS
-#&gt; 7          137.129             137.11476    5 QReSS
-#&gt; 8          171.146             171.09911  100 QReSS
-#&gt; 9          128.101             128.03700   20 QReSS
-#&gt; 10         215.145             215.12678  100 QReSS
-#&gt; 11         187.145             187.09402  100 QReSS
-#&gt; 12         129.065             129.05216    5 QReSS
-#&gt; 13         195.100             195.03707   10 QReSS
-#&gt; 14         120.041             120.02438  100 QReSS
-#&gt; 15         181.141             181.08346    5 QReSS
-#&gt; 16         194.031             150.03494  100 QReSS
-#&gt; 17         294.289             272.29391   10 QReSS
-#&gt; 18         113.021              91.02611  100 QReSS</div><div class='input'><span class='fu'>internalStandards</span><span class='op'>(</span>mix <span class='op'>=</span> <span class='st'>"UltimateSplashOne"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;                                 name    formula_salt formula_metabolite
-#&gt; 1               14:0-13:0-14:0 TG-d5      C44H79D5O6         C44H79D5O6
-#&gt; 2               14:0-15:1-14:0 TG-d5      C46H81D5O6         C46H81D5O6
-#&gt; 3               14:0-17:1-14:0 TG-d5      C48H85D5O6         C48H85D5O6
-#&gt; 4               16:0-15:1-16:0 TG-d5      C50H89D5O6         C50H89D5O6
-#&gt; 5               16:0-17:1-16:0 TG-d5      C52H93D5O6         C52H93D5O6
-#&gt; 6               16:0-19:2-16:0 TG-d5      C54H95D5O6         C54H95D5O6
-#&gt; 7               18:1-17:1-18:1 TG-d5      C56H97D5O6         C56H97D5O6
-#&gt; 8               18:1-19:2-18:1 TG-d5      C58H99D5O6         C58H99D5O6
-#&gt; 9               18:1-21:2-18:1 TG-d5     C60H103D5O6        C60H103D5O6
-#&gt; 10         14:1 cholesteryl-d7 ester      C41H63D7O2         C41H63D7O2
-#&gt; 11         16:1 cholesteryl-d7 ester      C43H67D7O2         C43H67D7O2
-#&gt; 12         18:1 cholesteryl-d7 ester      C45H71D7O2         C45H71D7O2
-#&gt; 13         20:3 cholesteryl-d7 ester      C47H71D7O2         C47H71D7O2
-#&gt; 14         22:4 cholesteryl-d7 ester      C49H73D7O2         C49H73D7O2
-#&gt; 15 C16:1 Ceramide-d7 (d18:1-d7/16:1)     C34H58D7NO3        C34H58D7NO3
-#&gt; 16 C18:1 Ceramide-d7 (d18:1-d7/18:1)     C36H62D7NO3        C36H62D7NO3
-#&gt; 17 C20:1 Ceramide-d7 (d18:1-d7/20:1)     C38H66D7NO3        C38H66D7NO3
-#&gt; 18 C22:1 Ceramide-d7 (d18:1-d7/22:1)     C40H70D7NO3        C40H70D7NO3
-#&gt; 19 C24:1 Ceramide-d7 (d18:1-d7/24:1)     C42H74D7NO3        C42H74D7NO3
-#&gt; 20           16:1 SM (d18:1/16:1)-d9   C39H68D9N2O6P      C39H68D9N2O6P
-#&gt; 21           18:1 SM (d18:1/18:1)-d9   C41H72D9N2O6P      C41H72D9N2O6P
-#&gt; 22           20:1 SM (d18:1/20:1)-d9   C43H76D9N2O6P      C43H76D9N2O6P
-#&gt; 23           22:1 SM (d18:1/22:1)-d9   C45H80D9N2O6P      C45H80D9N2O6P
-#&gt; 24           24:1 SM (d18:1/24:1)-d9   C47H84D9N2O6P      C47H84D9N2O6P
-#&gt; 25                   17:0-14:1 PC-d5    C39H71D5NO8P       C39H71D5NO8P
-#&gt; 26                   17:0-16:1 PC-d5    C41H75D5NO8P       C41H75D5NO8P
-#&gt; 27                   17:0-18:1 PC-d5    C43H79D5NO8P       C43H79D5NO8P
-#&gt; 28                   17:0-20:3 PC-d5    C45H79D5NO8P       C45H79D5NO8P
-#&gt; 29                   17:0-22:4 PC-d5    C47H81D5NO8P       C47H81D5NO8P
-#&gt; 30                   17:0-14:1 PE-d5    C36H65D5NO8P       C36H65D5NO8P
-#&gt; 31                   17:0-16:1 PE-d5    C38H69D5NO8P       C38H69D5NO8P
-#&gt; 32                   17:0-18:1 PE-d5    C40H73D5NO8P       C40H73D5NO8P
-#&gt; 33                   17:0-20:3 PE-d5    C42H73D5NO8P       C42H73D5NO8P
-#&gt; 34                   17:0-22:4 PE-d5    C44H75D5NO8P       C44H75D5NO8P
-#&gt; 35                   17:0-14:1 PG-d5  C37H65D5NaO10P       C37H66D5O10P
-#&gt; 36                   17:0-16:1 PG-d5  C39H69D5NaO10P       C39H70D5O10P
-#&gt; 37                   17:0-18:1 PG-d5  C41H73D5NaO10P       C41H74D5O10P
-#&gt; 38                   17:0-20:3 PG-d5  C43H73D5NaO10P       C43H74D5O10P
-#&gt; 39                   17:0-22:4 PG-d5  C45H75D5NaO10P       C45H76D5O10P
-#&gt; 40                   17:0-14:1 PS-d5 C37H64D5NNaO10P      C37H65D5NO10P
-#&gt; 41                   17:0-16:1 PS-d5 C39H68D5NNaO10P      C39H69D5NO10P
-#&gt; 42                   17:0-18:1 PS-d5 C41H72D5NNaO10P      C41H73D5NO10P
-#&gt; 43                   17:0-20:3 PS-d5 C43H72D5NNaO10P      C43H73D5NO10P
-#&gt; 44                   17:0-22:4 PS-d5 C45H74D5NNaO10P      C45H75D5NO10P
-#&gt; 45                   17:0-14:1 DG-d5      C34H59D5O5         C34H59D5O5
-#&gt; 46                   17:0-16:1 DG-d5      C36H63D5O5         C36H63D5O5
-#&gt; 47                   17:0-18:1 DG-d5      C38H67D5O5         C38H67D5O5
-#&gt; 48                   17:0-20:3 DG-d5      C40H67D5O5         C40H67D5O5
-#&gt; 49                   17:0-22:4 DG-d5      C42H69D5O5         C42H69D5O5
-#&gt; 50                   17:0-14:1 PI-d5   C40H73D5NO13P      C40H73D5NO13P
-#&gt; 51                   17:0-16:1 PI-d5   C42H77D5NO13P      C42H77D5NO13P
-#&gt; 52                   17:0-18:1 PI-d5   C44H81D5NO13P      C44H81D5NO13P
-#&gt; 53                   17:0-20:3 PI-d5   C46H81D5NO13P      C46H81D5NO13P
-#&gt; 54                   17:0-22:4 PI-d5   C48H83D5NO13P      C48H83D5NO13P
-#&gt; 55                   15:0 Lyso PI-d5   C24H45D5NO12P      C24H45D5NO12P
-#&gt; 56                   17:0 Lyso PI-d5   C26H49D5NO12P      C26H49D5NO12P
-#&gt; 57                   19:0 Lyso PI-d5   C28H53D5NO12P      C28H53D5NO12P
-#&gt; 58                   15:0 Lyso PS-d5  C21H36D5NNaO9P       C21H37D5NO9P
-#&gt; 59                   17:0 Lyso PS-d5  C23H40D5NNaO9P       C23H41D5NO9P
-#&gt; 60                   19:0 Lyso PS-d5  C25H44D5NNaO9P       C25H45D5NO9P
-#&gt; 61                   15:0 Lyso PG-d5   C21H37D5NaO9P        C21H38D5O9P
-#&gt; 62                   17:0 Lyso PG-d5   C23H41D5NaO9P        C23H42D5O9P
-#&gt; 63                   19:0 Lyso PG-d5   C25H45D5NaO9P        C25H46D5O9P
-#&gt; 64                   15:0 Lyso PC-d5    C23H43D5NO7P       C23H43D5NO7P
-#&gt; 65                   17:0 Lyso PC-d5    C25H47D5NO7P       C25H47D5NO7P
-#&gt; 66                   19:0 Lyso PC-d5    C27H51D5NO7P       C27H51D5NO7P
-#&gt; 67                   15:0 Lyso PE-d5    C20H37D5NO7P       C20H37D5NO7P
-#&gt; 68                   17:0 Lyso PE-d5    C22H41D5NO7P       C22H41D5NO7P
-#&gt; 69                   19:0 Lyso PE-d5    C24H45D5NO7P       C24H45D5NO7P
-#&gt;                                                                                                                                                                            smiles_salt
-#&gt; 1                                                                                          [2H]C([2H])(OC(=O)CCCCCCCCCCCCC)C([2H])(OC(=O)CCCCCCCCCCCC)C([2H])([2H])OC(=O)CCCCCCCCCCCCC
-#&gt; 2                                                                                    [2H]C([2H])(OC(=O)CCCCCCCCCCCCC)C([2H])(OC(=O)CCCCCCCC\\C=C/CCCC)C([2H])([2H])OC(=O)CCCCCCCCCCCCC
-#&gt; 3                                                                                  [2H]C([2H])(OC(=O)CCCCCCCCCCCCC)C([2H])(OC(=O)CCCCCCCC\\C=C/CCCCCC)C([2H])([2H])OC(=O)CCCCCCCCCCCCC
-#&gt; 4                                                                                [2H]C([2H])(OC(=O)CCCCCCCCCCCCCCC)C([2H])(OC(=O)CCCCCCCC\\C=C/CCCC)C([2H])([2H])OC(=O)CCCCCCCCCCCCCCC
-#&gt; 5                                                                              [2H]C([2H])(OC(=O)CCCCCCCCCCCCCCC)C([2H])(OC(=O)CCCCCCCC\\C=C/CCCCCC)C([2H])([2H])OC(=O)CCCCCCCCCCCCCCC
-#&gt; 6                                                                        [2H]C([2H])(OC(=O)CCCCCCCCCCCCCCC)C([2H])(OC(=O)CCCCCCCC\\C=C/C\\C=C/CCCCC)C([2H])([2H])OC(=O)CCCCCCCCCCCCCCC
-#&gt; 7                                                                  [2H]C([2H])(OC(=O)CCCCCCC\\C=C/CCCCCCCC)C([2H])(OC(=O)CCCCCCCC\\C=C/CCCCCC)C([2H])([2H])OC(=O)CCCCCCC\\C=C/CCCCCCCC
-#&gt; 8                                                            [2H]C([2H])(OC(=O)CCCCCCC\\C=C/CCCCCCCC)C([2H])(OC(=O)CCCCCCCC\\C=C/C\\C=C/CCCCC)C([2H])([2H])OC(=O)CCCCCCC\\C=C/CCCCCCCC
-#&gt; 9                                                          [2H]C([2H])(OC(=O)CCCCCCC\\C=C/CCCCCCCC)C([2H])(OC(=O)CCCCCCCCCC\\C=C/C\\C=C/CCCCC)C([2H])([2H])OC(=O)CCCCCCC\\C=C/CCCCCCCC
-#&gt; 10                     [H][C@@](C)(CCCC([2H])(C([2H])([2H])[2H])C([2H])([2H])[2H])[C@@]1([H])CC[C@@]2([H])[C@]3([H])CC=C4C[C@H](CC[C@]4(C)[C@@]3([H])CC[C@]12C)OC(=O)CCCCCCC\\C=C/CCCC
-#&gt; 11                   [H][C@@](C)(CCCC([2H])(C([2H])([2H])[2H])C([2H])([2H])[2H])[C@@]1([H])CC[C@@]2([H])[C@]3([H])CC=C4C[C@H](CC[C@]4(C)[C@@]3([H])CC[C@]12C)OC(=O)CCCCCCC\\C=C/CCCCCC
-#&gt; 12                 [H][C@@](C)(CCCC([2H])(C([2H])([2H])[2H])C([2H])([2H])[2H])[C@@]1([H])CC[C@@]2([H])[C@]3([H])CC=C4C[C@H](CC[C@]4(C)[C@@]3([H])CC[C@]12C)OC(=O)CCCCCCC\\C=C/CCCCCCCC
-#&gt; 13       [H][C@@](C)(CCCC([2H])(C([2H])([2H])[2H])C([2H])([2H])[2H])[C@@]1([H])CC[C@@]2([H])[C@]3([H])CC=C4C[C@H](CC[C@]4(C)[C@@]3([H])CC[C@]12C)OC(=O)CCCCCCCCC\\C=C/C\\C=C/C\\C=C/CC
-#&gt; 14 [H][C@@](C)(CCCC([2H])(C([2H])([2H])[2H])C([2H])([2H])[2H])[C@@]1([H])CC[C@@]2([H])[C@]3([H])CC=C4C[C@H](CC[C@]4(C)[C@@]3([H])CC[C@]12C)OC(=O)CCCCC\\C=C/C\\C=C/C\\C=C/C\\C=C/CCCCC
-#&gt; 15                                                                     [H][C@@](O)(\\C=C\\CCCCCCCCCCC([2H])([2H])C([2H])([2H])C([2H])([2H])[2H])[C@]([H])(CO)NC(=O)CCCCCCC\\C=C/CCCCCC
-#&gt; 16                                                                   [H][C@@](O)(\\C=C\\CCCCCCCCCCC([2H])([2H])C([2H])([2H])C([2H])([2H])[2H])[C@]([H])(CO)NC(=O)CCCCCCC\\C=C/CCCCCCCC
-#&gt; 17                                                                 [H][C@@](O)(\\C=C\\CCCCCCCCCCC([2H])([2H])C([2H])([2H])C([2H])([2H])[2H])[C@]([H])(CO)NC(=O)CCCCCCCCC\\C=C/CCCCCCCC
-#&gt; 18                                                               [H][C@@](O)(\\C=C\\CCCCCCCCCCC([2H])([2H])C([2H])([2H])C([2H])([2H])[2H])[C@]([H])(CO)NC(=O)CCCCCCCCCCC\\C=C/CCCCCCCC
-#&gt; 19                                                             [H][C@@](O)(\\C=C\\CCCCCCCCCCC([2H])([2H])C([2H])([2H])C([2H])([2H])[2H])[C@]([H])(CO)NC(=O)CCCCCCCCCCCCC\\C=C/CCCCCCCC
-#&gt; 20                                    [H][C@@](O)(\\C=C\\CCCCCCCCCCCCC)[C@]([H])(COP([O-])(=O)OCC[N+](C([2H])([2H])[2H])(C([2H])([2H])[2H])C([2H])([2H])[2H])NC(=O)CCCCCCC\\C=C/CCCCCC
-#&gt; 21                                  [H][C@@](O)(\\C=C\\CCCCCCCCCCCCC)[C@]([H])(COP([O-])(=O)OCC[N+](C([2H])([2H])[2H])(C([2H])([2H])[2H])C([2H])([2H])[2H])NC(=O)CCCCCCC\\C=C/CCCCCCCC
-#&gt; 22                                [H][C@@](O)(\\C=C\\CCCCCCCCCCCCC)[C@]([H])(COP([O-])(=O)OCC[N+](C([2H])([2H])[2H])(C([2H])([2H])[2H])C([2H])([2H])[2H])NC(=O)CCCCCCCCC\\C=C/CCCCCCCC
-#&gt; 23                              [H][C@@](O)(\\C=C\\CCCCCCCCCCCCC)[C@]([H])(COP([O-])(=O)OCC[N+](C([2H])([2H])[2H])(C([2H])([2H])[2H])C([2H])([2H])[2H])NC(=O)CCCCCCCCCCC\\C=C/CCCCCCCC
-#&gt; 24                            [H][C@@](O)(\\C=C\\CCCCCCCCCCCCC)[C@]([H])(COP([O-])(=O)OCC[N+](C([2H])([2H])[2H])(C([2H])([2H])[2H])C([2H])([2H])[2H])NC(=O)CCCCCCCCCCCCC\\C=C/CCCCCCCC
-#&gt; 25                                                                      [2H]C([2H])(OC(=O)CCCCCCCCCCCCCCCC)[C@@]([2H])(OC(=O)CCCCCCC\\C=C/CCCC)C([2H])([2H])OP([O-])(=O)OCC[N+](C)(C)C
-#&gt; 26                                                                    [2H]C([2H])(OC(=O)CCCCCCCCCCCCCCCC)[C@@]([2H])(OC(=O)CCCCCCC\\C=C/CCCCCC)C([2H])([2H])OP([O-])(=O)OCC[N+](C)(C)C
-#&gt; 27                                                                  [2H]C([2H])(OC(=O)CCCCCCCCCCCCCCCC)[C@@]([2H])(OC(=O)CCCCCCC\\C=C/CCCCCCCC)C([2H])([2H])OP([O-])(=O)OCC[N+](C)(C)C
-#&gt; 28                                                        [2H]C([2H])(OC(=O)CCCCCCCCCCCCCCCC)[C@@]([2H])(OC(=O)CCCCCCCCC\\C=C/C\\C=C/C\\C=C/CC)C([2H])([2H])OP([O-])(=O)OCC[N+](C)(C)C
-#&gt; 29                                                  [2H]C([2H])(OC(=O)CCCCCCCCCCCCCCCC)[C@@]([2H])(OC(=O)CCCCC\\C=C/C\\C=C/C\\C=C/C\\C=C/CCCCC)C([2H])([2H])OP([O-])(=O)OCC[N+](C)(C)C
-#&gt; 30                                                                           [2H]C([2H])(OC(=O)CCCCCCCCCCCCCCCC)[C@@]([2H])(OC(=O)CCCCCCC\\C=C/CCCC)C([2H])([2H])OP([O-])(=O)OCC[NH3+]
-#&gt; 31                                                                         [2H]C([2H])(OC(=O)CCCCCCCCCCCCCCCC)[C@@]([2H])(OC(=O)CCCCCCC\\C=C/CCCCCC)C([2H])([2H])OP([O-])(=O)OCC[NH3+]
-#&gt; 32                                                                       [2H]C([2H])(OC(=O)CCCCCCCCCCCCCCCC)[C@@]([2H])(OC(=O)CCCCCCC\\C=C/CCCCCCCC)C([2H])([2H])OP([O-])(=O)OCC[NH3+]
-#&gt; 33                                                             [2H]C([2H])(OC(=O)CCCCCCCCCCCCCCCC)[C@@]([2H])(OC(=O)CCCCCCCCC\\C=C/C\\C=C/C\\C=C/CC)C([2H])([2H])OP([O-])(=O)OCC[NH3+]
-#&gt; 34                                                       [2H]C([2H])(OC(=O)CCCCCCCCCCCCCCCC)[C@@]([2H])(OC(=O)CCCCC\\C=C/C\\C=C/C\\C=C/C\\C=C/CCCCC)C([2H])([2H])OP([O-])(=O)OCC[NH3+]
-#&gt; 35                                                                      [Na+].[2H]C([2H])(OC(=O)CCCCCCCCCCCCCCCC)[C@@]([2H])(OC(=O)CCCCCCC\\C=C/CCCC)C([2H])([2H])OP([O-])(=O)OCC(O)CO
-#&gt; 36                                                                    [Na+].[2H]C([2H])(OC(=O)CCCCCCCCCCCCCCCC)[C@@]([2H])(OC(=O)CCCCCCC\\C=C/CCCCCC)C([2H])([2H])OP([O-])(=O)OCC(O)CO
-#&gt; 37                                                                  [Na+].[2H]C([2H])(OC(=O)CCCCCCCCCCCCCCCC)[C@@]([2H])(OC(=O)CCCCCCC\\C=C/CCCCCCCC)C([2H])([2H])OP([O-])(=O)OCC(O)CO
-#&gt; 38                                                        [Na+].[2H]C([2H])(OC(=O)CCCCCCCCCCCCCCCC)[C@@]([2H])(OC(=O)CCCCCCCCC\\C=C/C\\C=C/C\\C=C/CC)C([2H])([2H])OP([O-])(=O)OCC(O)CO
-#&gt; 39                                                  [Na+].[2H]C([2H])(OC(=O)CCCCCCCCCCCCCCCC)[C@@]([2H])(OC(=O)CCCCC\\C=C/C\\C=C/C\\C=C/C\\C=C/CCCCC)C([2H])([2H])OP([O-])(=O)OCC(O)CO
-#&gt; 40                                                   [Na+].[H][C@]([NH3+])(COP([O-])(=O)OC([2H])([2H])[C@]([2H])(OC(=O)CCCCCCC\\C=C/CCCC)C([2H])([2H])OC(=O)CCCCCCCCCCCCCCCC)C([O-])=O
-#&gt; 41                                                 [Na+].[H][C@]([NH3+])(COP([O-])(=O)OC([2H])([2H])[C@]([2H])(OC(=O)CCCCCCC\\C=C/CCCCCC)C([2H])([2H])OC(=O)CCCCCCCCCCCCCCCC)C([O-])=O
-#&gt; 42                                               [Na+].[H][C@]([NH3+])(COP([O-])(=O)OC([2H])([2H])[C@]([2H])(OC(=O)CCCCCCC\\C=C/CCCCCCCC)C([2H])([2H])OC(=O)CCCCCCCCCCCCCCCC)C([O-])=O
-#&gt; 43                                     [Na+].[H][C@]([NH3+])(COP([O-])(=O)OC([2H])([2H])[C@]([2H])(OC(=O)CCCCCCCCC\\C=C/C\\C=C/C\\C=C/CC)C([2H])([2H])OC(=O)CCCCCCCCCCCCCCCC)C([O-])=O
-#&gt; 44                               [Na+].[H][C@]([NH3+])(COP([O-])(=O)OC([2H])([2H])[C@]([2H])(OC(=O)CCCCC\\C=C/C\\C=C/C\\C=C/C\\C=C/CCCCC)C([2H])([2H])OC(=O)CCCCCCCCCCCCCCCC)C([O-])=O
-#&gt; 45                                                                                                [2H]C([2H])(O)[C@]([2H])(OC(=O)CCCCCCC\\C=C/CCCC)C([2H])([2H])OC(=O)CCCCCCCCCCCCCCCC
-#&gt; 46                                                                                              [2H]C([2H])(O)[C@]([2H])(OC(=O)CCCCCCC\\C=C/CCCCCC)C([2H])([2H])OC(=O)CCCCCCCCCCCCCCCC
-#&gt; 47                                                                                            [2H]C([2H])(O)[C@]([2H])(OC(=O)CCCCCCC\\C=C/CCCCCCCC)C([2H])([2H])OC(=O)CCCCCCCCCCCCCCCC
-#&gt; 48                                                                                  [2H]C([2H])(O)[C@]([2H])(OC(=O)CCCCCCCCC\\C=C/C\\C=C/C\\C=C/CC)C([2H])([2H])OC(=O)CCCCCCCCCCCCCCCC
-#&gt; 49                                                                            [2H]C([2H])(O)[C@]([2H])(OC(=O)CCCCC\\C=C/C\\C=C/C\\C=C/C\\C=C/CCCCC)C([2H])([2H])OC(=O)CCCCCCCCCCCCCCCC
-#&gt; 50                                              [NH4+].[2H]C([2H])(OC(=O)CCCCCCCCCCCCCCCC)[C@@]([2H])(OC(=O)CCCCCCC\\C=C/CCCC)C([2H])([2H])OP([O-])(=O)O[C@H]1C(O)C(O)C(O)[C@@H](O)C1O
-#&gt; 51                                            [NH4+].[2H]C([2H])(OC(=O)CCCCCCCCCCCCCCCC)[C@@]([2H])(OC(=O)CCCCCCC\\C=C/CCCCCC)C([2H])([2H])OP([O-])(=O)O[C@H]1C(O)C(O)C(O)[C@@H](O)C1O
-#&gt; 52                                          [NH4+].[2H]C([2H])(OC(=O)CCCCCCCCCCCCCCCC)[C@@]([2H])(OC(=O)CCCCCCC\\C=C/CCCCCCCC)C([2H])([2H])OP([O-])(=O)O[C@H]1C(O)C(O)C(O)[C@@H](O)C1O
-#&gt; 53                                [NH4+].[2H]C([2H])(OC(=O)CCCCCCCCCCCCCCCC)[C@@]([2H])(OC(=O)CCCCCCCCC\\C=C/C\\C=C/C\\C=C/CC)C([2H])([2H])OP([O-])(=O)O[C@H]1C(O)C(O)C(O)[C@@H](O)C1O
-#&gt; 54                          [NH4+].[2H]C([2H])(OC(=O)CCCCCCCCCCCCCCCC)[C@@]([2H])(OC(=O)CCCCC\\C=C/C\\C=C/C\\C=C/C\\C=C/CCCCC)C([2H])([2H])OP([O-])(=O)O[C@H]1C(O)C(O)C(O)[C@@H](O)C1O
-#&gt; 55                                                                      [NH4+].[2H]C([2H])(OC(=O)CCCCCCCCCCCCCC)[C@@]([2H])(O)C([2H])([2H])OP([O-])(=O)O[C@H]1C(O)C(O)C(O)[C@@H](O)C1O
-#&gt; 56                                                                    [NH4+].[2H]C([2H])(OC(=O)CCCCCCCCCCCCCCCC)[C@@]([2H])(O)C([2H])([2H])OP([O-])(=O)O[C@H]1C(O)C(O)C(O)[C@@H](O)C1O
-#&gt; 57                                                                  [NH4+].[2H]C([2H])(OC(=O)CCCCCCCCCCCCCCCCCC)[C@@]([2H])(O)C([2H])([2H])OP([O-])(=O)O[C@H]1C(O)C(O)C(O)[C@@H](O)C1O
-#&gt; 58                                                                           [Na+].[H][C@]([NH3+])(COP([O-])(=O)OC([2H])([2H])[C@]([2H])(O)C([2H])([2H])OC(=O)CCCCCCCCCCCCCC)C([O-])=O
-#&gt; 59                                                                         [Na+].[H][C@]([NH3+])(COP([O-])(=O)OC([2H])([2H])[C@]([2H])(O)C([2H])([2H])OC(=O)CCCCCCCCCCCCCCCC)C([O-])=O
-#&gt; 60                                                                       [Na+].[H][C@]([NH3+])(COP([O-])(=O)OC([2H])([2H])[C@]([2H])(O)C([2H])([2H])OC(=O)CCCCCCCCCCCCCCCCCC)C([O-])=O
-#&gt; 61                                                                                              [Na+].[2H]C([2H])(OC(=O)CCCCCCCCCCCCCC)[C@@]([2H])(O)C([2H])([2H])OP([O-])(=O)OCC(O)CO
-#&gt; 62                                                                                            [Na+].[2H]C([2H])(OC(=O)CCCCCCCCCCCCCCCC)[C@@]([2H])(O)C([2H])([2H])OP([O-])(=O)OCC(O)CO
-#&gt; 63                                                                                          [Na+].[2H]C([2H])(OC(=O)CCCCCCCCCCCCCCCCCC)[C@@]([2H])(O)C([2H])([2H])OP([O-])(=O)OCC(O)CO
-#&gt; 64                                                                                              [2H]C([2H])(OC(=O)CCCCCCCCCCCCCC)[C@@]([2H])(O)C([2H])([2H])OP([O-])(=O)OCC[N+](C)(C)C
-#&gt; 65                                                                                            [2H]C([2H])(OC(=O)CCCCCCCCCCCCCCCC)[C@@]([2H])(O)C([2H])([2H])OP([O-])(=O)OCC[N+](C)(C)C
-#&gt; 66                                                                                          [2H]C([2H])(OC(=O)CCCCCCCCCCCCCCCCCC)[C@@]([2H])(O)C([2H])([2H])OP([O-])(=O)OCC[N+](C)(C)C
-#&gt; 67                                                                                                   [2H]C([2H])(OC(=O)CCCCCCCCCCCCCC)[C@@]([2H])(O)C([2H])([2H])OP([O-])(=O)OCC[NH3+]
-#&gt; 68                                                                                                 [2H]C([2H])(OC(=O)CCCCCCCCCCCCCCCC)[C@@]([2H])(O)C([2H])([2H])OP([O-])(=O)OCC[NH3+]
-#&gt; 69                                                                                               [2H]C([2H])(OC(=O)CCCCCCCCCCCCCCCCCC)[C@@]([2H])(O)C([2H])([2H])OP([O-])(=O)OCC[NH3+]
-#&gt;                                                                                                                                                                      smiles_metabolite
-#&gt; 1                                                                                          [2H]C([2H])(OC(=O)CCCCCCCCCCCCC)C([2H])(OC(=O)CCCCCCCCCCCC)C([2H])([2H])OC(=O)CCCCCCCCCCCCC
-#&gt; 2                                                                                    [2H]C([2H])(OC(=O)CCCCCCCCCCCCC)C([2H])(OC(=O)CCCCCCCC\\C=C/CCCC)C([2H])([2H])OC(=O)CCCCCCCCCCCCC
-#&gt; 3                                                                                  [2H]C([2H])(OC(=O)CCCCCCCCCCCCC)C([2H])(OC(=O)CCCCCCCC\\C=C/CCCCCC)C([2H])([2H])OC(=O)CCCCCCCCCCCCC
-#&gt; 4                                                                                [2H]C([2H])(OC(=O)CCCCCCCCCCCCCCC)C([2H])(OC(=O)CCCCCCCC\\C=C/CCCC)C([2H])([2H])OC(=O)CCCCCCCCCCCCCCC
-#&gt; 5                                                                              [2H]C([2H])(OC(=O)CCCCCCCCCCCCCCC)C([2H])(OC(=O)CCCCCCCC\\C=C/CCCCCC)C([2H])([2H])OC(=O)CCCCCCCCCCCCCCC
-#&gt; 6                                                                        [2H]C([2H])(OC(=O)CCCCCCCCCCCCCCC)C([2H])(OC(=O)CCCCCCCC\\C=C/C\\C=C/CCCCC)C([2H])([2H])OC(=O)CCCCCCCCCCCCCCC
-#&gt; 7                                                                  [2H]C([2H])(OC(=O)CCCCCCC\\C=C/CCCCCCCC)C([2H])(OC(=O)CCCCCCCC\\C=C/CCCCCC)C([2H])([2H])OC(=O)CCCCCCC\\C=C/CCCCCCCC
-#&gt; 8                                                            [2H]C([2H])(OC(=O)CCCCCCC\\C=C/CCCCCCCC)C([2H])(OC(=O)CCCCCCCC\\C=C/C\\C=C/CCCCC)C([2H])([2H])OC(=O)CCCCCCC\\C=C/CCCCCCCC
-#&gt; 9                                                          [2H]C([2H])(OC(=O)CCCCCCC\\C=C/CCCCCCCC)C([2H])(OC(=O)CCCCCCCCCC\\C=C/C\\C=C/CCCCC)C([2H])([2H])OC(=O)CCCCCCC\\C=C/CCCCCCCC
-#&gt; 10                     [H][C@@](C)(CCCC([2H])(C([2H])([2H])[2H])C([2H])([2H])[2H])[C@@]1([H])CC[C@@]2([H])[C@]3([H])CC=C4C[C@H](CC[C@]4(C)[C@@]3([H])CC[C@]12C)OC(=O)CCCCCCC\\C=C/CCCC
-#&gt; 11                   [H][C@@](C)(CCCC([2H])(C([2H])([2H])[2H])C([2H])([2H])[2H])[C@@]1([H])CC[C@@]2([H])[C@]3([H])CC=C4C[C@H](CC[C@]4(C)[C@@]3([H])CC[C@]12C)OC(=O)CCCCCCC\\C=C/CCCCCC
-#&gt; 12                 [H][C@@](C)(CCCC([2H])(C([2H])([2H])[2H])C([2H])([2H])[2H])[C@@]1([H])CC[C@@]2([H])[C@]3([H])CC=C4C[C@H](CC[C@]4(C)[C@@]3([H])CC[C@]12C)OC(=O)CCCCCCC\\C=C/CCCCCCCC
-#&gt; 13       [H][C@@](C)(CCCC([2H])(C([2H])([2H])[2H])C([2H])([2H])[2H])[C@@]1([H])CC[C@@]2([H])[C@]3([H])CC=C4C[C@H](CC[C@]4(C)[C@@]3([H])CC[C@]12C)OC(=O)CCCCCCCCC\\C=C/C\\C=C/C\\C=C/CC
-#&gt; 14 [H][C@@](C)(CCCC([2H])(C([2H])([2H])[2H])C([2H])([2H])[2H])[C@@]1([H])CC[C@@]2([H])[C@]3([H])CC=C4C[C@H](CC[C@]4(C)[C@@]3([H])CC[C@]12C)OC(=O)CCCCC\\C=C/C\\C=C/C\\C=C/C\\C=C/CCCCC
-#&gt; 15                                                                     [H][C@@](O)(\\C=C\\CCCCCCCCCCC([2H])([2H])C([2H])([2H])C([2H])([2H])[2H])[C@]([H])(CO)NC(=O)CCCCCCC\\C=C/CCCCCC
-#&gt; 16                                                                   [H][C@@](O)(\\C=C\\CCCCCCCCCCC([2H])([2H])C([2H])([2H])C([2H])([2H])[2H])[C@]([H])(CO)NC(=O)CCCCCCC\\C=C/CCCCCCCC
-#&gt; 17                                                                 [H][C@@](O)(\\C=C\\CCCCCCCCCCC([2H])([2H])C([2H])([2H])C([2H])([2H])[2H])[C@]([H])(CO)NC(=O)CCCCCCCCC\\C=C/CCCCCCCC
-#&gt; 18                                                               [H][C@@](O)(\\C=C\\CCCCCCCCCCC([2H])([2H])C([2H])([2H])C([2H])([2H])[2H])[C@]([H])(CO)NC(=O)CCCCCCCCCCC\\C=C/CCCCCCCC
-#&gt; 19                                                             [H][C@@](O)(\\C=C\\CCCCCCCCCCC([2H])([2H])C([2H])([2H])C([2H])([2H])[2H])[C@]([H])(CO)NC(=O)CCCCCCCCCCCCC\\C=C/CCCCCCCC
-#&gt; 20                                    [H][C@@](O)(\\C=C\\CCCCCCCCCCCCC)[C@]([H])(COP([O-])(=O)OCC[N+](C([2H])([2H])[2H])(C([2H])([2H])[2H])C([2H])([2H])[2H])NC(=O)CCCCCCC\\C=C/CCCCCC
-#&gt; 21                                  [H][C@@](O)(\\C=C\\CCCCCCCCCCCCC)[C@]([H])(COP([O-])(=O)OCC[N+](C([2H])([2H])[2H])(C([2H])([2H])[2H])C([2H])([2H])[2H])NC(=O)CCCCCCC\\C=C/CCCCCCCC
-#&gt; 22                                [H][C@@](O)(\\C=C\\CCCCCCCCCCCCC)[C@]([H])(COP([O-])(=O)OCC[N+](C([2H])([2H])[2H])(C([2H])([2H])[2H])C([2H])([2H])[2H])NC(=O)CCCCCCCCC\\C=C/CCCCCCCC
-#&gt; 23                              [H][C@@](O)(\\C=C\\CCCCCCCCCCCCC)[C@]([H])(COP([O-])(=O)OCC[N+](C([2H])([2H])[2H])(C([2H])([2H])[2H])C([2H])([2H])[2H])NC(=O)CCCCCCCCCCC\\C=C/CCCCCCCC
-#&gt; 24                            [H][C@@](O)(\\C=C\\CCCCCCCCCCCCC)[C@]([H])(COP([O-])(=O)OCC[N+](C([2H])([2H])[2H])(C([2H])([2H])[2H])C([2H])([2H])[2H])NC(=O)CCCCCCCCCCCCC\\C=C/CCCCCCCC
-#&gt; 25                                                                      [2H]C([2H])(OC(=O)CCCCCCCCCCCCCCCC)[C@@]([2H])(OC(=O)CCCCCCC\\C=C/CCCC)C([2H])([2H])OP([O-])(=O)OCC[N+](C)(C)C
-#&gt; 26                                                                    [2H]C([2H])(OC(=O)CCCCCCCCCCCCCCCC)[C@@]([2H])(OC(=O)CCCCCCC\\C=C/CCCCCC)C([2H])([2H])OP([O-])(=O)OCC[N+](C)(C)C
-#&gt; 27                                                                  [2H]C([2H])(OC(=O)CCCCCCCCCCCCCCCC)[C@@]([2H])(OC(=O)CCCCCCC\\C=C/CCCCCCCC)C([2H])([2H])OP([O-])(=O)OCC[N+](C)(C)C
-#&gt; 28                                                        [2H]C([2H])(OC(=O)CCCCCCCCCCCCCCCC)[C@@]([2H])(OC(=O)CCCCCCCCC\\C=C/C\\C=C/C\\C=C/CC)C([2H])([2H])OP([O-])(=O)OCC[N+](C)(C)C
-#&gt; 29                                                  [2H]C([2H])(OC(=O)CCCCCCCCCCCCCCCC)[C@@]([2H])(OC(=O)CCCCC\\C=C/C\\C=C/C\\C=C/C\\C=C/CCCCC)C([2H])([2H])OP([O-])(=O)OCC[N+](C)(C)C
-#&gt; 30                                                                                   [2H]C([2H])(OC(=O)CCCCCCCCCCCCCCCC)[C@@]([2H])(OC(=O)CCCCCCC\\C=C/CCCC)C([2H])([2H])OP(O)(=O)OCCN
-#&gt; 31                                                                                 [2H]C([2H])(OC(=O)CCCCCCCCCCCCCCCC)[C@@]([2H])(OC(=O)CCCCCCC\\C=C/CCCCCC)C([2H])([2H])OP(O)(=O)OCCN
-#&gt; 32                                                                               [2H]C([2H])(OC(=O)CCCCCCCCCCCCCCCC)[C@@]([2H])(OC(=O)CCCCCCC\\C=C/CCCCCCCC)C([2H])([2H])OP(O)(=O)OCCN
-#&gt; 33                                                                     [2H]C([2H])(OC(=O)CCCCCCCCCCCCCCCC)[C@@]([2H])(OC(=O)CCCCCCCCC\\C=C/C\\C=C/C\\C=C/CC)C([2H])([2H])OP(O)(=O)OCCN
-#&gt; 34                                                               [2H]C([2H])(OC(=O)CCCCCCCCCCCCCCCC)[C@@]([2H])(OC(=O)CCCCC\\C=C/C\\C=C/C\\C=C/C\\C=C/CCCCC)C([2H])([2H])OP(O)(=O)OCCN
-#&gt; 35                                                                               [2H]C([2H])(OC(=O)CCCCCCCCCCCCCCCC)[C@@]([2H])(OC(=O)CCCCCCC\\C=C/CCCC)C([2H])([2H])OP(O)(=O)OCC(O)CO
-#&gt; 36                                                                             [2H]C([2H])(OC(=O)CCCCCCCCCCCCCCCC)[C@@]([2H])(OC(=O)CCCCCCC\\C=C/CCCCCC)C([2H])([2H])OP(O)(=O)OCC(O)CO
-#&gt; 37                                                                           [2H]C([2H])(OC(=O)CCCCCCCCCCCCCCCC)[C@@]([2H])(OC(=O)CCCCCCC\\C=C/CCCCCCCC)C([2H])([2H])OP(O)(=O)OCC(O)CO
-#&gt; 38                                                                 [2H]C([2H])(OC(=O)CCCCCCCCCCCCCCCC)[C@@]([2H])(OC(=O)CCCCCCCCC\\C=C/C\\C=C/C\\C=C/CC)C([2H])([2H])OP(O)(=O)OCC(O)CO
-#&gt; 39                                                           [2H]C([2H])(OC(=O)CCCCCCCCCCCCCCCC)[C@@]([2H])(OC(=O)CCCCC\\C=C/C\\C=C/C\\C=C/C\\C=C/CCCCC)C([2H])([2H])OP(O)(=O)OCC(O)CO
-#&gt; 40                                                                    [H][C@](N)(COP(O)(=O)OC([2H])([2H])[C@]([2H])(OC(=O)CCCCCCC\\C=C/CCCC)C([2H])([2H])OC(=O)CCCCCCCCCCCCCCCC)C(O)=O
-#&gt; 41                                                                  [H][C@](N)(COP(O)(=O)OC([2H])([2H])[C@]([2H])(OC(=O)CCCCCCC\\C=C/CCCCCC)C([2H])([2H])OC(=O)CCCCCCCCCCCCCCCC)C(O)=O
-#&gt; 42                                                                [H][C@](N)(COP(O)(=O)OC([2H])([2H])[C@]([2H])(OC(=O)CCCCCCC\\C=C/CCCCCCCC)C([2H])([2H])OC(=O)CCCCCCCCCCCCCCCC)C(O)=O
-#&gt; 43                                                      [H][C@](N)(COP(O)(=O)OC([2H])([2H])[C@]([2H])(OC(=O)CCCCCCCCC\\C=C/C\\C=C/C\\C=C/CC)C([2H])([2H])OC(=O)CCCCCCCCCCCCCCCC)C(O)=O
-#&gt; 44                                                [H][C@](N)(COP(O)(=O)OC([2H])([2H])[C@]([2H])(OC(=O)CCCCC\\C=C/C\\C=C/C\\C=C/C\\C=C/CCCCC)C([2H])([2H])OC(=O)CCCCCCCCCCCCCCCC)C(O)=O
-#&gt; 45                                                                                                [2H]C([2H])(O)[C@]([2H])(OC(=O)CCCCCCC\\C=C/CCCC)C([2H])([2H])OC(=O)CCCCCCCCCCCCCCCC
-#&gt; 46                                                                                              [2H]C([2H])(O)[C@]([2H])(OC(=O)CCCCCCC\\C=C/CCCCCC)C([2H])([2H])OC(=O)CCCCCCCCCCCCCCCC
-#&gt; 47                                                                                            [2H]C([2H])(O)[C@]([2H])(OC(=O)CCCCCCC\\C=C/CCCCCCCC)C([2H])([2H])OC(=O)CCCCCCCCCCCCCCCC
-#&gt; 48                                                                                  [2H]C([2H])(O)[C@]([2H])(OC(=O)CCCCCCCCC\\C=C/C\\C=C/C\\C=C/CC)C([2H])([2H])OC(=O)CCCCCCCCCCCCCCCC
-#&gt; 49                                                                            [2H]C([2H])(O)[C@]([2H])(OC(=O)CCCCC\\C=C/C\\C=C/C\\C=C/C\\C=C/CCCCC)C([2H])([2H])OC(=O)CCCCCCCCCCCCCCCC
-#&gt; 50                                                      N.[2H]C([2H])(OC(=O)CCCCCCCCCCCCCCCC)[C@@]([2H])(OC(=O)CCCCCCC\\C=C/CCCC)C([2H])([2H])OP(O)(=O)O[C@H]1C(O)C(O)C(O)[C@@H](O)C1O
-#&gt; 51                                                    N.[2H]C([2H])(OC(=O)CCCCCCCCCCCCCCCC)[C@@]([2H])(OC(=O)CCCCCCC\\C=C/CCCCCC)C([2H])([2H])OP(O)(=O)O[C@H]1C(O)C(O)C(O)[C@@H](O)C1O
-#&gt; 52                                                  N.[2H]C([2H])(OC(=O)CCCCCCCCCCCCCCCC)[C@@]([2H])(OC(=O)CCCCCCC\\C=C/CCCCCCCC)C([2H])([2H])OP(O)(=O)O[C@H]1C(O)C(O)C(O)[C@@H](O)C1O
-#&gt; 53                                        N.[2H]C([2H])(OC(=O)CCCCCCCCCCCCCCCC)[C@@]([2H])(OC(=O)CCCCCCCCC\\C=C/C\\C=C/C\\C=C/CC)C([2H])([2H])OP(O)(=O)O[C@H]1C(O)C(O)C(O)[C@@H](O)C1O
-#&gt; 54                                  N.[2H]C([2H])(OC(=O)CCCCCCCCCCCCCCCC)[C@@]([2H])(OC(=O)CCCCC\\C=C/C\\C=C/C\\C=C/C\\C=C/CCCCC)C([2H])([2H])OP(O)(=O)O[C@H]1C(O)C(O)C(O)[C@@H](O)C1O
-#&gt; 55                                                                              N.[2H]C([2H])(OC(=O)CCCCCCCCCCCCCC)[C@@]([2H])(O)C([2H])([2H])OP(O)(=O)O[C@H]1C(O)C(O)C(O)[C@@H](O)C1O
-#&gt; 56                                                                            N.[2H]C([2H])(OC(=O)CCCCCCCCCCCCCCCC)[C@@]([2H])(O)C([2H])([2H])OP(O)(=O)O[C@H]1C(O)C(O)C(O)[C@@H](O)C1O
-#&gt; 57                                                                          N.[2H]C([2H])(OC(=O)CCCCCCCCCCCCCCCCCC)[C@@]([2H])(O)C([2H])([2H])OP(O)(=O)O[C@H]1C(O)C(O)C(O)[C@@H](O)C1O
-#&gt; 58                                                                                            [H][C@](N)(COP(O)(=O)OC([2H])([2H])[C@]([2H])(O)C([2H])([2H])OC(=O)CCCCCCCCCCCCCC)C(O)=O
-#&gt; 59                                                                                          [H][C@](N)(COP(O)(=O)OC([2H])([2H])[C@]([2H])(O)C([2H])([2H])OC(=O)CCCCCCCCCCCCCCCC)C(O)=O
-#&gt; 60                                                                                        [H][C@](N)(COP(O)(=O)OC([2H])([2H])[C@]([2H])(O)C([2H])([2H])OC(=O)CCCCCCCCCCCCCCCCCC)C(O)=O
-#&gt; 61                                                                                                       [2H]C([2H])(OC(=O)CCCCCCCCCCCCCC)[C@@]([2H])(O)C([2H])([2H])OP(O)(=O)OCC(O)CO
-#&gt; 62                                                                                                     [2H]C([2H])(OC(=O)CCCCCCCCCCCCCCCC)[C@@]([2H])(O)C([2H])([2H])OP(O)(=O)OCC(O)CO
-#&gt; 63                                                                                                   [2H]C([2H])(OC(=O)CCCCCCCCCCCCCCCCCC)[C@@]([2H])(O)C([2H])([2H])OP(O)(=O)OCC(O)CO
-#&gt; 64                                                                                              [2H]C([2H])(OC(=O)CCCCCCCCCCCCCC)[C@@]([2H])(O)C([2H])([2H])OP([O-])(=O)OCC[N+](C)(C)C
-#&gt; 65                                                                                            [2H]C([2H])(OC(=O)CCCCCCCCCCCCCCCC)[C@@]([2H])(O)C([2H])([2H])OP([O-])(=O)OCC[N+](C)(C)C
-#&gt; 66                                                                                          [2H]C([2H])(OC(=O)CCCCCCCCCCCCCCCCCC)[C@@]([2H])(O)C([2H])([2H])OP([O-])(=O)OCC[N+](C)(C)C
-#&gt; 67                                                                                                           [2H]C([2H])(OC(=O)CCCCCCCCCCCCCC)[C@@]([2H])(O)C([2H])([2H])OP(O)(=O)OCCN
-#&gt; 68                                                                                                         [2H]C([2H])(OC(=O)CCCCCCCCCCCCCCCC)[C@@]([2H])(O)C([2H])([2H])OP(O)(=O)OCCN
-#&gt; 69                                                                                                       [2H]C([2H])(OC(=O)CCCCCCCCCCCCCCCCCC)[C@@]([2H])(O)C([2H])([2H])OP(O)(=O)OCCN
-#&gt;    mol_weight_salt exact_mass_metabolite conc
-#&gt; 1          714.181              713.6582   25
-#&gt; 2          740.219              739.6738   50
-#&gt; 3          768.273              767.7051   75
-#&gt; 4          796.327              795.7364  100
-#&gt; 5          824.381              823.7677  125
-#&gt; 6          850.419              849.7834  100
-#&gt; 7          876.457              875.7990   75
-#&gt; 8          902.495              901.8147   50
-#&gt; 9          930.549              929.8460   25
-#&gt; 10         602.052              601.5815   25
-#&gt; 11         630.106              629.6128   50
-#&gt; 12         658.160              657.6441   75
-#&gt; 13         682.182              681.6441   50
-#&gt; 14         708.220              707.6598   25
-#&gt; 15         542.941              542.5404   75
-#&gt; 16         570.995              570.5717   50
-#&gt; 17         599.049              598.6030   25
-#&gt; 18         627.103              626.6343   50
-#&gt; 19         655.157              654.6656   75
-#&gt; 20         710.082              709.6084   75
-#&gt; 21         738.136              737.6397   50
-#&gt; 22         766.190              765.6710   25
-#&gt; 23         794.244              793.7023   50
-#&gt; 24         822.298              821.7336   75
-#&gt; 25         723.040              722.5622   50
-#&gt; 26         751.094              750.5935  100
-#&gt; 27         779.148              778.6248  150
-#&gt; 28         803.170              802.6248  100
-#&gt; 29         829.208              828.6405   50
-#&gt; 30         680.959              680.5153   25
-#&gt; 31         709.013              708.5466   50
-#&gt; 32         737.067              736.5779   75
-#&gt; 33         761.089              760.5779   50
-#&gt; 34         787.127              786.5935   25
-#&gt; 35         733.951              711.5099   25
-#&gt; 36         762.005              739.5412   50
-#&gt; 37         790.059              767.5725   75
-#&gt; 38         814.081              791.5725   50
-#&gt; 39         840.119              817.5881   25
-#&gt; 40         746.950              724.5051   25
-#&gt; 41         775.004              752.5364   50
-#&gt; 42         803.058              780.5677   75
-#&gt; 43         827.080              804.5677   50
-#&gt; 44         853.118              830.5834   25
-#&gt; 45         557.912              557.5068   25
-#&gt; 46         585.966              585.5381   50
-#&gt; 47         614.020              613.5694   75
-#&gt; 48         638.042              637.5694   50
-#&gt; 49         664.080              663.5850   25
-#&gt; 50         817.062              816.5525   25
-#&gt; 51         845.116              844.5838   50
-#&gt; 52         873.170              872.6151   75
-#&gt; 53         897.192              896.6151   50
-#&gt; 54         923.230              922.6307   25
-#&gt; 55         580.663              580.3384   25
-#&gt; 56         608.717              608.3697   50
-#&gt; 57         636.771              636.4010   25
-#&gt; 58         510.551              488.2911   25
-#&gt; 59         538.605              516.3224   50
-#&gt; 60         566.659              544.3537   25
-#&gt; 61         497.552              475.2959   25
-#&gt; 62         525.606              503.3272   50
-#&gt; 63         553.660              531.3585   25
-#&gt; 64         486.641              486.3482   25
-#&gt; 65         514.695              514.3795   50
-#&gt; 66         542.749              542.4108   25
-#&gt; 67         444.560              444.3013   25
-#&gt; 68         472.614              472.3326   50
-#&gt; 69         500.668              500.3639   25</div></pre>
+    <div class="ref-examples sourceCode"><pre class='sourceCode r'><code><span class='r-in'></span>
+<span class='r-in'><span class='fu'>internalStandards</span><span class='op'>(</span>mix <span class='op'>=</span> <span class='st'>"QReSS"</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>                                                              name</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1                                 L-Alanine (13C3, 99%; 15N, 99%)</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 2                1,4-Butanediamine (putrescine)Â·2HCl (13C4, 99%)</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 3                                   Creatinine (N-methyl-D3, 98%)</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 4                             EthanolamineÂ·HCl (1,1,2,2-D4, 98%)</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 5                                  GuanosineÂ·2H2O (15N5, 96-98%)</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 6                                        Hypoxanthine (13C5, 99%)</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 7                                           L-Leucine (13C6, 99%)</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 8                                L-Phenylalanine (ring-13C6, 99%)</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 9                                         Thymine (1,3-15N2, 98%)</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 10                                      L-Tryptophan (13C11, 99%)</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 11                                    L-Tyrosine (ring-13C6, 99%)</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 12                          Vitamin B3 (nicotinamide) (13C6, 99%)</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 13                         Citric acid (1,5,6-carboxyl-13C3, 99%)</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 14                                       Fumaric acid (13C4, 99%)</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 15                        Indole-3-acetic acid (phenyl-13C6, 99%)</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 16 Î±-Ketoglutaric acid, disodium salt (1,2,3,4-13C4, 99%) CP 97%</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 17                                Sodium palmitate (U-13C16, 98%)</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 18                                    Sodium pyruvate (13C3, 99%)</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>      formula_salt formula_metabolite</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1     [13C]3H7NO2        [13C]3H7NO2</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 2  [13C]4H14Cl2N2        [13C]4H12N2</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 3       C4H4D3N3O          C4H4D3N3O</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 4        C2H8ClNO             C2H7NO</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 5  C10H17[15N]5O7     C10H13[15N]5O5</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 6     [13C]5H4N4O        [13C]5H4N4O</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 7    [13C]6H13NO2       [13C]6H13NO2</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 8  C3[13C]6H11NO2     C3[13C]6H11NO2</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 9    C5H6[15N]2O2       C5H6[15N]2O2</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 10 [13C]11H12N2O2     [13C]11H12N2O2</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 11 C3[13C]6H11NO3     C3[13C]6H11NO3</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 12    [13C]6H5NO2        [13C]6H5NO2</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 13   C3[13C]3H8O7       C3[13C]3H8O7</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 14     [13C]4H4O4         [13C]4H4O4</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 15  C4[13C]6H9NO2      C4[13C]6H9NO2</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 16 C[13C]4H4Na2O5        C[13C]4H6O5</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 17 [13C]16H31NaO2       [13C]16H32O2</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 18   [13C]3H3NaO3         [13C]3H4O3</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>                                                                                                                     smiles_salt</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1                                                                                                   [13CH3][13C@H](N)[13C](O)=O</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 2                                                                          [Cl-].[Cl-].[NH3+][13CH2][13CH2][13CH2][13CH2][NH3+]</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 3                                                                                                [2H]C([2H])([2H])N1CC(=O)N=C1N</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 4                                                                                           [Cl-].[H]C([H])([NH3+])C([H])([H])O</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 5                                           O.O.[15NH2]C1=[15N]C2=C([15N]=C[15N]2[C@@H]2O[C@H](CO)[C@@H](O)[C@H]2O)C(=O)[15NH]1</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 6                                                                                      O=[13C]1N=[13CH]N[13C]2=[13C]1N[13CH]=N2</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 7                                                                             [13CH3][13CH]([13CH3])[13CH2][13C@H](N)[13C](O)=O</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 8                                                                      N[C@@H](C[13C]1=[13CH][13CH]=[13CH][13CH]=[13CH]1)C(O)=O</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 9                                                                                                    CC1=C[15NH]C(=O)[15NH]C1=O</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 10                                           N[13C@@H]([13CH2][13C]1=[13CH]N[13C]2=[13C]1[13CH]=[13CH][13CH]=[13CH]2)[13C](O)=O</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 11                                                                   N[C@@H](C[13C]1=[13CH][13CH]=[13C](O)[13CH]=[13CH]1)C(O)=O</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 12                                                                                O[13C](=O)[13C]1=[13CH][13CH]=[13CH]N=[13CH]1</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 13                                                                                       O[13C](=O)CC(O)(C[13C](O)=O)[13C](O)=O</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 14                                                                                        O[13C](=O)\\[13CH]=[13CH]\\[13C](O)=O</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 15                                                                         OC(=O)CC1=CN[13C]2=[13CH][13CH]=[13CH][13CH]=[13C]12</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 16                                                                    [Na+].[Na+].[O-]C(=O)[13CH2][13CH2][13C](=O)[13C]([O-])=O</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 17 [Na+].[13CH3][13CH2][13CH2][13CH2][13CH2][13CH2][13CH2][13CH2][13CH2][13CH2][13CH2][13CH2][13CH2][13CH2][13CH2][13C]([O-])=O</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 18                                                                                          [Na+].[13CH3][13C](=O)[13C]([O-])=O</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>                                                                                                      smiles_metabolite</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1                                                                                          [13CH3][13C@H](N)[13C](O)=O</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 2                                                                                       N[13CH2][13CH2][13CH2][13CH2]N</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 3                                                                                       [2H]C([2H])([2H])N1CC(=O)N=C1N</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 4                                                                                             [H]C([H])(N)C([H])([H])O</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 5                                      [15NH2]C1=[15N]C2=C([15N]=C[15N]2[C@@H]2O[C@H](CO)[C@@H](O)[C@H]2O)C(=O)[15NH]1</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 6                                                                             O=[13C]1N=[13CH]N[13C]2=[13C]1N[13CH]=N2</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 7                                                                    [13CH3][13CH]([13CH3])[13CH2][13C@H](N)[13C](O)=O</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 8                                                             N[C@@H](C[13C]1=[13CH][13CH]=[13CH][13CH]=[13CH]1)C(O)=O</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 9                                                                                           CC1=C[15NH]C(=O)[15NH]C1=O</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 10                                  N[13C@@H]([13CH2][13C]1=[13CH]N[13C]2=[13C]1[13CH]=[13CH][13CH]=[13CH]2)[13C](O)=O</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 11                                                          N[C@@H](C[13C]1=[13CH][13CH]=[13C](O)[13CH]=[13CH]1)C(O)=O</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 12                                                                       O[13C](=O)[13C]1=[13CH][13CH]=[13CH]N=[13CH]1</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 13                                                                              O[13C](=O)CC(O)(C[13C](O)=O)[13C](O)=O</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 14                                                                               O[13C](=O)\\[13CH]=[13CH]\\[13C](O)=O</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 15                                                                OC(=O)CC1=CN[13C]2=[13CH][13CH]=[13CH][13CH]=[13C]12</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 16                                                                             OC(=O)[13CH2][13CH2][13C](=O)[13C](O)=O</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 17 [13CH3][13CH2][13CH2][13CH2][13CH2][13CH2][13CH2][13CH2][13CH2][13CH2][13CH2][13CH2][13CH2][13CH2][13CH2][13C](O)=O</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 18                                                                                          [13CH3][13C](=O)[13C](O)=O</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    mol_weight_salt exact_mass_metabolite conc   mix</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1           92.071              92.05774  100 QReSS</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 2          165.040              92.11347   10 QReSS</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 3          116.138             116.07774  100 QReSS</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 4           97.540              61.05276   10 QReSS</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 5          324.240             288.07684    2 QReSS</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 6          141.076             141.05528   10 QReSS</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 7          137.129             137.11476    5 QReSS</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 8          171.146             171.09911  100 QReSS</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 9          128.101             128.03700   20 QReSS</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 10         215.145             215.12678  100 QReSS</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 11         187.145             187.09402  100 QReSS</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 12         129.065             129.05216    5 QReSS</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 13         195.100             195.03707   10 QReSS</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 14         120.041             120.02438  100 QReSS</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 15         181.141             181.08346    5 QReSS</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 16         194.031             150.03494  100 QReSS</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 17         294.289             272.29391   10 QReSS</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 18         113.021              91.02611  100 QReSS</span>
+<span class='r-in'><span class='fu'>internalStandards</span><span class='op'>(</span>mix <span class='op'>=</span> <span class='st'>"UltimateSplashOne"</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>                                 name    formula_salt formula_metabolite</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1               14:0-13:0-14:0 TG-d5      C44H79D5O6         C44H79D5O6</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 2               14:0-15:1-14:0 TG-d5      C46H81D5O6         C46H81D5O6</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 3               14:0-17:1-14:0 TG-d5      C48H85D5O6         C48H85D5O6</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 4               16:0-15:1-16:0 TG-d5      C50H89D5O6         C50H89D5O6</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 5               16:0-17:1-16:0 TG-d5      C52H93D5O6         C52H93D5O6</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 6               16:0-19:2-16:0 TG-d5      C54H95D5O6         C54H95D5O6</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 7               18:1-17:1-18:1 TG-d5      C56H97D5O6         C56H97D5O6</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 8               18:1-19:2-18:1 TG-d5      C58H99D5O6         C58H99D5O6</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 9               18:1-21:2-18:1 TG-d5     C60H103D5O6        C60H103D5O6</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 10         14:1 cholesteryl-d7 ester      C41H63D7O2         C41H63D7O2</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 11         16:1 cholesteryl-d7 ester      C43H67D7O2         C43H67D7O2</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 12         18:1 cholesteryl-d7 ester      C45H71D7O2         C45H71D7O2</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 13         20:3 cholesteryl-d7 ester      C47H71D7O2         C47H71D7O2</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 14         22:4 cholesteryl-d7 ester      C49H73D7O2         C49H73D7O2</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 15 C16:1 Ceramide-d7 (d18:1-d7/16:1)     C34H58D7NO3        C34H58D7NO3</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 16 C18:1 Ceramide-d7 (d18:1-d7/18:1)     C36H62D7NO3        C36H62D7NO3</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 17 C20:1 Ceramide-d7 (d18:1-d7/20:1)     C38H66D7NO3        C38H66D7NO3</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 18 C22:1 Ceramide-d7 (d18:1-d7/22:1)     C40H70D7NO3        C40H70D7NO3</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 19 C24:1 Ceramide-d7 (d18:1-d7/24:1)     C42H74D7NO3        C42H74D7NO3</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 20           16:1 SM (d18:1/16:1)-d9   C39H68D9N2O6P      C39H68D9N2O6P</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 21           18:1 SM (d18:1/18:1)-d9   C41H72D9N2O6P      C41H72D9N2O6P</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 22           20:1 SM (d18:1/20:1)-d9   C43H76D9N2O6P      C43H76D9N2O6P</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 23           22:1 SM (d18:1/22:1)-d9   C45H80D9N2O6P      C45H80D9N2O6P</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 24           24:1 SM (d18:1/24:1)-d9   C47H84D9N2O6P      C47H84D9N2O6P</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 25                   17:0-14:1 PC-d5    C39H71D5NO8P       C39H71D5NO8P</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 26                   17:0-16:1 PC-d5    C41H75D5NO8P       C41H75D5NO8P</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 27                   17:0-18:1 PC-d5    C43H79D5NO8P       C43H79D5NO8P</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 28                   17:0-20:3 PC-d5    C45H79D5NO8P       C45H79D5NO8P</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 29                   17:0-22:4 PC-d5    C47H81D5NO8P       C47H81D5NO8P</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 30                   17:0-14:1 PE-d5    C36H65D5NO8P       C36H65D5NO8P</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 31                   17:0-16:1 PE-d5    C38H69D5NO8P       C38H69D5NO8P</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 32                   17:0-18:1 PE-d5    C40H73D5NO8P       C40H73D5NO8P</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 33                   17:0-20:3 PE-d5    C42H73D5NO8P       C42H73D5NO8P</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 34                   17:0-22:4 PE-d5    C44H75D5NO8P       C44H75D5NO8P</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 35                   17:0-14:1 PG-d5  C37H65D5NaO10P       C37H66D5O10P</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 36                   17:0-16:1 PG-d5  C39H69D5NaO10P       C39H70D5O10P</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 37                   17:0-18:1 PG-d5  C41H73D5NaO10P       C41H74D5O10P</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 38                   17:0-20:3 PG-d5  C43H73D5NaO10P       C43H74D5O10P</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 39                   17:0-22:4 PG-d5  C45H75D5NaO10P       C45H76D5O10P</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 40                   17:0-14:1 PS-d5 C37H64D5NNaO10P      C37H65D5NO10P</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 41                   17:0-16:1 PS-d5 C39H68D5NNaO10P      C39H69D5NO10P</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 42                   17:0-18:1 PS-d5 C41H72D5NNaO10P      C41H73D5NO10P</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 43                   17:0-20:3 PS-d5 C43H72D5NNaO10P      C43H73D5NO10P</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 44                   17:0-22:4 PS-d5 C45H74D5NNaO10P      C45H75D5NO10P</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 45                   17:0-14:1 DG-d5      C34H59D5O5         C34H59D5O5</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 46                   17:0-16:1 DG-d5      C36H63D5O5         C36H63D5O5</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 47                   17:0-18:1 DG-d5      C38H67D5O5         C38H67D5O5</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 48                   17:0-20:3 DG-d5      C40H67D5O5         C40H67D5O5</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 49                   17:0-22:4 DG-d5      C42H69D5O5         C42H69D5O5</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 50                   17:0-14:1 PI-d5   C40H73D5NO13P      C40H73D5NO13P</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 51                   17:0-16:1 PI-d5   C42H77D5NO13P      C42H77D5NO13P</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 52                   17:0-18:1 PI-d5   C44H81D5NO13P      C44H81D5NO13P</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 53                   17:0-20:3 PI-d5   C46H81D5NO13P      C46H81D5NO13P</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 54                   17:0-22:4 PI-d5   C48H83D5NO13P      C48H83D5NO13P</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 55                   15:0 Lyso PI-d5   C24H45D5NO12P      C24H45D5NO12P</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 56                   17:0 Lyso PI-d5   C26H49D5NO12P      C26H49D5NO12P</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 57                   19:0 Lyso PI-d5   C28H53D5NO12P      C28H53D5NO12P</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 58                   15:0 Lyso PS-d5  C21H36D5NNaO9P       C21H37D5NO9P</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 59                   17:0 Lyso PS-d5  C23H40D5NNaO9P       C23H41D5NO9P</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 60                   19:0 Lyso PS-d5  C25H44D5NNaO9P       C25H45D5NO9P</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 61                   15:0 Lyso PG-d5   C21H37D5NaO9P        C21H38D5O9P</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 62                   17:0 Lyso PG-d5   C23H41D5NaO9P        C23H42D5O9P</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 63                   19:0 Lyso PG-d5   C25H45D5NaO9P        C25H46D5O9P</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 64                   15:0 Lyso PC-d5    C23H43D5NO7P       C23H43D5NO7P</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 65                   17:0 Lyso PC-d5    C25H47D5NO7P       C25H47D5NO7P</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 66                   19:0 Lyso PC-d5    C27H51D5NO7P       C27H51D5NO7P</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 67                   15:0 Lyso PE-d5    C20H37D5NO7P       C20H37D5NO7P</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 68                   17:0 Lyso PE-d5    C22H41D5NO7P       C22H41D5NO7P</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 69                   19:0 Lyso PE-d5    C24H45D5NO7P       C24H45D5NO7P</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>                                                                                                                                                                            smiles_salt</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1                                                                                          [2H]C([2H])(OC(=O)CCCCCCCCCCCCC)C([2H])(OC(=O)CCCCCCCCCCCC)C([2H])([2H])OC(=O)CCCCCCCCCCCCC</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 2                                                                                    [2H]C([2H])(OC(=O)CCCCCCCCCCCCC)C([2H])(OC(=O)CCCCCCCC\\C=C/CCCC)C([2H])([2H])OC(=O)CCCCCCCCCCCCC</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 3                                                                                  [2H]C([2H])(OC(=O)CCCCCCCCCCCCC)C([2H])(OC(=O)CCCCCCCC\\C=C/CCCCCC)C([2H])([2H])OC(=O)CCCCCCCCCCCCC</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 4                                                                                [2H]C([2H])(OC(=O)CCCCCCCCCCCCCCC)C([2H])(OC(=O)CCCCCCCC\\C=C/CCCC)C([2H])([2H])OC(=O)CCCCCCCCCCCCCCC</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 5                                                                              [2H]C([2H])(OC(=O)CCCCCCCCCCCCCCC)C([2H])(OC(=O)CCCCCCCC\\C=C/CCCCCC)C([2H])([2H])OC(=O)CCCCCCCCCCCCCCC</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 6                                                                        [2H]C([2H])(OC(=O)CCCCCCCCCCCCCCC)C([2H])(OC(=O)CCCCCCCC\\C=C/C\\C=C/CCCCC)C([2H])([2H])OC(=O)CCCCCCCCCCCCCCC</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 7                                                                  [2H]C([2H])(OC(=O)CCCCCCC\\C=C/CCCCCCCC)C([2H])(OC(=O)CCCCCCCC\\C=C/CCCCCC)C([2H])([2H])OC(=O)CCCCCCC\\C=C/CCCCCCCC</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 8                                                            [2H]C([2H])(OC(=O)CCCCCCC\\C=C/CCCCCCCC)C([2H])(OC(=O)CCCCCCCC\\C=C/C\\C=C/CCCCC)C([2H])([2H])OC(=O)CCCCCCC\\C=C/CCCCCCCC</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 9                                                          [2H]C([2H])(OC(=O)CCCCCCC\\C=C/CCCCCCCC)C([2H])(OC(=O)CCCCCCCCCC\\C=C/C\\C=C/CCCCC)C([2H])([2H])OC(=O)CCCCCCC\\C=C/CCCCCCCC</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 10                     [H][C@@](C)(CCCC([2H])(C([2H])([2H])[2H])C([2H])([2H])[2H])[C@@]1([H])CC[C@@]2([H])[C@]3([H])CC=C4C[C@H](CC[C@]4(C)[C@@]3([H])CC[C@]12C)OC(=O)CCCCCCC\\C=C/CCCC</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 11                   [H][C@@](C)(CCCC([2H])(C([2H])([2H])[2H])C([2H])([2H])[2H])[C@@]1([H])CC[C@@]2([H])[C@]3([H])CC=C4C[C@H](CC[C@]4(C)[C@@]3([H])CC[C@]12C)OC(=O)CCCCCCC\\C=C/CCCCCC</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 12                 [H][C@@](C)(CCCC([2H])(C([2H])([2H])[2H])C([2H])([2H])[2H])[C@@]1([H])CC[C@@]2([H])[C@]3([H])CC=C4C[C@H](CC[C@]4(C)[C@@]3([H])CC[C@]12C)OC(=O)CCCCCCC\\C=C/CCCCCCCC</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 13       [H][C@@](C)(CCCC([2H])(C([2H])([2H])[2H])C([2H])([2H])[2H])[C@@]1([H])CC[C@@]2([H])[C@]3([H])CC=C4C[C@H](CC[C@]4(C)[C@@]3([H])CC[C@]12C)OC(=O)CCCCCCCCC\\C=C/C\\C=C/C\\C=C/CC</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 14 [H][C@@](C)(CCCC([2H])(C([2H])([2H])[2H])C([2H])([2H])[2H])[C@@]1([H])CC[C@@]2([H])[C@]3([H])CC=C4C[C@H](CC[C@]4(C)[C@@]3([H])CC[C@]12C)OC(=O)CCCCC\\C=C/C\\C=C/C\\C=C/C\\C=C/CCCCC</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 15                                                                     [H][C@@](O)(\\C=C\\CCCCCCCCCCC([2H])([2H])C([2H])([2H])C([2H])([2H])[2H])[C@]([H])(CO)NC(=O)CCCCCCC\\C=C/CCCCCC</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 16                                                                   [H][C@@](O)(\\C=C\\CCCCCCCCCCC([2H])([2H])C([2H])([2H])C([2H])([2H])[2H])[C@]([H])(CO)NC(=O)CCCCCCC\\C=C/CCCCCCCC</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 17                                                                 [H][C@@](O)(\\C=C\\CCCCCCCCCCC([2H])([2H])C([2H])([2H])C([2H])([2H])[2H])[C@]([H])(CO)NC(=O)CCCCCCCCC\\C=C/CCCCCCCC</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 18                                                               [H][C@@](O)(\\C=C\\CCCCCCCCCCC([2H])([2H])C([2H])([2H])C([2H])([2H])[2H])[C@]([H])(CO)NC(=O)CCCCCCCCCCC\\C=C/CCCCCCCC</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 19                                                             [H][C@@](O)(\\C=C\\CCCCCCCCCCC([2H])([2H])C([2H])([2H])C([2H])([2H])[2H])[C@]([H])(CO)NC(=O)CCCCCCCCCCCCC\\C=C/CCCCCCCC</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 20                                    [H][C@@](O)(\\C=C\\CCCCCCCCCCCCC)[C@]([H])(COP([O-])(=O)OCC[N+](C([2H])([2H])[2H])(C([2H])([2H])[2H])C([2H])([2H])[2H])NC(=O)CCCCCCC\\C=C/CCCCCC</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 21                                  [H][C@@](O)(\\C=C\\CCCCCCCCCCCCC)[C@]([H])(COP([O-])(=O)OCC[N+](C([2H])([2H])[2H])(C([2H])([2H])[2H])C([2H])([2H])[2H])NC(=O)CCCCCCC\\C=C/CCCCCCCC</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 22                                [H][C@@](O)(\\C=C\\CCCCCCCCCCCCC)[C@]([H])(COP([O-])(=O)OCC[N+](C([2H])([2H])[2H])(C([2H])([2H])[2H])C([2H])([2H])[2H])NC(=O)CCCCCCCCC\\C=C/CCCCCCCC</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 23                              [H][C@@](O)(\\C=C\\CCCCCCCCCCCCC)[C@]([H])(COP([O-])(=O)OCC[N+](C([2H])([2H])[2H])(C([2H])([2H])[2H])C([2H])([2H])[2H])NC(=O)CCCCCCCCCCC\\C=C/CCCCCCCC</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 24                            [H][C@@](O)(\\C=C\\CCCCCCCCCCCCC)[C@]([H])(COP([O-])(=O)OCC[N+](C([2H])([2H])[2H])(C([2H])([2H])[2H])C([2H])([2H])[2H])NC(=O)CCCCCCCCCCCCC\\C=C/CCCCCCCC</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 25                                                                      [2H]C([2H])(OC(=O)CCCCCCCCCCCCCCCC)[C@@]([2H])(OC(=O)CCCCCCC\\C=C/CCCC)C([2H])([2H])OP([O-])(=O)OCC[N+](C)(C)C</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 26                                                                    [2H]C([2H])(OC(=O)CCCCCCCCCCCCCCCC)[C@@]([2H])(OC(=O)CCCCCCC\\C=C/CCCCCC)C([2H])([2H])OP([O-])(=O)OCC[N+](C)(C)C</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 27                                                                  [2H]C([2H])(OC(=O)CCCCCCCCCCCCCCCC)[C@@]([2H])(OC(=O)CCCCCCC\\C=C/CCCCCCCC)C([2H])([2H])OP([O-])(=O)OCC[N+](C)(C)C</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 28                                                        [2H]C([2H])(OC(=O)CCCCCCCCCCCCCCCC)[C@@]([2H])(OC(=O)CCCCCCCCC\\C=C/C\\C=C/C\\C=C/CC)C([2H])([2H])OP([O-])(=O)OCC[N+](C)(C)C</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 29                                                  [2H]C([2H])(OC(=O)CCCCCCCCCCCCCCCC)[C@@]([2H])(OC(=O)CCCCC\\C=C/C\\C=C/C\\C=C/C\\C=C/CCCCC)C([2H])([2H])OP([O-])(=O)OCC[N+](C)(C)C</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 30                                                                           [2H]C([2H])(OC(=O)CCCCCCCCCCCCCCCC)[C@@]([2H])(OC(=O)CCCCCCC\\C=C/CCCC)C([2H])([2H])OP([O-])(=O)OCC[NH3+]</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 31                                                                         [2H]C([2H])(OC(=O)CCCCCCCCCCCCCCCC)[C@@]([2H])(OC(=O)CCCCCCC\\C=C/CCCCCC)C([2H])([2H])OP([O-])(=O)OCC[NH3+]</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 32                                                                       [2H]C([2H])(OC(=O)CCCCCCCCCCCCCCCC)[C@@]([2H])(OC(=O)CCCCCCC\\C=C/CCCCCCCC)C([2H])([2H])OP([O-])(=O)OCC[NH3+]</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 33                                                             [2H]C([2H])(OC(=O)CCCCCCCCCCCCCCCC)[C@@]([2H])(OC(=O)CCCCCCCCC\\C=C/C\\C=C/C\\C=C/CC)C([2H])([2H])OP([O-])(=O)OCC[NH3+]</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 34                                                       [2H]C([2H])(OC(=O)CCCCCCCCCCCCCCCC)[C@@]([2H])(OC(=O)CCCCC\\C=C/C\\C=C/C\\C=C/C\\C=C/CCCCC)C([2H])([2H])OP([O-])(=O)OCC[NH3+]</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 35                                                                      [Na+].[2H]C([2H])(OC(=O)CCCCCCCCCCCCCCCC)[C@@]([2H])(OC(=O)CCCCCCC\\C=C/CCCC)C([2H])([2H])OP([O-])(=O)OCC(O)CO</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 36                                                                    [Na+].[2H]C([2H])(OC(=O)CCCCCCCCCCCCCCCC)[C@@]([2H])(OC(=O)CCCCCCC\\C=C/CCCCCC)C([2H])([2H])OP([O-])(=O)OCC(O)CO</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 37                                                                  [Na+].[2H]C([2H])(OC(=O)CCCCCCCCCCCCCCCC)[C@@]([2H])(OC(=O)CCCCCCC\\C=C/CCCCCCCC)C([2H])([2H])OP([O-])(=O)OCC(O)CO</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 38                                                        [Na+].[2H]C([2H])(OC(=O)CCCCCCCCCCCCCCCC)[C@@]([2H])(OC(=O)CCCCCCCCC\\C=C/C\\C=C/C\\C=C/CC)C([2H])([2H])OP([O-])(=O)OCC(O)CO</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 39                                                  [Na+].[2H]C([2H])(OC(=O)CCCCCCCCCCCCCCCC)[C@@]([2H])(OC(=O)CCCCC\\C=C/C\\C=C/C\\C=C/C\\C=C/CCCCC)C([2H])([2H])OP([O-])(=O)OCC(O)CO</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 40                                                   [Na+].[H][C@]([NH3+])(COP([O-])(=O)OC([2H])([2H])[C@]([2H])(OC(=O)CCCCCCC\\C=C/CCCC)C([2H])([2H])OC(=O)CCCCCCCCCCCCCCCC)C([O-])=O</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 41                                                 [Na+].[H][C@]([NH3+])(COP([O-])(=O)OC([2H])([2H])[C@]([2H])(OC(=O)CCCCCCC\\C=C/CCCCCC)C([2H])([2H])OC(=O)CCCCCCCCCCCCCCCC)C([O-])=O</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 42                                               [Na+].[H][C@]([NH3+])(COP([O-])(=O)OC([2H])([2H])[C@]([2H])(OC(=O)CCCCCCC\\C=C/CCCCCCCC)C([2H])([2H])OC(=O)CCCCCCCCCCCCCCCC)C([O-])=O</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 43                                     [Na+].[H][C@]([NH3+])(COP([O-])(=O)OC([2H])([2H])[C@]([2H])(OC(=O)CCCCCCCCC\\C=C/C\\C=C/C\\C=C/CC)C([2H])([2H])OC(=O)CCCCCCCCCCCCCCCC)C([O-])=O</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 44                               [Na+].[H][C@]([NH3+])(COP([O-])(=O)OC([2H])([2H])[C@]([2H])(OC(=O)CCCCC\\C=C/C\\C=C/C\\C=C/C\\C=C/CCCCC)C([2H])([2H])OC(=O)CCCCCCCCCCCCCCCC)C([O-])=O</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 45                                                                                                [2H]C([2H])(O)[C@]([2H])(OC(=O)CCCCCCC\\C=C/CCCC)C([2H])([2H])OC(=O)CCCCCCCCCCCCCCCC</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 46                                                                                              [2H]C([2H])(O)[C@]([2H])(OC(=O)CCCCCCC\\C=C/CCCCCC)C([2H])([2H])OC(=O)CCCCCCCCCCCCCCCC</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 47                                                                                            [2H]C([2H])(O)[C@]([2H])(OC(=O)CCCCCCC\\C=C/CCCCCCCC)C([2H])([2H])OC(=O)CCCCCCCCCCCCCCCC</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 48                                                                                  [2H]C([2H])(O)[C@]([2H])(OC(=O)CCCCCCCCC\\C=C/C\\C=C/C\\C=C/CC)C([2H])([2H])OC(=O)CCCCCCCCCCCCCCCC</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 49                                                                            [2H]C([2H])(O)[C@]([2H])(OC(=O)CCCCC\\C=C/C\\C=C/C\\C=C/C\\C=C/CCCCC)C([2H])([2H])OC(=O)CCCCCCCCCCCCCCCC</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 50                                              [NH4+].[2H]C([2H])(OC(=O)CCCCCCCCCCCCCCCC)[C@@]([2H])(OC(=O)CCCCCCC\\C=C/CCCC)C([2H])([2H])OP([O-])(=O)O[C@H]1C(O)C(O)C(O)[C@@H](O)C1O</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 51                                            [NH4+].[2H]C([2H])(OC(=O)CCCCCCCCCCCCCCCC)[C@@]([2H])(OC(=O)CCCCCCC\\C=C/CCCCCC)C([2H])([2H])OP([O-])(=O)O[C@H]1C(O)C(O)C(O)[C@@H](O)C1O</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 52                                          [NH4+].[2H]C([2H])(OC(=O)CCCCCCCCCCCCCCCC)[C@@]([2H])(OC(=O)CCCCCCC\\C=C/CCCCCCCC)C([2H])([2H])OP([O-])(=O)O[C@H]1C(O)C(O)C(O)[C@@H](O)C1O</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 53                                [NH4+].[2H]C([2H])(OC(=O)CCCCCCCCCCCCCCCC)[C@@]([2H])(OC(=O)CCCCCCCCC\\C=C/C\\C=C/C\\C=C/CC)C([2H])([2H])OP([O-])(=O)O[C@H]1C(O)C(O)C(O)[C@@H](O)C1O</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 54                          [NH4+].[2H]C([2H])(OC(=O)CCCCCCCCCCCCCCCC)[C@@]([2H])(OC(=O)CCCCC\\C=C/C\\C=C/C\\C=C/C\\C=C/CCCCC)C([2H])([2H])OP([O-])(=O)O[C@H]1C(O)C(O)C(O)[C@@H](O)C1O</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 55                                                                      [NH4+].[2H]C([2H])(OC(=O)CCCCCCCCCCCCCC)[C@@]([2H])(O)C([2H])([2H])OP([O-])(=O)O[C@H]1C(O)C(O)C(O)[C@@H](O)C1O</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 56                                                                    [NH4+].[2H]C([2H])(OC(=O)CCCCCCCCCCCCCCCC)[C@@]([2H])(O)C([2H])([2H])OP([O-])(=O)O[C@H]1C(O)C(O)C(O)[C@@H](O)C1O</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 57                                                                  [NH4+].[2H]C([2H])(OC(=O)CCCCCCCCCCCCCCCCCC)[C@@]([2H])(O)C([2H])([2H])OP([O-])(=O)O[C@H]1C(O)C(O)C(O)[C@@H](O)C1O</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 58                                                                           [Na+].[H][C@]([NH3+])(COP([O-])(=O)OC([2H])([2H])[C@]([2H])(O)C([2H])([2H])OC(=O)CCCCCCCCCCCCCC)C([O-])=O</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 59                                                                         [Na+].[H][C@]([NH3+])(COP([O-])(=O)OC([2H])([2H])[C@]([2H])(O)C([2H])([2H])OC(=O)CCCCCCCCCCCCCCCC)C([O-])=O</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 60                                                                       [Na+].[H][C@]([NH3+])(COP([O-])(=O)OC([2H])([2H])[C@]([2H])(O)C([2H])([2H])OC(=O)CCCCCCCCCCCCCCCCCC)C([O-])=O</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 61                                                                                              [Na+].[2H]C([2H])(OC(=O)CCCCCCCCCCCCCC)[C@@]([2H])(O)C([2H])([2H])OP([O-])(=O)OCC(O)CO</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 62                                                                                            [Na+].[2H]C([2H])(OC(=O)CCCCCCCCCCCCCCCC)[C@@]([2H])(O)C([2H])([2H])OP([O-])(=O)OCC(O)CO</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 63                                                                                          [Na+].[2H]C([2H])(OC(=O)CCCCCCCCCCCCCCCCCC)[C@@]([2H])(O)C([2H])([2H])OP([O-])(=O)OCC(O)CO</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 64                                                                                              [2H]C([2H])(OC(=O)CCCCCCCCCCCCCC)[C@@]([2H])(O)C([2H])([2H])OP([O-])(=O)OCC[N+](C)(C)C</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 65                                                                                            [2H]C([2H])(OC(=O)CCCCCCCCCCCCCCCC)[C@@]([2H])(O)C([2H])([2H])OP([O-])(=O)OCC[N+](C)(C)C</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 66                                                                                          [2H]C([2H])(OC(=O)CCCCCCCCCCCCCCCCCC)[C@@]([2H])(O)C([2H])([2H])OP([O-])(=O)OCC[N+](C)(C)C</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 67                                                                                                   [2H]C([2H])(OC(=O)CCCCCCCCCCCCCC)[C@@]([2H])(O)C([2H])([2H])OP([O-])(=O)OCC[NH3+]</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 68                                                                                                 [2H]C([2H])(OC(=O)CCCCCCCCCCCCCCCC)[C@@]([2H])(O)C([2H])([2H])OP([O-])(=O)OCC[NH3+]</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 69                                                                                               [2H]C([2H])(OC(=O)CCCCCCCCCCCCCCCCCC)[C@@]([2H])(O)C([2H])([2H])OP([O-])(=O)OCC[NH3+]</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>                                                                                                                                                                      smiles_metabolite</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1                                                                                          [2H]C([2H])(OC(=O)CCCCCCCCCCCCC)C([2H])(OC(=O)CCCCCCCCCCCC)C([2H])([2H])OC(=O)CCCCCCCCCCCCC</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 2                                                                                    [2H]C([2H])(OC(=O)CCCCCCCCCCCCC)C([2H])(OC(=O)CCCCCCCC\\C=C/CCCC)C([2H])([2H])OC(=O)CCCCCCCCCCCCC</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 3                                                                                  [2H]C([2H])(OC(=O)CCCCCCCCCCCCC)C([2H])(OC(=O)CCCCCCCC\\C=C/CCCCCC)C([2H])([2H])OC(=O)CCCCCCCCCCCCC</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 4                                                                                [2H]C([2H])(OC(=O)CCCCCCCCCCCCCCC)C([2H])(OC(=O)CCCCCCCC\\C=C/CCCC)C([2H])([2H])OC(=O)CCCCCCCCCCCCCCC</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 5                                                                              [2H]C([2H])(OC(=O)CCCCCCCCCCCCCCC)C([2H])(OC(=O)CCCCCCCC\\C=C/CCCCCC)C([2H])([2H])OC(=O)CCCCCCCCCCCCCCC</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 6                                                                        [2H]C([2H])(OC(=O)CCCCCCCCCCCCCCC)C([2H])(OC(=O)CCCCCCCC\\C=C/C\\C=C/CCCCC)C([2H])([2H])OC(=O)CCCCCCCCCCCCCCC</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 7                                                                  [2H]C([2H])(OC(=O)CCCCCCC\\C=C/CCCCCCCC)C([2H])(OC(=O)CCCCCCCC\\C=C/CCCCCC)C([2H])([2H])OC(=O)CCCCCCC\\C=C/CCCCCCCC</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 8                                                            [2H]C([2H])(OC(=O)CCCCCCC\\C=C/CCCCCCCC)C([2H])(OC(=O)CCCCCCCC\\C=C/C\\C=C/CCCCC)C([2H])([2H])OC(=O)CCCCCCC\\C=C/CCCCCCCC</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 9                                                          [2H]C([2H])(OC(=O)CCCCCCC\\C=C/CCCCCCCC)C([2H])(OC(=O)CCCCCCCCCC\\C=C/C\\C=C/CCCCC)C([2H])([2H])OC(=O)CCCCCCC\\C=C/CCCCCCCC</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 10                     [H][C@@](C)(CCCC([2H])(C([2H])([2H])[2H])C([2H])([2H])[2H])[C@@]1([H])CC[C@@]2([H])[C@]3([H])CC=C4C[C@H](CC[C@]4(C)[C@@]3([H])CC[C@]12C)OC(=O)CCCCCCC\\C=C/CCCC</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 11                   [H][C@@](C)(CCCC([2H])(C([2H])([2H])[2H])C([2H])([2H])[2H])[C@@]1([H])CC[C@@]2([H])[C@]3([H])CC=C4C[C@H](CC[C@]4(C)[C@@]3([H])CC[C@]12C)OC(=O)CCCCCCC\\C=C/CCCCCC</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 12                 [H][C@@](C)(CCCC([2H])(C([2H])([2H])[2H])C([2H])([2H])[2H])[C@@]1([H])CC[C@@]2([H])[C@]3([H])CC=C4C[C@H](CC[C@]4(C)[C@@]3([H])CC[C@]12C)OC(=O)CCCCCCC\\C=C/CCCCCCCC</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 13       [H][C@@](C)(CCCC([2H])(C([2H])([2H])[2H])C([2H])([2H])[2H])[C@@]1([H])CC[C@@]2([H])[C@]3([H])CC=C4C[C@H](CC[C@]4(C)[C@@]3([H])CC[C@]12C)OC(=O)CCCCCCCCC\\C=C/C\\C=C/C\\C=C/CC</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 14 [H][C@@](C)(CCCC([2H])(C([2H])([2H])[2H])C([2H])([2H])[2H])[C@@]1([H])CC[C@@]2([H])[C@]3([H])CC=C4C[C@H](CC[C@]4(C)[C@@]3([H])CC[C@]12C)OC(=O)CCCCC\\C=C/C\\C=C/C\\C=C/C\\C=C/CCCCC</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 15                                                                     [H][C@@](O)(\\C=C\\CCCCCCCCCCC([2H])([2H])C([2H])([2H])C([2H])([2H])[2H])[C@]([H])(CO)NC(=O)CCCCCCC\\C=C/CCCCCC</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 16                                                                   [H][C@@](O)(\\C=C\\CCCCCCCCCCC([2H])([2H])C([2H])([2H])C([2H])([2H])[2H])[C@]([H])(CO)NC(=O)CCCCCCC\\C=C/CCCCCCCC</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 17                                                                 [H][C@@](O)(\\C=C\\CCCCCCCCCCC([2H])([2H])C([2H])([2H])C([2H])([2H])[2H])[C@]([H])(CO)NC(=O)CCCCCCCCC\\C=C/CCCCCCCC</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 18                                                               [H][C@@](O)(\\C=C\\CCCCCCCCCCC([2H])([2H])C([2H])([2H])C([2H])([2H])[2H])[C@]([H])(CO)NC(=O)CCCCCCCCCCC\\C=C/CCCCCCCC</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 19                                                             [H][C@@](O)(\\C=C\\CCCCCCCCCCC([2H])([2H])C([2H])([2H])C([2H])([2H])[2H])[C@]([H])(CO)NC(=O)CCCCCCCCCCCCC\\C=C/CCCCCCCC</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 20                                    [H][C@@](O)(\\C=C\\CCCCCCCCCCCCC)[C@]([H])(COP([O-])(=O)OCC[N+](C([2H])([2H])[2H])(C([2H])([2H])[2H])C([2H])([2H])[2H])NC(=O)CCCCCCC\\C=C/CCCCCC</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 21                                  [H][C@@](O)(\\C=C\\CCCCCCCCCCCCC)[C@]([H])(COP([O-])(=O)OCC[N+](C([2H])([2H])[2H])(C([2H])([2H])[2H])C([2H])([2H])[2H])NC(=O)CCCCCCC\\C=C/CCCCCCCC</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 22                                [H][C@@](O)(\\C=C\\CCCCCCCCCCCCC)[C@]([H])(COP([O-])(=O)OCC[N+](C([2H])([2H])[2H])(C([2H])([2H])[2H])C([2H])([2H])[2H])NC(=O)CCCCCCCCC\\C=C/CCCCCCCC</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 23                              [H][C@@](O)(\\C=C\\CCCCCCCCCCCCC)[C@]([H])(COP([O-])(=O)OCC[N+](C([2H])([2H])[2H])(C([2H])([2H])[2H])C([2H])([2H])[2H])NC(=O)CCCCCCCCCCC\\C=C/CCCCCCCC</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 24                            [H][C@@](O)(\\C=C\\CCCCCCCCCCCCC)[C@]([H])(COP([O-])(=O)OCC[N+](C([2H])([2H])[2H])(C([2H])([2H])[2H])C([2H])([2H])[2H])NC(=O)CCCCCCCCCCCCC\\C=C/CCCCCCCC</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 25                                                                      [2H]C([2H])(OC(=O)CCCCCCCCCCCCCCCC)[C@@]([2H])(OC(=O)CCCCCCC\\C=C/CCCC)C([2H])([2H])OP([O-])(=O)OCC[N+](C)(C)C</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 26                                                                    [2H]C([2H])(OC(=O)CCCCCCCCCCCCCCCC)[C@@]([2H])(OC(=O)CCCCCCC\\C=C/CCCCCC)C([2H])([2H])OP([O-])(=O)OCC[N+](C)(C)C</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 27                                                                  [2H]C([2H])(OC(=O)CCCCCCCCCCCCCCCC)[C@@]([2H])(OC(=O)CCCCCCC\\C=C/CCCCCCCC)C([2H])([2H])OP([O-])(=O)OCC[N+](C)(C)C</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 28                                                        [2H]C([2H])(OC(=O)CCCCCCCCCCCCCCCC)[C@@]([2H])(OC(=O)CCCCCCCCC\\C=C/C\\C=C/C\\C=C/CC)C([2H])([2H])OP([O-])(=O)OCC[N+](C)(C)C</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 29                                                  [2H]C([2H])(OC(=O)CCCCCCCCCCCCCCCC)[C@@]([2H])(OC(=O)CCCCC\\C=C/C\\C=C/C\\C=C/C\\C=C/CCCCC)C([2H])([2H])OP([O-])(=O)OCC[N+](C)(C)C</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 30                                                                                   [2H]C([2H])(OC(=O)CCCCCCCCCCCCCCCC)[C@@]([2H])(OC(=O)CCCCCCC\\C=C/CCCC)C([2H])([2H])OP(O)(=O)OCCN</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 31                                                                                 [2H]C([2H])(OC(=O)CCCCCCCCCCCCCCCC)[C@@]([2H])(OC(=O)CCCCCCC\\C=C/CCCCCC)C([2H])([2H])OP(O)(=O)OCCN</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 32                                                                               [2H]C([2H])(OC(=O)CCCCCCCCCCCCCCCC)[C@@]([2H])(OC(=O)CCCCCCC\\C=C/CCCCCCCC)C([2H])([2H])OP(O)(=O)OCCN</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 33                                                                     [2H]C([2H])(OC(=O)CCCCCCCCCCCCCCCC)[C@@]([2H])(OC(=O)CCCCCCCCC\\C=C/C\\C=C/C\\C=C/CC)C([2H])([2H])OP(O)(=O)OCCN</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 34                                                               [2H]C([2H])(OC(=O)CCCCCCCCCCCCCCCC)[C@@]([2H])(OC(=O)CCCCC\\C=C/C\\C=C/C\\C=C/C\\C=C/CCCCC)C([2H])([2H])OP(O)(=O)OCCN</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 35                                                                               [2H]C([2H])(OC(=O)CCCCCCCCCCCCCCCC)[C@@]([2H])(OC(=O)CCCCCCC\\C=C/CCCC)C([2H])([2H])OP(O)(=O)OCC(O)CO</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 36                                                                             [2H]C([2H])(OC(=O)CCCCCCCCCCCCCCCC)[C@@]([2H])(OC(=O)CCCCCCC\\C=C/CCCCCC)C([2H])([2H])OP(O)(=O)OCC(O)CO</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 37                                                                           [2H]C([2H])(OC(=O)CCCCCCCCCCCCCCCC)[C@@]([2H])(OC(=O)CCCCCCC\\C=C/CCCCCCCC)C([2H])([2H])OP(O)(=O)OCC(O)CO</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 38                                                                 [2H]C([2H])(OC(=O)CCCCCCCCCCCCCCCC)[C@@]([2H])(OC(=O)CCCCCCCCC\\C=C/C\\C=C/C\\C=C/CC)C([2H])([2H])OP(O)(=O)OCC(O)CO</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 39                                                           [2H]C([2H])(OC(=O)CCCCCCCCCCCCCCCC)[C@@]([2H])(OC(=O)CCCCC\\C=C/C\\C=C/C\\C=C/C\\C=C/CCCCC)C([2H])([2H])OP(O)(=O)OCC(O)CO</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 40                                                                    [H][C@](N)(COP(O)(=O)OC([2H])([2H])[C@]([2H])(OC(=O)CCCCCCC\\C=C/CCCC)C([2H])([2H])OC(=O)CCCCCCCCCCCCCCCC)C(O)=O</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 41                                                                  [H][C@](N)(COP(O)(=O)OC([2H])([2H])[C@]([2H])(OC(=O)CCCCCCC\\C=C/CCCCCC)C([2H])([2H])OC(=O)CCCCCCCCCCCCCCCC)C(O)=O</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 42                                                                [H][C@](N)(COP(O)(=O)OC([2H])([2H])[C@]([2H])(OC(=O)CCCCCCC\\C=C/CCCCCCCC)C([2H])([2H])OC(=O)CCCCCCCCCCCCCCCC)C(O)=O</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 43                                                      [H][C@](N)(COP(O)(=O)OC([2H])([2H])[C@]([2H])(OC(=O)CCCCCCCCC\\C=C/C\\C=C/C\\C=C/CC)C([2H])([2H])OC(=O)CCCCCCCCCCCCCCCC)C(O)=O</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 44                                                [H][C@](N)(COP(O)(=O)OC([2H])([2H])[C@]([2H])(OC(=O)CCCCC\\C=C/C\\C=C/C\\C=C/C\\C=C/CCCCC)C([2H])([2H])OC(=O)CCCCCCCCCCCCCCCC)C(O)=O</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 45                                                                                                [2H]C([2H])(O)[C@]([2H])(OC(=O)CCCCCCC\\C=C/CCCC)C([2H])([2H])OC(=O)CCCCCCCCCCCCCCCC</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 46                                                                                              [2H]C([2H])(O)[C@]([2H])(OC(=O)CCCCCCC\\C=C/CCCCCC)C([2H])([2H])OC(=O)CCCCCCCCCCCCCCCC</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 47                                                                                            [2H]C([2H])(O)[C@]([2H])(OC(=O)CCCCCCC\\C=C/CCCCCCCC)C([2H])([2H])OC(=O)CCCCCCCCCCCCCCCC</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 48                                                                                  [2H]C([2H])(O)[C@]([2H])(OC(=O)CCCCCCCCC\\C=C/C\\C=C/C\\C=C/CC)C([2H])([2H])OC(=O)CCCCCCCCCCCCCCCC</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 49                                                                            [2H]C([2H])(O)[C@]([2H])(OC(=O)CCCCC\\C=C/C\\C=C/C\\C=C/C\\C=C/CCCCC)C([2H])([2H])OC(=O)CCCCCCCCCCCCCCCC</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 50                                                      N.[2H]C([2H])(OC(=O)CCCCCCCCCCCCCCCC)[C@@]([2H])(OC(=O)CCCCCCC\\C=C/CCCC)C([2H])([2H])OP(O)(=O)O[C@H]1C(O)C(O)C(O)[C@@H](O)C1O</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 51                                                    N.[2H]C([2H])(OC(=O)CCCCCCCCCCCCCCCC)[C@@]([2H])(OC(=O)CCCCCCC\\C=C/CCCCCC)C([2H])([2H])OP(O)(=O)O[C@H]1C(O)C(O)C(O)[C@@H](O)C1O</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 52                                                  N.[2H]C([2H])(OC(=O)CCCCCCCCCCCCCCCC)[C@@]([2H])(OC(=O)CCCCCCC\\C=C/CCCCCCCC)C([2H])([2H])OP(O)(=O)O[C@H]1C(O)C(O)C(O)[C@@H](O)C1O</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 53                                        N.[2H]C([2H])(OC(=O)CCCCCCCCCCCCCCCC)[C@@]([2H])(OC(=O)CCCCCCCCC\\C=C/C\\C=C/C\\C=C/CC)C([2H])([2H])OP(O)(=O)O[C@H]1C(O)C(O)C(O)[C@@H](O)C1O</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 54                                  N.[2H]C([2H])(OC(=O)CCCCCCCCCCCCCCCC)[C@@]([2H])(OC(=O)CCCCC\\C=C/C\\C=C/C\\C=C/C\\C=C/CCCCC)C([2H])([2H])OP(O)(=O)O[C@H]1C(O)C(O)C(O)[C@@H](O)C1O</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 55                                                                              N.[2H]C([2H])(OC(=O)CCCCCCCCCCCCCC)[C@@]([2H])(O)C([2H])([2H])OP(O)(=O)O[C@H]1C(O)C(O)C(O)[C@@H](O)C1O</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 56                                                                            N.[2H]C([2H])(OC(=O)CCCCCCCCCCCCCCCC)[C@@]([2H])(O)C([2H])([2H])OP(O)(=O)O[C@H]1C(O)C(O)C(O)[C@@H](O)C1O</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 57                                                                          N.[2H]C([2H])(OC(=O)CCCCCCCCCCCCCCCCCC)[C@@]([2H])(O)C([2H])([2H])OP(O)(=O)O[C@H]1C(O)C(O)C(O)[C@@H](O)C1O</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 58                                                                                            [H][C@](N)(COP(O)(=O)OC([2H])([2H])[C@]([2H])(O)C([2H])([2H])OC(=O)CCCCCCCCCCCCCC)C(O)=O</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 59                                                                                          [H][C@](N)(COP(O)(=O)OC([2H])([2H])[C@]([2H])(O)C([2H])([2H])OC(=O)CCCCCCCCCCCCCCCC)C(O)=O</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 60                                                                                        [H][C@](N)(COP(O)(=O)OC([2H])([2H])[C@]([2H])(O)C([2H])([2H])OC(=O)CCCCCCCCCCCCCCCCCC)C(O)=O</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 61                                                                                                       [2H]C([2H])(OC(=O)CCCCCCCCCCCCCC)[C@@]([2H])(O)C([2H])([2H])OP(O)(=O)OCC(O)CO</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 62                                                                                                     [2H]C([2H])(OC(=O)CCCCCCCCCCCCCCCC)[C@@]([2H])(O)C([2H])([2H])OP(O)(=O)OCC(O)CO</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 63                                                                                                   [2H]C([2H])(OC(=O)CCCCCCCCCCCCCCCCCC)[C@@]([2H])(O)C([2H])([2H])OP(O)(=O)OCC(O)CO</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 64                                                                                              [2H]C([2H])(OC(=O)CCCCCCCCCCCCCC)[C@@]([2H])(O)C([2H])([2H])OP([O-])(=O)OCC[N+](C)(C)C</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 65                                                                                            [2H]C([2H])(OC(=O)CCCCCCCCCCCCCCCC)[C@@]([2H])(O)C([2H])([2H])OP([O-])(=O)OCC[N+](C)(C)C</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 66                                                                                          [2H]C([2H])(OC(=O)CCCCCCCCCCCCCCCCCC)[C@@]([2H])(O)C([2H])([2H])OP([O-])(=O)OCC[N+](C)(C)C</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 67                                                                                                           [2H]C([2H])(OC(=O)CCCCCCCCCCCCCC)[C@@]([2H])(O)C([2H])([2H])OP(O)(=O)OCCN</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 68                                                                                                         [2H]C([2H])(OC(=O)CCCCCCCCCCCCCCCC)[C@@]([2H])(O)C([2H])([2H])OP(O)(=O)OCCN</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 69                                                                                                       [2H]C([2H])(OC(=O)CCCCCCCCCCCCCCCCCC)[C@@]([2H])(O)C([2H])([2H])OP(O)(=O)OCCN</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    mol_weight_salt exact_mass_metabolite conc</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1          714.181              713.6582   25</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 2          740.219              739.6738   50</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 3          768.273              767.7051   75</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 4          796.327              795.7364  100</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 5          824.381              823.7677  125</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 6          850.419              849.7834  100</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 7          876.457              875.7990   75</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 8          902.495              901.8147   50</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 9          930.549              929.8460   25</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 10         602.052              601.5815   25</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 11         630.106              629.6128   50</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 12         658.160              657.6441   75</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 13         682.182              681.6441   50</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 14         708.220              707.6598   25</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 15         542.941              542.5404   75</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 16         570.995              570.5717   50</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 17         599.049              598.6030   25</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 18         627.103              626.6343   50</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 19         655.157              654.6656   75</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 20         710.082              709.6084   75</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 21         738.136              737.6397   50</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 22         766.190              765.6710   25</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 23         794.244              793.7023   50</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 24         822.298              821.7336   75</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 25         723.040              722.5622   50</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 26         751.094              750.5935  100</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 27         779.148              778.6248  150</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 28         803.170              802.6248  100</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 29         829.208              828.6405   50</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 30         680.959              680.5153   25</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 31         709.013              708.5466   50</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 32         737.067              736.5779   75</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 33         761.089              760.5779   50</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 34         787.127              786.5935   25</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 35         733.951              711.5099   25</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 36         762.005              739.5412   50</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 37         790.059              767.5725   75</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 38         814.081              791.5725   50</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 39         840.119              817.5881   25</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 40         746.950              724.5051   25</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 41         775.004              752.5364   50</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 42         803.058              780.5677   75</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 43         827.080              804.5677   50</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 44         853.118              830.5834   25</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 45         557.912              557.5068   25</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 46         585.966              585.5381   50</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 47         614.020              613.5694   75</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 48         638.042              637.5694   50</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 49         664.080              663.5850   25</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 50         817.062              816.5525   25</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 51         845.116              844.5838   50</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 52         873.170              872.6151   75</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 53         897.192              896.6151   50</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 54         923.230              922.6307   25</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 55         580.663              580.3384   25</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 56         608.717              608.3697   50</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 57         636.771              636.4010   25</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 58         510.551              488.2911   25</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 59         538.605              516.3224   50</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 60         566.659              544.3537   25</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 61         497.552              475.2959   25</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 62         525.606              503.3272   50</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 63         553.660              531.3585   25</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 64         486.641              486.3482   25</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 65         514.695              514.3795   50</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 66         542.749              542.4108   25</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 67         444.560              444.3013   25</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 68         472.614              472.3326   50</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 69         500.668              500.3639   25</span>
+</code></pre></div>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -568,11 +571,11 @@ returned. One of <code><a href='internalStandardMixNames.html'>internalStandardM
 
       <footer>
       <div class="copyright">
-  <p>Developed by Johannes Rainer, Michael Witting.</p>
+  <p><p>Developed by Johannes Rainer, Michael Witting.</p></p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.6.1.9000.</p>
+  <p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.6.1.9001.</p></p>
 </div>
 
       </footer>

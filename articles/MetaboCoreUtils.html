@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">MetaboCoreUtils</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.99.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.0</span>
       </span>
     </div>
 
@@ -66,7 +66,7 @@
 
       
 
-      </header><script src="MetaboCoreUtils_files/header-attrs-2.7/header-attrs.js"></script><div class="row">
+      </header><script src="MetaboCoreUtils_files/header-attrs-2.8/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Core Utils for Metabolomics Data</h1>
@@ -90,10 +90,10 @@ document.addEventListener("DOMContentLoaded", function() {
     if (links[i].hostname != window.location.hostname)
       links[i].target = '_blank';
 });
-</script><p><strong>Package</strong>: <em><a href="https://bioconductor.org/packages/3.13/MetaboCoreUtils" class="external-link">MetaboCoreUtils</a></em><br><strong>Authors</strong>: Johannes Rainer [aut, cre] (<a href="https://orcid.org/0000-0002-6977-7147" class="external-link uri">https://orcid.org/0000-0002-6977-7147</a>), Michael Witting [aut] (<a href="https://orcid.org/0000-0002-1462-4426" class="external-link uri">https://orcid.org/0000-0002-1462-4426</a>)<br><strong>Last modified:</strong> 2021-02-25 08:54:59<br><strong>Compiled</strong>: Thu Feb 25 09:03:12 2021</p>
+</script><p><strong>Package</strong>: <em><a href="https://bioconductor.org/packages/3.13/MetaboCoreUtils" class="external-link">MetaboCoreUtils</a></em><br><strong>Authors</strong>: Johannes Rainer [aut, cre] (<a href="https://orcid.org/0000-0002-6977-7147" class="external-link uri">https://orcid.org/0000-0002-6977-7147</a>), Michael Witting [aut] (<a href="https://orcid.org/0000-0002-1462-4426" class="external-link uri">https://orcid.org/0000-0002-1462-4426</a>)<br><strong>Last modified:</strong> 2021-05-21 06:57:31<br><strong>Compiled</strong>: Fri May 21 07:13:59 2021</p>
 <div id="introduction" class="section level1">
 <h1 class="hasAnchor">
-<a href="#introduction" class="anchor"></a>Introduction</h1>
+<a href="#introduction" class="anchor" aria-hidden="true"></a>Introduction</h1>
 <p>The <code>MetaboCoreUtils</code> defines metabolomics-related core functionality provided as low-level functions to allow a data structure-independent usage across various R packages. This includes functions to calculate between ion (adduct) and compound mass-to-charge ratios and masses or functions to work with chemical formulas. The package provides also a set of adduct definitions and information on some commercially available internal standard mixes commonly used in MS experiments.</p>
 <p>For a full list of function, see</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
@@ -109,19 +109,19 @@ document.addEventListener("DOMContentLoaded", function() {
 </div>
 <div id="installation" class="section level1">
 <h1 class="hasAnchor">
-<a href="#installation" class="anchor"></a>Installation</h1>
-<p>The package can be installed with the <code>BiocManager</code> package. To install <code>BiocManager</code> use <code><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages("BiocManager")</a></code> and, after that, <code><a href="https://rdrr.io/pkg/BiocManager/man/install.html" class="external-link">BiocManager::install("MetaboCoreUtils")</a></code> to install this package.</p>
+<a href="#installation" class="anchor" aria-hidden="true"></a>Installation</h1>
+<p>The package can be installed with the <code>BiocManager</code> package. To install <code>BiocManager</code> use <code>install.packages("BiocManager")</code> and, after that, <code>BiocManager::install("MetaboCoreUtils")</code> to install this package.</p>
 </div>
 <div id="examples" class="section level1">
 <h1 class="hasAnchor">
-<a href="#examples" class="anchor"></a>Examples</h1>
+<a href="#examples" class="anchor" aria-hidden="true"></a>Examples</h1>
 <p>The functions defined in this package utilise basic classes with the aim of being reused in packages that provide a more formal, high-level interface.</p>
 <p>The examples below demonstrate the basic usage of the functions from the package.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/RforMassSpectrometry/MetaboCoreUtils" class="external-link">MetaboCoreUtils</a></span><span class="op">)</span></code></pre></div>
 <div id="conversion-between-ion-mz-and-compound-masses" class="section level2">
 <h2 class="hasAnchor">
-<a href="#conversion-between-ion-mz-and-compound-masses" class="anchor"></a>Conversion between ion m/z and compound masses</h2>
+<a href="#conversion-between-ion-mz-and-compound-masses" class="anchor" aria-hidden="true"></a>Conversion between ion m/z and compound masses</h2>
 <p>The <code>mass2mz</code> and <code>mz2mass</code> functions allow to convert between compound masses and ion (adduct) mass-to-charge ratios (m/z). The <code>MetaboCoreUtils</code> package provides definitions of common ion adducts generated by electrospray ionization (ESI). These can be listed with the <code>adductNames</code> function.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/adductNames.html">adductNames</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
@@ -150,7 +150,7 @@ document.addEventListener("DOMContentLoaded", function() {
 </div>
 <div id="working-with-chemical-formulas" class="section level2">
 <h2 class="hasAnchor">
-<a href="#working-with-chemical-formulas" class="anchor"></a>Working with chemical formulas</h2>
+<a href="#working-with-chemical-formulas" class="anchor" aria-hidden="true"></a>Working with chemical formulas</h2>
 <p>The lack of consistency in the format in which chemical formulas are written poses a big problem comparing formulas coming from different resources. The <code>MetaboCoreUtils</code> package provides functions to <em>standardize</em> formulas as well as combine formulas or substract elements from formulas. Below we use an artificial example to show this functionality. First we standardize a chemical formula with the <code>standardizeFormula</code> function.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">frml</span> <span class="op">&lt;-</span> <span class="st">"Na3C4"</span>
@@ -176,16 +176,16 @@ document.addEventListener("DOMContentLoaded", function() {
 </div>
 <div id="contributions" class="section level1">
 <h1 class="hasAnchor">
-<a href="#contributions" class="anchor"></a>Contributions</h1>
+<a href="#contributions" class="anchor" aria-hidden="true"></a>Contributions</h1>
 <p>If you would like to contribute any low-level functionality, please <a href="https://github.com/RforMassSpectrometry/MetaboCoreUtils/issues" class="external-link">open a GitHub issue</a> to discuss it. Please note that any <a href="https://rformassspectrometry.github.io/RforMassSpectrometry/articles/RforMassSpectrometry.html#contributions" class="external-link">contributions</a> should follow the <a href="https://rformassspectrometry.github.io/RforMassSpectrometry/articles/RforMassSpectrometry.html#coding-style" class="external-link">style guide</a> and will require an appropriate unit test.</p>
 <p>If you wish to reuse any functions in this package, please just go ahead. If you would like any advice or seek help, please either <a href="https://github.com/RforMassSpectrometry/MetaboCoreUtils/issues" class="external-link">open a GitHub issue</a>.</p>
 </div>
 <div id="session-information" class="section level1 unnumbered">
 <h1 class="hasAnchor">
-<a href="#session-information" class="anchor"></a>Session information</h1>
-<pre><code>## R Under development (unstable) (2021-02-18 r80027)
+<a href="#session-information" class="anchor" aria-hidden="true"></a>Session information</h1>
+<pre><code>## R Under development (unstable) (2021-04-15 r80175)
 ## Platform: x86_64-pc-linux-gnu (64-bit)
-## Running under: Ubuntu 20.04.1 LTS
+## Running under: Ubuntu 20.04.2 LTS
 ## 
 ## Matrix products: default
 ## BLAS/LAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.8.so
@@ -202,19 +202,20 @@ document.addEventListener("DOMContentLoaded", function() {
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-## [1] MetaboCoreUtils_0.99.1 BiocStyle_2.19.1      
+## [1] MetaboCoreUtils_1.1.0 BiocStyle_2.20.0     
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] bookdown_0.21       rprojroot_2.0.2     crayon_1.4.1       
-##  [4] digest_0.6.27       assertthat_0.2.1    R6_2.5.0           
-##  [7] magrittr_2.0.1      evaluate_0.14       stringi_1.5.3      
-## [10] rlang_0.4.10        cachem_1.0.4        fs_1.5.0           
-## [13] ragg_1.1.0          rmarkdown_2.7       pkgdown_1.6.1.9000 
-## [16] textshaping_0.3.1   desc_1.2.0          tools_4.1.0        
-## [19] stringr_1.4.0       yaml_2.2.1          xfun_0.21          
-## [22] fastmap_1.1.0       compiler_4.1.0      systemfonts_1.0.1  
-## [25] BiocManager_1.30.10 memoise_2.0.0       htmltools_0.5.1.1  
-## [28] knitr_1.31</code></pre>
+##  [1] knitr_1.33          magrittr_2.0.1      R6_2.5.0           
+##  [4] ragg_1.1.2          rlang_0.4.11        fastmap_1.1.0      
+##  [7] stringr_1.4.0       tools_4.1.0         xfun_0.23          
+## [10] jquerylib_0.1.4     htmltools_0.5.1.1   systemfonts_1.0.2  
+## [13] yaml_2.2.1          digest_0.6.27       rprojroot_2.0.2    
+## [16] pkgdown_1.6.1.9001  crayon_1.4.1        bookdown_0.22      
+## [19] textshaping_0.3.4   BiocManager_1.30.15 sass_0.4.0         
+## [22] fs_1.5.0            memoise_2.0.0       cachem_1.0.5       
+## [25] evaluate_0.14       rmarkdown_2.8       stringi_1.6.2      
+## [28] compiler_4.1.0      bslib_0.2.5.1       desc_1.3.0         
+## [31] jsonlite_1.7.2</code></pre>
 </div>
   </div>
 
@@ -229,11 +230,13 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
       <footer><div class="copyright">
-  <p>Developed by Johannes Rainer, Michael Witting.</p>
+  <p></p>
+<p>Developed by Johannes Rainer, Michael Witting.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link external-link">pkgdown</a> 1.6.1.9000.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link external-link">pkgdown</a> 1.6.1.9001.</p>
 </div>
 
       </footer>
