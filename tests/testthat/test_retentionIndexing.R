@@ -1,4 +1,4 @@
-test_that("adductNames works", {
+test_that("retention indexing linear works", {
   
   rti <- read.table(system.file("retentionIndex/rti.txt",
                                 package = "MetaboCoreUtils"),

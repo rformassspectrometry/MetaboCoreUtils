@@ -4,7 +4,7 @@
 \alias{rtimeIndexing}
 \title{Convert retention times to retention indices}
 \usage{
-rtimeIndexing(x, y, FUN = rtiLinear)
+rtimeIndexing(x, y, FUN = rtiLinear, ...)
 }
 \arguments{
 \item{x}{\code{numeric} vector with retention times}
@@ -15,6 +15,8 @@ actual index value}
 
 \item{FUN}{\code{function} function defining how the conversion is performed,
 default is linear interpolation}
+
+\item{...}{additional parameter used by \code{FUN}}
 }
 \value{
 \code{numeric} vector of same length as x with retention indices

@@ -13,6 +13,8 @@
 #' 
 #' @param FUN `function` function defining how the conversion is performed, 
 #'     default is linear interpolation
+#'     
+#' @param ... additional parameter used by `FUN`
 #'
 #' @return `numeric` vector of same length as x with retention indices
 #'
@@ -29,13 +31,18 @@
 #' 
 rtimeIndexing <- function(x,
                           y,
-                          FUN = rtiLinear) {
+                          FUN = rtiLinear,
+                          ...) {
   
-  unlist(lapply(x, FUN = FUN, rti = y))
+  FUN <- match.fun(FUN)
+  do.call(FUN, list(x = x,
+                    rti = y,
+                    ...))
   
 }
 
-# function for linear interpolation
+#' function for linear interpolation
+#' @noRd
 rtiLinear <- function(x, rti) {
   
   approx(rti[,1],
@@ -43,6 +50,5 @@ rtiLinear <- function(x, rti) {
          x,
          yleft = NA,
          yright = NA)$y
-  
   
 }
