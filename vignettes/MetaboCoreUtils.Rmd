@@ -135,12 +135,14 @@ a function to perform this conversion. Below we use an example based on indexing
 with a homologoues series af N-Alkyl-pyridinium sulfonates (NAPS).
 
 ```{r}
-rti <- read.table(system.file("retentionIndex/rti.txt",
+rti <- read.table(system.file("retentionIndex",
+                              "rti.txt",
                               package = "MetaboCoreUtils"),
                   header = TRUE,
                   sep = "\t")
   
-rtime <- read.table(system.file("retentionIndex/metabolites.txt",
+rtime <- read.table(system.file("retentionIndex",
+                                "metabolites.txt",
                                 package = "MetaboCoreUtils"),
                     header = TRUE,
                     sep = "\t")
@@ -155,10 +157,10 @@ head(rti)
 ```
 
 
-The indexing is peformed using the function `rtimeIndexing`.
+The indexing is peformed using the function `indexRtime`.
 
 ```{r}
-rtime$rindex_r <- rtimeIndexing(rtime$rtime, rti)
+rtime$rindex_r <- indexRtime(rtime$rtime, rti)
 ```
 
 For comparison the manual calculated retention indices are included.
