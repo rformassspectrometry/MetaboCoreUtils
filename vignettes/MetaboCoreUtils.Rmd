@@ -126,6 +126,50 @@ countElements(frml)
 ```
 
 
+## Retetion time indexing
+
+Retention times are often not directly comparable between two LC-MS systems, even
+if nominally the same separation method is used. Conversion of retention times to
+retetion indices can overcome this issue. The `MetaboCoreUtils` package provides
+a function to perform this conversion. Below we use an example based on indexing
+with a homologoues series af N-Alkyl-pyridinium sulfonates (NAPS).
+
+```{r}
+rti <- read.table(system.file("retentionIndex",
+                              "rti.txt",
+                              package = "MetaboCoreUtils"),
+                  header = TRUE,
+                  sep = "\t")
+  
+rtime <- read.table(system.file("retentionIndex",
+                                "metabolites.txt",
+                                package = "MetaboCoreUtils"),
+                    header = TRUE,
+                    sep = "\t")
+```
+
+ A
+`data.frame` with the retetion times of the NAPS and their respective index 
+value is required.
+
+```{r}
+head(rti)
+```
+
+
+The indexing is peformed using the function `indexRtime`.
+
+```{r}
+rtime$rindex_r <- indexRtime(rtime$rtime, rti)
+```
+
+For comparison the manual calculated retention indices are included.
+
+```{r}
+head(rtime)
+```
+
+
 # Contributions
 
 If you would like to contribute any low-level functionality, please
