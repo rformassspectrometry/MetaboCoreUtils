@@ -40,27 +40,55 @@
 #'
 #' @examples
 #'
+
+# .isotope_peaks <- function(x, substDefinition = substDefinition(),
+#                            tolerance = 0, ppm = 20, seedMz = numeric(),
+#                            charge = 1) {
+#   to_test <- x[, 2] > 0 
+#   idxs <- which(to_test)
+#   if (length(seedMz))
+#     idxs <- idxs[na.omit(closest(seedMz, x[to_test, 1], tolerance = tolerance,
+#                                  ppm = ppm, duplicates = "closest"))]
+#   lst <- vector(mode = "list", length = length(idxs))
+#   mzd <- substDefinition[, "md"] / charge
+#   for (i in idxs) {
+#     if (to_test[i]) {
+#       to_test[i] <- FALSE
+#       wtt <- which(to_test)
+#       cls <- closest(x[i, 1] + mzd, x[wtt, 1], tolerance = tolerance,
+#                      ppm = ppm, duplicates = "closest")
+#       int_ok <- .is_isotope_intensity_range(x[, 2][wtt[cls]], x[i, 1] * charge,
+#                                             x[i, 2], substDefinition)
+#       if (length(int_ok)) {
+#         lst[[i]] <- c(i, wtt[cls][int_ok]) 
+#         to_test[wtt[cls][int_ok]] <- FALSE
+#       }
+#     }
+#   }
+#   lst[lengths(lst) > 0]
+# }
+
+#' @importFrom MsCoreUtils closest
 .isotope_peaks <- function(x, substDefinition = substDefinition(),
                            tolerance = 0, ppm = 20, seedMz = numeric(),
                            charge = 1) {
-  to_test <- x[, 2] > 0 
-  idxs <- which(to_test)
+  wtt <- which(x[, 2] > 0)
   if (length(seedMz))
-    idxs <- idxs[na.omit(closest(seedMz, x[to_test, 1], tolerance = tolerance,
+    idxs <- wtt[na.omit(closest(seedMz, x[wtt, 1], tolerance = tolerance,
                                  ppm = ppm, duplicates = "closest"))]
+  else idxs <- wtt
   lst <- vector(mode = "list", length = length(idxs))
   mzd <- substDefinition[, "md"] / charge
   for (i in idxs) {
-    if (to_test[i]) {
-      to_test[i] <- FALSE
-      wtt <- which(to_test)
+    if (!is.na(ii <- match(i, wtt))) {
+      wtt <- wtt[-(1:ii)]
       cls <- closest(x[i, 1] + mzd, x[wtt, 1], tolerance = tolerance,
                      ppm = ppm, duplicates = "closest")
       int_ok <- .is_isotope_intensity_range(x[, 2][wtt[cls]], x[i, 1] * charge,
                                             x[i, 2], substDefinition)
       if (length(int_ok)) {
-        lst[[i]] <- c(i, wtt[cls][int_ok]) 
-        to_test[wtt[cls][int_ok]] <- FALSE
+        lst[[i]] <- c(i, wtt[cls][int_ok])
+        wtt <- wtt[-cls[int_ok]]
       }
     }
   }
