@@ -1,4 +1,4 @@
-#' Title Isotope identification in spectra
+#' @title Identfying isotopologue peaks in MS data
 #'
 #' @description
 #' Given a spectrum (i.e. a peak matrix with m/z and intensity values)
@@ -6,8 +6,8 @@
 #'
 #' @param x `matrix` with spectrum data (columns `mz` and `intensity`).
 #'
-#' @param isotopeDefinition `matrix` with isotopes definition (columns 
-#' `subst_name`, `subst_degree`, `md`, `min_slope`, `max_slope`). This matrix 
+#' @param substDefinition `matrix` with isotopes definition (columns 
+#' `name`, `degree`, `md`, `min_slope`, `max_slope`). This matrix 
 #' has to have rows ordered in such a way that the column `md` is sorted in 
 #' increasing order.
 #' 
@@ -41,35 +41,9 @@
 #' @examples
 #'
 
-# .isotope_peaks <- function(x, substDefinition = substDefinition(),
-#                            tolerance = 0, ppm = 20, seedMz = numeric(),
-#                            charge = 1) {
-#   to_test <- x[, 2] > 0 
-#   idxs <- which(to_test)
-#   if (length(seedMz))
-#     idxs <- idxs[na.omit(closest(seedMz, x[to_test, 1], tolerance = tolerance,
-#                                  ppm = ppm, duplicates = "closest"))]
-#   lst <- vector(mode = "list", length = length(idxs))
-#   mzd <- substDefinition[, "md"] / charge
-#   for (i in idxs) {
-#     if (to_test[i]) {
-#       to_test[i] <- FALSE
-#       wtt <- which(to_test)
-#       cls <- closest(x[i, 1] + mzd, x[wtt, 1], tolerance = tolerance,
-#                      ppm = ppm, duplicates = "closest")
-#       int_ok <- .is_isotope_intensity_range(x[, 2][wtt[cls]], x[i, 1] * charge,
-#                                             x[i, 2], substDefinition)
-#       if (length(int_ok)) {
-#         lst[[i]] <- c(i, wtt[cls][int_ok]) 
-#         to_test[wtt[cls][int_ok]] <- FALSE
-#       }
-#     }
-#   }
-#   lst[lengths(lst) > 0]
-# }
-
 #' @importFrom MsCoreUtils closest
-.isotope_peaks <- function(x, substDefinition = substDefinition(),
+#' @importFrom stats approx na.omit
+.isotope_peaks <- function(x, substDefinition = isotopicSubstitutionMatrix(),
                            tolerance = 0, ppm = 20, seedMz = numeric(),
                            charge = 1) {
   wtt <- which(x[, 2] > 0)
@@ -95,6 +69,33 @@
   lst[lengths(lst) > 0]
 }
 
+.isotope_peaks2 <- function(x, substDefinition = substDefinition(),
+                           tolerance = 0, ppm = 20, seedMz = numeric(),
+                           charge = 1) {
+  to_test <- x[, 2] > 0
+  idxs <- which(to_test)
+  if (length(seedMz))
+    idxs <- idxs[na.omit(closest(seedMz, x[to_test, 1], tolerance = tolerance,
+                                 ppm = ppm, duplicates = "closest"))]
+  lst <- vector(mode = "list", length = length(idxs))
+  mzd <- substDefinition[, "md"] / charge
+  for (i in idxs) {
+    if (to_test[i]) {
+      to_test[i] <- FALSE
+      wtt <- which(to_test)
+      cls <- closest(x[i, 1] + mzd, x[wtt, 1], tolerance = tolerance,
+                     ppm = ppm, duplicates = "closest")
+      int_ok <- .is_isotope_intensity_range(x[, 2][wtt[cls]], x[i, 1] * charge,
+                                            x[i, 2], substDefinition)
+      if (length(int_ok)) {
+        lst[[i]] <- c(i, wtt[cls][int_ok])
+        to_test[wtt[cls][int_ok]] <- FALSE
+      }
+    }
+  }
+  lst[lengths(lst) > 0]
+}
+
 #' Title Checking the intensity
 #'
 #' @param x intensity of the matching peaks. x has length equal to the number 
@@ -107,25 +108,20 @@
 #'
 #' @return indexes of the intensities in x that are part of a isotopic group
 #' @export
-#'
-#' @examples
+
 .is_isotope_intensity_range <- function(x, m, intensity, substDefinition) {
   R_min <- (m * substDefinition[, "min_slope"]) ^ substDefinition[, "subst_degree"]
   R_max <- (m * substDefinition[, "max_slope"]) ^ substDefinition[, "subst_degree"]
   which(x >= R_min * intensity & x <= R_max * intensity)
 }
 
-
-#' Title Isotope definition
+#' Title HMBD isotope substitution
 #'
 #' @description
-#' Creates the definition of isotopes
-#'
-#' @param charge specifies whether single or double charged ions are expected
+#' Loads the HMBD isotope substitution
 #'
 #' @return `data.frame` with columns `mzd`, `min_ratio` and `max_ratio`
 
-# isotopeDefinition <- function(charge = c(1L, 2L)) {
-#   data.frame(mz = c(1.0033, 0.99...), intensity = ....)
-#
-# }
+isotopicSubstitutionMatrix <- function() {
+  .SUBSTS_HMDB # I'm not sure what to do here
+}

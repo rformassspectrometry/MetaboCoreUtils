@@ -21,7 +21,8 @@ Depends:
     R (>= 4.0)
 Imports:
     stringr,
-    utils
+    utils,
+    MsCoreUtils
 Suggests:
     BiocStyle,
     testthat,
