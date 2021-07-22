@@ -2,13 +2,55 @@
 % Please edit documentation in R/function-isotope.R
 \name{isotopicSubstitutionMatrix}
 \alias{isotopicSubstitutionMatrix}
-\title{Title Isotope definition}
+\title{Definitions of isotopic substitutions}
 \usage{
-isotopicSubstitutionMatrix()
+isotopicSubstitutionMatrix(source = c("HMDB"))
+}
+\arguments{
+\item{source}{\code{character(1)} defining the set of predefined parameters and
+isotopologue definitions to return.}
 }
 \value{
-\code{data.frame} with columns \code{mzd}, \code{min_ratio} and \code{max_ratio}
+\code{data.frame} with parameters to detect the defined isotopic
+substitutions
 }
 \description{
-Creates the definition of isotopes
+In order to identify potential isotopologues based on only m/z and intensity
+values with the \code{\link[=isotopologues]{isotopologues()}} function, sets of pre-calculated parameters
+are required. This function returns such parameter sets estimated on
+different sources/databases. The nomenclature used to describe isotopes
+follows the following convention: the number of neutrons is provided in \code{[}
+as a prefix to the element and the number of atoms of the element as suffix.
+\verb{[13]C2[37]Cl3} describes thus an isotopic substitution containing 2 \verb{[13]C}
+isotopes and 3 \verb{[37]Cl} isotopes.
+
+Each row in the returned \code{data.frame} characterizes an isotopic substitution
+(which can involve isotopes of several elements or different isotopes of the
+same element). The provided isotopic substitutions are in general the most
+frequently observed substitutions in the database (e.g. HMDB) on which they
+were defined. Parameters (columns) defined for each isotopic substitution
+are:
+\itemize{
+\item \code{"degree"}: the \emph{degree} of the isotopic substitution. Isotopic
+substitutions with a single element (such as \verb{[15]N1} or \verb{[13]C1}) are of
+degree 1 while isotopic substitutions with more isotopes are of a higher
+degree (\verb{[37]Cl5} and \verb{[34]S1[37]Cl4} are e.g. both of degree 5).
+\item \code{"minmass"}: the minimal mass of a compound for which the isotopic
+substitution was found. Peaks with a mass lower than this will most likely
+not have the respective isotopic substitution.
+\item \code{"md"}: the mass difference between the monoisotopic peak and a peak of an
+isotopologue characterized by the respective isotopic substitution.
+\item \code{"min_slope"}: used to calculate the lower expected intensity
+bound for the respective isotopic substitution based on the peak's m/z. The
+probability of an isotopic substitution (and hence also its intensity)
+increases with the number of atoms (of the elements part of the isotopic
+substitution) of the measured compound. For more frequent elements a
+linear relationship can be assumed between the compound's mass and the
+number of atoms of the element and hence also the probability (intensity)
+of the isotopologue.
+\item \code{"max_slope"}: used to calculate the expected upper intensity bound.
+}
+}
+\author{
+Andrea Vicini
 }
