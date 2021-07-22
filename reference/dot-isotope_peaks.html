@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function reference • MetaboCoreUtils</title>
+<title>Identfying isotopologue peaks in MS data — .isotope_peaks • MetaboCoreUtils</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,7 +46,9 @@
 
 
 
-<meta property="og:title" content="Function reference" />
+<meta property="og:title" content="Identfying isotopologue peaks in MS data — .isotope_peaks" />
+<meta property="og:description" content="Given a spectrum (i.e. a peak matrix with m/z and intensity values)
+the function identifies groups of peaks that correspond to isotopes" />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -74,7 +76,7 @@
   <body data-spy="scroll" data-target="#toc">
     
 
-    <div class="container template-reference-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -121,126 +123,86 @@
       </header>
 
 <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Reference</h1>
+    <h1>Identfying isotopologue peaks in MS data</h1>
+    <small class="dont-index">Source: <a href='https://github.com/RforMassSpectrometry/MetaboCoreUtils/blob/master/R/function-isotope.R'><code>R/function-isotope.R</code></a></small>
+    <div class="hidden name"><code>dot-isotope_peaks.Rd</code></div>
     </div>
 
-    <table class="ref-index">
+    <div class="ref-description">
+    <p>Given a spectrum (i.e. a peak matrix with m/z and intensity values)
+the function identifies groups of peaks that correspond to isotopes</p>
+    </div>
 
-    <colgroup>
-      
-      <col class="alias" />
-      <col class="title" />
-    </colgroup>
+    <div class="ref-usage sourceCode"><pre class='sourceCode r'><code><span class='fu'>.isotope_peaks</span><span class='op'>(</span>
+  <span class='va'>x</span>,
+  substDefinition <span class='op'>=</span> <span class='fu'><a href='isotopicSubstitutionMatrix.html'>isotopicSubstitutionMatrix</a></span><span class='op'>(</span><span class='op'>)</span>,
+  tolerance <span class='op'>=</span> <span class='fl'>0</span>,
+  ppm <span class='op'>=</span> <span class='fl'>20</span>,
+  seedMz <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>numeric</a></span><span class='op'>(</span><span class='op'>)</span>,
+  charge <span class='op'>=</span> <span class='fl'>1</span>
+<span class='op'>)</span></code></pre></div>
 
-    <tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      
-      
-    </tbody><tbody>
-      
-      
-      <tr>
-        
-        <td>
-          <p><code><a href="addElements.html">addElements()</a></code> </p>
-        </td>
-        <td><p>Combine chemical formulae</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="adductNames.html">adductNames()</a></code> <code><a href="adductNames.html">adducts()</a></code> </p>
-        </td>
-        <td><p>Retrieve names of supported adducts</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="containsElements.html">containsElements()</a></code> </p>
-        </td>
-        <td><p>Check if one formula is contained in another</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="countElements.html">countElements()</a></code> </p>
-        </td>
-        <td><p>Count elements in a chemical formula</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="dot-is_isotope_intensity_range.html">.is_isotope_intensity_range()</a></code> </p>
-        </td>
-        <td><p>Title Checking the intensity</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="dot-isotope_peaks.html">.isotope_peaks()</a></code> </p>
-        </td>
-        <td><p>Identfying isotopologue peaks in MS data</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="indexRtime.html">indexRtime()</a></code> </p>
-        </td>
-        <td><p>Convert retention times to retention indices</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="internalStandardMixNames.html">internalStandardMixNames()</a></code> </p>
-        </td>
-        <td><p>Get names of internal standard mixes provided by the package</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="internalStandards.html">internalStandards()</a></code> </p>
-        </td>
-        <td><p>Get definitions for internal standards</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="isotopicSubstitutionMatrix.html">isotopicSubstitutionMatrix()</a></code> </p>
-        </td>
-        <td><p>Title Isotope definition</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="mass2mz.html">mass2mz()</a></code> </p>
-        </td>
-        <td><p>Calculate mass-to-charge ratio</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="mz2mass.html">mz2mass()</a></code> </p>
-        </td>
-        <td><p>Calculate neutral mass</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="pasteElements.html">pasteElements()</a></code> </p>
-        </td>
-        <td><p>Create chemical formula from a named vector</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="standardizeFormula.html">standardizeFormula()</a></code> </p>
-        </td>
-        <td><p>Standardize a chemical formula</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="subtractElements.html">subtractElements()</a></code> </p>
-        </td>
-        <td><p>subtract two chemical formula</p></td>
-      </tr>
-    </tbody>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>x</th>
+      <td><p><code>matrix</code> with spectrum data (columns <code>mz</code> and <code>intensity</code>).</p></td>
+    </tr>
+    <tr>
+      <th>substDefinition</th>
+      <td><p><code>matrix</code> with isotopes definition (columns
+<code>name</code>, <code>degree</code>, <code>md</code>, <code>min_slope</code>, <code>max_slope</code>). This matrix
+has to have rows ordered in such a way that the column <code>md</code> is sorted in
+increasing order.</p></td>
+    </tr>
+    <tr>
+      <th>tolerance</th>
+      <td><p>numeric representing the tolerance for the relaxed matching
+of m/z values of peaks</p></td>
+    </tr>
+    <tr>
+      <th>ppm</th>
+      <td><p>numeric(1) representing a relative, value-specific
+parts-per-million (PPM) tolerance for the relaxed matching of m/z values of
+peaks</p></td>
+    </tr>
+    <tr>
+      <th>seedMz</th>
+      <td><p>numeric ordered vector containing m/z values. If provided,
+the function checks if there are peaks in x whose m/z match them. If so,
+it looks for isotope groups related to this subset of peaks.</p></td>
+    </tr>
+    <tr>
+      <th>charge</th>
+      <td><p>numeric(1) representing the charge of the ionized compounds</p></td>
+    </tr>
     </table>
-  </div>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>list of vectors. Each vector in the returned list contains the
+indexes of the rows in <code>x</code> that match a certain isotope group found by
+the function.</p>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>The function iterates over the peaks (rows) in x. Firstly, it checks
+the presence of peaks whose m/z difference with respect to the current peak
+matches (the matching can be relaxed via the parameters <code>ppm</code> and
+<code>tolerance</code>) certain m/z differences related to mass differences of
+certain substitutions in <code>substDefinition</code> and the chosen <code>charge</code>. Then, if
+any such peak is found, the function checks if also their intensity is
+compatible with them being part of a isotopic group and if so they are
+grouped together. When some peaks are grouped together their indexes are
+excluded from the set of indexes that are searched for further groups.</p>
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <div class="ref-examples sourceCode"><pre class='sourceCode r'><code><span class='r-in'></span>
+<span class='r-in'></span>
+</code></pre></div>
+  </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
       <h2 data-toc-skip>Contents</h2>

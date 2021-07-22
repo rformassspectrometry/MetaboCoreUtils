@@ -31,6 +31,12 @@
     <loc>/reference/countElements.html</loc>
   </url>
   <url>
+    <loc>/reference/dot-is_isotope_intensity_range.html</loc>
+  </url>
+  <url>
+    <loc>/reference/dot-isotope_peaks.html</loc>
+  </url>
+  <url>
     <loc>/reference/index.html</loc>
   </url>
   <url>
@@ -41,6 +47,9 @@
   </url>
   <url>
     <loc>/reference/internalStandards.html</loc>
+  </url>
+  <url>
+    <loc>/reference/isotopicSubstitutionMatrix.html</loc>
   </url>
   <url>
     <loc>/reference/mass2mz.html</loc>

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function reference • MetaboCoreUtils</title>
+<title>Title Isotope definition — isotopicSubstitutionMatrix • MetaboCoreUtils</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,7 +46,8 @@
 
 
 
-<meta property="og:title" content="Function reference" />
+<meta property="og:title" content="Title Isotope definition — isotopicSubstitutionMatrix" />
+<meta property="og:description" content="Creates the definition of isotopes" />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -74,7 +75,7 @@
   <body data-spy="scroll" data-target="#toc">
     
 
-    <div class="container template-reference-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -121,126 +122,25 @@
       </header>
 
 <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Reference</h1>
+    <h1>Title Isotope definition</h1>
+    <small class="dont-index">Source: <a href='https://github.com/RforMassSpectrometry/MetaboCoreUtils/blob/master/R/function-isotope.R'><code>R/function-isotope.R</code></a></small>
+    <div class="hidden name"><code>isotopicSubstitutionMatrix.Rd</code></div>
     </div>
 
-    <table class="ref-index">
+    <div class="ref-description">
+    <p>Creates the definition of isotopes</p>
+    </div>
 
-    <colgroup>
-      
-      <col class="alias" />
-      <col class="title" />
-    </colgroup>
+    <div class="ref-usage sourceCode"><pre class='sourceCode r'><code><span class='fu'>isotopicSubstitutionMatrix</span><span class='op'>(</span><span class='op'>)</span></code></pre></div>
 
-    <tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      
-      
-    </tbody><tbody>
-      
-      
-      <tr>
-        
-        <td>
-          <p><code><a href="addElements.html">addElements()</a></code> </p>
-        </td>
-        <td><p>Combine chemical formulae</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="adductNames.html">adductNames()</a></code> <code><a href="adductNames.html">adducts()</a></code> </p>
-        </td>
-        <td><p>Retrieve names of supported adducts</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="containsElements.html">containsElements()</a></code> </p>
-        </td>
-        <td><p>Check if one formula is contained in another</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="countElements.html">countElements()</a></code> </p>
-        </td>
-        <td><p>Count elements in a chemical formula</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="dot-is_isotope_intensity_range.html">.is_isotope_intensity_range()</a></code> </p>
-        </td>
-        <td><p>Title Checking the intensity</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="dot-isotope_peaks.html">.isotope_peaks()</a></code> </p>
-        </td>
-        <td><p>Identfying isotopologue peaks in MS data</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="indexRtime.html">indexRtime()</a></code> </p>
-        </td>
-        <td><p>Convert retention times to retention indices</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="internalStandardMixNames.html">internalStandardMixNames()</a></code> </p>
-        </td>
-        <td><p>Get names of internal standard mixes provided by the package</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="internalStandards.html">internalStandards()</a></code> </p>
-        </td>
-        <td><p>Get definitions for internal standards</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="isotopicSubstitutionMatrix.html">isotopicSubstitutionMatrix()</a></code> </p>
-        </td>
-        <td><p>Title Isotope definition</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="mass2mz.html">mass2mz()</a></code> </p>
-        </td>
-        <td><p>Calculate mass-to-charge ratio</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="mz2mass.html">mz2mass()</a></code> </p>
-        </td>
-        <td><p>Calculate neutral mass</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="pasteElements.html">pasteElements()</a></code> </p>
-        </td>
-        <td><p>Create chemical formula from a named vector</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="standardizeFormula.html">standardizeFormula()</a></code> </p>
-        </td>
-        <td><p>Standardize a chemical formula</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="subtractElements.html">subtractElements()</a></code> </p>
-        </td>
-        <td><p>subtract two chemical formula</p></td>
-      </tr>
-    </tbody>
-    </table>
+
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p><code>data.frame</code> with columns <code>mzd</code>, <code>min_ratio</code> and <code>max_ratio</code></p>
+
   </div>
-
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
       <h2 data-toc-skip>Contents</h2>
