@@ -83,7 +83,7 @@ isotopologues <- function(x, substDefinition = isotopicSubstitutionMatrix(),
     if (!is.na(ii <- match(i, wtt))) {
       wtt <- wtt[-(1:ii)]
       cls <- closest(x[i, 1] + mzd, x[wtt, 1], tolerance = tolerance,
-                     ppm = ppm, duplicates = "closest")
+                     ppm = ppm, duplicates = "closest", .check = FALSE)
       int_ok <- .is_isotope_intensity_range(x[, 2][wtt[cls]], x[i, 1] * charge,
                                             x[i, 2], substDefinition)
       if (length(int_ok)) {
@@ -93,6 +93,176 @@ isotopologues <- function(x, substDefinition = isotopicSubstitutionMatrix(),
     }
   }
   lst[lengths(lst) > 0]
+}
+
+.isotope_peaks3 <- function(x, substDefinition = isotopicSubstitutionMatrix(),
+                            tolerance = 0, ppm = 20, seedMz = numeric(),
+                            charge = 1) {
+    wtt <- which(x[, 2] > 0)
+    if (length(seedMz))
+        idxs <- wtt[na.omit(closest(seedMz, x[wtt, 1], tolerance = tolerance,
+                                    ppm = ppm, duplicates = "closest"))]
+    else idxs <- wtt
+    lst <- vector(mode = "list", length = length(idxs))
+    mzd <- substDefinition[, "md"] / charge
+    for (i in idxs) {
+        if (!is.na(ii <- match(i, wtt))) {
+            wtt <- wtt[-(1:ii)]
+            cls <- closest(x[i, 1] + mzd, x[wtt, 1], tolerance = tolerance,
+                           ppm = ppm, duplicates = "closest", .check = FALSE)
+            nna <- !is.na(cls)
+            mzm <- cls[nna]
+            int_ok <- .is_isotope_intensity_range(
+                x[wtt[mzm], 2L], x[i, 1L] * charge,
+                x[i, 2L], substDefinition[nna, , drop = FALSE])
+            if (length(int_ok)) {
+                lst[[i]] <- c(i, wtt[mzm[int_ok]])
+                wtt <- wtt[-(mzm[int_ok])]
+            }
+        }
+    }
+    lst[lengths(lst) > 0]
+}
+
+
+#' Why this function?
+#' By using `cls <- closest(x[i, 1] + mzd, x[wtt, 1], duplicates = "closest"`
+#' the `.isotope_peaks` function evaluates only a single potential peak (the
+#' one with the most similar m/z) for each isotopic substitution and discards
+#' others, potentially also or even better matching, peaks.
+#'
+#' This function makes an exhaustive comparison between the m/z of each isotope
+#' substitution against each (m/z) matching peak in x using a `for` loop:
+#' for each tested monoisotopic peak the mass of each potential isotopologue is
+#' calculated and each of them is compared against all (not yet assigned) peaks
+#' in the spectrum.
+#'
+#' @author Andrea Vicini, Johannes Rainer
+#'
+#' @noRd
+.isotope_peaks_exhaustive <- function(x, substDefinition = substDefinition(),
+                                      tolerance = 0, ppm = 20,
+                                      seedMz = numeric(), charge = 1) {
+    ## wtt logical: which peaks in x to test against.
+    ## ii logical: which peaks to test
+    wtt <- x[, 2] > 0
+    if (length(seedMz)) {
+        ii <- rep(FALSE, length(wtt))
+        ii[na.omit(closest(seedMz, x[, 1L], tolerance = tolerance,
+                           ppm = ppm, duplicates = "closest"))] <- TRUE
+        ii[!wtt] <- FALSE               # those with intensity 0
+    } else ii <- wtt
+    lst <- vector(mode = "list", length = sum(ii))
+    mzd <- substDefinition[, "md"] / charge
+    lmzd <- length(mzd)
+    js <- seq_len(lmzd)
+    while (any(ii)) {
+        i <- which.max(ii)
+        ii[i] <- FALSE
+        wtt[i] <- FALSE
+        hit_idx <- integer(lmzd)
+        ## exhaustive: report ALL matching hits in x[, 1] for each potential substitution
+        for (j in js) {
+            m <- x[i, 1L] + mzd[j]
+            cls <- which(abs(x[wtt, 1L] - m) <= (ppm(m, ppm) + tolerance))
+            ## cls are the matching peaks in x for this one substitution.
+            if (length(cls)) {
+                int_ok <- .is_isotope_intensity_range(
+                    x[wtt, 2L][cls], rep(x[i, 1L] * charge, length(cls)),
+                    x[i, 2L], substDefinition[j, , drop = FALSE])
+                if (length(int_ok)) {
+                    hit <- which(wtt)[cls[int_ok[1L]]]
+                    hit_idx[j] <- hit
+                    wtt[hit] <- FALSE   # don't test peak again.
+                    ii[hit] <- FALSE
+                }
+            }
+        }
+        lst[[i]] <- c(i, hit_idx[hit_idx > 0])
+    }
+    lst[lengths(lst) > 1L]
+}
+
+.isotope_peaks_exhaustive2 <- function(x, substDefinition = substDefinition(),
+                                      tolerance = 0, ppm = 20,
+                                      seedMz = numeric(), charge = 1) {
+    ## wtt logical: which peaks in x to test against.
+    ## ii logical: which peaks to test
+    wtt <- x[, 2] > 0
+    if (length(seedMz)) {
+        ii <- rep(FALSE, length(wtt))
+        ii[na.omit(closest(seedMz, x[, 1L], tolerance = tolerance,
+                           ppm = ppm, duplicates = "closest"))] <- TRUE
+        ii[!wtt] <- FALSE               # those with intensity 0
+    } else ii <- wtt
+    lst <- vector(mode = "list", length = sum(ii))
+    mzd <- substDefinition[, "md"] / charge
+    lmzd <- length(mzd)
+    js <- seq_len(lmzd)
+    while (any(ii)) {
+        i <- which.max(ii)
+        ii[i] <- wtt[i] <- FALSE
+        xwtt <- x[wtt, , drop = FALSE]
+        m <- x[i, 1L] + mzd
+        ppdiff <- ppm(m, ppm) + tolerance
+        xi <- x[i, ]
+        hit_idx <- integer(lmzd)
+        ## exhaustive: report ALL matching hits in x[, 1] for each potential substitution
+        for (j in js) {
+            cls <- which(abs(xwtt[, 1L] - m[j]) <= ppdiff[j])
+            ## cls are the matching peaks in x for this one substitution.
+            lcls <- length(cls)
+            if (lcls) {
+                int_ok <- .is_isotope_intensity_range(
+                    xwtt[cls, 2L], rep(xi[1L] * charge, lcls),
+                    xi[2L], substDefinition[j, , drop = FALSE])
+                if (length(int_ok)) {
+                    hit <- which(wtt)[cls[int_ok[1L]]]
+                    hit_idx[j] <- hit
+                    wtt[hit] <- FALSE   # don't test peak again.
+                    ii[hit] <- FALSE
+                }
+            }
+        }
+        lst[[i]] <- c(i, hit_idx[hit_idx > 0])
+    }
+    lst[lengths(lst) > 1L]
+}
+
+#' this performs simply the matching in the reverse order: all peaks against
+#' the isotopic substititions. Thus, multiple peaks can be considered for a
+#' single substitution and if the intensity matches they're added
+#' it's supposed to find more, but in fact finds less (???)
+.isotope_peaks_reverse <- function(x, substDefinition = substDefinition(),
+                                   tolerance = 0, ppm = 20,
+                                   seedMz = numeric(), charge = 1) {
+    ## wtt index: which peaks in x to test against.
+    ## ii index: which peaks to test
+    wtt <- which(x[, 2] > 0)
+    if (length(seedMz))
+        ii <- wtt[na.omit(closest(seedMz, x[wtt, 1L], tolerance = tolerance,
+                                  ppm = ppm, duplicates = "closest"))]
+    else ii <- wtt
+    lst <- vector(mode = "list", length = sum(ii))
+    mzd <- substDefinition[, "md"] / charge
+    for (i in ii) {
+        if (!is.na(wtti <- match(i, wtt))) {
+            wtt <- wtt[-(1:wtti)]
+            cls <- closest(x[wtt, 1L], x[i, 1L] + mzd, tolerance = tolerance,
+                           ppm = ppm, duplicates = "closest", .check = FALSE)
+            nna <- which(!is.na(cls))
+            if (any(nna)) {
+                int_ok <- .is_isotope_intensity_range(
+                    x[wtt[nna], 2L], x[i, 1L] * charge, x[i, 2L],
+                    substDefinition[cls[nna], , drop = FALSE])
+                if (length(int_ok)) {
+                    lst[[i]] <- c(i, wtt[nna][int_ok])
+                    wtt <- wtt[-nna[int_ok]]
+                }
+            }
+        }
+    }
+    lst[lengths(lst) > 0]
 }
 
 .isotope_peaks2 <- function(x, substDefinition = substDefinition(),
@@ -136,8 +306,8 @@ isotopologues <- function(x, substDefinition = isotopicSubstitutionMatrix(),
 #'
 #' @noRd
 .is_isotope_intensity_range <- function(x, m, intensity, substDefinition) {
-  R_min <- (m * substDefinition[, "min_slope"]) ^ substDefinition[, "subst_degree"]
-  R_max <- (m * substDefinition[, "max_slope"]) ^ substDefinition[, "subst_degree"]
+  R_min <- (m * substDefinition[, "min_slope"]) ^ substDefinition[, "degree"]
+  R_max <- (m * substDefinition[, "max_slope"]) ^ substDefinition[, "degree"]
   which(x >= R_min * intensity & x <= R_max * intensity)
 }
 
@@ -193,3 +363,29 @@ isotopicSubstitutionMatrix <- function(source = c("HMDB")) {
     source <- match.arg(source)
     get(paste0(".SUBSTS_", toupper(source)))
 }
+
+#' Combine rows in the substitution matrix if the difference between them
+#' (after adding mz) is smaller than `ppm` and `tolerance`.
+#'
+#' For the reduced/combined isotopic substitution the mean `"md"` is reported.
+#'
+#' The selection of the `"degree"`, `"min_slope"` and `"max_slope"` is by no
+#' means ideal. At present the values from the substitution with the largest
+#' range (`"max_slope"` - `"min_slope"`) is selected. Maybe selecting the most
+#' frequent substitution might be a better choice.
+#'
+#' @noRd
+.reduce_substitution_matrix <- function(x, mz = 0, ppm = 0, tolerance = 0) {
+    grps <- as.factor(group(x[, "md"] + mz, ppm = ppm, tolerance = 0))
+    res <- lapply(split.data.frame(x, grps), function(z) {
+        keep <- which.max(z[, "max_slope"] - z[, "min_slope"])
+        tmp <- z[keep, , drop = FALSE]
+        rownames(tmp) <- paste0(rownames(z), collapse = "|")
+        tmp[, "md"] <- mean(z[, "md"])
+        tmp
+    })
+    do.call(rbind, res)
+}
+
+## Todo: provide as a `matrix` instead of a `data.frame`: compare timings but
+## this should be faster.
