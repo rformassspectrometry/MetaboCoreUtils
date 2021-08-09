@@ -52,6 +52,58 @@ indexRtime <- function(x,
   
 }
 
+#' @title 2-point correction of RIs
+#'
+#' @description
+#'
+#' `correctRindex` performs correction of RIs based on reference substances
+#'
+#' @param x `numeric` vector with retention indices
+#' 
+#' @param y `data.frame`data.frame containing two columns, where the first 
+#'     holds the measured RIs of the reference substances and the second the
+#'    reference RIs
+#'
+#' @return `numeric` vector of same length as x with correction retention 
+#'     indices. Values are floating point decimals. If integer values shall be
+#'      used conversion has to be performed manually
+#'
+#' @author Michael Witting
+#'
+#' @export
+#'
+#' @examples
+#' 
+#' ref <- data.frame(rindex = c(110, 210),
+#' refindex = c(100, 200))
+#' rindex <- c(110, 210)
+#' correctRindex(rindex, ref)
+correctRindex <- function(x, y) {
+  
+  # sanity checks
+  if(missing(y)) {
+    stop("Missing data.frame with reference indices")
+  }
+  
+  if(!nrow(y) == 2) {
+    stop("y requires exact two rows")
+  }
+  
+  if(!all(c("rindex", "refindex") %in% colnames(y))) {
+    stop("Missing column 'rindex', 'refindex' or both")
+  }
+  
+  s1 <- min(y$refindex)
+  s2 <- max(y$refindex)
+  
+  m1 <- min(y$rindex)
+  m2 <- max(y$rindex)
+  
+  s1 + (x - m1) * (s2 - s1) / (m2 - m1)
+
+  
+}
+
 #' function for linear interpolation
 #' @noRd
 rtiLinear <- function(x, rti, yleft = NA, yright = NA, ...) {

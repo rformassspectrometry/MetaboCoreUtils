@@ -169,6 +169,20 @@ For comparison the manual calculated retention indices are included.
 head(rtime)
 ```
 
+Conditions that shall be compared by the retention index might not perfectly 
+match. In case the deviation is linear a simple two-point correction can be 
+applied to the data. This is performed by the function `correctRindex`. The 
+correction requires two reference standards and their measured RIs and reference
+RIs.
+
+```{r}
+ref <- data.frame(rindex = c(1709.8765, 553.7975),
+                  refindex = c(1700, 550))
+
+rtime$rindex_cor <- correctRindex(rtime$rindex_r, ref)
+```
+
+
 
 # Contributions
 

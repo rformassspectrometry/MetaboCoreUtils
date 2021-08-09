@@ -24,3 +24,25 @@ test_that("retention indexing linear works", {
   expect_error(indexRtime(rtime$rime), "Missing data.frame with index data")
 
 })
+
+test_that("correcton of retention index works", {
+  
+  ref <- data.frame(rindex = c(110, 210),
+                    refindex = c(100, 200))
+  
+  rindex <- c(110, 210)
+  
+  expect_equal(correctRindex(rindex, ref), c(100, 200))
+  
+  ref <- data.frame(ri = c(110,210,310),
+                    ref = c(100,200,300))
+  
+  expect_error(correctRindex(rindex, ref), "y requires exact two rows")
+  
+  ref <- data.frame(ri = c(110,210),
+                    ref = c(100,200))
+  
+  expect_error(correctRindex(rindex, ref), "Missing column 'rindex', 'refindex' or both")
+  expect_error(correctRindex(rindex), "Missing data.frame with reference indices")
+  
+})
