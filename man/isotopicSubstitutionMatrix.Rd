@@ -40,15 +40,21 @@ substitution was found. Peaks with a mass lower than this will most likely
 not have the respective isotopic substitution.
 \item \code{"md"}: the mass difference between the monoisotopic peak and a peak of an
 isotopologue characterized by the respective isotopic substitution.
-\item \code{"min_slope"}: used to calculate the lower expected intensity
-bound for the respective isotopic substitution based on the peak's m/z. The
-probability of an isotopic substitution (and hence also its intensity)
-increases with the number of atoms (of the elements part of the isotopic
-substitution) of the measured compound. For more frequent elements a
-linear relationship can be assumed between the compound's mass and the
-number of atoms of the element and hence also the probability (intensity)
-of the isotopologue.
-\item \code{"max_slope"}: used to calculate the expected upper intensity bound.
+\item \code{"min_slope"}: used to calculate the lower expected bound for the ratio
+between the probabilities of isotopologues associated to a given
+substitution and the corresponding monoisotopic isotopologues. If a linear
+relationship between the number of each element in the substitution and
+the monoisotopic mass of compounds having those elements can be assumed
+then the previously mentioned ratio has a polynomial trend with degree
+equal to the \emph{degree} of the isotopic substitution. The ratios for each
+compound and for a given substitution can be transformed by taking the root
+corresponding to \emph{degree} of the substitution. In that way a linear trend
+in the monoisotopic mass can be obtained for the ratios. \code{"min_slope"}
+represent the slope of a lower bound line for this trend. In other words
+for a given substitution we expect that the ratio between the intensity of
+a isotopologue of a given compound corresponding to that substitution and
+the intensity of the monoisotopic isotopologue will be= (monoisotopic mass * slope)^degree
+\item \code{"max_slope"}: used to calculate the expected upper intensity ratio bound.
 }
 }
 \author{

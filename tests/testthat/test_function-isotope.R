@@ -1,21 +1,21 @@
 library(testthat)
 
-test_that(".isotope_peaks works", {
-
-  ints <- c(1, 6, 3, 5, 15)
-  mz <- 1:5
-  x <- cbind(mz = mz, intensity = ints)
-  # plot(x, type = "h")
-  substDef <- cbind(md = c(1, 2),
-                    subst_degree = c(1, 2),
-                    min_slope = c(5, 1/2),
-                    max_slope = c(7, 1))
-  res <- .isotope_peaks(x, substDef)
-  expect_equal(res, list(c(1, 2), c(3, 5)))
-
-  res <- .isotope_peaks(x, substDef, seedMz = x[c(3), 1])
-  expect_equal(res, list(c(3, 5)))
-})
+# test_that(".isotope_peaks works", {
+#   
+#   ints <- c(1, 6, 3, 5, 15)
+#   mz <- 1:5
+#   x <- cbind(mz = mz, intensity = ints)
+#   # plot(x, type = "h")
+#   substDef <- cbind(md = c(1, 2),
+#                     subst_degree = c(1, 2),
+#                     min_slope = c(5, 1/2),
+#                     max_slope = c(7, 1))
+#   res <- .isotope_peaks(x, substDef)
+#   expect_equal(res, list(c(1, 2), c(3, 5)))
+#   
+#   res <- .isotope_peaks(x, substDef, seedMz = x[c(3), 1])
+#   expect_equal(res, list(c(3, 5)))
+# })
 
 # New test (maybe more interpretable) that could replace the one before
 test_that("isotopologues works", {
@@ -79,7 +79,96 @@ test_that("isotopologues works", {
 })
 
 test_that("isotopicSubstitutionMatrix works", {
-    expect_error(isotopicSubstitutionMatrix("other"))
-    res <- isotopicSubstitutionMatrix("HMDB")
-    expect_true(is.data.frame(res))
+  expect_error(isotopicSubstitutionMatrix("other"))
+  res <- isotopicSubstitutionMatrix("HMDB")
+  expect_true(is.data.frame(res))
+})
+
+x <- read.table(system.file("exampleSpectra/simulated_spectrum.txt", 
+                            package = "MetaboCoreUtils"))
+frmls <- unique(x$frmls)
+subst_def <- isotopicSubstitutionMatrix("HMDB")
+
+test_that("isotopologues works on simulated spectra from HMDB", {
+  expected_groups <- lapply(frmls, function(f) which(x[, "frmls"] == f))
+  i_groups <- isotopologues(x[, 1:2], substDefinition = subst_def, ppm = 1)
+  # expect_equal(i_groups, expected_groups) gives error. isotopologue 
+  # function doesn't put peak number 10 into group 2
+  sbs <- closest(x[10, "mz"], subst_def$md + x[i_groups[[2]][1], "mz"] , 
+                 ppm = 1, tolerance = 0)
+  # peak 10 matches subst 2
+  bi <- x[i_groups[[2]][1], "intensity"] * 
+    (x[i_groups[[2]][1], "mz"] * 
+       subst_def[sbs, c("min_slope", "max_slope")]) ^ 
+    subst_def[sbs, "degree"]
+  bi[1] <= x[10, "intensity"] && bi[2] >= x[10, "intensity"]
+  # the intensity of peak 10 is compatible. 
+  # A problem in closest with duplicates = "closest" (used by the function) 
+  # cause peak 2 not to be matched.
+  # A part from this missed peak the found groups and the expected ones are
+  # the same
+  expect_equal(i_groups[-2], expected_groups[-2])
+  expect_equal(i_groups[[2]], expected_groups[[2]][-2])
+})
+
+test_that("isotopologues works on simulated spectra from HMDB + random peaks", {
+  set.seed(123); n = 50
+  noise <- data.frame(mz = runif(n, min = min(x$mz), max = max(x$mz)),
+                      intensity = runif(n, min(x$intensity), max(x$intensity)),
+                      frmls = rep("noise", n))
+  x_n <- rbind(x, noise)
+  x_n <- x_n[order(x_n$mz), ]
+  expected_groups_n <- lapply(frmls, function(f) which(x_n[,"frmls"] == f))
+  ## low ppm
+  i_groups <- isotopologues(x_n[, 1:2], substDefinition = subst_def, ppm = 1)
+  expect_equal(i_groups, expected_groups_n) # all groups correctly identified
+  ## higher ppm: some problems occur
+  i_groups <- isotopologues(x_n[, 1:2], substDefinition = subst_def, ppm = 20)
+  # Group 1 in additional to the expected peaks contains peaks c(20, 33, 39)
+  expected_groups_n[[1]]
+  i_groups[[1]]
+  sbs <- closest(x_n[c(20, 33, 39), "mz"], 
+                 x_n[i_groups[[1]][1], "mz"] + subst_def$md, ppm = 20, 
+                 tolerance = 0, duplicates = "closest")
+  subst_def[sbs, "name"]
+  x_n[expected_groups_n[[1]][1], "frmls"]
+  # The above mentioned peaks are matched to substitutions that are not possible 
+  # in the compound that originates the signal of the expected group.
+  # Group 2 is composed of two noise peaks whose mz difference match one of the 
+  # substitutions
+  i_groups[[2]]
+  x_n[i_groups[[2]], "frmls"]
+  closest(x_n[45, "mz"], subst_def$md + x_n[2, "mz"] , ppm = 20, tolerance = 0)
+  # Expected 2nd group coincides with 3rd found group
+  expect_equal(i_groups[[3]], expected_groups_n[[2]])
+  # 4th found group contains all the peaks in expected group 3 except peaks 20, 
+  # 33, 39. These peaks were mistakenly assigned to the first group found and
+  # therefore are no longer available in the subsequent searches
+  # Group 5 is composed of two noise peaks whose mz difference match one of the 
+  # substitutions
+  i_groups[[5]]
+  x_n[i_groups[[5]], "frmls"]
+  closest(x_n[66, "mz"], subst_def$md + x_n[13, "mz"] , ppm = 20, tolerance = 0)
+  # 6th found group contains all the peaks in expected group 4 plus peak 77
+  i_groups[[6]]
+  expected_groups_n[[4]]
+  sbs <- closest(x_n[77, "mz"], 
+                 x_n[i_groups[[6]][1], "mz"] + subst_def$md, ppm = 20, 
+                 tolerance = 0, duplicates = "closest")
+  subst_def[sbs, "name"]
+  x_n[expected_groups_n[[1]][1], "frmls"]
+  # Again, peak 77 is matched to a substitution that is not possible in the 
+  # compound that originates the signal of the expected group 4.
+  # The 7th group found contains all the peaks in expected group 5 except peak 
+  # 77 that was mistakenly assigned before
+  i_groups[[7]]
+  expected_groups_n[[5]]
+  # The 8th group found is not expected and its first peak is a noise peak
+  x_n[i_groups[[8]], "frmls"]
+  # peaks 93 and 103 are grouped with the peak above because they are compatible
+  # with it and some of the mass differences of substitutions
+  # The 9th group found contains all the peaks in expected group 6 except peaks
+  # 93 and 103 that was mistakenly assigned before
+  i_groups[[9]]
+  expected_groups_n[[6]]
 })

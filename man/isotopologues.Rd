@@ -32,7 +32,8 @@ of peaks. See \code{\link[MsCoreUtils:matching]{MsCoreUtils::closest()}} for det
 
 \item{seedMz}{\code{numeric} vector of \strong{ordered} m/z values. If provided,
 the function checks if there are peaks in \code{x} which m/z match them.
-Isotope groups are then defined only for this subset of peaks.}
+If any, it looks for groups where the first peak is one of the matched
+ones.}
 
 \item{charge}{\code{numeric(1)} representing the expected charge of the ionized
 compounds.}
@@ -44,28 +45,36 @@ compound.
 }
 \description{
 Given a spectrum (i.e. a peak matrix with m/z and intensity values)
-the function identifies groups potential isotopologue peaks based on
-pre-defined mass differences and intensity (probability) ratios. These
-parameters defining the isotopic substitutions characterizing the
-isotopologues need to be passed to the function with parameter
-\code{substDefinition}.
+the function identifies groups of potential isotopologue peaks based on
+pre-defined mass differences and intensity (probability) ratios that need
+to be passed to the function with the \code{substDefinition} parameter. Each
+isotopic substitution in a compound determines a certain isotopologue and it
+is associated with a certain mass difference of that with respect to the
+monoisotopic isotopologue. Also each substitution in a compound is linked
+to a certain ratio between the intensities of the peaks of the corresponding
+isotopologue and the monoisotopic one. This ratio isn't the same for
+isotopologues corresponding to the same isotopic substitution but to
+different compounds. Through the \code{substDefinition} parameter we provide
+upper and lower values to compute bounds for each isotopic substitution
+(working for the isotopologues of different compounds corresponding to that
+substitution).
+.
 }
 \details{
 The function iterates over the peaks (rows) in \code{x}. For each peak (which is
 assumed to be the monoisotopic peak) it searches other peaks in \code{x} with a
-difference in m/z matching (given \code{ppm} and \code{tolerance}) any of the
-pre-defined mass differences in \code{substDefinitions} (column \code{"md"}).
+difference in mass matching (given \code{ppm} and \code{tolerance}) any of the
+pre-defined mass differences in \code{substDefinitions} (column \code{"md"}). The mass
+is obtained by multiplying the m/z of the peaks for the \code{charge} expected for
+the ionized compounds.
 
 For matching peaks, the function next evaluates whether the intensity is
 within the expected (pre-defined) intensity range. Using \code{"min_slope"} and
 \code{"max_slope"} for the respective potentially matching isotopic substitution
-in \code{substDefinition}, the function estimates a (m/z dependent) lower and
-upper intensity ratio limit based on the peak's m/z.
+in \code{substDefinition}, the function estimates a (mass dependent) lower and
+upper intensity ratio limit based on the peak's mass.
 
-Peaks already assigned to an itotope group are not considered in  from
-difference  if also their intensity is
-compatible with them being part of a isotopic group and if so they are
-grouped together. When some peaks are grouped together their indexes are
+When some peaks are grouped together their indexes are
 excluded from the set of indexes that are searched for further groups.
 }
 \author{
