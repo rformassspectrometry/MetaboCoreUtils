@@ -82,7 +82,7 @@ test_that("isotopicSubstitutionMatrix works", {
   expect_true(is.data.frame(res))
 })
 
-x <- read.table(system.file("exampleSpectra/simulated_spectrum.txt",
+x <- read.table(system.file("exampleSpectra", "simulated_spectrum.txt",
                             package = "MetaboCoreUtils"))
 frmls <- unique(x$frmls)
 subst_def <- isotopicSubstitutionMatrix("HMDB")
@@ -173,4 +173,36 @@ test_that("isotopologues works on simulated spectra from HMDB + random peaks", {
   # 93 and 103 that was mistakenly assigned before
   i_groups[[9]]
   expected_groups_n[[6]]
+})
+
+test_that(".isotope_peaks works on second test set", {
+    x <- read.table(system.file("exampleSpectra",
+                                "serine-alpha-lactose-caffeine.txt",
+                                package = "MetaboCoreUtils"),
+                    header = TRUE)
+    x <- x[order(x$mz), ]
+    rownames(x) <- NULL
+    expected_groups <- lapply(unique(x$compound),
+                              function(f) which(x[, "compound"] == f))
+    i_groups <- .isotope_peaks(x[, 1:2], substDefinition = subst_def, ppm = 10)
+    expect_equal(expected_groups[1], i_groups[1])
+    expect_equal(expected_groups[2], i_groups[2])
+    ## closest has again problems if there are two "best matching" peaks.
+    expect_true(all(i_groups[[3L]] %in% expected_groups[[3L]]))
+
+    set.seed(123)
+    x_n <- x
+    x_n$mz <- x_n$mz + MsCoreUtils::ppm(x_n$mz, ppm = runif(nrow(x_n), 0, 5))
+    ## reset the monoisotopic mz
+    x_n$mz[x_n$intensity == 100] <- x$mz[x_n$intensity == 100]
+    x_n$intensity <- x_n$intensity + rnorm(nrow(x_n), sd = 0.01)
+    x_n <- x_n[order(x_n$mz), ]
+    rownames(x_n) <- NULL
+    expected_groups <- lapply(unique(x_n$compound),
+                              function(f) which(x_n[, "compound"] == f))
+    i_groups <- .isotope_peaks(x_n[, 1:2], ppm = 10)
+    expect_equal(i_groups[1], expected_groups[1])
+    ## Not perfect for the others...
+    expect_true(all(i_groups[[2L]] %in% expected_groups[[2L]]))
+    expect_true(all(i_groups[[3L]] %in% expected_groups[[3L]]))
 })
