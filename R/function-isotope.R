@@ -4,19 +4,17 @@
 #'
 #' Given a spectrum (i.e. a peak matrix with m/z and intensity values)
 #' the function identifies groups of potential isotopologue peaks based on
-#' pre-defined mass differences and intensity (probability) ratios that need 
-#' to be passed to the function with the `substDefinition` parameter. Each 
-#' isotopic substitution in a compound determines a certain isotopologue and it 
-#' is associated with a certain mass difference of that with respect to the 
-#' monoisotopic isotopologue. Also each substitution in a compound is linked 
-#' to a certain ratio between the intensities of the peaks of the corresponding 
-#' isotopologue and the monoisotopic one. This ratio isn't the same for 
-#' isotopologues corresponding to the same isotopic substitution but to 
-#' different compounds. Through the `substDefinition` parameter we provide 
-#' upper and lower values to compute bounds for each isotopic substitution 
-#' (working for the isotopologues of different compounds corresponding to that 
-#' substitution).
-#' .
+#' pre-defined mass differences and intensity (probability) ratios that need
+#' to be passed to the function with the `substDefinition` parameter. Each
+#' isotopic substitution in a compound determines a certain isotopologue and it
+#' is associated with a certain mass difference of that with respect to the
+#' monoisotopic isotopologue. Also each substitution in a compound is linked
+#' to a certain ratio between the intensities of the peaks of the corresponding
+#' isotopologue and the monoisotopic one. This ratio isn't the same for
+#' isotopologues corresponding to the same isotopic substitution but to
+#' different compounds. Through the `substDefinition` parameter we provide
+#' upper and lower values to compute bounds for each isotopic substitution
+#' dependent on the peak's mass.
 #'
 #' @param x `matrix` with spectrum data (columns `mz` and `intensity`).
 #'
@@ -36,7 +34,7 @@
 #'
 #' @param seedMz `numeric` vector of **ordered** m/z values. If provided,
 #'     the function checks if there are peaks in `x` which m/z match them.
-#'     If any, it looks for groups where the first peak is one of the matched 
+#'     If any, it looks for groups where the first peak is one of the matched
 #'     ones.
 #'
 #' @param charge `numeric(1)` representing the expected charge of the ionized
@@ -52,8 +50,8 @@
 #' assumed to be the monoisotopic peak) it searches other peaks in `x` with a
 #' difference in mass matching (given `ppm` and `tolerance`) any of the
 #' pre-defined mass differences in `substDefinitions` (column `"md"`). The mass
-#' is obtained by multiplying the m/z of the peaks for the `charge` expected for 
-#' the ionized compounds.
+#' is obtained by multiplying the m/z of the peaks for the `charge` expected
+#' for the ionized compounds.
 #'
 #' For matching peaks, the function next evaluates whether the intensity is
 #' within the expected (pre-defined) intensity range. Using `"min_slope"` and
@@ -61,8 +59,10 @@
 #' in `substDefinition`, the function estimates a (mass dependent) lower and
 #' upper intensity ratio limit based on the peak's mass.
 #'
-#' When some peaks are grouped together their indexes are
-#' excluded from the set of indexes that are searched for further groups.
+#' When some peaks are grouped together their indexes are excluded from the set
+#' of indexes that are searched for further groups (i.e. peaks already assigned
+#' to an isotopologue group are not considered/tested again thus each peak can
+#' only be part of one isotopologue group).
 #'
 #' @author Andrea Vicini
 #'
@@ -135,7 +135,7 @@ isotopologues <- function(x, substDefinition = isotopicSubstitutionMatrix(),
 #'
 #' @param x intensity of the matching peaks. x has length equal to the number
 #' of rows of substDefinition. The i-th element of x represent the intensity
-#' associated to the peak whose mass difference is associated to the i-th 
+#' associated to the peak whose mass difference is associated to the i-th
 #' `"md"` in `substDefinition` if any or NA.
 #' @param m mass of the current (assumed monoisotopic) peak.
 #' @param intensity  intensity of the current (assumed monoisotopic) peak.
@@ -174,28 +174,37 @@ isotopologues <- function(x, substDefinition = isotopicSubstitutionMatrix(),
 #'   substitutions with a single element (such as `[15]N1` or `[13]C1`) are of
 #'   degree 1 while isotopic substitutions with more isotopes are of a higher
 #'   degree (`[37]Cl5` and `[34]S1[37]Cl4` are e.g. both of degree 5).
+#'
 #' - `"minmass"`: the minimal mass of a compound for which the isotopic
 #'   substitution was found. Peaks with a mass lower than this will most likely
 #'   not have the respective isotopic substitution.
+#'
 #' - `"md"`: the mass difference between the monoisotopic peak and a peak of an
 #'   isotopologue characterized by the respective isotopic substitution.
-#' - `"min_slope"`: used to calculate the lower expected bound for the ratio 
-#'   between the probabilities of isotopologues associated to a given 
-#'   substitution and the corresponding monoisotopic isotopologues. If a linear 
-#'   relationship between the number of each element in the substitution and 
-#'   the monoisotopic mass of compounds having those elements can be assumed 
-#'   then the previously mentioned ratio has a polynomial trend with degree 
-#'   equal to the *degree* of the isotopic substitution. The ratios for each 
-#'   compound and for a given substitution can be transformed by taking the root 
-#'   corresponding to *degree* of the substitution. In that way a linear trend 
-#'   in the monoisotopic mass can be obtained for the ratios. `"min_slope"` 
-#'   represent the slope of a lower bound line for this trend. In other words 
-#'   for a given substitution we expect that the ratio between the intensity of 
-#'   a isotopologue of a given compound corresponding to that substitution and 
-#'   the intensity of the monoisotopic isotopologue will be 
-#'   >= (monoisotopic mass * slope)^degree
-#'   
+#'
+#' - `"min_slope"`: used to calculate the lower expected bound for the ratio
+#'   between the probabilities of isotopologues associated to a given
+#'   substitution and the corresponding monoisotopic isotopologues. If a linear
+#'   relationship between the number of each element in the substitution and
+#'   the monoisotopic mass of compounds having those elements can be assumed
+#'   then the previously mentioned ratio has a polynomial trend with degree
+#'   equal to the *degree* of the isotopic substitution. The ratios for each
+#'   compound and for a given substitution can be transformed by taking the root
+#'   corresponding to *degree* of the substitution. In that way a linear trend
+#'   in the monoisotopic mass can be obtained for the ratios. `"min_slope"`
+#'   represent the slope of a lower bound line for this trend. In other words,
+#'   for a given substitution we expect the ratio between the intensity of
+#'   an isotopologue of a given compound corresponding to that substitution and
+#'   the intensity of the monoisotopic isotopologue to be
+#'   `>= (monoisotopic mass * min_slope)^degree`.
+#'
 #' - `"max_slope"`: used to calculate the expected upper intensity ratio bound.
+#'
+#' @section Available pre-calculated substitution matrices:
+#'
+#' - `source = "HMDB"`: most common isotopic substitutions and parameters for
+#'   these have been calculated for all compounds from the
+#'   [Human Metabolome Database](https://hmdb.ca) (HMDB, July 2021).
 #'
 #' @param source `character(1)` defining the set of predefined parameters and
 #'     isotopologue definitions to return.
@@ -206,6 +215,11 @@ isotopologues <- function(x, substDefinition = isotopicSubstitutionMatrix(),
 #' @author Andrea Vicini
 #'
 #' @export
+#'
+#' @examples
+#'
+#' ## Get the substitution matrix calculated on HMDB
+#' isotopicSubstitutionMatrix("HMDB")
 isotopicSubstitutionMatrix <- function(source = c("HMDB")) {
     source <- match.arg(source)
     get(paste0(".SUBSTS_", toupper(source)))

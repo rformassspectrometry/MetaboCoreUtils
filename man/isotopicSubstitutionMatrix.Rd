@@ -50,12 +50,27 @@ equal to the \emph{degree} of the isotopic substitution. The ratios for each
 compound and for a given substitution can be transformed by taking the root
 corresponding to \emph{degree} of the substitution. In that way a linear trend
 in the monoisotopic mass can be obtained for the ratios. \code{"min_slope"}
-represent the slope of a lower bound line for this trend. In other words
-for a given substitution we expect that the ratio between the intensity of
-a isotopologue of a given compound corresponding to that substitution and
-the intensity of the monoisotopic isotopologue will be= (monoisotopic mass * slope)^degree
+represent the slope of a lower bound line for this trend. In other words,
+for a given substitution we expect the ratio between the intensity of
+an isotopologue of a given compound corresponding to that substitution and
+the intensity of the monoisotopic isotopologue to be
+\verb{>= (monoisotopic mass * min_slope)^degree}.
 \item \code{"max_slope"}: used to calculate the expected upper intensity ratio bound.
 }
+}
+\section{Available pre-calculated substitution matrices}{
+
+\itemize{
+\item \code{source = "HMDB"}: most common isotopic substitutions and parameters for
+these have been calculated for all compounds from the
+\href{https://hmdb.ca}{Human Metabolome Database} (HMDB, July 2021).
+}
+}
+
+\examples{
+
+## Get the substitution matrix calculated on HMDB
+isotopicSubstitutionMatrix("HMDB")
 }
 \author{
 Andrea Vicini
