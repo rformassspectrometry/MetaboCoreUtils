@@ -2,8 +2,11 @@
 #'
 #' @description
 #'
-#' `indexRtime` uses a list of known substances to convert retention times to
-#'     retention indices. By default linear interpolation is performed.
+#' `indexRtime` uses a list of known substances to convert retention times (RTs)
+#'     to retention indices (RIs). By this retention information is normalized
+#'     for differences in experimental settings, such as gradient delay volume,
+#'     dead volume or flow rate. By default linear interpolation is performed, 
+#'     other ways of calculation can supplied as function.
 #'
 #' @param x `numeric` vector with retention times
 #' 
@@ -56,9 +59,12 @@ indexRtime <- function(x,
 #'
 #' @description
 #'
-#' `correctRindex` performs correction of RIs based on reference substances
+#' `correctRindex` performs correction of RIs based on reference substances. 
+#'     Even after conversion of RTs to RIs slight deviations might exist. These
+#'     deviations can be further normalized, if they are linear, by using two
+#'     metabolites for which the RIs are known (e.g. internal standards). 
 #'
-#' @param x `numeric` vector with retention indices
+#' @param x `numeric` vector with retention indices, calculated by `indexRtime`
 #' 
 #' @param y `data.frame`data.frame containing two columns, where the first 
 #'     holds the measured RIs of the reference substances and the second the
