@@ -6,12 +6,12 @@
 #'
 #' @param x `matrix` with spectrum data (columns `mz` and `intensity`).
 #'
-#' @param substDefinition `matrix` with isotopes definition (columns 
-#' `name`, `degree`, `md`, `min_slope`, `max_slope`). This matrix 
-#' has to have rows ordered in such a way that the column `md` is sorted in 
+#' @param substDefinition `matrix` with isotopes definition (columns
+#' `name`, `degree`, `md`, `min_slope`, `max_slope`). This matrix
+#' has to have rows ordered in such a way that the column `md` is sorted in
 #' increasing order.
-#' 
-#' @param tolerance numeric representing the tolerance for the relaxed matching 
+#'
+#' @param tolerance numeric representing the tolerance for the relaxed matching
 #' of m/z values of peaks
 #'
 #' @param ppm numeric(1) representing a relative, value-specific
@@ -21,25 +21,24 @@
 #' @param seedMz numeric ordered vector containing m/z values. If provided,
 #' the function checks if there are peaks in x whose m/z match them. If so,
 #' it looks for isotope groups related to this subset of peaks.
-#' 
-#' @param charge numeric(1) representing the charge of the ionized compounds 
+#'
+#' @param charge numeric(1) representing the charge of the ionized compounds
 #'
 #' @return list of vectors. Each vector in the returned list contains the
-#' indexes of the rows in `x` that match a certain isotope group found by 
+#' indexes of the rows in `x` that match a certain isotope group found by
 #' the function.
 #'
-#' @details The function iterates over the peaks (rows) in x. Firstly, it checks 
-#' the presence of peaks whose m/z difference with respect to the current peak 
-#' matches (the matching can be relaxed via the parameters `ppm` and 
-#' `tolerance`) certain m/z differences related to mass differences of 
-#' certain substitutions in `substDefinition` and the chosen `charge`. Then, if 
-#' any such peak is found, the function checks if also their intensity is 
-#' compatible with them being part of a isotopic group and if so they are 
-#' grouped together. When some peaks are grouped together their indexes are 
-#' excluded from the set of indexes that are searched for further groups. 
+#' @details The function iterates over the peaks (rows) in x. Firstly, it checks
+#' the presence of peaks whose m/z difference with respect to the current peak
+#' matches (the matching can be relaxed via the parameters `ppm` and
+#' `tolerance`) certain m/z differences related to mass differences of
+#' certain substitutions in `substDefinition` and the chosen `charge`. Then, if
+#' any such peak is found, the function checks if also their intensity is
+#' compatible with them being part of a isotopic group and if so they are
+#' grouped together. When some peaks are grouped together their indexes are
+#' excluded from the set of indexes that are searched for further groups.
 #'
-#' @examples
-#'
+#' @noRd
 
 #' @importFrom MsCoreUtils closest
 #' @importFrom stats approx na.omit
@@ -98,10 +97,10 @@
 
 #' Title Checking the intensity
 #'
-#' @param x intensity of the matching peaks. x has length equal to the number 
-#' of rows of substDefinition. The i-th element of x represent the intensity 
-#' associated to the peak whose m/z difference is associated to the i-th mzd in 
-#' substDefinition if any or NA. 
+#' @param x intensity of the matching peaks. x has length equal to the number
+#' of rows of substDefinition. The i-th element of x represent the intensity
+#' associated to the peak whose m/z difference is associated to the i-th mzd in
+#' substDefinition if any or NA.
 #' @param m mass of the current (assumed monoisotopic) peak
 #' @param intensity  intensity of the current (assumed monoisotopic) peak
 #' @param substDefinition substitutions definition data.frame

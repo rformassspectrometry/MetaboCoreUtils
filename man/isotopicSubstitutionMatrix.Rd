@@ -2,7 +2,7 @@
 % Please edit documentation in R/function-isotope.R
 \name{isotopicSubstitutionMatrix}
 \alias{isotopicSubstitutionMatrix}
-\title{Title Isotope definition}
+\title{Title HMBD isotope substitution}
 \usage{
 isotopicSubstitutionMatrix()
 }
@@ -10,5 +10,5 @@ isotopicSubstitutionMatrix()
 \code{data.frame} with columns \code{mzd}, \code{min_ratio} and \code{max_ratio}
 }
 \description{
-Creates the definition of isotopes
+Loads the HMBD isotope substitution
 }

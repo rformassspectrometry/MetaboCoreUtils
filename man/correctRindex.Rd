@@ -7,19 +7,23 @@
 correctRindex(x, y)
 }
 \arguments{
-\item{x}{\code{numeric} vector with retention indices}
+\item{x}{\code{numeric} vector with retention indices, calculated by \code{indexRtime}}
 
-\item{y}{\code{data.frame}data.frame containing two columns, where the first
-holds the measured RIs of the reference substances and the second the
-reference RIs}
+\item{y}{\code{data.frame} containing two columns. The first is expected to
+contain the measured RIs of the reference substances and the second the
+reference RIs.}
 }
 \value{
-\code{numeric} vector of same length as x with correction retention
+\code{numeric} vector of same length than \code{x} with corrected retention
 indices. Values are floating point decimals. If integer values shall be
-used conversion has to be performed manually
+used conversion has to be performed manually.
 }
 \description{
-\code{correctRindex} performs correction of RIs based on reference substances
+\code{correctRindex} performs correction of retention indices (RIs) based on
+reference substances.
+Even after conversion of RTs to RIs slight deviations might exist. These
+deviations can be further normalized, if they are linear, by using two
+metabolites for which the RIs are known (e.g. internal standards).
 }
 \examples{
 
