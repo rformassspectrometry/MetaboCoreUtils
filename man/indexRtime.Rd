@@ -24,8 +24,11 @@ floating point decimals. If integer values shall be used conversion has
 to be performed manually
 }
 \description{
-\code{indexRtime} uses a list of known substances to convert retention times to
-retention indices. By default linear interpolation is performed.
+\code{indexRtime} uses a list of known substances to convert retention times (RTs)
+to retention indices (RIs). By this retention information is normalized
+for differences in experimental settings, such as gradient delay volume,
+dead volume or flow rate. By default linear interpolation is performed,
+other ways of calculation can supplied as function.
 }
 \examples{
 
