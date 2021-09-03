@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Title HMBD isotope substitution — isotopicSubstitutionMatrix • MetaboCoreUtils</title>
+<title>Definitions of isotopic substitutions — isotopicSubstitutionMatrix • MetaboCoreUtils</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,8 +46,48 @@
 
 
 
-<meta property="og:title" content="Title HMBD isotope substitution — isotopicSubstitutionMatrix" />
-<meta property="og:description" content="Loads the HMBD isotope substitution" />
+<meta property="og:title" content="Definitions of isotopic substitutions — isotopicSubstitutionMatrix" />
+<meta property="og:description" content="In order to identify potential isotopologues based on only m/z and intensity
+values with the isotopologues() function, sets of pre-calculated parameters
+are required. This function returns such parameter sets estimated on
+different sources/databases. The nomenclature used to describe isotopes
+follows the following convention: the number of neutrons is provided in [
+as a prefix to the element and the number of atoms of the element as suffix.
+[13]C2[37]Cl3 describes thus an isotopic substitution containing 2 [13]C
+isotopes and 3 [37]Cl isotopes.
+Each row in the returned data.frame characterizes an isotopic substitution
+(which can involve isotopes of several elements or different isotopes of the
+same element). The provided isotopic substitutions are in general the most
+frequently observed substitutions in the database (e.g. HMDB) on which they
+were defined. Parameters (columns) defined for each isotopic substitution
+are:
+&quot;degree&quot;: the degree of the isotopic substitution. Isotopic
+substitutions with a single element (such as [15]N1 or [13]C1) are of
+degree 1 while isotopic substitutions with more isotopes are of a higher
+degree ([37]Cl5 and [34]S1[37]Cl4 are e.g. both of degree 5).
+&quot;minmass&quot;: the minimal mass of a compound for which the isotopic
+substitution was found. Peaks with a mass lower than this will most likely
+not have the respective isotopic substitution.
+&quot;md&quot;: the mass difference between the monoisotopic peak and a peak of an
+isotopologue characterized by the respective isotopic substitution.
+&quot;min_slope&quot;: used to calculate the lower expected bound for the ratio
+between the probabilities of isotopologues associated to a given
+substitution and the corresponding monoisotopic isotopologues. If a linear
+relationship between the number of each element in the substitution and
+the monoisotopic mass of compounds having those elements can be assumed
+then the previously mentioned ratio has a polynomial trend with degree
+equal to the degree of the isotopic substitution. The ratios for each
+compound and for a given substitution can be transformed by taking the root
+corresponding to degree of the substitution. In that way a linear trend
+in the monoisotopic mass can be obtained for the ratios. &quot;min_slope&quot;
+represent the slope of a lower bound line for this trend. In other words,
+for a given substitution we expect the ratio between the intensity of
+an isotopologue of a given compound corresponding to that substitution and
+the intensity of the monoisotopic isotopologue to be
+&amp;gt;= (monoisotopic mass * min_slope)^degree.
+&quot;max_slope&quot;: used to calculate the expected upper intensity ratio bound.
+
+" />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -124,22 +164,234 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Title HMBD isotope substitution</h1>
+    <h1>Definitions of isotopic substitutions</h1>
     <small class="dont-index">Source: <a href='https://github.com/RforMassSpectrometry/MetaboCoreUtils/blob/master/R/function-isotope.R'><code>R/function-isotope.R</code></a></small>
     <div class="hidden name"><code>isotopicSubstitutionMatrix.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Loads the HMBD isotope substitution</p>
+    <p>In order to identify potential isotopologues based on only m/z and intensity
+values with the <code><a href='isotopologues.html'>isotopologues()</a></code> function, sets of pre-calculated parameters
+are required. This function returns such parameter sets estimated on
+different sources/databases. The nomenclature used to describe isotopes
+follows the following convention: the number of neutrons is provided in <code>[</code>
+as a prefix to the element and the number of atoms of the element as suffix.
+<code>[13]C2[37]Cl3</code> describes thus an isotopic substitution containing 2 <code>[13]C</code>
+isotopes and 3 <code>[37]Cl</code> isotopes.</p>
+<p>Each row in the returned <code>data.frame</code> characterizes an isotopic substitution
+(which can involve isotopes of several elements or different isotopes of the
+same element). The provided isotopic substitutions are in general the most
+frequently observed substitutions in the database (e.g. HMDB) on which they
+were defined. Parameters (columns) defined for each isotopic substitution
+are:</p><ul>
+<li><p><code>"degree"</code>: the <em>degree</em> of the isotopic substitution. Isotopic
+substitutions with a single element (such as <code>[15]N1</code> or <code>[13]C1</code>) are of
+degree 1 while isotopic substitutions with more isotopes are of a higher
+degree (<code>[37]Cl5</code> and <code>[34]S1[37]Cl4</code> are e.g. both of degree 5).</p></li>
+<li><p><code>"minmass"</code>: the minimal mass of a compound for which the isotopic
+substitution was found. Peaks with a mass lower than this will most likely
+not have the respective isotopic substitution.</p></li>
+<li><p><code>"md"</code>: the mass difference between the monoisotopic peak and a peak of an
+isotopologue characterized by the respective isotopic substitution.</p></li>
+<li><p><code>"min_slope"</code>: used to calculate the lower expected bound for the ratio
+between the probabilities of isotopologues associated to a given
+substitution and the corresponding monoisotopic isotopologues. If a linear
+relationship between the number of each element in the substitution and
+the monoisotopic mass of compounds having those elements can be assumed
+then the previously mentioned ratio has a polynomial trend with degree
+equal to the <em>degree</em> of the isotopic substitution. The ratios for each
+compound and for a given substitution can be transformed by taking the root
+corresponding to <em>degree</em> of the substitution. In that way a linear trend
+in the monoisotopic mass can be obtained for the ratios. <code>"min_slope"</code>
+represent the slope of a lower bound line for this trend. In other words,
+for a given substitution we expect the ratio between the intensity of
+an isotopologue of a given compound corresponding to that substitution and
+the intensity of the monoisotopic isotopologue to be
+<code>&gt;= (monoisotopic mass * min_slope)^degree</code>.</p></li>
+<li><p><code>"max_slope"</code>: used to calculate the expected upper intensity ratio bound.</p></li>
+</ul>
+
     </div>
 
-    <div class="ref-usage sourceCode"><pre class='sourceCode r'><code><span class='fu'>isotopicSubstitutionMatrix</span><span class='op'>(</span><span class='op'>)</span></code></pre></div>
+    <div class="ref-usage sourceCode"><pre class='sourceCode r'><code><span class='fu'>isotopicSubstitutionMatrix</span><span class='op'>(</span>source <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"HMDB"</span><span class='op'>)</span><span class='op'>)</span></code></pre></div>
 
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>source</th>
+      <td><p><code>character(1)</code> defining the set of predefined parameters and
+isotopologue definitions to return.</p></td>
+    </tr>
+    </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p><code>data.frame</code> with columns <code>mzd</code>, <code>min_ratio</code> and <code>max_ratio</code></p>
+    <p><code>data.frame</code> with parameters to detect the defined isotopic
+substitutions</p>
+    <h2 class="hasAnchor" id="available-pre-calculated-substitution-matrices"><a class="anchor" href="#available-pre-calculated-substitution-matrices"></a>Available pre-calculated substitution matrices</h2>
 
+    
+
+<ul>
+<li><p><code>source = "HMDB"</code>: most common isotopic substitutions and parameters for
+these have been calculated for all compounds from the
+<a href='https://hmdb.ca'>Human Metabolome Database</a> (HMDB, July 2021). Note that
+the substitutions were calculated on the <strong>neutral masses</strong> (i.e. the
+chemical formulas of the compounds, not considering any adducts).</p></li>
+</ul>
+
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Andrea Vicini</p>
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <div class="ref-examples sourceCode"><pre class='sourceCode r'><code><span class='r-in'></span>
+<span class='r-in'><span class='co'>## Get the substitution matrix calculated on HMDB</span></span>
+<span class='r-in'><span class='fu'>isotopicSubstitutionMatrix</span><span class='op'>(</span><span class='st'>"HMDB"</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>                                    name degree    minmass         md</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [15]N1                           [15]N1      1  17.026549  0.9970350</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [33]S1                           [33]S1      1  31.972071  0.9993878</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [13]C1                           [13]C1      1  16.031300  1.0033548</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [17]O1                           [17]O1      1  17.002740  1.0042169</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [2]H1                             [2]H1      1   1.007825  1.0062767</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [34]S1                           [34]S1      1  31.972071  1.9957961</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [37]Cl1                         [37]Cl1      1  34.968853  1.9970499</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [13]C1[15]N1               [13]C1[15]N1      2  55.042199  2.0003898</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [13]C1[33]S1               [13]C1[33]S1      2  62.019021  2.0027426</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [18]O1                           [18]O1      1  17.002740  2.0042458</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [13]C2                           [13]C2      2  28.031300  2.0067097</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [13]C1[17]O1               [13]C1[17]O1      2 154.026609  2.0075717</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [2]H1[13]C1                 [2]H1[13]C1      2  98.109550  2.0096316</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [15]N1[34]S1               [15]N1[34]S1      2  57.975145  2.9928311</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [15]N1[37]Cl1             [15]N1[37]Cl1      2  64.966841  2.9940848</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [33]S1[34]S1               [33]S1[34]S1      2  75.944141  2.9951840</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [33]S1[37]Cl1             [33]S1[37]Cl1      2 185.876761  2.9964377</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [13]C1[34]S1               [13]C1[34]S1      2  48.003371  2.9991510</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [17]O1[34]S1               [17]O1[34]S1      2 129.939450  3.0000130</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [13]C1[37]Cl1             [13]C1[37]Cl1      2  77.987242  3.0004047</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [17]O1[37]Cl1             [17]O1[37]Cl1      2  66.958682  3.0012668</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [2]H1[37]Cl1               [2]H1[37]Cl1      2  80.002892  3.0033266</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [18]O1[33]S1               [18]O1[33]S1      2 129.939450  3.0036336</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [13]C2[15]N1               [13]C2[15]N1      3 213.101445  3.0037446</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [13]C2[33]S1               [13]C2[33]S1      3 228.006742  3.0060975</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [13]C1[18]O1               [13]C1[18]O1      2  70.005479  3.0076006</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [13]C3                           [13]C3      3 128.062600  3.0100645</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [13]C2[17]O1               [13]C2[17]O1      3 486.079826  3.0109266</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [2]H1[13]C2                 [2]H1[13]C2      3 308.344301  3.0129864</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [34]S2                           [34]S2      2  75.944141  3.9915923</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [34]S1[37]Cl1             [34]S1[37]Cl1      2 185.876761  3.9928460</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [37]Cl2                         [37]Cl2      2  83.953355  3.9940998</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [13]C1[15]N1[37]Cl1 [13]C1[15]N1[37]Cl1      3 129.009375  3.9974397</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [13]C1[33]S1[37]Cl1 [13]C1[33]S1[37]Cl1      3 185.876761  3.9997925</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [18]O1[34]S1               [18]O1[34]S1      2  63.961900  4.0000419</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [18]O1[37]Cl1             [18]O1[37]Cl1      2  51.971592  4.0012957</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [13]C2[34]S1               [13]C2[34]S1      3 136.034671  4.0025058</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [13]C2[37]Cl1             [13]C2[37]Cl1      3 109.969006  4.0037596</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [13]C2[18]O1               [13]C2[18]O1      3 268.037173  4.0109555</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [13]C4                           [13]C4      4 302.109550  4.0134194</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [2]H1[13]C3                 [2]H1[13]C3      4 636.620917  4.0163413</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [15]N1[37]Cl2             [15]N1[37]Cl2      3 118.909632  4.9911347</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [33]S1[34]S1[37]Cl1 [33]S1[34]S1[37]Cl1      3 185.876761  4.9922338</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [33]S1[37]Cl2             [33]S1[37]Cl2      3 185.876761  4.9934876</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [13]C1[34]S2               [13]C1[34]S2      3 123.947512  4.9949471</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [13]C1[34]S1[37]Cl1 [13]C1[34]S1[37]Cl1      3 185.876761  4.9962009</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [13]C1[37]Cl2             [13]C1[37]Cl2      3  83.953355  4.9974546</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [13]C1[18]O1[34]S1   [13]C1[18]O1[34]S1      3 333.018823  5.0033968</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [13]C1[18]O1[37]Cl1 [13]C1[18]O1[37]Cl1      3 173.971986  5.0046505</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [13]C3[37]Cl1             [13]C3[37]Cl1      4 250.112443  5.0071144</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [13]C3[18]O1               [13]C3[18]O1      4 590.121297  5.0143103</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [13]C5                           [13]C5      5 636.620917  5.0167742</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [34]S2[37]Cl1             [34]S2[37]Cl1      3 185.876761  5.9886422</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [34]S1[37]Cl2             [34]S1[37]Cl2      3 185.876761  5.9898959</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [37]Cl3                         [37]Cl3      3 117.914383  5.9911497</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [18]O1[37]Cl2             [18]O1[37]Cl2      3 111.948270  5.9983456</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [13]C2[34]S1[37]Cl1 [13]C2[34]S1[37]Cl1      4 267.978334  5.9995557</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [13]C2[37]Cl2             [13]C2[37]Cl2      4 196.920197  6.0008095</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [13]C1[34]S1[37]Cl2 [13]C1[34]S1[37]Cl2      4 185.876761  6.9932508</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [13]C1[37]Cl3             [13]C1[37]Cl3      4 117.914383  6.9945045</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [34]S1[37]Cl3             [34]S1[37]Cl3      4 257.907583  7.9869458</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [37]Cl4                         [37]Cl4      4 151.875411  7.9881996</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [13]C2[37]Cl3             [13]C2[37]Cl3      5 263.847003  7.9978593</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [13]C1[37]Cl4             [13]C1[37]Cl4      5 243.901626  8.9915544</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [34]S1[37]Cl4             [34]S1[37]Cl4      5 346.910810  9.9839957</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [37]Cl5                         [37]Cl5      5 261.808031  9.9852494</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [13]C1[37]Cl5             [13]C1[37]Cl5      6 261.808031 10.9886043</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [37]Cl6                         [37]Cl6      6 261.808031 11.9822993</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [13]C1[37]Cl6             [13]C1[37]Cl6      7 399.750822 12.9856542</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [37]Cl7                         [37]Cl7      7 399.750822 13.9793492</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>                        min_slope    max_slope</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [15]N1              3.618894e-06 9.868334e-05</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [33]S1              6.637415e-06 1.706594e-04</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [13]C1              2.937240e-04 7.640939e-04</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [17]O1              1.340550e-06 1.208882e-05</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [2]H1               3.594022e-06 1.468966e-05</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [34]S1              3.761202e-05 9.670698e-04</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [37]Cl1             4.044082e-04 8.180525e-03</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [13]C1[15]N1        4.446786e-05 2.066084e-04</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [13]C1[33]S1        5.311084e-05 2.182578e-04</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [18]O1              7.230444e-06 6.521602e-05</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [13]C2              1.947484e-04 5.284832e-04</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [13]C1[17]O1        3.682163e-05 7.016251e-05</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [2]H1[13]C1         4.051519e-05 1.025530e-04</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [15]N1[34]S1        2.436138e-05 1.679152e-04</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [15]N1[37]Cl1       5.686775e-05 4.603810e-04</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [33]S1[34]S1        1.985476e-05 4.379066e-04</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [33]S1[37]Cl1       8.360171e-05 4.442590e-04</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [13]C1[34]S1        1.264342e-04 5.195575e-04</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [17]O1[34]S1        1.504484e-05 5.456894e-05</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [13]C1[37]Cl1       3.524423e-04 1.386726e-03</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [17]O1[37]Cl1       3.016639e-05 2.224642e-04</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [2]H1[37]Cl1        4.778964e-05 1.723470e-04</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [18]O1[33]S1        1.469160e-05 5.361100e-05</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [13]C2[15]N1        7.965994e-05 2.082634e-04</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [13]C2[33]S1        7.539466e-05 1.893451e-04</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [13]C1[18]O1        6.967995e-05 1.629485e-04</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [13]C3              1.908489e-04 4.024040e-04</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [13]C2[17]O1        7.935684e-05 1.057802e-04</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [2]H1[13]C2         7.877855e-05 1.537637e-04</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [34]S2              3.342054e-05 7.371067e-04</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [34]S1[37]Cl1       1.990119e-04 1.057548e-03</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [37]Cl2             3.119760e-04 4.858155e-03</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [13]C1[15]N1[37]Cl1 1.267489e-04 4.134125e-04</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [13]C1[33]S1[37]Cl1 1.635019e-04 3.487580e-04</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [18]O1[34]S1        3.199884e-05 1.522035e-04</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [18]O1[37]Cl1       6.249436e-05 5.071801e-04</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [13]C2[34]S1        1.344156e-04 3.766531e-04</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [13]C2[37]Cl1       3.091825e-04 7.314920e-04</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [13]C2[18]O1        1.324889e-04 1.861151e-04</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [13]C4              1.802079e-04 3.212787e-04</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [2]H1[13]C3         1.151298e-04 1.693218e-04</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [15]N1[37]Cl2       1.307169e-04 7.440798e-04</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [33]S1[34]S1[37]Cl1 1.354907e-04 4.008839e-04</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [33]S1[37]Cl2       1.682190e-04 6.203556e-04</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [13]C1[34]S2        7.855742e-05 4.445512e-04</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [13]C1[34]S1[37]Cl1 2.914957e-04 6.217753e-04</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [13]C1[37]Cl2       3.691649e-04 1.693078e-03</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [13]C1[18]O1[34]S1  7.960727e-05 1.606237e-04</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [13]C1[18]O1[37]Cl1 1.377196e-04 3.320403e-04</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [13]C3[37]Cl1       2.706196e-04 5.023195e-04</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [13]C3[18]O1        1.543718e-04 1.874102e-04</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [13]C5              1.844117e-04 2.685083e-04</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [34]S2[37]Cl1       1.917235e-04 5.672631e-04</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [34]S1[37]Cl2       2.999054e-04 1.105987e-03</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [37]Cl3             6.293435e-04 3.506470e-03</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [18]O1[37]Cl2       1.291658e-04 6.647160e-04</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [13]C2[34]S1[37]Cl1 2.656197e-04 4.519141e-04</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [13]C2[37]Cl2       3.245691e-04 9.015998e-04</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [13]C1[34]S1[37]Cl2 3.085781e-04 7.053953e-04</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [13]C1[37]Cl3       6.089757e-04 1.722693e-03</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [34]S1[37]Cl3       4.498969e-04 7.960578e-04</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [37]Cl4             7.526416e-04 2.756283e-03</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [13]C2[37]Cl3       4.929249e-04 9.889370e-04</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [13]C1[37]Cl4       6.812391e-04 1.637130e-03</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [34]S1[37]Cl4       6.222981e-04 6.222981e-04</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [37]Cl5             9.282756e-04 2.230631e-03</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [13]C1[37]Cl5       8.107740e-04 1.496015e-03</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [37]Cl6             7.960819e-04 1.833350e-03</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [13]C1[37]Cl6       9.392270e-04 1.342270e-03</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [37]Cl7             8.673504e-04 1.530363e-03</span>
+</code></pre></div>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -151,7 +403,7 @@
 
       <footer>
       <div class="copyright">
-  <p><p>Developed by Johannes Rainer, Michael Witting.</p></p>
+  <p><p>Developed by Johannes Rainer, Michael Witting, Andrea Vicini.</p></p>
 </div>
 
 <div class="pkgdown">
