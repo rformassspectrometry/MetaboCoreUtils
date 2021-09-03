@@ -2,13 +2,78 @@
 % Please edit documentation in R/function-isotope.R
 \name{isotopicSubstitutionMatrix}
 \alias{isotopicSubstitutionMatrix}
-\title{Title HMBD isotope substitution}
+\title{Definitions of isotopic substitutions}
 \usage{
-isotopicSubstitutionMatrix()
+isotopicSubstitutionMatrix(source = c("HMDB"))
+}
+\arguments{
+\item{source}{\code{character(1)} defining the set of predefined parameters and
+isotopologue definitions to return.}
 }
 \value{
-\code{data.frame} with columns \code{mzd}, \code{min_ratio} and \code{max_ratio}
+\code{data.frame} with parameters to detect the defined isotopic
+substitutions
 }
 \description{
-Loads the HMBD isotope substitution
+In order to identify potential isotopologues based on only m/z and intensity
+values with the \code{\link[=isotopologues]{isotopologues()}} function, sets of pre-calculated parameters
+are required. This function returns such parameter sets estimated on
+different sources/databases. The nomenclature used to describe isotopes
+follows the following convention: the number of neutrons is provided in \code{[}
+as a prefix to the element and the number of atoms of the element as suffix.
+\verb{[13]C2[37]Cl3} describes thus an isotopic substitution containing 2 \verb{[13]C}
+isotopes and 3 \verb{[37]Cl} isotopes.
+
+Each row in the returned \code{data.frame} characterizes an isotopic substitution
+(which can involve isotopes of several elements or different isotopes of the
+same element). The provided isotopic substitutions are in general the most
+frequently observed substitutions in the database (e.g. HMDB) on which they
+were defined. Parameters (columns) defined for each isotopic substitution
+are:
+\itemize{
+\item \code{"degree"}: the \emph{degree} of the isotopic substitution. Isotopic
+substitutions with a single element (such as \verb{[15]N1} or \verb{[13]C1}) are of
+degree 1 while isotopic substitutions with more isotopes are of a higher
+degree (\verb{[37]Cl5} and \verb{[34]S1[37]Cl4} are e.g. both of degree 5).
+\item \code{"minmass"}: the minimal mass of a compound for which the isotopic
+substitution was found. Peaks with a mass lower than this will most likely
+not have the respective isotopic substitution.
+\item \code{"md"}: the mass difference between the monoisotopic peak and a peak of an
+isotopologue characterized by the respective isotopic substitution.
+\item \code{"min_slope"}: used to calculate the lower expected bound for the ratio
+between the probabilities of isotopologues associated to a given
+substitution and the corresponding monoisotopic isotopologues. If a linear
+relationship between the number of each element in the substitution and
+the monoisotopic mass of compounds having those elements can be assumed
+then the previously mentioned ratio has a polynomial trend with degree
+equal to the \emph{degree} of the isotopic substitution. The ratios for each
+compound and for a given substitution can be transformed by taking the root
+corresponding to \emph{degree} of the substitution. In that way a linear trend
+in the monoisotopic mass can be obtained for the ratios. \code{"min_slope"}
+represent the slope of a lower bound line for this trend. In other words,
+for a given substitution we expect the ratio between the intensity of
+an isotopologue of a given compound corresponding to that substitution and
+the intensity of the monoisotopic isotopologue to be
+\verb{>= (monoisotopic mass * min_slope)^degree}.
+\item \code{"max_slope"}: used to calculate the expected upper intensity ratio bound.
+}
+}
+\section{Available pre-calculated substitution matrices}{
+
+\itemize{
+\item \code{source = "HMDB"}: most common isotopic substitutions and parameters for
+these have been calculated for all compounds from the
+\href{https://hmdb.ca}{Human Metabolome Database} (HMDB, July 2021). Note that
+the substitutions were calculated on the \strong{neutral masses} (i.e. the
+chemical formulas of the compounds, not considering any adducts).
+}
+}
+
+\examples{
+
+## Get the substitution matrix calculated on HMDB
+isotopicSubstitutionMatrix("HMDB")
+}
+\author{
+Andrea Vicini
 }

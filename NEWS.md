@@ -3,6 +3,7 @@
 ## MetaboCoreUtils 1.1.1
 
 - Add `correctRindex` function.
+- Add `isotopologue` function to group isotopologues in MS spectra.
 
 # MetaboCoreutils 0.99
 
