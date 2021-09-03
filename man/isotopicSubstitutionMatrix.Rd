@@ -63,7 +63,9 @@ the intensity of the monoisotopic isotopologue to be
 \itemize{
 \item \code{source = "HMDB"}: most common isotopic substitutions and parameters for
 these have been calculated for all compounds from the
-\href{https://hmdb.ca}{Human Metabolome Database} (HMDB, July 2021).
+\href{https://hmdb.ca}{Human Metabolome Database} (HMDB, July 2021). Note that
+the substitutions were calculated on the \strong{neutral masses} (i.e. the
+chemical formulas of the compounds, not considering any adducts).
 }
 }
 

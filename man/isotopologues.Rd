@@ -77,6 +77,24 @@ of indexes that are searched for further groups (i.e. peaks already assigned
 to an isotopologue group are not considered/tested again thus each peak can
 only be part of one isotopologue group).
 }
+\examples{
+
+## Read theoretical isotope pattern (high resolution) from example file
+x <- read.table(system.file("exampleSpectra",
+    "serine-alpha-lactose-caffeine.txt", package = "MetaboCoreUtils"),
+    header = TRUE)
+x <- x[order(x$mz), ]
+plot(x$mz, x$intensity, type = "h")
+
+isos <- isotopologues(x, ppm = 5)
+isos
+
+## highlight them in the plot
+for (i in seq_along(isos)) {
+    z <- isos[[i]]
+    points(x$mz[z], x$intensity[z], col = i + 1)
+}
+}
 \author{
 Andrea Vicini
 }

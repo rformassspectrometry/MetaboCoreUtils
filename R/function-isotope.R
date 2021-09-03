@@ -67,6 +67,24 @@
 #' @author Andrea Vicini
 #'
 #' @export
+#'
+#' @examples
+#'
+#' ## Read theoretical isotope pattern (high resolution) from example file
+#' x <- read.table(system.file("exampleSpectra",
+#'     "serine-alpha-lactose-caffeine.txt", package = "MetaboCoreUtils"),
+#'     header = TRUE)
+#' x <- x[order(x$mz), ]
+#' plot(x$mz, x$intensity, type = "h")
+#'
+#' isos <- isotopologues(x, ppm = 5)
+#' isos
+#'
+#' ## highlight them in the plot
+#' for (i in seq_along(isos)) {
+#'     z <- isos[[i]]
+#'     points(x$mz[z], x$intensity[z], col = i + 1)
+#' }
 isotopologues <- function(x, substDefinition = isotopicSubstitutionMatrix(),
                           tolerance = 0, ppm = 20, seedMz = numeric(),
                           charge = 1) {
@@ -104,6 +122,10 @@ isotopologues <- function(x, substDefinition = isotopicSubstitutionMatrix(),
   lst[lengths(lst) > 0]
 }
 
+#' Same as .isotope_peaks, just using a logical vector instead of an integer
+#' with indices. This function is also slightly faster than .isotope_peaks.
+#'
+#' @noRd
 .isotope_peaks2 <- function(x, substDefinition = substDefinition(),
                            tolerance = 0, ppm = 20, seedMz = numeric(),
                            charge = 1) {
@@ -137,8 +159,11 @@ isotopologues <- function(x, substDefinition = isotopicSubstitutionMatrix(),
 #' of rows of substDefinition. The i-th element of x represent the intensity
 #' associated to the peak whose mass difference is associated to the i-th
 #' `"md"` in `substDefinition` if any or NA.
+#'
 #' @param m mass of the current (assumed monoisotopic) peak.
+#'
 #' @param intensity  intensity of the current (assumed monoisotopic) peak.
+#'
 #' @param substDefinition substitutions definition `matrix` or `data.frame`.
 #'
 #' @return indexes of the intensities in `x` that are part of a isotopic group.
@@ -204,7 +229,9 @@ isotopologues <- function(x, substDefinition = isotopicSubstitutionMatrix(),
 #'
 #' - `source = "HMDB"`: most common isotopic substitutions and parameters for
 #'   these have been calculated for all compounds from the
-#'   [Human Metabolome Database](https://hmdb.ca) (HMDB, July 2021).
+#'   [Human Metabolome Database](https://hmdb.ca) (HMDB, July 2021). Note that
+#'   the substitutions were calculated on the **neutral masses** (i.e. the
+#'   chemical formulas of the compounds, not considering any adducts).
 #'
 #' @param source `character(1)` defining the set of predefined parameters and
 #'     isotopologue definitions to return.

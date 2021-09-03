@@ -184,7 +184,9 @@ test_that(".isotope_peaks works on second test set", {
     rownames(x) <- NULL
     expected_groups <- lapply(unique(x$compound),
                               function(f) which(x[, "compound"] == f))
-    i_groups <- .isotope_peaks(x[, 1:2], substDefinition = subst_def, ppm = 10)
+    subst_def <- isotopicSubstitutionMatrix("HMDB")
+
+    i_groups <- MetaboCoreUtils:::.isotope_peaks(x[, 1:2], substDefinition = subst_def, ppm = 10)
     expect_equal(expected_groups[1], i_groups[1])
     expect_equal(expected_groups[2], i_groups[2])
     ## closest has again problems if there are two "best matching" peaks.
