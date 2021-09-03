@@ -1,3 +1,9 @@
+# MetaboCoreutils 1.1
+
+## MetaboCoreUtils 1.1.1
+
+- Add `correctRindex` function.
+
 # MetaboCoreutils 0.99
 
 ## MetaboCoreUtils 0.99.1
