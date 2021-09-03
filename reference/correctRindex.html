@@ -47,7 +47,11 @@
 
 
 <meta property="og:title" content="2-point correction of RIs — correctRindex" />
-<meta property="og:description" content="correctRindex performs correction of RIs based on reference substances" />
+<meta property="og:description" content="correctRindex performs correction of retention indices (RIs) based on
+reference substances.
+Even after conversion of RTs to RIs slight deviations might exist. These
+deviations can be further normalized, if they are linear, by using two
+metabolites for which the RIs are known (e.g. internal standards)." />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -88,7 +92,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">MetaboCoreUtils</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.1</span>
       </span>
     </div>
 
@@ -130,7 +134,11 @@
     </div>
 
     <div class="ref-description">
-    <p><code>correctRindex</code> performs correction of RIs based on reference substances</p>
+    <p><code>correctRindex</code> performs correction of retention indices (RIs) based on
+reference substances.
+Even after conversion of RTs to RIs slight deviations might exist. These
+deviations can be further normalized, if they are linear, by using two
+metabolites for which the RIs are known (e.g. internal standards).</p>
     </div>
 
     <div class="ref-usage sourceCode"><pre class='sourceCode r'><code><span class='fu'>correctRindex</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>y</span><span class='op'>)</span></code></pre></div>
@@ -140,21 +148,21 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p><code>numeric</code> vector with retention indices</p></td>
+      <td><p><code>numeric</code> vector with retention indices, calculated by <code>indexRtime</code></p></td>
     </tr>
     <tr>
       <th>y</th>
-      <td><p><code>data.frame</code>data.frame containing two columns, where the first
-holds the measured RIs of the reference substances and the second the
-reference RIs</p></td>
+      <td><p><code>data.frame</code> containing two columns. The first is expected to
+contain the measured RIs of the reference substances and the second the
+reference RIs.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p><code>numeric</code> vector of same length as x with correction retention
+    <p><code>numeric</code> vector of same length than <code>x</code> with corrected retention
 indices. Values are floating point decimals. If integer values shall be
-used conversion has to be performed manually</p>
+used conversion has to be performed manually.</p>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>Michael Witting</p>

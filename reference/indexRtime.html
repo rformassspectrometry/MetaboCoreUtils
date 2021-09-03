@@ -47,8 +47,11 @@
 
 
 <meta property="og:title" content="Convert retention times to retention indices — indexRtime" />
-<meta property="og:description" content="indexRtime uses a list of known substances to convert retention times to
-retention indices. By default linear interpolation is performed." />
+<meta property="og:description" content="indexRtime uses a list of known substances to convert retention times (RTs)
+to retention indices (RIs). By this retention information is normalized
+for differences in experimental settings, such as gradient delay volume,
+dead volume or flow rate. By default linear interpolation is performed,
+other ways of calculation can supplied as function." />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -89,7 +92,7 @@ retention indices. By default linear interpolation is performed." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">MetaboCoreUtils</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.1</span>
       </span>
     </div>
 
@@ -131,8 +134,11 @@ retention indices. By default linear interpolation is performed." />
     </div>
 
     <div class="ref-description">
-    <p><code>indexRtime</code> uses a list of known substances to convert retention times to
-retention indices. By default linear interpolation is performed.</p>
+    <p><code>indexRtime</code> uses a list of known substances to convert retention times (RTs)
+to retention indices (RIs). By this retention information is normalized
+for differences in experimental settings, such as gradient delay volume,
+dead volume or flow rate. By default linear interpolation is performed,
+other ways of calculation can supplied as function.</p>
     </div>
 
     <div class="ref-usage sourceCode"><pre class='sourceCode r'><code><span class='fu'>indexRtime</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>y</span>, FUN <span class='op'>=</span> <span class='va'>rtiLinear</span>, <span class='va'>...</span><span class='op'>)</span></code></pre></div>
