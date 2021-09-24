@@ -54,3 +54,5 @@
 "[M-H+HCOONa]-"	1	66.980164	"HCOONa"	"H"	-1	FALSE
 "[M+H-H4O2]+"	1	-35.01385294	"H"	"H4O2"	1	TRUE
 "[M+H-CH2O2]+"	1	-44.99820287	"H"	"CH2O2"	1	TRUE
+"[M]+"	1	0	""	""	1	TRUE
+"[M]-"	1	0	""	""	1	FALSE
