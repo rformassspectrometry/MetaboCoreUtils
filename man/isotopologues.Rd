@@ -17,9 +17,9 @@ isotopologues(
 \item{x}{\code{matrix} with spectrum data (columns \code{mz} and \code{intensity}).}
 
 \item{substDefinition}{\code{matrix} or \code{data.frame} with definition of isotopic
-substitutions (columns \code{"name"}, \code{"degree"}, \code{"md"}, \code{"min_slope"},
-\code{"max_slope"}). The rows in this matrix have to be ordered by column
-\code{md} in increasing order. See \code{\link[=isotopicSubstitutionMatrix]{isotopicSubstitutionMatrix()}} for more
+substitutions (columns \code{"name"} and \code{"md"} are among the mandatory
+columns). The rows in this matrix have to be ordered by column \code{md}
+in increasing order. See \code{\link[=isotopicSubstitutionMatrix]{isotopicSubstitutionMatrix()}} for more
 information on the format and content.}
 
 \item{tolerance}{\code{numeric(1)} representing the absolute tolerance for the
@@ -68,14 +68,14 @@ pre-defined mass differences in \code{substDefinitions} (column \code{"md"}). Th
 is obtained by multiplying the m/z of the peaks for the \code{charge} expected for
 the ionized compounds.
 
-For matching peaks, the function next evaluates whether the intensity is
-within the expected (pre-defined) intensity range. Using \code{"min_slope"} and
-\code{"max_slope"} for the respective potentially matching isotopic substitution
-in \code{substDefinition}, the function estimates a (mass dependent) lower and
-upper intensity ratio limit based on the peak's mass.
+For matching peaks, the function next evaluates whether their intensity is
+within the expected (pre-defined) intensity range. Using \code{"LBint"},
+\code{"LBslope"}, \code{"UBint"}, \code{"UBslope"} of the previously matched isotopic
+substitution in \code{substDefinition}, the function estimates a (mass dependent)
+lower and upper intensity ratio limit based on the peak's mass.
 
-When some peaks are grouped together their indexes are
-excluded from the set of indexes that are searched for further groups.
+When some peaks are grouped together their indexes are excluded from the set
+of indexes that are searched for further groups.
 }
 \author{
 Andrea Vicini

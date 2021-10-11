@@ -4,7 +4,7 @@
 \alias{isotopicSubstitutionMatrix}
 \title{Definitions of isotopic substitutions}
 \usage{
-isotopicSubstitutionMatrix(source = c("HMDB"))
+isotopicSubstitutionMatrix(source = c("HMDB_NEUTRAL"))
 }
 \arguments{
 \item{source}{\code{character(1)} defining the set of predefined parameters and
@@ -24,37 +24,31 @@ as a prefix to the element and the number of atoms of the element as suffix.
 \verb{[13]C2[37]Cl3} describes thus an isotopic substitution containing 2 \verb{[13]C}
 isotopes and 3 \verb{[37]Cl} isotopes.
 
-Each row in the returned \code{data.frame} characterizes an isotopic substitution
-(which can involve isotopes of several elements or different isotopes of the
-same element). The provided isotopic substitutions are in general the most
-frequently observed substitutions in the database (e.g. HMDB) on which they
-were defined. Parameters (columns) defined for each isotopic substitution
-are:
+Each row in the returned \code{data.frame} is associated with an isotopic
+substitution (which can involve isotopes of several elements or different
+isotopes of the same element). In general for each isotopic substitution
+multiple rows are present in the \code{data.frame}. Each row provides parameters
+to compute bounds (for the ratio between the isotopologue peak and the
+monoisotopic one) on a certain mass range. The provided isotopic
+substitutions are in general the most frequently observed substitutions in
+the database (e.g. HMDB) on which they were defined. Parameters (columns)
+defined for each isotopic substitution are:
 \itemize{
-\item \code{"degree"}: the \emph{degree} of the isotopic substitution. Isotopic
-substitutions with a single element (such as \verb{[15]N1} or \verb{[13]C1}) are of
-degree 1 while isotopic substitutions with more isotopes are of a higher
-degree (\verb{[37]Cl5} and \verb{[34]S1[37]Cl4} are e.g. both of degree 5).
 \item \code{"minmass"}: the minimal mass of a compound for which the isotopic
 substitution was found. Peaks with a mass lower than this will most likely
 not have the respective isotopic substitution.
+\item \code{"maxmass"}: the maximal mass of a compound for which the isotopic
+substitution was found. Peaks with a mass higher than this will most likely
+not have the respective isotopic substitution.
 \item \code{"md"}: the mass difference between the monoisotopic peak and a peak of an
 isotopologue characterized by the respective isotopic substitution.
-\item \code{"min_slope"}: used to calculate the lower expected bound for the ratio
-between the probabilities of isotopologues associated to a given
-substitution and the corresponding monoisotopic isotopologues. If a linear
-relationship between the number of each element in the substitution and
-the monoisotopic mass of compounds having those elements can be assumed
-then the previously mentioned ratio has a polynomial trend with degree
-equal to the \emph{degree} of the isotopic substitution. The ratios for each
-compound and for a given substitution can be transformed by taking the root
-corresponding to \emph{degree} of the substitution. In that way a linear trend
-in the monoisotopic mass can be obtained for the ratios. \code{"min_slope"}
-represent the slope of a lower bound line for this trend. In other words
-for a given substitution we expect that the ratio between the intensity of
-a isotopologue of a given compound corresponding to that substitution and
-the intensity of the monoisotopic isotopologue will be= (monoisotopic mass * slope)^degree
-\item \code{"max_slope"}: used to calculate the expected upper intensity ratio bound.
+\item \code{"leftend"}: left endpoint of the mass interval.
+\item \code{"rightend"}: right endpoint of the mass interval.
+\item \code{"LBint"}: intercept of the lower bound line on the mass interval whose
+endpoints are \code{"leftend"} and \code{"rightend"}.
+\item \code{"LBslope"}: slope of the lower bound line on the mass interval.
+\item \code{"UBint"}: intercept of the upper bound line on the mass interval.
+\item \code{"UBslope"}: slope of the upper bound line on the mass interval.
 }
 }
 \author{

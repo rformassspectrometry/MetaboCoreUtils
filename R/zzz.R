@@ -11,8 +11,24 @@
     assign(".ADDUCTS_MULT", add_multi, envir = asNamespace(pkgname))
     assign(".ADDUCTS_ADD", add_add, envir = asNamespace(pkgname))
     
-    substs_hmdb <- utils::read.table(system.file("substitutions/hmdb.txt",
-                                            package = "MetaboCoreUtils"),
-                                sep = "\t", header = TRUE)
-    assign(".SUBSTS_HMDB", substs_hmdb, envir = asNamespace(pkgname))
+    substs_hmdb_neutral <-
+        utils::read.table(system.file("substitutions/hmdb_subst_neutral.txt",
+                                      package = "MetaboCoreUtils"),
+                          sep = "\t", header = TRUE)
+    assign(".SUBSTS_HMDB_NEUTRAL", substs_hmdb_neutral,
+           envir = asNamespace(pkgname))
+    
+    substs_hmdb_positive <-
+        utils::read.table(system.file("substitutions/hmdb_subst_positive.txt",
+                                      package = "MetaboCoreUtils"),
+                          sep = "\t", header = TRUE)
+    assign(".SUBSTS_HMDB_POSITIVE", substs_hmdb_positive,
+           envir = asNamespace(pkgname))
+    
+    substs_hmdb_negative <-
+        utils::read.table(system.file("substitutions/hmdb_subst_negative.txt",
+                                      package = "MetaboCoreUtils"),
+                          sep = "\t", header = TRUE)
+    assign(".SUBSTS_HMDB_NEGATIVE", substs_hmdb_negative,
+           envir = asNamespace(pkgname))
 }
