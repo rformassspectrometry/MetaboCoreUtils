@@ -56,17 +56,15 @@ isotopologue and the monoisotopic one. This ratio isn't the same for
 isotopologues corresponding to the same isotopic substitution but to
 different compounds. Through the \code{substDefinition} parameter we provide
 upper and lower values to compute bounds for each isotopic substitution
-(working for the isotopologues of different compounds corresponding to that
-substitution).
-.
+dependent on the peak's mass.
 }
 \details{
 The function iterates over the peaks (rows) in \code{x}. For each peak (which is
 assumed to be the monoisotopic peak) it searches other peaks in \code{x} with a
 difference in mass matching (given \code{ppm} and \code{tolerance}) any of the
 pre-defined mass differences in \code{substDefinitions} (column \code{"md"}). The mass
-is obtained by multiplying the m/z of the peaks for the \code{charge} expected for
-the ionized compounds.
+is obtained by multiplying the m/z of the peaks for the \code{charge} expected
+for the ionized compounds.
 
 For matching peaks, the function next evaluates whether their intensity is
 within the expected (pre-defined) intensity range. Using \code{"LBint"},
@@ -75,7 +73,27 @@ substitution in \code{substDefinition}, the function estimates a (mass dependent
 lower and upper intensity ratio limit based on the peak's mass.
 
 When some peaks are grouped together their indexes are excluded from the set
-of indexes that are searched for further groups.
+of indexes that are searched for further groups (i.e. peaks already assigned
+to an isotopologue group are not considered/tested again thus each peak can
+only be part of one isotopologue group).
+}
+\examples{
+
+## Read theoretical isotope pattern (high resolution) from example file
+x <- read.table(system.file("exampleSpectra",
+    "serine-alpha-lactose-caffeine.txt", package = "MetaboCoreUtils"),
+    header = TRUE)
+x <- x[order(x$mz), ]
+plot(x$mz, x$intensity, type = "h")
+
+isos <- isotopologues(x, ppm = 5)
+isos
+
+## highlight them in the plot
+for (i in seq_along(isos)) {
+    z <- isos[[i]]
+    points(x$mz[z], x$intensity[z], col = i + 1)
+}
 }
 \author{
 Andrea Vicini

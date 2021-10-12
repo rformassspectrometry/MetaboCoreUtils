@@ -1,0 +1,26 @@
+## Created with https://www.sisweb.com/mstools/isotope.htm
+mz	intensity	compound
+105.0426	100	serine
+106.03964	0.4	serine
+106.04596	3.2	serine
+106.04681	0.1	serine
+106.04888	0.1	serine
+107.04684	0.6	serine
+342.11627	100	alpha-lactose
+343.11963	13	alpha-lactose
+343.12048	0.4	alpha-lactose
+343.12255	0.4	alpha-lactose
+344.1205	1.8	alpha-lactose
+344.12051	0.4	alpha-lactose
+344.12298	0.8	alpha-lactose
+344.12384	0.1	alpha-lactose
+345.12386	0.2	alpha-lactose
+345.12387	0.1	alpha-lactose
+194.08039	100	caffeine
+195.07742	1.4	caffeine
+195.08375	8.7	caffeine
+195.0846	0.1	caffeine
+195.08667	0.2	caffeine
+196.08078	0.1	caffeine
+196.08463	0.4	caffeine
+196.0871	0.3	caffeine

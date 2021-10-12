@@ -51,6 +51,22 @@ endpoints are \code{"leftend"} and \code{"rightend"}.
 \item \code{"UBslope"}: slope of the upper bound line on the mass interval.
 }
 }
+\section{Available pre-calculated substitution matrices}{
+
+\itemize{
+\item \code{source = "HMDB"}: most common isotopic substitutions and parameters for
+these have been calculated for all compounds from the
+\href{https://hmdb.ca}{Human Metabolome Database} (HMDB, July 2021). Note that
+the substitutions were calculated on the \strong{neutral masses} (i.e. the
+chemical formulas of the compounds, not considering any adducts).
+}
+}
+
+\examples{
+
+## Get the substitution matrix calculated on HMDB
+isotopicSubstitutionMatrix("HMDB")
+}
 \author{
 Andrea Vicini
 }
