@@ -110,15 +110,16 @@ isotopologues <- function(x, substDefinition = isotopicSubstitutionMatrix(),
     if (!is.na(ii <- match(i, wtt))) {
       wtt <- wtt[-(1:ii)]
       cur_m <- x[i, 1] * charge
-      sub_ok <- which(substDefinition[, "leftend"] < cur_m & 
+      sub_ok <- which(substDefinition[, "leftend"] < cur_m &
                         substDefinition[, "rightend"] >= cur_m)
       cls <- closest(x[i, 1] + mzd[sub_ok], x[wtt, 1], tolerance = tolerance,
-                     ppm = ppm, duplicates = "closest")
+                     ppm = ppm, duplicates = "keep")
       if(any(!is.na(cls))) {
         int_ok <- .is_isotope_intensity_range(x[, 2][wtt[cls]], cur_m, x[i, 2],
-                                              substDefinition[sub_ok, , drop = FALSE])
+                                              substDefinition[sub_ok, ,
+                                                              drop = FALSE])
         if (length(int_ok)) {
-          lst[[i]] <- c(i, wtt[cls][int_ok])
+          lst[[i]] <- c(i, unique(wtt[cls][int_ok]))
           wtt <- wtt[-cls[int_ok]]
         }
       }
@@ -127,35 +128,34 @@ isotopologues <- function(x, substDefinition = isotopicSubstitutionMatrix(),
   lst[lengths(lst) > 0]
 }
 
-#' Same as .isotope_peaks, just using a logical vector instead of an integer
-#' with indices. This function is also slightly faster than .isotope_peaks.
+#' Version with parameter duplicates = "closest" for MsCoreUtils::closest
 #'
 #' @noRd
-.isotope_peaks2 <- function(x, substDefinition = substDefinition(),
-                            tolerance = 0, ppm = 20, seedMz = numeric(),
-                            charge = 1) {
-  to_test <- x[, 2] > 0
-  idxs <- which(to_test)
+.isotope_peaks2 <- function(x, substDefinition = isotopicSubstitutionMatrix(),
+                           tolerance = 0, ppm = 20, seedMz = numeric(),
+                           charge = 1) {
+  wtt <- which(x[, 2] > 0)
   if (length(seedMz))
-    idxs <- idxs[na.omit(closest(seedMz, x[to_test, 1], tolerance = tolerance,
-                                 ppm = ppm, duplicates = "closest"))]
+    idxs <- wtt[na.omit(closest(seedMz, x[wtt, 1], tolerance = tolerance,
+                                ppm = ppm, duplicates = "closest"))]
+  else idxs <- wtt
   lst <- vector(mode = "list", length = length(idxs))
   mzd <- substDefinition[, "md"] / charge
   for (i in idxs) {
-    if (to_test[i]) {
-      to_test[i] <- FALSE
-      wtt <- which(to_test)
+    if (!is.na(ii <- match(i, wtt))) {
+      wtt <- wtt[-(1:ii)]
       cur_m <- x[i, 1] * charge
-      sub_ok <- which(substDefinition[, "leftend"] < cur_m & 
+      sub_ok <- which(substDefinition[, "leftend"] < cur_m &
                         substDefinition[, "rightend"] >= cur_m)
       cls <- closest(x[i, 1] + mzd[sub_ok], x[wtt, 1], tolerance = tolerance,
                      ppm = ppm, duplicates = "closest")
       if(any(!is.na(cls))) {
         int_ok <- .is_isotope_intensity_range(x[, 2][wtt[cls]], cur_m, x[i, 2],
-                                              substDefinition[sub_ok, , drop = FALSE])
+                                              substDefinition[sub_ok, ,
+                                                              drop = FALSE])
         if (length(int_ok)) {
           lst[[i]] <- c(i, wtt[cls][int_ok])
-          to_test[wtt[cls][int_ok]] <- FALSE
+          wtt <- wtt[-cls[int_ok]]
         }
       }
     }
@@ -243,7 +243,7 @@ isotopologues <- function(x, substDefinition = isotopicSubstitutionMatrix(),
 #' @examples
 #'
 #' ## Get the substitution matrix calculated on HMDB
-#' isotopicSubstitutionMatrix("HMDB")
+#' isotopicSubstitutionMatrix("HMDB_NEUTRAL")
 isotopicSubstitutionMatrix <- function(source = c("HMDB_NEUTRAL")) {
     source <- match.arg(source)
     get(paste0(".SUBSTS_", toupper(source)))

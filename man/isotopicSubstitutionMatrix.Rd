@@ -65,7 +65,7 @@ chemical formulas of the compounds, not considering any adducts).
 \examples{
 
 ## Get the substitution matrix calculated on HMDB
-isotopicSubstitutionMatrix("HMDB")
+isotopicSubstitutionMatrix("HMDB_NEUTRAL")
 }
 \author{
 Andrea Vicini
