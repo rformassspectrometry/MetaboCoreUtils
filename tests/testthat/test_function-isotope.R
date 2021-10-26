@@ -1,10 +1,6 @@
 library(testthat)
 
 test_that("isotopologues works", {
-  substDef <- cbind(md = 1:5,
-                    degree = 1:5,
-                    min_slope = 1:5/5,
-                    max_slope = 2:6/5)
   substDef <- cbind(md = rep(c(1, 2), times = c(2, 3)),
                     leftend = c(c(50, 100), c(70, 100, 150)),
                     rightend = c(c(100, 150), c(100, 150, 220)),
@@ -79,13 +75,7 @@ subst_def <- isotopicSubstitutionMatrix("HMDB_NEUTRAL")
 test_that("isotopologues works on simulated spectra from HMDB", {
   expected_groups <- lapply(frmls, function(f) which(x[, "frmls"] == f))
   i_groups <- isotopologues(x[, 1:2], substDefinition = subst_def, ppm = 1)
-  # expect_equal(i_groups, expected_groups) gives error. isotopologue 
-  # function doesn't put peak number 10 into group 2. A problem in closest with 
-  # duplicates = "closest" (used by the function) cause peak 2 not to be matched.
-  # A part from this missed peak the found groups and the expected ones are
-  # the same
-  expect_equal(i_groups[-2], expected_groups[-2])
-  expect_equal(i_groups[[2]], expected_groups[[2]][-2])
+  expect_equal(i_groups, expected_groups)
 })
 
 test_that("isotopologues works on simulated spectra from HMDB + random peaks", {
@@ -101,40 +91,47 @@ test_that("isotopologues works on simulated spectra from HMDB + random peaks", {
   expect_equal(i_groups, expected_groups_n) # all groups correctly identified
   ## higher ppm: some problems occur
   i_groups <- isotopologues(x_n[, 1:2], substDefinition = subst_def, ppm = 20)
-  # Group 1 in additional to the expected peaks contains peaks c(33, 39)
+  # Group 1 in additional to the expected peaks contains peaks c(20, 33, 39)
   expected_groups_n[[1]]
   i_groups[[1]]
-  sbs <- closest(x_n[c(33, 39), "mz"],
+  sbs <- closest(x_n[c(20, 33, 39), "mz"],
                  x_n[i_groups[[1]][1], "mz"] + subst_def$md, ppm = 20,
                  tolerance = 0)
   subst_def[sbs, "name"]
   x_n[expected_groups_n[[1]][1], "frmls"]
   # The above mentioned peaks are matched to substitutions that are not possible
   # in the compound that originates the signal of the expected group.
-  # Group 2 is composed of two noise peaks whose mz difference match one of the
-  # substitutions
-  i_groups[[2]]
-  x_n[i_groups[[2]], "frmls"]
-  closest(x_n[45, "mz"], subst_def$md + x_n[2, "mz"] , ppm = 20, tolerance = 0)
-  # 3rd found group coincides with expected 2nd group  
+  # Group 3 coincides with expected 2nd group  
   expect_equal(i_groups[[3]], expected_groups_n[[2]])
   # 4th found group contains all the peaks in expected group 3 except peaks
-  # 33, 39. These peaks were mistakenly assigned to the first group found and
-  # therefore are no longer available in the subsequent searches
+  # 20, 33, 39. These peaks were mistakenly assigned to the first group found 
+  # and therefore are no longer available in the subsequent searches
   i_groups[[4]]
   expected_groups_n[[3]]
-  # Group 5 coincides with expected group 4
-  i_groups[[5]]
+  # Groups 2, 5, 6, 8, 11 are composed of noise peaks whose mz differences match 
+  # some of the substitutions
+  x_n[i_groups[[2]], "frmls"]
+  x_n[i_groups[[5]], "frmls"]
+  x_n[i_groups[[6]], "frmls"]
+  x_n[i_groups[[8]], "frmls"]
+  x_n[i_groups[[11]], "frmls"]
+
+  # closest(x_n[45, "mz"], subst_def$md + x_n[2, "mz"] , ppm = 20, tolerance = 0)
+  closest(x_n[c(53, 58), "mz"], subst_def$md + x_n[41, "mz"] , ppm = 20, 
+          tolerance = 0)
+  # Group 7 coincides with expected group 4
+  i_groups[[7]]
   expected_groups_n[[4]]
-  # Group 6 coincides with expected group 5
-  i_groups[[6]]
+  # Group 9 coincides with expected group 5
+  i_groups[[9]]
   expected_groups_n[[5]]
-  # Group 7 starts with a noise peak. Unfortunately peaks 93 and 103 match it
-  # and are grouped with it.
-  x_n[i_groups[[7]], "frmls"]
-  # Group 8 contains all the peaks of expected group 6 except 93 and 103 that 
-  # were mistakenly assigned to group 7
-  i_groups[[8]]
+  # Group 10 starts with a noise peak. Unfortunately peaks 87, 93, 98, 103 match
+  # it and are grouped with it.
+  x_n[i_groups[[10]], "frmls"]
+  # Group 12 contains peaks of expected group 6 but it's not right because
+  # the monoisotopic peak (87) was mistakenly assigned to group 10 along with
+  # some other of its peaks
+  i_groups[[12]]
   expected_groups_n[[6]]
 })
 
