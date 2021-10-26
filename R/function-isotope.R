@@ -112,11 +112,13 @@ isotopologues <- function(x, substDefinition = isotopicSubstitutionMatrix(),
       cur_m <- x[i, 1] * charge
       sub_ok <- which(substDefinition[, "leftend"] < cur_m &
                         substDefinition[, "rightend"] >= cur_m)
-      cls <- closest(x[i, 1] + mzd[sub_ok], x[wtt, 1], tolerance = tolerance,
+      cls <- closest(x[i, 1] + mzd[sub_ok], x[wtt, 1], tolerance = tolerance, 
                      ppm = ppm, duplicates = "keep")
-      if(any(!is.na(cls))) {
+      i_cls <- which(!is.na(cls))
+      cls <- cls[i_cls]
+      if(length(cls)) {
         int_ok <- .is_isotope_intensity_range(x[, 2][wtt[cls]], cur_m, x[i, 2],
-                                              substDefinition[sub_ok, ,
+                                              substDefinition[sub_ok[i_cls], ,
                                                               drop = FALSE])
         if (length(int_ok)) {
           lst[[i]] <- c(i, unique(wtt[cls][int_ok]))
@@ -149,9 +151,11 @@ isotopologues <- function(x, substDefinition = isotopicSubstitutionMatrix(),
                         substDefinition[, "rightend"] >= cur_m)
       cls <- closest(x[i, 1] + mzd[sub_ok], x[wtt, 1], tolerance = tolerance,
                      ppm = ppm, duplicates = "closest")
+      i_cls <- which(!is.na(cls))
+      cls <- cls[i_cls]
       if(any(!is.na(cls))) {
         int_ok <- .is_isotope_intensity_range(x[, 2][wtt[cls]], cur_m, x[i, 2],
-                                              substDefinition[sub_ok, ,
+                                              substDefinition[sub_ok[i_cls], ,
                                                               drop = FALSE])
         if (length(int_ok)) {
           lst[[i]] <- c(i, wtt[cls][int_ok])
@@ -164,16 +168,17 @@ isotopologues <- function(x, substDefinition = isotopicSubstitutionMatrix(),
 }
 #' @title Checking the intensity
 #'
-#' @param x intensity of the matching peaks. x has length equal to the number
-#' of rows of substDefinition. The i-th element of x represent the intensity
-#' associated to the peak whose mass difference is associated to the i-th
-#' `"md"` in `substDefinition` if any or NA.
+#' @param x intensity of the candidate isotopologue peaks. 
 #'
 #' @param m mass of the current (assumed monoisotopic) peak.
 #'
 #' @param intensity  intensity of the current (assumed monoisotopic) peak.
 #'
-#' @param substDefinition substitutions definition `matrix` or `data.frame`.
+#' @param substDefinition `matrix` or `data.frame` with the definition of the
+#' parameters to compute intensity bounds for the candidate peaks.
+#' `substDefinition` has a number of rows equal to the number of candidate peaks.
+#' The i-th row contains the parameters associated to the substitution to which
+#' we assume the i-th peak is matched.
 #'
 #' @return indexes of the intensities in `x` that are part of a isotopic group.
 #'
