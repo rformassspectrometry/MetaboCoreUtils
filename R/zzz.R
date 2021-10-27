@@ -11,8 +11,11 @@
     assign(".ADDUCTS_MULT", add_multi, envir = asNamespace(pkgname))
     assign(".ADDUCTS_ADD", add_add, envir = asNamespace(pkgname))
     
-    substs_hmdb <- utils::read.table(system.file("substitutions/hmdb.txt",
-                                            package = "MetaboCoreUtils"),
-                                sep = "\t", header = TRUE)
-    assign(".SUBSTS_HMDB", substs_hmdb, envir = asNamespace(pkgname))
+    txts <- dir(system.file("substitutions", package = "MetaboCoreUtils"),
+                full.names = TRUE, pattern = "txt$")
+    for (txt in txts) {
+        substs_hmdb <- utils::read.table(txt, sep = "\t", header = TRUE)
+        assign(paste0(".", toupper(sub(".txt", "", basename(txt)))),
+               substs_hmdb, envir = asNamespace(pkgname))
+    }
 }
