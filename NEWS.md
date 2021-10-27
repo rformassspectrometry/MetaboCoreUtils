@@ -1,5 +1,9 @@
 # MetaboCoreutils 1.1
 
+## MetaboCoreUtils 1.1.3
+
+- Add isotope detection functionality.
+
 ## MetaboCoreUtils 1.1.2
 
 - Add already charged adduct/ion to the adduct definition.
