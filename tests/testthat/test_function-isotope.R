@@ -229,39 +229,33 @@ performanceTest <- function() {
 
     A <- MetaboCoreUtils:::.isotope_peaks(xm, substm, ppm = 5)
     B <- MetaboCoreUtils:::.isotope_peaks_exhaustive(xm, substm, ppm = 5)
+    C <- MetaboCoreUtils:::.isotope_peaks_reverse(xm, substm, ppm = 5)
 
     microbenchmark(
         MetaboCoreUtils:::.isotope_peaks(xm, substm, ppm = 5),
-        MetaboCoreUtils:::.isotope_peaks_exhaustive(xm, substm, ppm = 5))
-    ## subst matrix as data.frame.
+        MetaboCoreUtils:::.isotope_peaks_exhaustive(xm, substm, ppm = 5),
+        MetaboCoreUtils:::.isotope_peaks_reverse(xm, substm, ppm = 5))
     ## Unit: microseconds
-    ##                                                              expr    min
-    ##             MetaboCoreUtils:::.isotope_peaks(xm, substm, ppm = 5)  266.8
-    ##  MetaboCoreUtils:::.isotope_peaks_exhaustive(xm, substm, ppm = 5) 2838.1
-    ##       lq     mean median     uq    max neval cld
-    ##   320.65  377.395  359.5  416.0  628.1   100  a
-    ##  3151.25 3455.195 3295.7 3618.3 6576.3   100   b
-
-    microbenchmark(
-        MetaboCoreUtils:::.isotope_peaks(xm, subst, ppm = 5),
-        MetaboCoreUtils:::.isotope_peaks_exhaustive(xm, subst, ppm = 5))
-    ## Unit: microseconds
-    ##                                                             expr    min      lq
-    ##             MetaboCoreUtils:::.isotope_peaks(xm, subst, ppm = 5)  567.1  640.10
-    ##  MetaboCoreUtils:::.isotope_peaks_exhaustive(xm, subst, ppm = 5) 5947.8 6181.65
-    ##      mean  median     uq     max neval cld
-    ##   803.475  704.45  822.6  4216.3   100  a
-    ##  7113.937 6749.40 7416.4 11979.1   100   b
+    ##                                                              expr   min     lq
+    ##             MetaboCoreUtils:::.isotope_peaks(xm, substm, ppm = 5) 240.3 271.10
+    ##  MetaboCoreUtils:::.isotope_peaks_exhaustive(xm, substm, ppm = 5) 779.5 856.85
+    ##     MetaboCoreUtils:::.isotope_peaks_reverse(xm, substm, ppm = 5) 210.5 238.65
+    ##     mean median    uq    max neval cld
+    ##  317.454 304.65 342.7  743.5   100  a
+    ##  972.414 932.15 985.6 4510.1   100   b
+    ##  275.806 276.20 296.6  397.7   100  a
 
     sps <- Spectra("/data/massspec/mzML/2017/2017_04/20170403_POOL_POS_7.mzML")
     x2 <- peaksData(sps[123])[[1L]]
 
     A <- MetaboCoreUtils:::.isotope_peaks(x2, substm, ppm = 5)
     B <- MetaboCoreUtils:::.isotope_peaks_exhaustive(x2, substm, ppm = 5)
+    C <- MetaboCoreUtils:::.isotope_peaks_reverse(x2, substm, ppm = 5)
 
     microbenchmark(
         MetaboCoreUtils:::.isotope_peaks(x2, substm, ppm = 5),
         MetaboCoreUtils:::.isotope_peaks_exhaustive(x2, substm, ppm = 5),
+        MetaboCoreUtils:::.isotope_peaks_reverse(x2, substm, ppm = 5),
         times = 10)
     ## Unit: milliseconds
     ##                                                              expr       min

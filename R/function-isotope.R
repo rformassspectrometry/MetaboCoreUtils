@@ -123,11 +123,53 @@ isotopologues <- function(x, substDefinition = isotopicSubstitutionMatrix(),
           cls <- cls[i_cls]
           if(length(cls)) {
               int_ok <- .is_isotope_intensity_range(
-                  x[, 2][wtt[cls]], cur_m, x[i, 2],
+                  x[wtt[cls], 2], cur_m, x[i, 2],
                   substDefinition[sub_ok[i_cls], , drop = FALSE])
               if (length(int_ok)) {
-                  lst[[i]] <- c(i, unique(wtt[cls][int_ok]))
-                  wtt <- wtt[-cls[int_ok]]
+                  cls <- unique(cls[int_ok])
+                  lst[[i]] <- c(i, wtt[cls])
+                  wtt <- wtt[-cls]
+              }
+          }
+      }
+  }
+  lst[lengths(lst) > 0]
+}
+
+#' performs the comparison "reverse", i.e. matching each peak against the
+#' isotopologue mz
+#'
+#' @noRd
+.isotope_peaks_reverse <- function(x, substDefinition =
+                                          isotopicSubstitutionMatrix(),
+                                   tolerance = 0, ppm = 20, seedMz = numeric(),
+                                   charge = 1) {
+  wtt <- which(x[, 2] > 0)
+  if (length(seedMz))
+    idxs <- wtt[na.omit(closest(seedMz, x[wtt, 1], tolerance = tolerance,
+                                ppm = ppm, duplicates = "closest",
+                                .check = FALSE))]
+  else idxs <- wtt
+  lst <- vector(mode = "list", length = length(idxs))
+  mzd <- substDefinition[, "md"] / charge
+  for (i in idxs) {
+      if (!is.na(ii <- match(i, wtt))) {
+          wtt <- wtt[-(1:ii)]
+          cur_m <- x[i, 1L] * charge
+          sub_ok <- which(substDefinition[, "leftend"] < cur_m &
+                          substDefinition[, "rightend"] >= cur_m)
+          cls <- closest(x[wtt, 1L], x[i, 1L] + mzd[sub_ok],
+                         tolerance = tolerance, ppm = ppm,
+                         duplicates = "keep", .check = FALSE)
+          i_cls <- which(!is.na(cls))
+          cls <- cls[i_cls]
+          if (length(cls)) {
+              int_ok <- unique(i_cls[.is_isotope_intensity_range(
+                  x[wtt[i_cls], 2L], cur_m, x[i, 2L],
+                  substDefinition[sub_ok[cls], , drop = FALSE])])
+              if (length(int_ok)) {
+                  lst[[i]] <- c(i, wtt[int_ok])
+                  wtt <- wtt[-int_ok]
               }
           }
       }
@@ -159,9 +201,9 @@ isotopologues <- function(x, substDefinition = isotopicSubstitutionMatrix(),
                                       seedMz = numeric(), charge = 1) {
     ## wtt integer: which peaks in x to test against.
     ## ii integer: which peaks to test
-    wtt <- which(x[, 2] > 0)
+    wtt <- which(x[, 2L] > 0)
     if (length(seedMz))
-        idxs <- wtt[na.omit(closest(seedMz, x[wtt, 1], tolerance = tolerance,
+        idxs <- wtt[na.omit(closest(seedMz, x[wtt, 1L], tolerance = tolerance,
                                     ppm = ppm, duplicates = "closest",
                                     .check = FALSE))]
     else idxs <- wtt
@@ -178,23 +220,23 @@ isotopologues <- function(x, substDefinition = isotopicSubstitutionMatrix(),
             ## peaks (wtt) would match that with m/z and intensity.
             m <- cur_m + mzd[sub_ok]
             mppm <- ppm(m, ppm) + tolerance
-            iso_peaks <- numeric()
+            iso_peaks <- integer()
             for (j in seq_along(mppm)) {
                 cls <- which(abs(x[wtt, 1L] - m[j]) <= mppm[j])
                 ## cls are the matching peaks in x/wtt for this one substitution
                 if (length(cls)) {
                     int_ok <- .is_isotope_intensity_range(
-                        x[, 2][wtt[cls]], rep(cur_m, length(cls)), cur_int,
+                        x[wtt[cls], 2L], rep(cur_m, length(cls)), cur_int,
                         substDefinition[sub_ok[j], , drop = FALSE])
                     if (length(int_ok))
-                        iso_peaks <- c(iso_peaks, wtt[cls][int_ok])
+                        iso_peaks <- c(iso_peaks, cls[int_ok])
                 }
             }
-            iso_peaks <- sort(unique(iso_peaks))
             ## don't test matching peaks again.
             if (length(iso_peaks)) {
-                wtt <- wtt[!wtt %in% iso_peaks]
-                lst[[i]] <- c(i, iso_peaks)
+                iso_peaks <- sort(unique(iso_peaks))
+                lst[[i]] <- c(i, wtt[iso_peaks])
+                wtt <- wtt[-iso_peaks]
             }
         }
     }
