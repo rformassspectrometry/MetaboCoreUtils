@@ -102,31 +102,34 @@ isotopologues <- function(x, substDefinition = isotopicSubstitutionMatrix(),
   wtt <- which(x[, 2] > 0)
   if (length(seedMz))
     idxs <- wtt[na.omit(closest(seedMz, x[wtt, 1], tolerance = tolerance,
-                                ppm = ppm, duplicates = "closest"))]
+                                ppm = ppm, duplicates = "closest",
+                                .check = FALSE))]
   else idxs <- wtt
   lst <- vector(mode = "list", length = length(idxs))
   mzd <- substDefinition[, "md"] / charge
   for (i in idxs) {
-    if (!is.na(ii <- match(i, wtt))) {
-      wtt <- wtt[-(1:ii)]
-      cur_m <- x[i, 1] * charge
-      sub_ok <- which(substDefinition[, "leftend"] < cur_m &
-                        substDefinition[, "rightend"] >= cur_m)
-      cls <- closest(x[i, 1] + mzd[sub_ok], x[wtt, 1], tolerance = tolerance,
-                     ppm = ppm, duplicates = "keep")
-      i_cls <- which(!is.na(cls))
-      cls <- cls[i_cls]
-      if(length(cls)) {
-        int_ok <- .is_isotope_intensity_range(x[, 2][wtt[cls]], cur_m, x[i, 2],
-                                              substDefinition[sub_ok[i_cls], ,
-                                                              drop = FALSE])
-        if (length(int_ok)) {
-          lst[[i]] <- c(i, unique(wtt[cls][int_ok]))
-          wtt <- wtt[-cls[int_ok]]
-        }
+      if (!is.na(ii <- match(i, wtt))) {
+          wtt <- wtt[-(1:ii)]
+          cur_m <- x[i, 1] * charge
+          sub_ok <- which(substDefinition[, "leftend"] < cur_m &
+                          substDefinition[, "rightend"] >= cur_m)
+          cls <- closest(x[i, 1] + mzd[sub_ok], x[wtt, 1],
+                         tolerance = tolerance,
+                         ppm = ppm, duplicates = "keep")
+          i_cls <- which(!is.na(cls))
+          cls <- cls[i_cls]
+          if(length(cls)) {
+              int_ok <- .is_isotope_intensity_range(
+                  x[, 2][wtt[cls]], cur_m, x[i, 2],
+                  substDefinition[sub_ok[i_cls], , drop = FALSE])
+              if (length(int_ok)) {
+                  lst[[i]] <- c(i, unique(wtt[cls][int_ok]))
+                  wtt <- wtt[-cls[int_ok]]
+              }
+          }
       }
-    }
-    lst[lengths(lst) > 0]
+  }
+  lst[lengths(lst) > 0]
 }
 
 
@@ -145,7 +148,8 @@ isotopologues <- function(x, substDefinition = isotopicSubstitutionMatrix(),
 #' @author Andrea Vicini, Johannes Rainer
 #'
 #' @noRd
-.isotope_peaks_exhaustive <- function(x, substDefinition = substDefinition(),
+.isotope_peaks_exhaustive <- function(x, substDefinition =
+                                             isotopicSubstitutionMatrix(),
                                       tolerance = 0, ppm = 20,
                                       seedMz = numeric(), charge = 1) {
     ## wtt logical: which peaks in x to test against.
@@ -272,6 +276,7 @@ isotopologues <- function(x, substDefinition = isotopicSubstitutionMatrix(),
     }
     lst[lengths(lst) > 0]
 }
+
 #' @title Checking the intensity
 #'
 #' @param x intensity of the candidate isotopologue peaks.
@@ -294,6 +299,7 @@ isotopologues <- function(x, substDefinition = isotopicSubstitutionMatrix(),
   R_max <- m * substDefinition[, "UBslope"] + substDefinition[, "UBint"]
   which(x >= R_min * intensity & x <= R_max * intensity)
 }
+
 #' @title Definitions of isotopic substitutions
 #'
 #' @description
