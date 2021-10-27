@@ -40,7 +40,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">MetaboCoreUtils</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.2</span>
       </span>
     </div>
 
@@ -97,7 +97,7 @@ document.addEventListener("DOMContentLoaded", function() {
     if (links[i].hostname != window.location.hostname)
       links[i].target = '_blank';
 });
-</script><p><strong>Package</strong>: <em><a href="https://bioconductor.org/packages/3.14/MetaboCoreUtils" class="external-link">MetaboCoreUtils</a></em><br><strong>Authors</strong>: Johannes Rainer [aut, cre] (<a href="https://orcid.org/0000-0002-6977-7147" class="external-link uri">https://orcid.org/0000-0002-6977-7147</a>), Michael Witting [aut] (<a href="https://orcid.org/0000-0002-1462-4426" class="external-link uri">https://orcid.org/0000-0002-1462-4426</a>), Andrea Vicini [aut]<br><strong>Last modified:</strong> 2021-10-27 07:26:04<br><strong>Compiled</strong>: Wed Oct 27 07:33:44 2021</p>
+</script><p><strong>Package</strong>: <em><a href="https://bioconductor.org/packages/3.14/MetaboCoreUtils" class="external-link">MetaboCoreUtils</a></em><br><strong>Authors</strong>: Johannes Rainer [aut, cre] (<a href="https://orcid.org/0000-0002-6977-7147" class="external-link uri">https://orcid.org/0000-0002-6977-7147</a>), Michael Witting [aut] (<a href="https://orcid.org/0000-0002-1462-4426" class="external-link uri">https://orcid.org/0000-0002-1462-4426</a>), Andrea Vicini [aut]<br><strong>Last modified:</strong> 2021-10-27 07:37:21<br><strong>Compiled</strong>: Wed Oct 27 07:39:27 2021</p>
 <div class="section level1">
 <h1 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
 </h1>
@@ -146,7 +146,8 @@ document.addEventListener("DOMContentLoaded", function() {
 ## [28] "[2M+H]+"           "[2M+NH4]+"         "[2M+Na]+"         
 ## [31] "[2M+K]+"           "[2M+C2H3N+H]+"     "[2M+C2H3N+Na]+"   
 ## [34] "[3M+H]+"           "[M+H-NH3]+"        "[M+H-H2O]+"       
-## [37] "[M+H-Hexose-H2O]+" "[M+H-H4O2]+"       "[M+H-CH2O2]+"</code></pre>
+## [37] "[M+H-Hexose-H2O]+" "[M+H-H4O2]+"       "[M+H-CH2O2]+"     
+## [40] "[M]+"</code></pre>
 <p>With that we can use the <code>mass2mz</code> function to calculate the m/z for a set of compounds assuming the generation of certain ions. In the example below we define masses for some theoretical compounds and calculate their expected m/z assuming that ions <code>"[M+H]+"</code> and <code>"[M+Na]+"</code> are generated.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">masses</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">123</span>, <span class="fl">842</span>, <span class="fl">324</span><span class="op">)</span>
@@ -257,7 +258,7 @@ document.addEventListener("DOMContentLoaded", function() {
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-## [1] MetaboCoreUtils_1.1.1 BiocStyle_2.21.4     
+## [1] MetaboCoreUtils_1.1.2 BiocStyle_2.21.4     
 ## 
 ## loaded via a namespace (and not attached):
 ##  [1] cluster_2.1.2            knitr_1.36               magrittr_2.0.1          
