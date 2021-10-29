@@ -113,6 +113,8 @@ correctRindex <- function(x, y) {
 
 #' function for linear interpolation
 #' @noRd
+#'
+#' @importFrom stats approx
 rtiLinear <- function(x, rti, yleft = NA, yright = NA, ...) {
 
   approx(rti$rtime,
