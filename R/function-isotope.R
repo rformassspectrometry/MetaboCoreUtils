@@ -362,3 +362,89 @@ availableIsotopicSubstitutionMatrix <- function() {
 ##     })
 ##     do.call(rbind, res)
 ## }
+
+
+#' Instead of matching a peak's m/z against all individual isotopic substitution
+#' this function first groups isotopic substitutions if the difference of their
+#' m/z is smaller than the user provided `ppm` and `tolerance`. The peak's m/z
+#' is then matched against the mean m/z of the grouped isotopic substitutions.
+#' The intensity evaluation is then performed for each individual substitution
+#' of the matched groups.
+#'
+#' @details
+#'
+#' This version avoids the inherent problem of all other approaches using the
+#' `closest` function: the m/z of a peak can match potentially many isotopic
+#' substitutions, but using `closest` only a single match is reported. Thus, the
+#' intensity evaluation is performed for this single match only which can result
+#' in false negative findings.
+#'
+#' The *exhaustive* method, by comparing each peak against each isotopic
+#' substitution solves this m:n mapping exactly, but is very slow. This version
+#' groups isotopic substitutions before matching them if the difference of their
+#' m/z is smaller than tolerated (based on `ppm` and `tolerance`). This reduces
+#' the problem from m:n to m:1, i.e. each peak is supposed to match a single
+#' isotopic substitution *group*. The intensity evaluation is then performed
+#' against all individual substitutions of a matching isotopic substitution
+#' group. The limitation of this method is that the m/z of a peak is compared
+#' against the mean m/z of an isotopic substitution group and due to this
+#' average m/z a peak might not be matched to a group, even if it would to an
+#' individual substitution.
+#'
+#' @author Johannes Rainer
+#'
+#' @importFrom MsCoreUtils group
+#'
+#' @noRd
+.isotope_peaks_grouped <- function(x, substDefinition =
+                                          isotopicSubstitutionMatrix(),
+                                   tolerance = 0, ppm = 20, seedMz = numeric(),
+                                   charge = 1) {
+    wtt <- which(x[, 2] > 0)
+    if (length(seedMz))
+        idxs <- wtt[na.omit(closest(seedMz, x[wtt, 1], tolerance = tolerance,
+                                    ppm = ppm, duplicates = "closest",
+                                    .check = FALSE))]
+    else idxs <- wtt
+    lst <- vector(mode = "list", length = length(idxs))
+    mzd <- substDefinition[, "md"] / charge
+    for (i in idxs) {
+        if (!is.na(ii <- match(i, wtt))) {
+            wtt <- wtt[-(1:ii)]
+            cur_m <- x[i, 1] * charge
+            sub_ok <- which(substDefinition[, "leftend"] < cur_m &
+                            substDefinition[, "rightend"] >= cur_m)
+            ## group substitutions if the difference between them is smaller
+            ## than we could detect with the given ppm
+            grps <- unname(group(mzd[sub_ok] + cur_m,
+                                 tolerance = tolerance, ppm = ppm))
+            grps_md <- split(mzd[sub_ok], grps)
+            ## calculate mean md per group
+            grp_md <- vapply(grps_md, mean, numeric(1), USE.NAMES = FALSE)
+            ## match each peak from spectrum against groups
+            cls <- closest(x[wtt, 1L], x[i, 1L] + grp_md, tolerance = tolerance,
+                           ppm = ppm, duplicates = "keep", .check = FALSE)
+            i_cls <- which(!is.na(cls)) # index of peaks
+            cls <- cls[i_cls]           # index of sub groups
+            if (length(cls)) {
+                ## each peak can match multiple substitutions and we need to
+                ## "ungroup" the substitutions again for the intensity
+                ## comparison
+                pk_idx <- rep(i_cls, lengths(grps_md[cls]))
+                sub_idx <- unlist(split(seq_along(grps), grps)[cls],
+                                  use.names = FALSE)
+                int_ok <- .is_isotope_intensity_range(
+                    x[wtt[pk_idx], 2L],
+                    cur_m, x[i, 2L],
+                    substDefinition[sub_ok[sub_idx], , drop = FALSE]
+                )
+                if (length(int_ok)) {
+                    cls <- unique(pk_idx[int_ok])
+                    lst[[i]] <- c(i, wtt[cls])
+                    wtt <- wtt[-cls]
+                }
+            }
+        }
+    }
+    lst[lengths(lst) > 0]
+}
