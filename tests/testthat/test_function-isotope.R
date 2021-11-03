@@ -203,6 +203,28 @@ test_that(".isotope_peaks_exhaustive works on second test set", {
     expect_equal(i_groups[3], expected_groups[3])
 })
 
+test_that(".isotope_peaks_grouped works on second test set", {
+    x <- read.table(system.file("exampleSpectra",
+                                "serine-alpha-lactose-caffeine.txt",
+                                package = "MetaboCoreUtils"),
+                    header = TRUE)
+    x <- x[order(x$mz), ]
+    rownames(x) <- NULL
+    expected_groups <- lapply(unique(x$compound),
+                              function(f) which(x[, "compound"] == f))
+    subst_def <- isotopicSubstitutionMatrix("HMDB_NEUTRAL")
+
+    res <- MetaboCoreUtils:::.isotope_peaks_grouped(x[, 1:2],
+                                                    substDefinition = subst_def,
+                                                    ppm = 5)
+    expect_equal(res, expected_groups)
+
+    res2 <- MetaboCoreUtils:::.isotope_peaks_grouped(x[, 1:2],
+                                                    substDefinition = subst_def,
+                                                    ppm = 20)
+    expect_equal(res, res2)
+})
+
 test_that("availableIsotopicSubstitutionMatrix works", {
     res <- availableIsotopicSubstitutionMatrix()
     expect_equal(res, c("HMDB_NEGATIVE", "HMDB_NEUTRAL", "HMDB_POSITIVE"))
@@ -230,11 +252,15 @@ performanceTest <- function() {
     A <- MetaboCoreUtils:::.isotope_peaks(xm, substm, ppm = 5)
     B <- MetaboCoreUtils:::.isotope_peaks_exhaustive(xm, substm, ppm = 5)
     C <- MetaboCoreUtils:::.isotope_peaks_reverse(xm, substm, ppm = 5)
+    D <- MetaboCoreUtils:::.isotope_peaks_grouped(xm, substm, ppm = 5)
+    expect_equal(B, D)
 
     microbenchmark(
         MetaboCoreUtils:::.isotope_peaks(xm, substm, ppm = 5),
         MetaboCoreUtils:::.isotope_peaks_exhaustive(xm, substm, ppm = 5),
-        MetaboCoreUtils:::.isotope_peaks_reverse(xm, substm, ppm = 5))
+        MetaboCoreUtils:::.isotope_peaks_reverse(xm, substm, ppm = 5),
+        MetaboCoreUtils:::.isotope_peaks_grouped(xm, substm, ppm = 5)
+        )
     ## Unit: microseconds
     ##                                                              expr   min     lq
     ##             MetaboCoreUtils:::.isotope_peaks(xm, substm, ppm = 5) 240.3 271.10
@@ -245,17 +271,21 @@ performanceTest <- function() {
     ##  972.414 932.15 985.6 4510.1   100   b
     ##  275.806 276.20 296.6  397.7   100  a
 
-    sps <- Spectra("/data/massspec/mzML/2017/2017_04/20170403_POOL_POS_7.mzML")
+
+    sps <- Spectra("/Users/jo/Projects/git/EuracBiomedicalResearch/end-to-end-untargeted-metabolomics/data/mzML/POOL_1.mzML")
+    ## sps <- Spectra("/data/massspec/mzML/2017/2017_04/20170403_POOL_POS_7.mzML")
     x2 <- peaksData(sps[123])[[1L]]
 
     A <- MetaboCoreUtils:::.isotope_peaks(x2, substm, ppm = 5)
     B <- MetaboCoreUtils:::.isotope_peaks_exhaustive(x2, substm, ppm = 5)
     C <- MetaboCoreUtils:::.isotope_peaks_reverse(x2, substm, ppm = 5)
+    D <- MetaboCoreUtils:::.isotope_peaks_grouped(x2, substm, ppm = 5)
 
     microbenchmark(
         MetaboCoreUtils:::.isotope_peaks(x2, substm, ppm = 5),
         MetaboCoreUtils:::.isotope_peaks_exhaustive(x2, substm, ppm = 5),
         MetaboCoreUtils:::.isotope_peaks_reverse(x2, substm, ppm = 5),
+        MetaboCoreUtils:::.isotope_peaks_grouped(x2, substm, ppm = 5),
         times = 10)
     ## Unit: milliseconds
     ##                                                              expr       min
@@ -276,4 +306,10 @@ performanceTest <- function() {
     ##        lq      mean    median        uq       max neval cld
     ##   423.209  454.8592  435.6449  443.8982  642.5738    10  a
     ##  5480.699 5588.5448 5505.4043 5579.1719 6107.9860    10   b
+
+
+    ## Summary:
+    ## - reverse version is not working well
+    ## - exhaustive is exact but slow.
+    ## - grouped is faster than exhaustive, but can yield different results.
 }
