@@ -1,3 +1,9 @@
+# MetaboCoreutils 1.3
+
+## MetaboCoreUtils 1.3.1
+
+- Add isotope detection functionality.
+
 # MetaboCoreutils 1.1
 
 ## MetaboCoreUtils 1.1.3
