@@ -7,17 +7,19 @@
 convertMT(x, y, method = c("single", "multiple"), ...)
 }
 \arguments{
-\item{x}{\code{numeric} vector with migration times}
+\item{x}{\code{numeric} vector with migration times in minutes.}
 
 \item{y}{\code{data.frame}data.frame containing three columns, where the first
-holds the ID of the respective markers, the second the determined migration
-time (here referred to as \code{rtime}) of the EOF marker in the same run in which
-the migration time is going to be transformed and the third column the
-respective mobility of the EOF markers. Each row hold the values for one
-EOF marker. The minimum of required markers is one.}
+holds the ID of the respective markers, the second the determined
+migration time in minutes (here referred to as \code{rtime}) of the EOF marker
+in the same run in which the migration time is going to be transformed
+and the third column the respective mobility of the EOF markers. Each row
+hold the values for one EOF marker. The minimum of required markers is
+one.}
 
 \item{method}{\code{character} single character that defines if the transformation
-is either performed with a single ("single") EOF marker or multiple ("multiple").}
+is either performed with a single ("single") EOF marker or multiple
+("multiple").}
 
 \item{FUN}{\code{function} function defining how the conversion is performed,
 either a single EOF marker is used (convertSingle) or multiple markers
@@ -27,23 +29,22 @@ either a single EOF marker is used (convertSingle) or multiple markers
 \code{numeric} vector of same length as x with effective mobility values.
 }
 \description{
-\code{convertMT} uses a list of known EOF markers with to convert migration times (MTs)
-to effective mobilities (µeff).
-By using the information of the EOF markers (which is their MT and µeff),
-it is possible to transform the MT-scale (for consistency called rtime)
-into the µeff scale. This is used in CE-MS to overcome MT shifts originating
-from EOF fluctuations in different runs.
+\code{convertMT} uses a list of known EOF markers with to convert migration times
+(MTs) to effective mobilities (µeff). By using the information of the EOF
+markers (which is their MT and µeff), it is possible to transform the MT-
+scale (for consistency called rtime) into the µeff scale. This is used in
+CE-MS to overcome MT shifts originating from EOF fluctuations in different
+runs.
 }
 \examples{
-
-
 rtime <- c(10,20,30,40,50,60,70,80,90,100)
 marker <- data.frame(markerID = c("marker1", "marker2"),
   rtime = c(20,80),
   mobility = c(0, 2000))
 
 convertMT(rtime, marker, method = "multiple")
-convertMT(rtime, marker, method = "single", U = 30, L = 90, markerID = "marker1")
+convertMT(rtime, marker, method = "single", U = 30, L = 90, 
+          markerID = "marker1")
 }
 \author{
 Liesa Salzer
