@@ -11,17 +11,14 @@
 #'
 #' @param x `numeric` vector with migration times in minutes.
 #'
-#' @param y `data.frame`data.frame containing three columns, where the first
-#'     holds the ID of the respective markers, the second the determined 
-#'     migration time in minutes (here referred to as `rtime`) of the EOF marker 
-#'     in the same run in which the migration time is going to be transformed 
-#'     and the third column the respective mobility of the EOF markers. Each row 
-#'     hold the values for one EOF marker. The minimum of required markers is 
-#'     one. 
-#'
-#' @param method `character` single character that defines if the transformation 
-#'     is either performed with a single ("single") EOF marker or multiple 
-#'     ("multiple").
+#' @param y `data.frame`data.frame containing minimum two columns, where one
+#'     holds the determined migration time in minutes (here referred to as 
+#'     `rtime`) of the EOF marker in the same run in which the migration time is 
+#'     going to be transformed and the other column the respective mobility of 
+#'     the EOF markers. Each row hold the values for one EOF marker. The minimum 
+#'     of required markers is one. One or two entries are required for the 
+#'     transformation and depending on the number of entries the transformation 
+#'     will be performed either on one or both markers.
 #'
 #' @param FUN `function` function defining how the conversion is performed,
 #'     either a single EOF marker is used (convertSingle) or multiple markers 
@@ -38,28 +35,18 @@
 #' marker <- data.frame(markerID = c("marker1", "marker2"),
 #'   rtime = c(20,80),
 #'   mobility = c(0, 2000))
-#' 
-#' convertMT(rtime, marker, method = "multiple")
-#' convertMT(rtime, marker, method = "single", U = 30, L = 90, 
-#'           markerID = "marker1")
+#' convertMT(rtime, marker)
 
-convertMT <- function(x, y, 
-                      method = c("single", "multiple"), ...) {
+convertMT <- function(x, y, ...) {
   ## sanity checks
   if (missing(x)) {
     stop("Missing vector 'x' with migration times")}
   if (missing(y)) {
     stop("Missing data.frame 'y' with marker information")}
-  if (!ncol(y) == 3) {
-    stop("'y' requires exact three columns")}
-  if (!all(c("markerID","rtime","mobility") %in% colnames(y))) {
-    stop("Missing column 'markerID', 'rtime', 'mobility' or all")}
-  if (missing(method)) {
-    stop("'method' is missing")}
-  if (length(method) != 1) {
-    stop("Conversion method is either 'single' or 'multiple'")}
-  if (!method %in% c("single", "multiple")) {
-    stop("Conversion method is either 'single' or 'multiple'")}
+  if (!all(c("rtime","mobility") %in% colnames(y))) {
+    stop("Missing column 'rtime', 'mobility' or all")}
+  if (nrow(y) == 0 | nrow(y) > 2) {
+    stop("'y' requires one or two entries")}
   if (!is.numeric(x)) {
     stop("'x' needs to be numeric")}
   if (!is.numeric((y$rtime))) {
@@ -67,7 +54,7 @@ convertMT <- function(x, y,
   if (!is.numeric((y$mobility))) {
     stop("'mobility' entries in 'y' needs to be numeric")}
   
-  if ("single" %in% method) {
+  if (nrow(y) == 1) {
     FUN = convertSingle
     FUN <- match.fun(FUN)
   do.call(FUN, list(x = x,
@@ -87,26 +74,23 @@ convertMT <- function(x, y,
 #' function for MT transformation using single marker 
 #' @noRd
 #'
-convertSingle <- function(x, y, markerID, 
+convertSingle <- function(x, y, 
                           tR = 0, U, L, ...) {
   ## sanity checks
-  if (nrow(y) == 0) stop("'y' contains no entries")
   if (missing(U)) stop("'U' is missing")
   if (missing(L)) stop("'L' is missing")
-  if (missing(markerID)) stop("'markerID' is missing")
 
   ## Calculate electrical field strength
   E <- U / L
   
   ## Extract MT and mobility for markerID
-  tEOF <- y[y$markerID == markerID,]$rtime
-  mEOF <- y[y$markerID == markerID,]$mobility
+  tEOF <- y$rtime
+  mEOF <- y$mobility
   
   ## Calculate mobility  
   mEOF + L / E * ((1 / (x - (tR / 2))) - (1 / (tEOF - (tR / 2))))
 
 }
-
 
 
 

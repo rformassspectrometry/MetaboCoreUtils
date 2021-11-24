@@ -4,22 +4,19 @@
 \alias{convertMT}
 \title{Convert migration times to effective mobility}
 \usage{
-convertMT(x, y, method = c("single", "multiple"), ...)
+convertMT(x, y, ...)
 }
 \arguments{
 \item{x}{\code{numeric} vector with migration times in minutes.}
 
-\item{y}{\code{data.frame}data.frame containing three columns, where the first
-holds the ID of the respective markers, the second the determined
-migration time in minutes (here referred to as \code{rtime}) of the EOF marker
-in the same run in which the migration time is going to be transformed
-and the third column the respective mobility of the EOF markers. Each row
-hold the values for one EOF marker. The minimum of required markers is
-one.}
-
-\item{method}{\code{character} single character that defines if the transformation
-is either performed with a single ("single") EOF marker or multiple
-("multiple").}
+\item{y}{\code{data.frame}data.frame containing minimum two columns, where one
+holds the determined migration time in minutes (here referred to as
+\code{rtime}) of the EOF marker in the same run in which the migration time is
+going to be transformed and the other column the respective mobility of
+the EOF markers. Each row hold the values for one EOF marker. The minimum
+of required markers is one. One or two entries are required for the
+transformation and depending on the number of entries the transformation
+will be performed either on one or both markers.}
 
 \item{FUN}{\code{function} function defining how the conversion is performed,
 either a single EOF marker is used (convertSingle) or multiple markers
@@ -41,10 +38,7 @@ rtime <- c(10,20,30,40,50,60,70,80,90,100)
 marker <- data.frame(markerID = c("marker1", "marker2"),
   rtime = c(20,80),
   mobility = c(0, 2000))
-
-convertMT(rtime, marker, method = "multiple")
-convertMT(rtime, marker, method = "single", U = 30, L = 90, 
-          markerID = "marker1")
+convertMT(rtime, marker)
 }
 \author{
 Liesa Salzer
