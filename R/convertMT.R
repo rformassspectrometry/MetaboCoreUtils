@@ -2,27 +2,33 @@
 #'
 #' @description
 #'
-#' `convertMT` uses a list of known EOF markers with to convert migration times 
-#' (MTs) to effective mobilities (µeff). By using the information of the EOF 
-#' markers (which is their MT and µeff), it is possible to transform the MT-
-#' scale (for consistency called rtime) into the µeff scale. This is used in 
-#' CE-MS to overcome MT shifts originating from EOF fluctuations in different 
-#' runs.
+#' `convertMtime` performs effective mobility scale transformation of CE(-MS) 
+#' data, which is used to overcome variations of the migration times, caused by 
+#' differences in the Electroosmotic Flow (EOF) between different runs. 
+#' In order to monitor the EOF and perform the transformation, neutral or 
+#' charged EOF markers are spiked into the sample before analysis. The 
+#' information of the EOF markers (migration time and effective mobility) will 
+#' be then used to perform the  effective mobility transformation of the 
+#' migration time scale. 
 #'
 #' @param x `numeric` vector with migration times in minutes.
 #'
-#' @param y `data.frame`data.frame containing minimum two columns, where one
-#'     holds the determined migration time in minutes (here referred to as 
-#'     `rtime`) of the EOF marker in the same run in which the migration time is 
-#'     going to be transformed and the other column the respective mobility of 
-#'     the EOF markers. Each row hold the values for one EOF marker. The minimum 
-#'     of required markers is one. One or two entries are required for the 
-#'     transformation and depending on the number of entries the transformation 
-#'     will be performed either on one or both markers.
-#'
-#' @param FUN `function` function defining how the conversion is performed,
-#'     either a single EOF marker is used (convertSingle) or multiple markers 
-#'     (convertMultiple)
+#' @param rtime `numeric` vector that holds the migration times (in minutes) of 
+#' either one or two EOF markers in the same run of which the migration time is 
+#' going to be transformed.
+#' 
+#' @param mobility `numeric` vector containing the respective effective mobility
+#' (in in mm^2 / (kV * min)) of the EOF markers. If two markers are used, one is
+#' expected to be the neutral marker, i.e. having a mobility of 0. 
+#' 
+#' @param tR `numeric` a single value that defines the time (in minutes) of the 
+#' electrical field ramp. The default is 0. 
+#' 
+#' @param U `numeric` a single value that defines the voltage (in kV) applied. 
+#' Note that for reversed polarity CE mode a negative value is needed.
+#'  
+#' @param L `numeric` a single value that defines the total length (in mm) of 
+#' the capillary that was used for CE(-MS) analysis. 
 #'
 #' @return `numeric` vector of same length as x with effective mobility values. 
 #'
@@ -31,84 +37,66 @@
 #' @export
 #'
 #' @examples
-#' rtime <- c(10,20,30,40,50,60,70,80,90,100)
-#' marker <- data.frame(markerID = c("marker1", "marker2"),
-#'   rtime = c(20,80),
-#'   mobility = c(0, 2000))
-#' convertMT(rtime, marker)
+#'  rtime <- c(10,20,30,40,50,60,70,80,90,100)
+#'  marker_rt <-  c(20,80)
+#'  mobility <- c(0, 2000) 
+#'  convertMTime(rtime, marker_rt, mobility)
 
-convertMT <- function(x, y, ...) {
+convertMTime <- function(x = numeric(), rtime = numeric(),
+                         mobility = numeric(), tR = 0,
+                         U = numeric(), L = numeric()) {
   ## sanity checks
-  if (missing(x)) {
-    stop("Missing vector 'x' with migration times")}
-  if (missing(y)) {
-    stop("Missing data.frame 'y' with marker information")}
-  if (!all(c("rtime","mobility") %in% colnames(y))) {
-    stop("Missing column 'rtime', 'mobility' or all")}
-  if (nrow(y) == 0 | nrow(y) > 2) {
-    stop("'y' requires one or two entries")}
-  if (!is.numeric(x)) {
-    stop("'x' needs to be numeric")}
-  if (!is.numeric((y$rtime))) {
-    stop("'rtime' entries in 'y' needs to be numeric")}
-  if (!is.numeric((y$mobility))) {
-    stop("'mobility' entries in 'y' needs to be numeric")}
+  if (!length(x)) return(x)
+  if (length(rtime) != length(mobility))
+    stop("'rtime' and 'mobility' need to have the same length")
+  if (!length(rtime) %in% c(1, 2))
+    stop("'rtime' and 'mobility' are expected to have either length 1 or 2 but not ", 
+         length(rtime))
+  if (length(tR) != 1) {
+    tR <- tR[1]
+    warning("Length or parameter 'tR' > 1 but using only first element")
+  }
   
-  if (nrow(y) == 1) {
-    FUN = convertSingle
-    FUN <- match.fun(FUN)
-  do.call(FUN, list(x = x,
-                    y = y,
-                    ...))
-  } else { ## if "multiple" %in% method
-    FUN = convertMultiple
-    FUN <- match.fun(FUN)
-    do.call(FUN, list(x = x,
-                      y = y,
-                      ...))
-  } 
-                                
+  
+  if (length(rtime) == 1) 
+    convertSingle(x, rtime = rtime, mobility = mobility, 
+                  tR = tR, U = U, L = L)
+   else convertMultiple(x, rtime = rtime, mobility = mobility, tR = tR)
+                               
 }
 
 
 #' function for MT transformation using single marker 
 #' @noRd
 #'
-convertSingle <- function(x, y, 
-                          tR = 0, U, L, ...) {
-  ## sanity checks
-  if (missing(U)) stop("'U' is missing")
-  if (missing(L)) stop("'L' is missing")
-
-  ## Calculate electrical field strength
-  E <- U / L
+convertSingle <- function(x = numeric(), rtime = numeric(), 
+                          mobility = numeric(), tR = 0, 
+                          U = numeric(), L = numeric()) {
   
-  ## Extract MT and mobility for markerID
-  tEOF <- y$rtime
-  mEOF <- y$mobility
+  ## sanity checks
+  if (length(U) != 1 & length(L) != 1)
+    stop("'U' and 'L' are expected to be of length 1.")
   
   ## Calculate mobility  
-  mEOF + L / E * ((1 / (x - (tR / 2))) - (1 / (tEOF - (tR / 2))))
-
+  mobility + ((L^2) / U) * 
+    ((1 / (x - (tR / 2))) - (1 / (rtime - (tR / 2))))
+  
 }
-
 
 
 #' function for MT transformation using multiple markers 
 #' @noRd
 #'
-convertMultiple <- function(x, y, tR = 0, ...) {
-  ## sanity checks
-  if (nrow(y) < 2) stop("'y' requires min 2 rows")
-  
-  ## Extract MT and mobility for markers 
-  tEOF <- y[y$mobility == 0,]$rtime
-  tA <- y[y$mobility != 0,]$rtime
-  mA <- y[y$mobility != 0,]$mobility
+convertMultiple <- function(x = numeric(), rtime = numeric(), 
+                            mobility = numeric(), tR = 0) {
+
+  is_zero <- mobility == 0
+  if (!any(is_zero))
+    stop("One of the two provided mobility values is expected to be 0.")
   
   ## Calculate mobility   
-  ((x - tEOF) / (tA - tEOF)) * 
-    ((tA - (tR / 2)) / (x - (tR / 2))) * mA
+  ((x - rtime[is_zero]) / (rtime[!is_zero] - rtime[is_zero])) * 
+    ((rtime[!is_zero] - (tR / 2)) / (x - (tR / 2))) * mobility[!is_zero]
   
 }
 
