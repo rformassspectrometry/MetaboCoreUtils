@@ -25,10 +25,12 @@
 #' electrical field ramp. The default is 0. 
 #' 
 #' @param U `numeric` a single value that defines the voltage (in kV) applied. 
-#' Note that for reversed polarity CE mode a negative value is needed.
+#' Note that for reversed polarity CE mode a negative value is needed. Is only 
+#' used if the transformation is performed based a single marker.
 #'  
 #' @param L `numeric` a single value that defines the total length (in mm) of 
-#' the capillary that was used for CE(-MS) analysis. 
+#' the capillary that was used for CE(-MS) analysis. Is only used if the 
+#' transformation is performed based on a single marker.
 #'
 #' @return `numeric` vector of same length as x with effective mobility values. 
 #'
@@ -40,9 +42,9 @@
 #'  rtime <- c(10,20,30,40,50,60,70,80,90,100)
 #'  marker_rt <-  c(20,80)
 #'  mobility <- c(0, 2000) 
-#'  convertMTime(rtime, marker_rt, mobility)
+#'  convertMtime(rtime, marker_rt, mobility)
 
-convertMTime <- function(x = numeric(), rtime = numeric(),
+convertMtime <- function(x = numeric(), rtime = numeric(),
                          mobility = numeric(), tR = 0,
                          U = numeric(), L = numeric()) {
   ## sanity checks
