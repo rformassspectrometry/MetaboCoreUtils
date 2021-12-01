@@ -2,6 +2,10 @@
 
 ## MetaboCoreUtils 1.3.1
 
+- Function for conversion of migration time to effective mobility in CE-MS.
+
+## MetaboCoreUtils 1.3.1
+
 - Add isotope detection functionality.
 
 # MetaboCoreutils 1.1
