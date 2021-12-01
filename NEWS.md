@@ -1,6 +1,6 @@
 # MetaboCoreutils 1.3
 
-## MetaboCoreUtils 1.3.1
+## MetaboCoreUtils 1.3.2
 
 - Function for conversion of migration time to effective mobility in CE-MS.
 
