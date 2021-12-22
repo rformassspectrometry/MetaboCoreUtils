@@ -237,6 +237,7 @@ addElements <- function(x, y = NA_character_) {
 #' @examples
 #'
 #' calcExactMass("C6H12O6")
+#' calcExactMass("NH3")
 calcExactMass <- function(x) {
   # sanity checks of input
   if(is.character(x)) {

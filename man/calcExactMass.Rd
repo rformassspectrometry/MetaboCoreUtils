@@ -15,6 +15,11 @@ calcExactMass(x)
 \description{
 \code{calcExactMass} calculates the exact mass from a formula.
 }
+\examples{
+
+calcExactMass("C6H12O6")
+calcExactMass("NH3")
+}
 \author{
 Michael Witting
 }

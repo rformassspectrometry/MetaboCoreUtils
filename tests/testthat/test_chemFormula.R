@@ -51,5 +51,4 @@ test_that("correct calculation of masses", {
     ## calculation of exact masses from named numeric vector
     expect_equal(round(calcExactMass(countElements("C6H12O6")), 4), 180.0634)
     expect_equal(round(calcExactMass(countElements("C11H12N2O2")), 4), 204.0899)
-    
 })

@@ -19,6 +19,7 @@
                substs, envir = asNamespace(pkgname))
     }
     
+    # get mono isotopes for exact mass calculation
     mono <- utils::read.table(system.file("isotopes/isotope_definition.txt",
                                           package = "MetaboCoreUtils"),
                               sep = "\t", header = TRUE)
