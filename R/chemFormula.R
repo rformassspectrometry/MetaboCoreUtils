@@ -219,3 +219,51 @@ addElements <- function(x, y = NA_character_) {
     result <- tapply(x, names(x), sum)
     pasteElements(result)
 }
+
+#' @title Calculate exact mass
+#'
+#' @description
+#'
+#' `calcExactMass` calculates the exact mass from a formula.
+#'
+#' @param x `character` or `numeric ` single character or named numeric
+#'
+#' @return `numeric` Resulting exact mass
+#'
+#' @author Michael Witting
+#'
+#' @export
+#'
+#' @examples
+#'
+#' calcExactMass("C6H12O6")
+calcExactMass <- function(x) {
+  # sanity checks of input
+  if(is.character(x)) {
+    x <- countElements(x)
+  } else if(is.numeric(x) && is.null(names(x))) {
+    stop("x must be either a character or a named numeric vector")
+  } 
+  ## get all elements
+  elements <- names(x)
+  ## check that all elements are contained in element table
+  if(!all(elements %in% .MONOISOTOPES$element)) {
+    message("not for all elements a monoisotopic mass is found")
+    return(NA_real_)
+  }
+  mass <- 0.0
+  ## iterate through all elements and add to mass
+  for (atom in elements) {
+    atom_mass <- .MONOISOTOPES$exact_mass[which(.MONOISOTOPES$element == atom)]
+    if(!is.na(atom_mass)) {
+      if (x[[atom]] > 0) {
+        if (x[[atom]] == 1) {
+          mass <- mass + atom_mass
+        } else {
+          mass <- mass + atom_mass * x[atom]
+        }
+      }
+    }
+  }
+  unname(mass)
+}
