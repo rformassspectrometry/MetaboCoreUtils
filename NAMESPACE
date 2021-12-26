@@ -3,7 +3,7 @@
 export(addElements)
 export(adductNames)
 export(adducts)
-export(calcExactMass)
+export(calculateMass)
 export(containsElements)
 export(convertMtime)
 export(correctRindex)
