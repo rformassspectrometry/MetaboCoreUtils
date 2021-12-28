@@ -7,23 +7,21 @@
 countElements(x)
 }
 \arguments{
-\item{x}{\code{character(1)} representing a chemical formula.}
+\item{x}{\code{character()} representing a chemical formula.}
 }
 \value{
-\code{integer} with the element counts (names being elements).
+\code{list} of \code{integer} with the element counts (names being elements).
 }
 \description{
-\code{countElements} parses a string representing a chemical formula into a named
+\code{countElements} parses strings representing a chemical formula into a named
 vector of element counts.
 }
 \examples{
-
-countElements("C6H12O6")
-countElements("C11H12N2O2")
+countElements(c("C6H12O6", "C11H12N2O2"))
 }
 \seealso{
 \code{\link[=pasteElements]{pasteElements()}}
 }
 \author{
-Michael Witting
+Michael Witting and Sebastian Gibb
 }
