@@ -7,9 +7,9 @@
 containsElements(x, y)
 }
 \arguments{
-\item{x}{\code{character} Single string with a chemical formula}
+\item{x}{\code{character} strings with a chemical formula}
 
-\item{y}{\code{character} Single string with a chemical formula that shall be
+\item{y}{\code{character} strings with a chemical formula that shall be
 contained in \code{x}}
 }
 \value{
@@ -24,5 +24,5 @@ containsElements("C6H12O6", "H2O")
 containsElements("C6H12O6", "NH3")
 }
 \author{
-Michael Witting
+Michael Witting and Sebastian Gibb
 }

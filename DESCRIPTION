@@ -23,11 +23,14 @@ Authors@R:
       person(given = "Liesa", family = "Salzer",
                      email = "liesa.salzer@helmholtz-muenchen.de",
                      role = "ctb",
-                     comment = c(ORCID = "0000-0003-0761-0656")))
+                     comment = c(ORCID = "0000-0003-0761-0656")),
+      person(given = "Sebastian", family = "Gibb",
+                     email = "mail@sebastiangibb.de",
+                     role = "ctb",
+                     comment = c(ORCID = "0000-0001-7406-4443")))
 Depends:
     R (>= 4.0)
 Imports:
-    stringr,
     utils,
     MsCoreUtils
 Suggests:

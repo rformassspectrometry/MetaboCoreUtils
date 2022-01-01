@@ -7,10 +7,10 @@
 pasteElements(x)
 }
 \arguments{
-\item{x}{\code{integer} with element counts, names being individual elements.}
+\item{x}{\code{list}/\code{integer} with element counts, names being individual elements.}
 }
 \value{
-\code{character(1)} with the chemical formula.
+\code{character()} with the chemical formulas.
 }
 \description{
 \code{pasteElements} creates a chemical formula from element counts (such as
@@ -25,5 +25,5 @@ pasteElements(elements)
 \code{\link[=countElements]{countElements()}}
 }
 \author{
-Michael Witting
+Michael Witting and Sebastian Gibb
 }

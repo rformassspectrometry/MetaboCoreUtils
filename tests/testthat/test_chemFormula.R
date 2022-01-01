@@ -1,44 +1,96 @@
-test_that("correct parsing of chemical formula", {
-    ## formula to list
-    formula_list <- countElements("C6H12O6")
-    expect_equal(unname(formula_list["C"]), 6)
-    expect_equal(unname(formula_list["H"]), 12)
-    expect_equal(unname(formula_list["O"]), 6)
-
-    expect_warning(countElements(c("C3H2O5", "H2O")))
-
-    formula_list <- c("C" = 6,
-                      "H" = 12,
-                      "O" = 6)
-
-    expect_equal(pasteElements(formula_list), "C6H12O6")
-
-    ## standardize formula
-    expect_equal(standardizeFormula("H12C6O6"), "C6H12O6")
-
-    expect_equal(countElements(character()), integer())
-})
-
 test_that("correct formula mathematics", {
     ## check if formula contains specific sub formulae
-    expect_equal(containsElements("C6H12O6", "H2O"), TRUE)
-    expect_equal(containsElements("C6H12O6", "NH3"), FALSE)
+    expect_identical(containsElements("C6H12O6", "H2O"), TRUE)
+    expect_identical(containsElements("C6H12O6", "NH3"), FALSE)
 
     ## check formula subtraction (single formulae)
-    expect_equal(subtractElements("C6H12O6", "H2O"), "C6H10O5")
-    expect_equal(subtractElements("C6H12O6", "NH3"), NA_character_)
+    expect_identical(subtractElements("C6H12O6", "H2O"), "C6H10O5")
+    expect_identical(subtractElements("C6H12O6", "NH3"), NA_character_)
 
     ## check formula subtration (multiple formulae)
-    expect_equal(subtractElements("C6H12O6", c("H2O", "H2O")), "C6H8O4")
-    expect_equal(subtractElements("C6H12O6", c("H2O", "NH3")), NA_character_)
+    expect_identical(
+        subtractElements("C6H12O6", c("H2O", "H2O")),
+        c("C6H10O5", "C6H10O5")
+    )
+    expect_identical(
+        subtractElements("C6H12O6", c("H2O", "NH3")),
+        c("C6H10O5", NA_character_)
+    )
 
     ## check formula addition (single formula)
-    expect_equal(addElements("C6H12O6", "Na"), "C6H12O6Na")
+    expect_identical(addElements("C6H12O6", "Na"), "C6H12O6Na")
 
     ## check formula addition (multiple formulae)
-    expect_equal(addElements(c("C6H12O6", "Na")), "C6H12O6Na")
-    expect_equal(addElements("C6H12O6", c("H2O", "Na")), "C6H14O7Na")
+    expect_identical(addElements("C6H12O6", "Na"), "C6H12O6Na")
+    expect_identical(
+        addElements("C6H12O6", c("H2O", "Na")),
+        c("C6H14O7", "C6H12O6Na")
+    )
+})
 
-    expect_equal(addElements(c("H2O", NA)), "H2O")
-    expect_equal(addElements(c("H2O")), "H2O")
+test_that("countElements", {
+    expect_identical(
+        countElements("C6H12O6"),
+        list(C6H12O6 = c(C = 6L, H = 12L, O = 6L))
+    )
+    expect_identical(
+        countElements(c("C6H12O6", "H2O")),
+        list(C6H12O6 = c(C = 6L, H = 12L, O = 6L), H2O = c(H = 2L, O = 1L))
+    )
+})
+
+test_that("pasteElements", {
+    expect_identical(pasteElements(c(C = 6, O = 6, H = 12)), "C6H12O6")
+    expect_identical(pasteElements(c(C = 1, O = 1, H = 3)), "CH3O")
+    expect_identical(
+        pasteElements(list(c(C = 6, O = 6, H = 12), c(H = 2, O = 1))),
+        c("C6H12O6", "H2O")
+    )
+})
+
+test_that(".sort_elements", {
+    expect_identical(
+        .sort_elements(c("H", "O", "S", "P", "C", "N", "Na", "Fe")),
+        c("C", "H", "N", "O", "S", "P", "Fe", "Na")
+    )
+})
+
+test_that("standardizeFormula", {
+    expect_identical(
+        standardizeFormula(c("C6O6H12", "OH2")),
+        c(C6O6H12 = "C6H12O6", OH2 = "H2O")
+    )
+})
+
+test_that("containsElements", {
+    expect_true(containsElements("C6H12O6", "H2O"))
+    expect_false(containsElements("C6H12O6", "NH3"))
+    expect_identical(
+        containsElements("C6H12O6", c("H2O", "NH3")),
+        c(TRUE, FALSE)
+    )
+})
+
+test_that("subtractElements", {
+    expect_identical(subtractElements("C6H12O6", "H2O"), "C6H10O5")
+    expect_identical(
+        subtractElements(c("C6H12O6", "C6H12O6"), c("H2O", "NH3")),
+        c("C6H10O5", NA_character_)
+    )
+    expect_identical(
+        subtractElements("C6H12O6", c("H2O", "NH3")),
+        c("C6H10O5", NA_character_)
+    )
+})
+
+test_that("addElements", {
+    expect_identical(addElements("C6H12O6", "H2O"), "C6H14O7")
+    expect_identical(
+        addElements(c("C6H12O6", "C6H12O6"), c("H2O", "NH3")),
+        c("C6H14O7", "C6H15NO6")
+    )
+    expect_identical(
+        addElements("C6H12O6", c("H2O", "NH3")),
+        c("C6H14O7", "C6H15NO6")
+    )
 })

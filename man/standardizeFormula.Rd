@@ -7,13 +7,13 @@
 standardizeFormula(x)
 }
 \arguments{
-\item{x}{\code{character} Single string with the chemical formula to standardize.}
+\item{x}{\code{character}, strings with the chemical formula to standardize.}
 }
 \value{
-\code{character} Single string with the standardized chemical formula.
+\code{character} strings with the standardized chemical formula.
 }
 \description{
-\code{standardizeFormula} standardizes a supplied chemical chem_formula according
+\code{standardizeFormula} standardizes a supplied chemical formula according
 to the Hill notation system.
 }
 \examples{
@@ -24,5 +24,5 @@ standardizeFormula("C6O6H12")
 \code{\link[=pasteElements]{pasteElements()}} \code{\link[=countElements]{countElements()}}
 }
 \author{
-Michael Witting
+Michael Witting and Sebastian Gibb
 }

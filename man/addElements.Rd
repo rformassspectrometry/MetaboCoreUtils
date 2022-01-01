@@ -4,12 +4,13 @@
 \alias{addElements}
 \title{Combine chemical formulae}
 \usage{
-addElements(x, y = NA_character_)
+addElements(x, y)
 }
 \arguments{
-\item{x}{\code{character} Vector with 1 or more chemical formulae to be added}
+\item{x}{\code{character} strings with chemical formula}
 
-\item{y}{\code{character} Vector with 1 or more chemical formulae to be added}
+\item{y}{\code{character} strings with chemical formula that
+should be added from \code{x}}
 }
 \value{
 \code{character} Resulting formula
@@ -24,5 +25,5 @@ addElements("C6H12O6", "Na")
 addElements("C6H12O6", c("Na", "H2O"))
 }
 \author{
-Michael Witting
+Michael Witting and Sebastian Gibb
 }

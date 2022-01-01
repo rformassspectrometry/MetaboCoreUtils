@@ -7,9 +7,9 @@
 subtractElements(x, y)
 }
 \arguments{
-\item{x}{\code{character} Single string with chemical formula}
+\item{x}{\code{character} strings with chemical formula}
 
-\item{y}{\code{character}  Single or multiple strings with chemical formula that
+\item{y}{\code{character} strings with chemical formula that
 should be subtracted from \code{x}}
 }
 \value{
@@ -25,5 +25,5 @@ subtractElements("C6H12O6", "H2O")
 subtractElements("C6H12O6", "NH3")
 }
 \author{
-Michael Witting
+Michael Witting and Sebastian Gibb
 }
