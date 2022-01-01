@@ -97,7 +97,7 @@ document.addEventListener("DOMContentLoaded", function() {
     if (links[i].hostname != window.location.hostname)
       links[i].target = '_blank';
 });
-</script><p><strong>Package</strong>: <em><a href="https://bioconductor.org/packages/3.15/MetaboCoreUtils" class="external-link">MetaboCoreUtils</a></em><br><strong>Authors</strong>: Johannes Rainer [aut, cre] (<a href="https://orcid.org/0000-0002-6977-7147" class="external-link uri">https://orcid.org/0000-0002-6977-7147</a>), Michael Witting [aut] (<a href="https://orcid.org/0000-0002-1462-4426" class="external-link uri">https://orcid.org/0000-0002-1462-4426</a>), Andrea Vicini [aut], Liesa Salzer [ctb] (<a href="https://orcid.org/0000-0003-0761-0656" class="external-link uri">https://orcid.org/0000-0003-0761-0656</a>)<br><strong>Last modified:</strong> 2021-12-01 14:53:46<br><strong>Compiled</strong>: Wed Dec 1 15:10:09 2021</p>
+</script><p><strong>Package</strong>: <em><a href="https://bioconductor.org/packages/3.15/MetaboCoreUtils" class="external-link">MetaboCoreUtils</a></em><br><strong>Authors</strong>: Johannes Rainer [aut, cre] (<a href="https://orcid.org/0000-0002-6977-7147" class="external-link uri">https://orcid.org/0000-0002-6977-7147</a>), Michael Witting [aut] (<a href="https://orcid.org/0000-0002-1462-4426" class="external-link uri">https://orcid.org/0000-0002-1462-4426</a>), Andrea Vicini [aut], Liesa Salzer [ctb] (<a href="https://orcid.org/0000-0003-0761-0656" class="external-link uri">https://orcid.org/0000-0003-0761-0656</a>), Sebastian Gibb [ctb] (<a href="https://orcid.org/0000-0001-7406-4443" class="external-link uri">https://orcid.org/0000-0001-7406-4443</a>)<br><strong>Last modified:</strong> 2022-01-01 07:40:38<br><strong>Compiled</strong>: Sat Jan 1 07:51:52 2022</p>
 <div class="section level1">
 <h1 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
 </h1>
@@ -167,7 +167,8 @@ document.addEventListener("DOMContentLoaded", function() {
 <code class="sourceCode R"><span class="va">frml</span> <span class="op">&lt;-</span> <span class="st">"Na3C4"</span>
 <span class="va">frml</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/standardizeFormula.html">standardizeFormula</a></span><span class="op">(</span><span class="va">frml</span><span class="op">)</span>
 <span class="va">frml</span></code></pre></div>
-<pre><code><span class="co">## [1] "C4Na3"</span></code></pre>
+<pre><code><span class="co">##   Na3C4 </span>
+<span class="co">## "C4Na3"</span></code></pre>
 <p>Next we add <code>"H2O"</code> to the formula using the <code>addElements</code> function.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">frml</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/addElements.html">addElements</a></span><span class="op">(</span><span class="va">frml</span>, <span class="st">"H2O"</span><span class="op">)</span>
@@ -181,7 +182,8 @@ document.addEventListener("DOMContentLoaded", function() {
 <p>The counts for individual elements in a chemical formula can be calculated with the <code>countElements</code> function.</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/countElements.html">countElements</a></span><span class="op">(</span><span class="va">frml</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">##  C  H  O Na </span>
+<pre><code><span class="co">## $C4HONa3</span>
+<span class="co">##  C  H  O Na </span>
 <span class="co">##  4  1  1  3</span></code></pre>
 </div>
 <div class="section level2">
@@ -240,7 +242,7 @@ document.addEventListener("DOMContentLoaded", function() {
 <div class="section level1 unnumbered">
 <h1 class="unnumbered" id="session-information">Session information<a class="anchor" aria-label="anchor" href="#session-information"></a>
 </h1>
-<pre><code><span class="co">## R Under development (unstable) (2021-11-16 r81199)</span>
+<pre><code><span class="co">## R Under development (unstable) (2021-12-30 r81418)</span>
 <span class="co">## Platform: x86_64-pc-linux-gnu (64-bit)</span>
 <span class="co">## Running under: Ubuntu 20.04.3 LTS</span>
 <span class="co">## </span>
@@ -259,19 +261,19 @@ document.addEventListener("DOMContentLoaded", function() {
 <span class="co">## [1] stats     graphics  grDevices utils     datasets  methods   base     </span>
 <span class="co">## </span>
 <span class="co">## other attached packages:</span>
-<span class="co">## [1] MetaboCoreUtils_1.3.2 BiocStyle_2.23.0     </span>
+<span class="co">## [1] MetaboCoreUtils_1.3.2 BiocStyle_2.23.1     </span>
 <span class="co">## </span>
 <span class="co">## loaded via a namespace (and not attached):</span>
-<span class="co">##  [1] cluster_2.1.2       knitr_1.36          magrittr_2.0.1     </span>
-<span class="co">##  [4] BiocGenerics_0.41.2 MASS_7.3-54         MsCoreUtils_1.7.0  </span>
-<span class="co">##  [7] clue_0.3-60         R6_2.5.1            ragg_1.2.0         </span>
+<span class="co">##  [1] cluster_2.1.2       knitr_1.37          magrittr_2.0.1     </span>
+<span class="co">##  [4] BiocGenerics_0.41.2 MASS_7.3-54         MsCoreUtils_1.7.1  </span>
+<span class="co">##  [7] clue_0.3-60         R6_2.5.1            ragg_1.2.1         </span>
 <span class="co">## [10] rlang_0.4.12        fastmap_1.1.0       stringr_1.4.0      </span>
-<span class="co">## [13] tools_4.2.0         xfun_0.28           jquerylib_0.1.4    </span>
+<span class="co">## [13] tools_4.2.0         xfun_0.29           jquerylib_0.1.4    </span>
 <span class="co">## [16] systemfonts_1.0.3   htmltools_0.5.2     yaml_2.2.1         </span>
-<span class="co">## [19] digest_0.6.29       rprojroot_2.0.2     pkgdown_2.0.0.9000 </span>
+<span class="co">## [19] digest_0.6.29       rprojroot_2.0.2     pkgdown_2.0.1.9000 </span>
 <span class="co">## [22] crayon_1.4.2        bookdown_0.24       textshaping_0.3.6  </span>
-<span class="co">## [25] BiocManager_1.30.16 purrr_0.3.4         S4Vectors_0.33.5   </span>
-<span class="co">## [28] sass_0.4.0          fs_1.5.1            memoise_2.0.1      </span>
+<span class="co">## [25] BiocManager_1.30.16 purrr_0.3.4         S4Vectors_0.33.8   </span>
+<span class="co">## [28] sass_0.4.0          fs_1.5.2            memoise_2.0.1      </span>
 <span class="co">## [31] cachem_1.0.6        evaluate_0.14       rmarkdown_2.11     </span>
 <span class="co">## [34] stringi_1.7.6       compiler_4.2.0      bslib_0.3.1        </span>
 <span class="co">## [37] desc_1.4.0          stats4_4.2.0        jsonlite_1.7.2</span></code></pre>
@@ -295,7 +297,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.0.9000.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.9000.</p>
 </div>
 
       </footer>
