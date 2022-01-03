@@ -18,4 +18,11 @@
         assign(paste0(".", toupper(sub(".txt", "", basename(txt)))),
                substs, envir = asNamespace(pkgname))
     }
+    
+    # get mono isotopes for exact mass calculation
+    mono <- utils::read.table(system.file("isotopes/isotope_definition.txt",
+                                          package = "MetaboCoreUtils"),
+                              sep = "\t", header = TRUE)
+    mono <- do.call(rbind, by(mono, mono$element, function(x) x[which.max(x$rel_abundance), ]))
+    assign(".MONOISOTOPES", mono, envir = asNamespace(pkgname))
 }

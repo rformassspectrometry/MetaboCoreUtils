@@ -94,3 +94,13 @@ test_that("addElements", {
         c("C6H14O7", "C6H15NO6")
     )
 })
+
+test_that("correct calculation of masses", {
+    ## calculation of exact masses from character
+    expect_equal(round(calcExactMass("C6H12O6"), 4), 180.0634)
+    expect_equal(round(calcExactMass("C11H12N2O2"), 4), 204.0899)
+  
+    ## calculation of exact masses from named numeric vector
+    expect_equal(round(calcExactMass(countElements("C6H12O6")), 4), 180.0634)
+    expect_equal(round(calcExactMass(countElements("C11H12N2O2")), 4), 204.0899)
+})
