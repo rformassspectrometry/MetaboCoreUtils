@@ -40,7 +40,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">MetaboCoreUtils</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.3.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.3.4</span>
       </span>
     </div>
 
@@ -97,7 +97,7 @@ document.addEventListener("DOMContentLoaded", function() {
     if (links[i].hostname != window.location.hostname)
       links[i].target = '_blank';
 });
-</script><p><strong>Package</strong>: <em><a href="https://bioconductor.org/packages/3.15/MetaboCoreUtils" class="external-link">MetaboCoreUtils</a></em><br><strong>Authors</strong>: Johannes Rainer [aut, cre] (<a href="https://orcid.org/0000-0002-6977-7147" class="external-link uri">https://orcid.org/0000-0002-6977-7147</a>), Michael Witting [aut] (<a href="https://orcid.org/0000-0002-1462-4426" class="external-link uri">https://orcid.org/0000-0002-1462-4426</a>), Andrea Vicini [aut], Liesa Salzer [ctb] (<a href="https://orcid.org/0000-0003-0761-0656" class="external-link uri">https://orcid.org/0000-0003-0761-0656</a>), Sebastian Gibb [ctb] (<a href="https://orcid.org/0000-0001-7406-4443" class="external-link uri">https://orcid.org/0000-0001-7406-4443</a>)<br><strong>Last modified:</strong> 2022-01-01 07:47:05<br><strong>Compiled</strong>: Sat Jan 1 07:59:40 2022</p>
+</script><p><strong>Package</strong>: <em><a href="https://bioconductor.org/packages/3.15/MetaboCoreUtils" class="external-link">MetaboCoreUtils</a></em><br><strong>Authors</strong>: Johannes Rainer [aut, cre] (<a href="https://orcid.org/0000-0002-6977-7147" class="external-link uri">https://orcid.org/0000-0002-6977-7147</a>), Michael Witting [aut] (<a href="https://orcid.org/0000-0002-1462-4426" class="external-link uri">https://orcid.org/0000-0002-1462-4426</a>), Andrea Vicini [aut], Liesa Salzer [ctb] (<a href="https://orcid.org/0000-0003-0761-0656" class="external-link uri">https://orcid.org/0000-0003-0761-0656</a>), Sebastian Gibb [ctb] (<a href="https://orcid.org/0000-0001-7406-4443" class="external-link uri">https://orcid.org/0000-0001-7406-4443</a>)<br><strong>Last modified:</strong> 2022-01-03 09:36:40<br><strong>Compiled</strong>: Mon Jan 3 09:38:57 2022</p>
 <div class="section level1">
 <h1 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
 </h1>
@@ -107,14 +107,14 @@ document.addEventListener("DOMContentLoaded", function() {
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/RforMassSpectrometry/MetaboCoreUtils" class="external-link">"MetaboCoreUtils"</a></span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/ls.html" class="external-link">ls</a></span><span class="op">(</span>pos <span class="op">=</span> <span class="st">"package:MetaboCoreUtils"</span><span class="op">)</span></code></pre></div>
 <pre><code><span class="co">##  [1] "addElements"                "adductNames"               </span>
-<span class="co">##  [3] "adducts"                    "containsElements"          </span>
-<span class="co">##  [5] "convertMtime"               "correctRindex"             </span>
-<span class="co">##  [7] "countElements"              "indexRtime"                </span>
-<span class="co">##  [9] "internalStandardMixNames"   "internalStandards"         </span>
-<span class="co">## [11] "isotopicSubstitutionMatrix" "isotopologues"             </span>
-<span class="co">## [13] "mass2mz"                    "mz2mass"                   </span>
-<span class="co">## [15] "pasteElements"              "standardizeFormula"        </span>
-<span class="co">## [17] "subtractElements"</span></code></pre>
+<span class="co">##  [3] "adducts"                    "calculateMass"             </span>
+<span class="co">##  [5] "containsElements"           "convertMtime"              </span>
+<span class="co">##  [7] "correctRindex"              "countElements"             </span>
+<span class="co">##  [9] "indexRtime"                 "internalStandardMixNames"  </span>
+<span class="co">## [11] "internalStandards"          "isotopicSubstitutionMatrix"</span>
+<span class="co">## [13] "isotopologues"              "mass2mz"                   </span>
+<span class="co">## [15] "mz2mass"                    "pasteElements"             </span>
+<span class="co">## [17] "standardizeFormula"         "subtractElements"</span></code></pre>
 <p>or the <a href="https://rformassspectrometry.github.io/MetaboCoreUtils/reference/index.html" class="external-link">reference page</a> on the package webpage.</p>
 </div>
 <div class="section level1">
@@ -261,7 +261,7 @@ document.addEventListener("DOMContentLoaded", function() {
 <span class="co">## [1] stats     graphics  grDevices utils     datasets  methods   base     </span>
 <span class="co">## </span>
 <span class="co">## other attached packages:</span>
-<span class="co">## [1] MetaboCoreUtils_1.3.3 BiocStyle_2.23.1     </span>
+<span class="co">## [1] MetaboCoreUtils_1.3.4 BiocStyle_2.23.1     </span>
 <span class="co">## </span>
 <span class="co">## loaded via a namespace (and not attached):</span>
 <span class="co">##  [1] cluster_2.1.2       knitr_1.37          magrittr_2.0.1     </span>
