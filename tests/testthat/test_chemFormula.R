@@ -97,10 +97,15 @@ test_that("addElements", {
 
 test_that("correct calculation of masses", {
     ## calculation of exact masses from character
-    expect_equal(round(calcExactMass("C6H12O6"), 4), 180.0634)
-    expect_equal(round(calcExactMass("C11H12N2O2"), 4), 204.0899)
-  
+    expect_equal(unname(round(calculateMass("C6H12O6"), 4)), 180.0634)
+    expect_equal(unname(round(calculateMass("C11H12N2O2"), 4)), 204.0899)
+    expect_equal(
+        round(unname(calculateMass(c("C6H12O6", "C11H12N2O2", "blabla"))), 4),
+        c(180.0634, 204.0899, NA))
+
     ## calculation of exact masses from named numeric vector
-    expect_equal(round(calcExactMass(countElements("C6H12O6")), 4), 180.0634)
-    expect_equal(round(calcExactMass(countElements("C11H12N2O2")), 4), 204.0899)
+    expect_equal(unname(round(calculateMass(countElements("C6H12O6")), 4)),
+                 180.0634)
+    expect_equal(unname(round(calculateMass(countElements("C11H12N2O2")), 4)),
+                 204.0899)
 })

@@ -244,11 +244,12 @@ addElements <- function(x, y) {
 #'
 #' @description
 #'
-#' `calcExactMass` calculates the exact mass from a formula.
+#' `calculateMass` calculates the exact mass from a formula.
 #'
-#' @param x `character` or `numeric ` single character or named numeric
+#' @param x `character` representing chemical formula(s) or a `list ` of
+#'     `numeric` with element counts such as returned by [countElements()].
 #'
-#' @return `numeric` Resulting exact mass
+#' @return `numeric` Resulting exact mass.
 #'
 #' @author Michael Witting
 #'
@@ -258,33 +259,25 @@ addElements <- function(x, y) {
 #'
 #' calculateMass("C6H12O6")
 #' calculateMass("NH3")
+#' calculateMass(c("C6H12O6", "NH3"))
 calculateMass <- function(x) {
-  # sanity checks of input
-  if(is.character(x)) {
-    x <- countElements(x)
-  } else if(is.numeric(x) && is.null(names(x))) {
-    stop("x must be either a character or a named numeric vector")
-  } 
-  ## get all elements
-  elements <- names(x)
-  ## check that all elements are contained in element table
-  if(!all(elements %in% .MONOISOTOPES$element)) {
-    message("not for all elements a monoisotopic mass is found")
-    return(NA_real_)
-  }
-  mass <- 0.0
-  ## iterate through all elements and add to mass
-  for (atom in elements) {
-    atom_mass <- .MONOISOTOPES$exact_mass[which(.MONOISOTOPES$element == atom)]
-    if(!is.na(atom_mass)) {
-      if (x[[atom]] > 0) {
-        if (x[[atom]] == 1) {
-          mass <- mass + atom_mass
-        } else {
-          mass <- mass + atom_mass * x[atom]
+    if (is.character(x))
+        x <- countElements(x)
+    if (!is.list(x))
+        stop("x must be either a character or a list with element counts.")
+    vapply(x, function(z) {
+        elements <- names(z)
+        if (!all(elements %in% names(.MONOISOTOPES))) {
+            message("not for all elements a monoisotopic mass is found")
+            return(NA_real_)
         }
-      }
-    }
-  }
-  unname(mass)
+        sum(z * .MONOISOTOPES[elements])
+        ## mass <- 0.0
+        ## for (atom in elements) {
+        ##     atom_mass <- .MONOISOTOPES[atom]
+        ##     if(!is.na(atom_mass))
+        ##         mass <- mass + atom_mass * z[atom]
+        ## }
+        ## unname(mass)
+    }, numeric(1))
 }

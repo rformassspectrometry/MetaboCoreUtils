@@ -7,18 +7,20 @@
 calculateMass(x)
 }
 \arguments{
-\item{x}{\code{character} or \code{numeric } single character or named numeric}
+\item{x}{\code{character} representing chemical formula(s) or a \code{list } of
+\code{numeric} with element counts such as returned by \code{\link[=countElements]{countElements()}}.}
 }
 \value{
-\code{numeric} Resulting exact mass
+\code{numeric} Resulting exact mass.
 }
 \description{
-\code{calcExactMass} calculates the exact mass from a formula.
+\code{calculateMass} calculates the exact mass from a formula.
 }
 \examples{
 
 calculateMass("C6H12O6")
 calculateMass("NH3")
+calculateMass(c("C6H12O6", "NH3"))
 }
 \author{
 Michael Witting

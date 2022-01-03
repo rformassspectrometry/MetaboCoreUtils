@@ -1,5 +1,9 @@
 # MetaboCoreutils 1.3
 
+## MetaboCoreUtils 1.3.4
+
+- Add `calculateMass` function.
+
 ## MetaboCoreUtils 1.3.3
 
 - Vectorized versions for chemical mass functions.
