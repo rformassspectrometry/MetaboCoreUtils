@@ -1,8 +1,5 @@
 .onLoad <- function(libname, pkgname) {
-    adds <- utils::read.table(system.file("adducts", "adduct_definition.txt",
-                                          package = "MetaboCoreUtils"),
-                              sep = "\t", header = TRUE)
-    rownames(adds) <- adds$name
+    adds <- .load_adducts()
     assign(".ADDUCTS", adds, envir = asNamespace(pkgname))
     add_multi <- adds$mass_multi
     add_add <- adds$mass_add
@@ -20,10 +17,21 @@
     }
 
     # get mono isotopes for exact mass calculation
+    assign(".MONOISOTOPES", .load_isotopes(), envir = asNamespace(pkgname))
+}
+
+.load_adducts <- function() {
+    adds <- utils::read.table(system.file("adducts", "adduct_definition.txt",
+                                          package = "MetaboCoreUtils"),
+                              sep = "\t", header = TRUE)
+    rownames(adds) <- adds$name
+    adds
+}
+
+.load_isotopes <- function() {
     mono <- utils::read.table(system.file("isotopes", "isotope_definition.txt",
                                           package = "MetaboCoreUtils"),
                               sep = "\t", header = TRUE)
-    mono <- vapply(split(mono, mono$element), function(z)
+    vapply(split(mono, mono$element), function(z)
         z$exact_mass[which.max(z$rel_abundance)], numeric(1))
-    assign(".MONOISOTOPES", mono, envir = asNamespace(pkgname))
 }
