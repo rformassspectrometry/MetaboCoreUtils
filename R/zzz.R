@@ -23,9 +23,7 @@
     mono <- utils::read.table(system.file("isotopes", "isotope_definition.txt",
                                           package = "MetaboCoreUtils"),
                               sep = "\t", header = TRUE)
-    mono <- split(mono, mono$element)
-    mono <- vapply(mono, function(z) {
-        z$exact_mass[which.max(z$rel_abundance)]
-    }, numeric(1))
+    mono <- vapply(split(mono, mono$element), function(z)
+        z$exact_mass[which.max(z$rel_abundance)], numeric(1))
     assign(".MONOISOTOPES", mono, envir = asNamespace(pkgname))
 }

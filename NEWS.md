@@ -1,5 +1,9 @@
 # MetaboCoreutils 1.3
 
+## MetaboCoreUtils 1.3.5
+
+- Add missing unit tests.
+
 ## MetaboCoreUtils 1.3.4
 
 - Add `calculateMass` function.

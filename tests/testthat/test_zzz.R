@@ -1,3 +1,5 @@
 test_that(".onLoad works", {
-    ## No idea how to check this function.
+    MetaboCoreUtils:::.onLoad(pkgname = "MetaboCoreUtils")
+    ## Check that we have .ADDUCTS_ADD
+    expect_true(length(MetaboCoreUtils:::.ADDUCTS_ADD) > 0)
 })
