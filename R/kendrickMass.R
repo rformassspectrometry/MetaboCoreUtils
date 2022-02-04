@@ -86,7 +86,7 @@ calculateKmd <- function(x, fragment = 14.00000 / 14.01565) {
 #' @export
 calculateRkmd <- function(x, fragment = 14.00000 / 14.01565, rkmd = 0.749206) {
   
-  (calculateKendrickMassDefect(x) - rkmd) / 0.013399
+  (calculateKmd(x) - rkmd) / 0.013399
   
 }
 
