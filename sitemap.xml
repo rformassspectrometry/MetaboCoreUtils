@@ -1,75 +1,75 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>/404.html</loc>
+    <loc>https://rformassspectrometry.github.io/Spectra/404.html</loc>
   </url>
   <url>
-    <loc>/articles/MetaboCoreUtils.html</loc>
+    <loc>https://rformassspectrometry.github.io/Spectra/articles/MetaboCoreUtils.html</loc>
   </url>
   <url>
-    <loc>/articles/index.html</loc>
+    <loc>https://rformassspectrometry.github.io/Spectra/articles/index.html</loc>
   </url>
   <url>
-    <loc>/authors.html</loc>
+    <loc>https://rformassspectrometry.github.io/Spectra/authors.html</loc>
   </url>
   <url>
-    <loc>/index.html</loc>
+    <loc>https://rformassspectrometry.github.io/Spectra/index.html</loc>
   </url>
   <url>
-    <loc>/news/index.html</loc>
+    <loc>https://rformassspectrometry.github.io/Spectra/news/index.html</loc>
   </url>
   <url>
-    <loc>/reference/addElements.html</loc>
+    <loc>https://rformassspectrometry.github.io/Spectra/reference/addElements.html</loc>
   </url>
   <url>
-    <loc>/reference/adductNames.html</loc>
+    <loc>https://rformassspectrometry.github.io/Spectra/reference/adductNames.html</loc>
   </url>
   <url>
-    <loc>/reference/calculateMass.html</loc>
+    <loc>https://rformassspectrometry.github.io/Spectra/reference/calculateMass.html</loc>
   </url>
   <url>
-    <loc>/reference/containsElements.html</loc>
+    <loc>https://rformassspectrometry.github.io/Spectra/reference/containsElements.html</loc>
   </url>
   <url>
-    <loc>/reference/convertMtime.html</loc>
+    <loc>https://rformassspectrometry.github.io/Spectra/reference/convertMtime.html</loc>
   </url>
   <url>
-    <loc>/reference/correctRindex.html</loc>
+    <loc>https://rformassspectrometry.github.io/Spectra/reference/correctRindex.html</loc>
   </url>
   <url>
-    <loc>/reference/countElements.html</loc>
+    <loc>https://rformassspectrometry.github.io/Spectra/reference/countElements.html</loc>
   </url>
   <url>
-    <loc>/reference/index.html</loc>
+    <loc>https://rformassspectrometry.github.io/Spectra/reference/index.html</loc>
   </url>
   <url>
-    <loc>/reference/indexRtime.html</loc>
+    <loc>https://rformassspectrometry.github.io/Spectra/reference/indexRtime.html</loc>
   </url>
   <url>
-    <loc>/reference/internalStandardMixNames.html</loc>
+    <loc>https://rformassspectrometry.github.io/Spectra/reference/internalStandardMixNames.html</loc>
   </url>
   <url>
-    <loc>/reference/internalStandards.html</loc>
+    <loc>https://rformassspectrometry.github.io/Spectra/reference/internalStandards.html</loc>
   </url>
   <url>
-    <loc>/reference/isotopicSubstitutionMatrix.html</loc>
+    <loc>https://rformassspectrometry.github.io/Spectra/reference/isotopicSubstitutionMatrix.html</loc>
   </url>
   <url>
-    <loc>/reference/isotopologues.html</loc>
+    <loc>https://rformassspectrometry.github.io/Spectra/reference/isotopologues.html</loc>
   </url>
   <url>
-    <loc>/reference/mass2mz.html</loc>
+    <loc>https://rformassspectrometry.github.io/Spectra/reference/mass2mz.html</loc>
   </url>
   <url>
-    <loc>/reference/mz2mass.html</loc>
+    <loc>https://rformassspectrometry.github.io/Spectra/reference/mz2mass.html</loc>
   </url>
   <url>
-    <loc>/reference/pasteElements.html</loc>
+    <loc>https://rformassspectrometry.github.io/Spectra/reference/pasteElements.html</loc>
   </url>
   <url>
-    <loc>/reference/standardizeFormula.html</loc>
+    <loc>https://rformassspectrometry.github.io/Spectra/reference/standardizeFormula.html</loc>
   </url>
   <url>
-    <loc>/reference/subtractElements.html</loc>
+    <loc>https://rformassspectrometry.github.io/Spectra/reference/subtractElements.html</loc>
   </url>
 </urlset>
