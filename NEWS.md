@@ -1,5 +1,9 @@
 # MetaboCoreutils 1.3
 
+## MetaboCoreUtils 1.3.6
+
+- Add functions for Kendrick mass defects.
+
 ## MetaboCoreUtils 1.3.5
 
 - Add missing unit tests.
