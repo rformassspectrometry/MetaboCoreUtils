@@ -7,8 +7,8 @@
 [![license](https://img.shields.io/badge/license-Artistic--2.0-brightgreen.svg)](https://opensource.org/licenses/Artistic-2.0)
 [![years in bioc](http://bioconductor.org/shields/years-in-bioc/MetaboCoreUtils.svg)](https://bioconductor.org/packages/release/bioc/html/MetaboCoreUtils.html)
 [![Ranking by downloads](http://bioconductor.org/shields/downloads/release/MetaboCoreUtils.svg)](https://bioconductor.org/packages/stats/bioc/MetaboCoreUtils/)
-Release: [![build release](http://bioconductor.org/shields/build/release/bioc/MetaboCoreUtils.svg)](https://bioconductor.org/checkResults/release/bioc-LATEST/MetaboCoreUtils/)
-Devel: [![build devel](http://bioconductor.org/shields/build/devel/bioc/MetaboCoreUtils.svg)](https://bioconductor.org/checkResults/devel/bioc-LATEST/MetaboCoreUtils/)
+[![build release](http://bioconductor.org/shields/build/release/bioc/MetaboCoreUtils.svg)](https://bioconductor.org/checkResults/release/bioc-LATEST/MetaboCoreUtils/)
+[![build devel](http://bioconductor.org/shields/build/devel/bioc/MetaboCoreUtils.svg)](https://bioconductor.org/checkResults/devel/bioc-LATEST/MetaboCoreUtils/)
 
 `MetaboCoreUtils` defines metabolomics-related core functionality which is
 provided as low-level functions to allow a data structure-independent usage
