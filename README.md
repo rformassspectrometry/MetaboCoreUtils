@@ -6,13 +6,13 @@
 [![codecov.io](http://codecov.io/github/rformassspectrometry/MetaboCoreUtils/coverage.svg?branch=master)](http://codecov.io/github/rformassspectrometry/MetaboCoreUtils?branch=master)
 [![license](https://img.shields.io/badge/license-Artistic--2.0-brightgreen.svg)](https://opensource.org/licenses/Artistic-2.0)
 
-<img
-src="https://raw.githubusercontent.com/rformassspectrometry/stickers/master/MetaboCoreUtils/MetaboCoreUtils.png"
-height="150">
-
 `MetaboCoreUtils` defines metabolomics-related core functionality which is
 provided as low-level functions to allow a data structure-independent usage
 across various R packages.
+
+For more information see the package
+[homepage](https://rformassspectrometry.github.io/MetaboCoreUtils).
+
 
 # Contributions
 
