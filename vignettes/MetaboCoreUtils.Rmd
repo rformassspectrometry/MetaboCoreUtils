@@ -126,6 +126,30 @@ countElements(frml)
 ```
 
 
+## Kendrick mass defect calculation
+
+Lipids and other homologous series based on fatty acyls can be found in data by
+using Kendrick mass defects (KMD) or referenced kendrick mass defects (RKMD). The 
+`MetaboCoreUtils` package provides functions to calculate everything around
+Kendrick mass defects. The following example calculates the KMD and RKMD for
+three lipids (PC(16:0/18:1(9Z)), PC(16:0/18:0), PS(16:0/18:1(9Z))) and checks,
+if they fit the RKMD of PCs detected as [M+H]+ adducts.
+
+```{r}
+lipid_masses <- c(760.5851, 762.6007, 762.5280)
+calculateKendrickMassDefect(lipid_masses)
+```
+
+Next the RKMD is calculated and checked if it fits to a specific range. RKMDs
+are either 0 or negative integers according to the number of double bonds in the
+lipids, e.g. -2 if two double bonds are present in the lipids.
+
+```{r}
+lipid_rkmd <- calculateReferencedKendrickMassDefect(lipid_masses)
+isRkmd(lipid_rkmd)
+```
+
+
 ## Retetion time indexing
 
 Retention times are often not directly comparable between two LC-MS systems,
