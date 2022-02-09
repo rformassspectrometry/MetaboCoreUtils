@@ -33,7 +33,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">MetaboCoreUtils</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.3.5</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.3.6</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -95,7 +95,7 @@ document.addEventListener("DOMContentLoaded", function() {
     if (links[i].hostname != window.location.hostname)
       links[i].target = '_blank';
 });
-</script><p><strong>Package</strong>: <em><a href="https://bioconductor.org/packages/3.15/MetaboCoreUtils" class="external-link">MetaboCoreUtils</a></em><br><strong>Authors</strong>: Johannes Rainer [aut, cre] (<a href="https://orcid.org/0000-0002-6977-7147" class="external-link uri">https://orcid.org/0000-0002-6977-7147</a>), Michael Witting [aut] (<a href="https://orcid.org/0000-0002-1462-4426" class="external-link uri">https://orcid.org/0000-0002-1462-4426</a>), Andrea Vicini [aut], Liesa Salzer [ctb] (<a href="https://orcid.org/0000-0003-0761-0656" class="external-link uri">https://orcid.org/0000-0003-0761-0656</a>), Sebastian Gibb [ctb] (<a href="https://orcid.org/0000-0001-7406-4443" class="external-link uri">https://orcid.org/0000-0001-7406-4443</a>)<br><strong>Last modified:</strong> 2022-02-04 10:35:25<br><strong>Compiled</strong>: Fri Feb 4 10:37:43 2022</p>
+</script><p><strong>Package</strong>: <em><a href="https://bioconductor.org/packages/3.15/MetaboCoreUtils" class="external-link">MetaboCoreUtils</a></em><br><strong>Authors</strong>: Johannes Rainer [aut, cre] (<a href="https://orcid.org/0000-0002-6977-7147" class="external-link uri">https://orcid.org/0000-0002-6977-7147</a>), Michael Witting [aut] (<a href="https://orcid.org/0000-0002-1462-4426" class="external-link uri">https://orcid.org/0000-0002-1462-4426</a>), Andrea Vicini [aut], Liesa Salzer [ctb] (<a href="https://orcid.org/0000-0003-0761-0656" class="external-link uri">https://orcid.org/0000-0003-0761-0656</a>), Sebastian Gibb [ctb] (<a href="https://orcid.org/0000-0001-7406-4443" class="external-link uri">https://orcid.org/0000-0001-7406-4443</a>)<br><strong>Last modified:</strong> 2022-02-09 12:13:30<br><strong>Compiled</strong>: Wed Feb 9 12:16:19 2022</p>
 <div class="section level2">
 <h2 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
 </h2>
@@ -105,14 +105,16 @@ document.addEventListener("DOMContentLoaded", function() {
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/RforMassSpectrometry/MetaboCoreUtils" class="external-link">"MetaboCoreUtils"</a></span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/ls.html" class="external-link">ls</a></span><span class="op">(</span>pos <span class="op">=</span> <span class="st">"package:MetaboCoreUtils"</span><span class="op">)</span></code></pre></div>
 <pre><code><span class="co">##  [1] "addElements"                "adductNames"               </span>
-<span class="co">##  [3] "adducts"                    "calculateMass"             </span>
-<span class="co">##  [5] "containsElements"           "convertMtime"              </span>
-<span class="co">##  [7] "correctRindex"              "countElements"             </span>
-<span class="co">##  [9] "indexRtime"                 "internalStandardMixNames"  </span>
-<span class="co">## [11] "internalStandards"          "isotopicSubstitutionMatrix"</span>
-<span class="co">## [13] "isotopologues"              "mass2mz"                   </span>
-<span class="co">## [15] "mz2mass"                    "pasteElements"             </span>
-<span class="co">## [17] "standardizeFormula"         "subtractElements"</span></code></pre>
+<span class="co">##  [3] "adducts"                    "calculateKm"               </span>
+<span class="co">##  [5] "calculateKmd"               "calculateMass"             </span>
+<span class="co">##  [7] "calculateRkmd"              "containsElements"          </span>
+<span class="co">##  [9] "convertMtime"               "correctRindex"             </span>
+<span class="co">## [11] "countElements"              "indexRtime"                </span>
+<span class="co">## [13] "internalStandardMixNames"   "internalStandards"         </span>
+<span class="co">## [15] "isotopicSubstitutionMatrix" "isotopologues"             </span>
+<span class="co">## [17] "isRkmd"                     "mass2mz"                   </span>
+<span class="co">## [19] "mz2mass"                    "pasteElements"             </span>
+<span class="co">## [21] "standardizeFormula"         "subtractElements"</span></code></pre>
 <p>or the <a href="https://rformassspectrometry.github.io/MetaboCoreUtils/reference/index.html">reference page</a> on the package webpage.</p>
 </div>
 <div class="section level2">
@@ -185,10 +187,24 @@ document.addEventListener("DOMContentLoaded", function() {
 <span class="co">##  4  1  1  3</span></code></pre>
 </div>
 <div class="section level3">
+<h3 id="kendrick-mass-defect-calculation">Kendrick mass defect calculation<a class="anchor" aria-label="anchor" href="#kendrick-mass-defect-calculation"></a>
+</h3>
+<p>Lipids and other homologous series based on fatty acyls can be found in data by using Kendrick mass defects (KMD) or referenced kendrick mass defects (RKMD). The <code>MetaboCoreUtils</code> package provides functions to calculate everything around Kendrick mass defects. The following example calculates the KMD and RKMD for three lipids (PC(16:0/18:1(9Z)), PC(16:0/18:0), PS(16:0/18:1(9Z))) and checks, if they fit the RKMD of PCs detected as [M+H]+ adducts.</p>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">lipid_masses</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">760.5851</span>, <span class="fl">762.6007</span>, <span class="fl">762.5280</span><span class="op">)</span>
+<span class="fu"><a href="../reference/calculateKendrickMass.html">calculateKmd</a></span><span class="op">(</span><span class="va">lipid_masses</span><span class="op">)</span></code></pre></div>
+<pre><code><span class="co">## [1] 0.7358239 0.7491732 0.6765544</span></code></pre>
+<p>Next the RKMD is calculated and checked if it fits to a specific range. RKMDs are either 0 or negative integers according to the number of double bonds in the lipids, e.g. -2 if two double bonds are present in the lipids.</p>
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">lipid_rkmd</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/calculateKendrickMass.html">calculateRkmd</a></span><span class="op">(</span><span class="va">lipid_masses</span><span class="op">)</span>
+<span class="fu"><a href="../reference/calculateKendrickMass.html">isRkmd</a></span><span class="op">(</span><span class="va">lipid_rkmd</span><span class="op">)</span></code></pre></div>
+<pre><code><span class="co">## [1]  TRUE  TRUE FALSE</span></code></pre>
+</div>
+<div class="section level3">
 <h3 id="retetion-time-indexing">Retetion time indexing<a class="anchor" aria-label="anchor" href="#retetion-time-indexing"></a>
 </h3>
 <p>Retention times are often not directly comparable between two LC-MS systems, even if nominally the same separation method is used. Conversion of retention times to retetion indices can overcome this issue. The <code>MetaboCoreUtils</code> package provides a function to perform this conversion. Below we use an example based on indexing with a homologoues series af N-Alkyl-pyridinium sulfonates (NAPS).</p>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">rti</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.table</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"retentionIndex"</span>,
                               <span class="st">"rti.txt"</span>,
                               package <span class="op">=</span> <span class="st">"MetaboCoreUtils"</span><span class="op">)</span>,
@@ -201,7 +217,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     header <span class="op">=</span> <span class="cn">TRUE</span>,
                     sep <span class="op">=</span> <span class="st">"\t"</span><span class="op">)</span></code></pre></div>
 <p>A <code>data.frame</code> with the retetion times of the NAPS and their respective index value is required.</p>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">rti</span><span class="op">)</span></code></pre></div>
 <pre><code><span class="co">##   rtime rindex</span>
 <span class="co">## 1  1.14    100</span>
@@ -211,10 +227,10 @@ document.addEventListener("DOMContentLoaded", function() {
 <span class="co">## 5  4.34    500</span>
 <span class="co">## 6  5.92    600</span></code></pre>
 <p>The indexing is peformed using the function <code>indexRtime</code>.</p>
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">rtime</span><span class="op">$</span><span class="va">rindex_r</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/indexRtime.html">indexRtime</a></span><span class="op">(</span><span class="va">rtime</span><span class="op">$</span><span class="va">rtime</span>, <span class="va">rti</span><span class="op">)</span></code></pre></div>
 <p>For comparison the manual calculated retention indices are included.</p>
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">rtime</span><span class="op">)</span></code></pre></div>
 <pre><code><span class="co">##                name rtime rindex_manual  rindex_r</span>
 <span class="co">## 1        VITAMIN D2    NA            NA        NA</span>
@@ -224,7 +240,7 @@ document.addEventListener("DOMContentLoaded", function() {
 <span class="co">## 5 ESTRADIOL-17ALPHA 10.27     1065.4321 1065.4321</span>
 <span class="co">## 6         CAPRYLATE 10.67     1114.8148 1114.8148</span></code></pre>
 <p>Conditions that shall be compared by the retention index might not perfectly match. In case the deviation is linear a simple two-point correction can be applied to the data. This is performed by the function <code>correctRindex</code>. The correction requires two reference standards and their measured RIs and reference RIs.</p>
-<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">ref</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>rindex <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1709.8765</span>, <span class="fl">553.7975</span><span class="op">)</span>,
                   refindex <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1700</span>, <span class="fl">550</span><span class="op">)</span><span class="op">)</span>
 
@@ -240,7 +256,7 @@ document.addEventListener("DOMContentLoaded", function() {
 <div class="section level2">
 <h2 class="unnumbered" id="session-information">Session information<a class="anchor" aria-label="anchor" href="#session-information"></a>
 </h2>
-<pre><code><span class="co">## R Under development (unstable) (2022-01-29 r81593)</span>
+<pre><code><span class="co">## R Under development (unstable) (2022-02-03 r81650)</span>
 <span class="co">## Platform: x86_64-pc-linux-gnu (64-bit)</span>
 <span class="co">## Running under: Ubuntu 20.04.3 LTS</span>
 <span class="co">## </span>
@@ -259,7 +275,7 @@ document.addEventListener("DOMContentLoaded", function() {
 <span class="co">## [1] stats     graphics  grDevices utils     datasets  methods   base     </span>
 <span class="co">## </span>
 <span class="co">## other attached packages:</span>
-<span class="co">## [1] MetaboCoreUtils_1.3.5 BiocStyle_2.23.1     </span>
+<span class="co">## [1] MetaboCoreUtils_1.3.6 BiocStyle_2.23.1     </span>
 <span class="co">## </span>
 <span class="co">## loaded via a namespace (and not attached):</span>
 <span class="co">##  [1] cluster_2.1.2       knitr_1.37          magrittr_2.0.2     </span>
