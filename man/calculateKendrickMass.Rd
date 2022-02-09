@@ -6,7 +6,7 @@
 \alias{calculateKmd}
 \alias{calculateRkmd}
 \alias{isRkmd}
-\title{m/z matching}
+\title{Kendrick mass defects}
 \usage{
 calculateKm(x, fragment = 14/14.01565)
 
@@ -17,23 +17,24 @@ calculateRkmd(x, fragment = 14/14.01565, rkmd = 0.749206)
 isRkmd(x, rkmdTolerance = 0.1)
 }
 \arguments{
-\item{x}{\code{numeric} Vector with exact masses or calculated RKMDs in case of
-\code{isRkmd}}
+\item{x}{\code{numeric} with exact masses or calculated RKMDs in case of \code{isRkmd}.}
 
-\item{rkmd}{\code{numeric(1)} KMD used for referencing of KMDs}
+\item{fragment}{\code{numeric(1)} or \code{character(1)} corresponding factor or
+molecular formula of molecular fragment, e.g. \code{14 / 14.01565} or \code{"CH2"}
+for CH2.}
+
+\item{rkmd}{\code{numeric(1)} KMD used for referencing of KMDs.}
 
 \item{rkmdTolerance}{\code{numeric(1)} Tolerance to check if RKMD fall around a
 negative integer corresponding to the number of double bonds}
-
-\item{framgent}{\code{numeric(1)} or \code{character(1)} corresponding factor or molecular
-formula of molecular fragment, e.g. 14  /14.01565 or "CH2" for CH2.}
 }
 \value{
-\code{numeric} or \code{boolean} All functions, except \code{isRkmd} return a numeric
-with same length as the input corresponding to the KM, KMD or RMKD.
-\code{isRkmd} returns a list TRUE or FALSE indicating if the RKMD falls within
-a specific range around a negative integer corresponding to the number
-of double bonds
+\code{numeric} or \code{boolean}. All functions, except \code{isRkmd} return a
+\code{numeric} with same length as the input corresponding to the KM, KMD or
+RMKD.
+\code{isRkmd} returns a \code{logical} with \code{TRUE} or \code{FALSE} indicating if the
+RKMD falls within a specific range around a negative integer
+corresponding to the number of double bonds.
 }
 \description{
 Kendrick mass defect analysis is a way to analyze high-resolution MS data in
@@ -50,11 +51,11 @@ values of 0 for saturated species or -1, -2, -3, etc for unsaturated species.
 Available functoins are:
 \itemize{
 \item \code{calculateKm}: calculates the Kendrick mass from an exact mass for a
-specific molecular fragment, e.g. "CH2".
+specific molecular fragment, e.g. \code{"CH2"}.
 \item \code{calculateKmd}: calculates the Kendrick mass defect from an exact mass for
-a specific molecular fragment, e.g. "CH2"
+a specific molecular fragment, e.g. \code{"CH2"}.
 \item \code{calculateRkmd}: calculates the referenced Kendrick mass defect from an
-exact mass for a specific molecular fragment, e.g. "CH2", and a reference
+exact mass for a specific molecular fragment, e.g. \code{"CH2"}, and a reference
 KMD.
 \item \code{isRkmd}: Checks if a calculated RKMD falls within a specific error range
 around an negative integer corresponding the number of double bonds, in
@@ -70,7 +71,6 @@ calculateKmd(760.5851)
 calculateRkmd(760.5851, rkmd = 0.749206)
 
 isRkmd(calculateRkmd(760.5851, rkmd = 0.749206))
-
 
 }
 \author{
