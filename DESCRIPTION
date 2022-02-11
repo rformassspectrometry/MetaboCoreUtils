@@ -27,7 +27,11 @@ Authors@R:
       person(given = "Sebastian", family = "Gibb",
                      email = "mail@sebastiangibb.de",
                      role = "ctb",
-                     comment = c(ORCID = "0000-0001-7406-4443")))
+                     comment = c(ORCID = "0000-0001-7406-4443")),
+      person(given = "Michael", family = "Stravs",
+                     email = "stravsmi@eawag.ch",
+                     role = "ctb",
+                     comment = c(ORCID = "0000-0002-1426-8572")))
 Depends:
     R (>= 4.0)
 Imports:
