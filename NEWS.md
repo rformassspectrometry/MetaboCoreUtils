@@ -1,5 +1,10 @@
 # MetaboCoreutils 1.3
 
+## MetaboCoreUtils 1.3.7
+
+- Fix bug in `containsElements` function (issue
+  [#51](https://github.com/rformassspectrometry/MetaboCoreUtils/issues/51)).
+
 ## MetaboCoreUtils 1.3.6
 
 - Add functions for Kendrick mass defects.
