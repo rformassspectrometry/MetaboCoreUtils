@@ -170,7 +170,7 @@ standardizeFormula <- function(x) {
 #' containsElements("C6H12O6", "NH3")
 containsElements <- function(x, y) {
     mapply(
-        FUN = function(xx, yy)all(.sum_elements(c(xx, -yy)) > 0),
+        FUN = function(xx, yy)all(.sum_elements(c(xx, -yy)) >= 0),
         xx = countElements(x), yy = countElements(y),
         SIMPLIFY = TRUE, USE.NAMES = FALSE
     )
