@@ -2,6 +2,11 @@ test_that("correct formula mathematics", {
     ## check if formula contains specific sub formulae
     expect_identical(containsElements("C6H12O6", "H2O"), TRUE)
     expect_identical(containsElements("C6H12O6", "NH3"), FALSE)
+    expect_identical(containsElements("C10H10F3N3", "F"), TRUE)
+    expect_identical(containsElements("C10H10F3N3", "F1"), TRUE)
+    expect_identical(containsElements("C10H10F3N3", "F2"), TRUE)
+    expect_identical(containsElements("C10H10F3N3", "F3"), TRUE)
+    expect_identical(containsElements("C10H10F3N3", "F4"), FALSE)
 
     ## check formula subtraction (single formulae)
     expect_identical(subtractElements("C6H12O6", "H2O"), "C6H10O5")
