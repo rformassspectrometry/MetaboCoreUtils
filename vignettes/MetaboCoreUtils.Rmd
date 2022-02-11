@@ -231,3 +231,5 @@ issue](https://github.com/RforMassSpectrometry/MetaboCoreUtils/issues).
 ```{r sessioninfo, echo=FALSE}
 sessionInfo()
 ```
+
+# References
