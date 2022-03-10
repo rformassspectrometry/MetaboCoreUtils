@@ -42,6 +42,13 @@ test_that("countElements", {
         countElements(c("C6H12O6", "H2O")),
         list(C6H12O6 = c(C = 6L, H = 12L, O = 6L), H2O = c(H = 2L, O = 1L))
     )
+    expect_identical(
+        countElements(c("[13C3]C3H12O6", "[2H2]O")),
+        list(
+            "[13C3]C3H12O6" = c("13C" = 3L, C = 3L, H = 12L, O = 6L),
+            "[2H2]O" = c("2H" = 2L, O = 1L)
+        )
+    )
 })
 
 test_that("pasteElements", {
