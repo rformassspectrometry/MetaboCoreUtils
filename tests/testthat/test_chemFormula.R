@@ -51,6 +51,13 @@ test_that("countElements", {
     )
 })
 
+test_that(".isValidElementName",
+    expect_equal(
+        .isValidElementName(c("13C", "45C", "2H", "10H")),
+        c(TRUE, FALSE, TRUE, FALSE)
+    )
+)
+
 test_that("pasteElements", {
     expect_identical(pasteElements(c(C = 6, O = 6, H = 12)), "C6H12O6")
     expect_identical(pasteElements(c(C = 1, O = 1, H = 3)), "CH3O")
