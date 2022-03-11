@@ -33,7 +33,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">MetaboCoreUtils</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.3.7</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.3.8</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -95,11 +95,21 @@ document.addEventListener("DOMContentLoaded", function() {
     if (links[i].hostname != window.location.hostname)
       links[i].target = '_blank';
 });
-</script><p><strong>Package</strong>: <em><a href="https://bioconductor.org/packages/3.15/MetaboCoreUtils" class="external-link">MetaboCoreUtils</a></em><br><strong>Authors</strong>: Johannes Rainer [aut, cre] (<a href="https://orcid.org/0000-0002-6977-7147" class="external-link uri">https://orcid.org/0000-0002-6977-7147</a>), Michael Witting [aut] (<a href="https://orcid.org/0000-0002-1462-4426" class="external-link uri">https://orcid.org/0000-0002-1462-4426</a>), Andrea Vicini [aut], Liesa Salzer [ctb] (<a href="https://orcid.org/0000-0003-0761-0656" class="external-link uri">https://orcid.org/0000-0003-0761-0656</a>), Sebastian Gibb [ctb] (<a href="https://orcid.org/0000-0001-7406-4443" class="external-link uri">https://orcid.org/0000-0001-7406-4443</a>), Michael Stravs [ctb] (<a href="https://orcid.org/0000-0002-1426-8572" class="external-link uri">https://orcid.org/0000-0002-1426-8572</a>)<br><strong>Last modified:</strong> 2022-02-11 15:45:39<br><strong>Compiled</strong>: Fri Feb 11 15:48:23 2022</p>
+</script><p><strong>Package</strong>: <em><a href="https://bioconductor.org/packages/3.15/MetaboCoreUtils" class="external-link">MetaboCoreUtils</a></em><br><strong>Authors</strong>: Johannes Rainer [aut, cre] (<a href="https://orcid.org/0000-0002-6977-7147" class="external-link uri">https://orcid.org/0000-0002-6977-7147</a>), Michael Witting
+[aut] (<a href="https://orcid.org/0000-0002-1462-4426" class="external-link uri">https://orcid.org/0000-0002-1462-4426</a>), Andrea Vicini
+[aut], Liesa Salzer [ctb] (<a href="https://orcid.org/0000-0003-0761-0656" class="external-link uri">https://orcid.org/0000-0003-0761-0656</a>), Sebastian Gibb
+[ctb] (<a href="https://orcid.org/0000-0001-7406-4443" class="external-link uri">https://orcid.org/0000-0001-7406-4443</a>), Michael Stravs
+[ctb] (<a href="https://orcid.org/0000-0002-1426-8572" class="external-link uri">https://orcid.org/0000-0002-1426-8572</a>)<br><strong>Last modified:</strong> 2022-03-11 11:17:18<br><strong>Compiled</strong>: Fri Mar 11 11:27:46 2022</p>
 <div class="section level2">
 <h2 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
 </h2>
-<p>The <code>MetaboCoreUtils</code> defines metabolomics-related core functionality provided as low-level functions to allow a data structure-independent usage across various R packages <span class="citation">(Rainer et al. 2022)</span>. This includes functions to calculate between ion (adduct) and compound mass-to-charge ratios and masses or functions to work with chemical formulas. The package provides also a set of adduct definitions and information on some commercially available internal standard mixes commonly used in MS experiments.</p>
+<p>The <code>MetaboCoreUtils</code> defines metabolomics-related core
+functionality provided as low-level functions to allow a data
+structure-independent usage across various R packages <span class="citation">(Rainer et al. 2022)</span>. This includes functions to
+calculate between ion (adduct) and compound mass-to-charge ratios and
+masses or functions to work with chemical formulas. The package provides
+also a set of adduct definitions and information on some commercially
+available internal standard mixes commonly used in MS experiments.</p>
 <p>For a full list of function, see</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/RforMassSpectrometry/MetaboCoreUtils" class="external-link">"MetaboCoreUtils"</a></span><span class="op">)</span>
@@ -115,24 +125,36 @@ document.addEventListener("DOMContentLoaded", function() {
 <span class="co">## [17] "isRkmd"                     "mass2mz"                   </span>
 <span class="co">## [19] "mz2mass"                    "pasteElements"             </span>
 <span class="co">## [21] "standardizeFormula"         "subtractElements"</span></code></pre>
-<p>or the <a href="https://rformassspectrometry.github.io/MetaboCoreUtils/reference/index.html">reference page</a> on the package webpage.</p>
+<p>or the <a href="https://rformassspectrometry.github.io/MetaboCoreUtils/reference/index.html">reference
+page</a> on the package webpage.</p>
 </div>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
-<p>The package can be installed with the <code>BiocManager</code> package. To install <code>BiocManager</code> use <code>install.packages("BiocManager")</code> and, after that, <code>BiocManager::install("MetaboCoreUtils")</code> to install this package.</p>
+<p>The package can be installed with the <code>BiocManager</code>
+package. To install <code>BiocManager</code> use
+<code>install.packages("BiocManager")</code> and, after that,
+<code>BiocManager::install("MetaboCoreUtils")</code> to install this
+package.</p>
 </div>
 <div class="section level2">
 <h2 id="examples">Examples<a class="anchor" aria-label="anchor" href="#examples"></a>
 </h2>
-<p>The functions defined in this package utilise basic classes with the aim of being reused in packages that provide a more formal, high-level interface.</p>
-<p>The examples below demonstrate the basic usage of the functions from the package.</p>
+<p>The functions defined in this package utilise basic classes with the
+aim of being reused in packages that provide a more formal, high-level
+interface.</p>
+<p>The examples below demonstrate the basic usage of the functions from
+the package.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/RforMassSpectrometry/MetaboCoreUtils" class="external-link">MetaboCoreUtils</a></span><span class="op">)</span></code></pre></div>
 <div class="section level3">
 <h3 id="conversion-between-ion-mz-and-compound-masses">Conversion between ion m/z and compound masses<a class="anchor" aria-label="anchor" href="#conversion-between-ion-mz-and-compound-masses"></a>
 </h3>
-<p>The <code>mass2mz</code> and <code>mz2mass</code> functions allow to convert between compound masses and ion (adduct) mass-to-charge ratios (m/z). The <code>MetaboCoreUtils</code> package provides definitions of common ion adducts generated by electrospray ionization (ESI). These can be listed with the <code>adductNames</code> function.</p>
+<p>The <code>mass2mz</code> and <code>mz2mass</code> functions allow to
+convert between compound masses and ion (adduct) mass-to-charge ratios
+(m/z). The <code>MetaboCoreUtils</code> package provides definitions of
+common ion adducts generated by electrospray ionization (ESI). These can
+be listed with the <code>adductNames</code> function.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/adductNames.html">adductNames</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <pre><code><span class="co">##  [1] "[M+3H]3+"          "[M+2H+Na]3+"       "[M+H+Na2]3+"      </span>
@@ -149,7 +171,11 @@ document.addEventListener("DOMContentLoaded", function() {
 <span class="co">## [34] "[3M+H]+"           "[M+H-NH3]+"        "[M+H-H2O]+"       </span>
 <span class="co">## [37] "[M+H-Hexose-H2O]+" "[M+H-H4O2]+"       "[M+H-CH2O2]+"     </span>
 <span class="co">## [40] "[M]+"</span></code></pre>
-<p>With that we can use the <code>mass2mz</code> function to calculate the m/z for a set of compounds assuming the generation of certain ions. In the example below we define masses for some theoretical compounds and calculate their expected m/z assuming that ions <code>"[M+H]+"</code> and <code>"[M+Na]+"</code> are generated.</p>
+<p>With that we can use the <code>mass2mz</code> function to calculate
+the m/z for a set of compounds assuming the generation of certain ions.
+In the example below we define masses for some theoretical compounds and
+calculate their expected m/z assuming that ions <code>"[M+H]+"</code>
+and <code>"[M+Na]+"</code> are generated.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">masses</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">123</span>, <span class="fl">842</span>, <span class="fl">324</span><span class="op">)</span>
 <span class="fu"><a href="../reference/mass2mz.html">mass2mz</a></span><span class="op">(</span><span class="va">masses</span>, adduct <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"[M+H]+"</span>, <span class="st">"[M+Na]+"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
@@ -157,29 +183,41 @@ document.addEventListener("DOMContentLoaded", function() {
 <span class="co">## [1,] 124.0073 145.9892</span>
 <span class="co">## [2,] 843.0073 864.9892</span>
 <span class="co">## [3,] 325.0073 346.9892</span></code></pre>
-<p>As a result we get a <code>matrix</code> with each row representing one compound and each column the m/z for one of the defined adducts. With the <code>mz2mass</code> we could perform the reverse calculation, i.e. from m/z to compound masses.</p>
+<p>As a result we get a <code>matrix</code> with each row representing
+one compound and each column the m/z for one of the defined adducts.
+With the <code>mz2mass</code> we could perform the reverse calculation,
+i.e. from m/z to compound masses.</p>
 </div>
 <div class="section level3">
 <h3 id="working-with-chemical-formulas">Working with chemical formulas<a class="anchor" aria-label="anchor" href="#working-with-chemical-formulas"></a>
 </h3>
-<p>The lack of consistency in the format in which chemical formulas are written poses a big problem comparing formulas coming from different resources. The <code>MetaboCoreUtils</code> package provides functions to <em>standardize</em> formulas as well as combine formulas or substract elements from formulas. Below we use an artificial example to show this functionality. First we standardize a chemical formula with the <code>standardizeFormula</code> function.</p>
+<p>The lack of consistency in the format in which chemical formulas are
+written poses a big problem comparing formulas coming from different
+resources. The <code>MetaboCoreUtils</code> package provides functions
+to <em>standardize</em> formulas as well as combine formulas or
+substract elements from formulas. Below we use an artificial example to
+show this functionality. First we standardize a chemical formula with
+the <code>standardizeFormula</code> function.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">frml</span> <span class="op">&lt;-</span> <span class="st">"Na3C4"</span>
 <span class="va">frml</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/standardizeFormula.html">standardizeFormula</a></span><span class="op">(</span><span class="va">frml</span><span class="op">)</span>
 <span class="va">frml</span></code></pre></div>
 <pre><code><span class="co">##   Na3C4 </span>
 <span class="co">## "C4Na3"</span></code></pre>
-<p>Next we add <code>"H2O"</code> to the formula using the <code>addElements</code> function.</p>
+<p>Next we add <code>"H2O"</code> to the formula using the
+<code>addElements</code> function.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">frml</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/addElements.html">addElements</a></span><span class="op">(</span><span class="va">frml</span>, <span class="st">"H2O"</span><span class="op">)</span>
 <span class="va">frml</span></code></pre></div>
 <pre><code><span class="co">## [1] "C4H2ONa3"</span></code></pre>
-<p>We can also substract elements with the <code>subtractElements</code> function:</p>
+<p>We can also substract elements with the <code>subtractElements</code>
+function:</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">frml</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/subtractElements.html">subtractElements</a></span><span class="op">(</span><span class="va">frml</span>, <span class="st">"H"</span><span class="op">)</span>
 <span class="va">frml</span></code></pre></div>
 <pre><code><span class="co">## [1] "C4HONa3"</span></code></pre>
-<p>The counts for individual elements in a chemical formula can be calculated with the <code>countElements</code> function.</p>
+<p>The counts for individual elements in a chemical formula can be
+calculated with the <code>countElements</code> function.</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/countElements.html">countElements</a></span><span class="op">(</span><span class="va">frml</span><span class="op">)</span></code></pre></div>
 <pre><code><span class="co">## $C4HONa3</span>
@@ -189,12 +227,21 @@ document.addEventListener("DOMContentLoaded", function() {
 <div class="section level3">
 <h3 id="kendrick-mass-defect-calculation">Kendrick mass defect calculation<a class="anchor" aria-label="anchor" href="#kendrick-mass-defect-calculation"></a>
 </h3>
-<p>Lipids and other homologous series based on fatty acyls can be found in data by using Kendrick mass defects (KMD) or referenced kendrick mass defects (RKMD). The <code>MetaboCoreUtils</code> package provides functions to calculate everything around Kendrick mass defects. The following example calculates the KMD and RKMD for three lipids (PC(16:0/18:1(9Z)), PC(16:0/18:0), PS(16:0/18:1(9Z))) and checks, if they fit the RKMD of PCs detected as [M+H]+ adducts.</p>
+<p>Lipids and other homologous series based on fatty acyls can be found
+in data by using Kendrick mass defects (KMD) or referenced kendrick mass
+defects (RKMD). The <code>MetaboCoreUtils</code> package provides
+functions to calculate everything around Kendrick mass defects. The
+following example calculates the KMD and RKMD for three lipids
+(PC(16:0/18:1(9Z)), PC(16:0/18:0), PS(16:0/18:1(9Z))) and checks, if
+they fit the RKMD of PCs detected as [M+H]+ adducts.</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">lipid_masses</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">760.5851</span>, <span class="fl">762.6007</span>, <span class="fl">762.5280</span><span class="op">)</span>
 <span class="fu"><a href="../reference/calculateKendrickMass.html">calculateKmd</a></span><span class="op">(</span><span class="va">lipid_masses</span><span class="op">)</span></code></pre></div>
 <pre><code><span class="co">## [1] 0.7358239 0.7491732 0.6765544</span></code></pre>
-<p>Next the RKMD is calculated and checked if it fits to a specific range. RKMDs are either 0 or negative integers according to the number of double bonds in the lipids, e.g. -2 if two double bonds are present in the lipids.</p>
+<p>Next the RKMD is calculated and checked if it fits to a specific
+range. RKMDs are either 0 or negative integers according to the number
+of double bonds in the lipids, e.g. -2 if two double bonds are present
+in the lipids.</p>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">lipid_rkmd</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/calculateKendrickMass.html">calculateRkmd</a></span><span class="op">(</span><span class="va">lipid_masses</span><span class="op">)</span>
 <span class="fu"><a href="../reference/calculateKendrickMass.html">isRkmd</a></span><span class="op">(</span><span class="va">lipid_rkmd</span><span class="op">)</span></code></pre></div>
@@ -203,7 +250,12 @@ document.addEventListener("DOMContentLoaded", function() {
 <div class="section level3">
 <h3 id="retetion-time-indexing">Retetion time indexing<a class="anchor" aria-label="anchor" href="#retetion-time-indexing"></a>
 </h3>
-<p>Retention times are often not directly comparable between two LC-MS systems, even if nominally the same separation method is used. Conversion of retention times to retetion indices can overcome this issue. The <code>MetaboCoreUtils</code> package provides a function to perform this conversion. Below we use an example based on indexing with a homologoues series af N-Alkyl-pyridinium sulfonates (NAPS).</p>
+<p>Retention times are often not directly comparable between two LC-MS
+systems, even if nominally the same separation method is used.
+Conversion of retention times to retetion indices can overcome this
+issue. The <code>MetaboCoreUtils</code> package provides a function to
+perform this conversion. Below we use an example based on indexing with
+a homologoues series af N-Alkyl-pyridinium sulfonates (NAPS).</p>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">rti</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.table</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"retentionIndex"</span>,
                               <span class="st">"rti.txt"</span>,
@@ -216,7 +268,8 @@ document.addEventListener("DOMContentLoaded", function() {
                                 package <span class="op">=</span> <span class="st">"MetaboCoreUtils"</span><span class="op">)</span>,
                     header <span class="op">=</span> <span class="cn">TRUE</span>,
                     sep <span class="op">=</span> <span class="st">"\t"</span><span class="op">)</span></code></pre></div>
-<p>A <code>data.frame</code> with the retetion times of the NAPS and their respective index value is required.</p>
+<p>A <code>data.frame</code> with the retetion times of the NAPS and
+their respective index value is required.</p>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">rti</span><span class="op">)</span></code></pre></div>
 <pre><code><span class="co">##   rtime rindex</span>
@@ -226,10 +279,12 @@ document.addEventListener("DOMContentLoaded", function() {
 <span class="co">## 4  2.11    400</span>
 <span class="co">## 5  4.34    500</span>
 <span class="co">## 6  5.92    600</span></code></pre>
-<p>The indexing is peformed using the function <code>indexRtime</code>.</p>
+<p>The indexing is peformed using the function
+<code>indexRtime</code>.</p>
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">rtime</span><span class="op">$</span><span class="va">rindex_r</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/indexRtime.html">indexRtime</a></span><span class="op">(</span><span class="va">rtime</span><span class="op">$</span><span class="va">rtime</span>, <span class="va">rti</span><span class="op">)</span></code></pre></div>
-<p>For comparison the manual calculated retention indices are included.</p>
+<p>For comparison the manual calculated retention indices are
+included.</p>
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">rtime</span><span class="op">)</span></code></pre></div>
 <pre><code><span class="co">##                name rtime rindex_manual  rindex_r</span>
@@ -239,7 +294,11 @@ document.addEventListener("DOMContentLoaded", function() {
 <span class="co">## 4         NONANOATE 11.73     1244.5783 1244.5783</span>
 <span class="co">## 5 ESTRADIOL-17ALPHA 10.27     1065.4321 1065.4321</span>
 <span class="co">## 6         CAPRYLATE 10.67     1114.8148 1114.8148</span></code></pre>
-<p>Conditions that shall be compared by the retention index might not perfectly match. In case the deviation is linear a simple two-point correction can be applied to the data. This is performed by the function <code>correctRindex</code>. The correction requires two reference standards and their measured RIs and reference RIs.</p>
+<p>Conditions that shall be compared by the retention index might not
+perfectly match. In case the deviation is linear a simple two-point
+correction can be applied to the data. This is performed by the function
+<code>correctRindex</code>. The correction requires two reference
+standards and their measured RIs and reference RIs.</p>
 <div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">ref</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>rindex <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1709.8765</span>, <span class="fl">553.7975</span><span class="op">)</span>,
                   refindex <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1700</span>, <span class="fl">550</span><span class="op">)</span><span class="op">)</span>
@@ -250,15 +309,21 @@ document.addEventListener("DOMContentLoaded", function() {
 <div class="section level2">
 <h2 id="contributions">Contributions<a class="anchor" aria-label="anchor" href="#contributions"></a>
 </h2>
-<p>If you would like to contribute any low-level functionality, please <a href="https://github.com/RforMassSpectrometry/MetaboCoreUtils/issues" class="external-link">open a GitHub issue</a> to discuss it. Please note that any <a href="https://rformassspectrometry.github.io/RforMassSpectrometry/articles/RforMassSpectrometry.html#contributions" class="external-link">contributions</a> should follow the <a href="https://rformassspectrometry.github.io/RforMassSpectrometry/articles/RforMassSpectrometry.html#coding-style" class="external-link">style guide</a> and will require an appropriate unit test.</p>
-<p>If you wish to reuse any functions in this package, please just go ahead. If you would like any advice or seek help, please either <a href="https://github.com/RforMassSpectrometry/MetaboCoreUtils/issues" class="external-link">open a GitHub issue</a>.</p>
+<p>If you would like to contribute any low-level functionality, please
+<a href="https://github.com/RforMassSpectrometry/MetaboCoreUtils/issues" class="external-link">open
+a GitHub issue</a> to discuss it. Please note that any <a href="https://rformassspectrometry.github.io/RforMassSpectrometry/articles/RforMassSpectrometry.html#contributions" class="external-link">contributions</a>
+should follow the <a href="https://rformassspectrometry.github.io/RforMassSpectrometry/articles/RforMassSpectrometry.html#coding-style" class="external-link">style
+guide</a> and will require an appropriate unit test.</p>
+<p>If you wish to reuse any functions in this package, please just go
+ahead. If you would like any advice or seek help, please either <a href="https://github.com/RforMassSpectrometry/MetaboCoreUtils/issues" class="external-link">open
+a GitHub issue</a>.</p>
 </div>
 <div class="section level2">
 <h2 class="unnumbered" id="session-information">Session information<a class="anchor" aria-label="anchor" href="#session-information"></a>
 </h2>
-<pre><code><span class="co">## R Under development (unstable) (2022-02-03 r81650)</span>
+<pre><code><span class="co">## R Under development (unstable) (2022-03-03 r81847)</span>
 <span class="co">## Platform: x86_64-pc-linux-gnu (64-bit)</span>
-<span class="co">## Running under: Ubuntu 20.04.3 LTS</span>
+<span class="co">## Running under: Ubuntu 20.04.4 LTS</span>
 <span class="co">## </span>
 <span class="co">## Matrix products: default</span>
 <span class="co">## BLAS/LAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.8.so</span>
@@ -275,30 +340,33 @@ document.addEventListener("DOMContentLoaded", function() {
 <span class="co">## [1] stats     graphics  grDevices utils     datasets  methods   base     </span>
 <span class="co">## </span>
 <span class="co">## other attached packages:</span>
-<span class="co">## [1] MetaboCoreUtils_1.3.7 BiocStyle_2.23.1     </span>
+<span class="co">## [1] MetaboCoreUtils_1.3.8 BiocStyle_2.23.1     </span>
 <span class="co">## </span>
 <span class="co">## loaded via a namespace (and not attached):</span>
 <span class="co">##  [1] cluster_2.1.2       knitr_1.37          magrittr_2.0.2     </span>
-<span class="co">##  [4] BiocGenerics_0.41.2 MASS_7.3-55         MsCoreUtils_1.7.1  </span>
-<span class="co">##  [7] clue_0.3-60         R6_2.5.1            ragg_1.2.1         </span>
-<span class="co">## [10] rlang_1.0.1         fastmap_1.1.0       stringr_1.4.0      </span>
-<span class="co">## [13] tools_4.2.0         xfun_0.29           cli_3.1.1          </span>
+<span class="co">##  [4] BiocGenerics_0.41.2 MASS_7.3-55         MsCoreUtils_1.7.4  </span>
+<span class="co">##  [7] clue_0.3-60         R6_2.5.1            ragg_1.2.2         </span>
+<span class="co">## [10] rlang_1.0.2         fastmap_1.1.0       stringr_1.4.0      </span>
+<span class="co">## [13] tools_4.2.0         xfun_0.30           cli_3.2.0          </span>
 <span class="co">## [16] jquerylib_0.1.4     systemfonts_1.0.4   htmltools_0.5.2    </span>
-<span class="co">## [19] yaml_2.2.2          digest_0.6.29       rprojroot_2.0.2    </span>
-<span class="co">## [22] pkgdown_2.0.2.9000  crayon_1.4.2        bookdown_0.24      </span>
-<span class="co">## [25] textshaping_0.3.6   BiocManager_1.30.16 purrr_0.3.4        </span>
-<span class="co">## [28] S4Vectors_0.33.10   sass_0.4.0          fs_1.5.2           </span>
-<span class="co">## [31] memoise_2.0.1       cachem_1.0.6        evaluate_0.14      </span>
-<span class="co">## [34] rmarkdown_2.11      stringi_1.7.6       compiler_4.2.0     </span>
-<span class="co">## [37] bslib_0.3.1         desc_1.4.0          stats4_4.2.0       </span>
-<span class="co">## [40] jsonlite_1.7.3</span></code></pre>
+<span class="co">## [19] yaml_2.3.5          digest_0.6.29       rprojroot_2.0.2    </span>
+<span class="co">## [22] pkgdown_2.0.2.9000  bookdown_0.24       textshaping_0.3.6  </span>
+<span class="co">## [25] BiocManager_1.30.16 purrr_0.3.4         S4Vectors_0.33.10  </span>
+<span class="co">## [28] sass_0.4.0          fs_1.5.2            memoise_2.0.1      </span>
+<span class="co">## [31] cachem_1.0.6        evaluate_0.15       rmarkdown_2.13     </span>
+<span class="co">## [34] stringi_1.7.6       compiler_4.2.0      bslib_0.3.1        </span>
+<span class="co">## [37] desc_1.4.1          stats4_4.2.0        jsonlite_1.8.0</span></code></pre>
 </div>
 <div class="section level2">
 <h2 class="unnumbered" id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
 </h2>
 <div id="refs" class="references csl-bib-body hanging-indent">
 <div id="ref-rainer_modular_2022" class="csl-entry">
-Rainer, Johannes, Andrea Vicini, Liesa Salzer, Jan Stanstrup, Josep M. Badia, Steffen Neumann, Michael A. Stravs, et al. 2022. <span>“A <span>Modular</span> and <span>Expandable</span> <span>Ecosystem</span> for <span>Metabolomics</span> <span>Data</span> <span>Annotation</span> in <span>R</span>.”</span> <em>Metabolites</em> 12 (2): 173. <a href="https://doi.org/10.3390/metabo12020173" class="external-link">https://doi.org/10.3390/metabo12020173</a>.
+Rainer, Johannes, Andrea Vicini, Liesa Salzer, Jan Stanstrup, Josep M.
+Badia, Steffen Neumann, Michael A. Stravs, et al. 2022. <span>“A
+<span>Modular</span> and <span>Expandable</span> <span>Ecosystem</span>
+for <span>Metabolomics</span> <span>Data</span> <span>Annotation</span>
+in <span>R</span>.”</span> <em>Metabolites</em> 12 (2): 173. <a href="https://doi.org/10.3390/metabo12020173" class="external-link">https://doi.org/10.3390/metabo12020173</a>.
 </div>
 </div>
 </div>
@@ -315,7 +383,8 @@ Rainer, Johannes, Andrea Vicini, Liesa Salzer, Jan Stanstrup, Josep M. Badia, St
 
 <div class="pkgdown-footer-right">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.9000.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
+2.0.2.9000.</p>
 </div>
 
     </footer>
