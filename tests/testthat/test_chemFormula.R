@@ -139,4 +139,5 @@ test_that("correct calculation of masses", {
                  180.0634)
     expect_equal(unname(round(calculateMass(countElements("C11H12N2O2")), 4)),
                  204.0899)
+    expect_gt(calculateMass("[13C]C5H12O6"), calculateMass("C6H12O6"))
 })
