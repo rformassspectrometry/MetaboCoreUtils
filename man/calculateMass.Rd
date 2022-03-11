@@ -21,6 +21,7 @@ calculateMass(x)
 calculateMass("C6H12O6")
 calculateMass("NH3")
 calculateMass(c("C6H12O6", "NH3"))
+calculateMass(c("C6H12O6", "[13C3]C3H12O6"))
 }
 \author{
 Michael Witting

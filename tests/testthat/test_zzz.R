@@ -12,6 +12,6 @@ test_that(".load_adducts works", {
 })
 
 test_that(".load_isotopes works", {
-    mono <- .load_isotopes()
-    expect_true(length(mono) > 0)
+    iso <- .load_isotopes()
+    expect_equal(iso[c("H", "2H")], c(H = 1.007825032, "2H" = 2.014101778))
 })

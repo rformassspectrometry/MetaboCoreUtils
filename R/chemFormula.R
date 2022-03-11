@@ -23,25 +23,30 @@ countElements <- function(x) {
     ## regex pattern to isolate all elements
     element_pattern <- paste0(
         "(?<Element>",
-            "[A][cglmrstu]|",
-            "[B][aehikr]?|",
-            "[C][adeflmnorsu]?|",
-            "[D][bsy]|",
-            "[E][rsu]|",
-            "[F][elmr]?|",
-            "[G][ade]|",
-            "[H][efgos]?|",
-            "[I][nr]?|",
-            "[K][r]?|",
-            "[L][airuv]|",
-            "[M][cdgnot]|",
-            "[N][abdehiop]?|",
-            "[O][gs]?|",
-            "[P][abdmortu]?|",
-            "[R][abefghnu]|",
-            "[S][bcegimnr]?|",
-            "[T][abcehilms]|",
-            "[U]|[V]|[W]|[X][e]|[Y][b]?|[Z][nr]",
+            paste0("[0-9]*",
+                c(
+                    "[A][cglmrstu]|",
+                    "[B][aehikr]?|",
+                    "[C][adeflmnorsu]?|",
+                    "[D][bsy]|",
+                    "[E][rsu]|",
+                    "[F][elmr]?|",
+                    "[G][ade]|",
+                    "[H][efgos]?|",
+                    "[I][nr]?|",
+                    "[K][r]?|",
+                    "[L][airuv]|",
+                    "[M][cdgnot]|",
+                    "[N][abdehiop]?|",
+                    "[O][gs]?|",
+                    "[P][abdmortu]?|",
+                    "[R][abefghnu]|",
+                    "[S][bcegimnr]?|",
+                    "[T][abcehilms]|",
+                    "[U]|[V]|[W]|[X][e]|[Y][b]?|[Z][nr]"
+                ),
+                collapse = ""
+            ),
         ")",
         "(?<Number>[0-9]*)"
     )
@@ -56,8 +61,28 @@ countElements <- function(x) {
         sbstr[!nchar(sbstr)] <- 1L
         sl <- seq_len(n)
         nm <- sbstr[sl]
-        setNames(as.integer(sbstr[n + sl]), nm)
+        r <- setNames(as.integer(sbstr[n + sl]), nm)
+        valid <- .isValidElementName(nm)
+
+        if (any(!valid)) {
+            warning(
+                "The following names are not valid and are dropped: ",
+                paste0(names(r)[!valid], collapse = ", ")
+            )
+            r <- r[valid]
+        }
+        r
     }, xx = x, rr = rx, SIMPLIFY = FALSE, USE.NAMES = TRUE)
+}
+
+#' Validate element names/heavy isotopes
+#'
+#' @param x `character`, element/heavy isotope names
+#' @return `logical`, `TRUE` for valid name, `FALSE` otherwise
+#'
+#' @noRd
+.isValidElementName <- function(x) {
+    x %in% names(.ISOTOPES)
 }
 
 #' @title Create chemical formula from a named vector
@@ -92,7 +117,10 @@ pasteElements <- function(x) {
     enms <- .sort_elements(names(x))
     y <- as.character(x[enms])
     y[y == "1"] <- ""
-    paste0(enms, y, collapse = "")
+    y <- paste0(enms, y)
+    ## brackets for heavy isotopes
+    y <- gsub("^([0-9]+[A-z]+[0-9]*)", "[\\1]", y)
+    paste0(y, collapse = "")
 }
 
 #' Sort elements starting with organic elements, according to the Hill notation
@@ -105,9 +133,7 @@ pasteElements <- function(x) {
 #' @examples
 #' .sort_elements(c("H", "O", "S", "P", "C", "N", "Na", "Fe"))
 .sort_elements <- function(x) {
-    org <- c("C", "H", "N", "O", "S", "P")
-    y <- c(org, sort(x[!x %in% org]))
-    x[match(y, x, nomatch = 0L)]
+    x[match(names(.ISOTOPES), x, nomatch = 0L)]
 }
 
 #' @title Standardize a chemical formula
@@ -260,18 +286,19 @@ addElements <- function(x, y) {
 #' calculateMass("C6H12O6")
 #' calculateMass("NH3")
 #' calculateMass(c("C6H12O6", "NH3"))
+#' calculateMass(c("C6H12O6", "[13C3]C3H12O6"))
 calculateMass <- function(x) {
     if (is.character(x))
         x <- countElements(x)
     if (!is.list(x))
         stop("x must be either a character or a list with element counts.")
     vapply(x, function(z) {
-        elements <- names(z)
-        if (!all(elements %in% names(.MONOISOTOPES))) {
-            message("not for all elements a monoisotopic mass is found")
+        isotopes <- names(z)
+        if (!length(z) || !all(isotopes %in% names(.ISOTOPES))) {
+            message("not for all isotopes a mass is found")
             return(NA_real_)
         }
-        sum(z * .MONOISOTOPES[elements])
+        sum(z * .ISOTOPES[isotopes])
         ## mass <- 0.0
         ## for (atom in elements) {
         ##     atom_mass <- .MONOISOTOPES[atom]
