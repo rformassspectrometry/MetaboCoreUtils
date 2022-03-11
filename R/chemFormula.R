@@ -117,7 +117,10 @@ pasteElements <- function(x) {
     enms <- .sort_elements(names(x))
     y <- as.character(x[enms])
     y[y == "1"] <- ""
-    paste0(enms, y, collapse = "")
+    y <- paste0(enms, y)
+    ## brackets for heavy isotopes
+    y <- gsub("^([0-9]+[A-z]+[0-9]*)", "[\\1]", y)
+    paste0(y, collapse = "")
 }
 
 #' Sort elements starting with organic elements, according to the Hill notation
@@ -130,9 +133,7 @@ pasteElements <- function(x) {
 #' @examples
 #' .sort_elements(c("H", "O", "S", "P", "C", "N", "Na", "Fe"))
 .sort_elements <- function(x) {
-    org <- c("C", "H", "N", "O", "S", "P")
-    y <- c(org, sort(x[!x %in% org]))
-    x[match(y, x, nomatch = 0L)]
+    x[match(names(.ISOTOPES), x, nomatch = 0L)]
 }
 
 #' @title Standardize a chemical formula

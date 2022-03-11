@@ -69,12 +69,16 @@ test_that("pasteElements", {
         pasteElements(list(c(C = 6, O = 6, H = 12), c(H = 2, O = 1))),
         c("C6H12O6", "H2O")
     )
+    expect_identical(pasteElements(c(C = 1, "13C" = 2)), "[13C2]C")
 })
 
 test_that(".sort_elements", {
     expect_identical(
         .sort_elements(c("H", "O", "S", "P", "C", "N", "Na", "Fe")),
         c("C", "H", "N", "O", "S", "P", "Fe", "Na")
+    )
+    expect_identical(
+        .sort_elements(c("H", "C", "13C", "2H")), c("13C", "C", "2H", "H")
     )
 })
 
