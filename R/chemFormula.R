@@ -286,6 +286,7 @@ addElements <- function(x, y) {
 #' calculateMass("C6H12O6")
 #' calculateMass("NH3")
 #' calculateMass(c("C6H12O6", "NH3"))
+#' calculateMass(c("C6H12O6", "[13C3]C3H12O6"))
 calculateMass <- function(x) {
     if (is.character(x))
         x <- countElements(x)
