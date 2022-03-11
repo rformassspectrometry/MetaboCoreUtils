@@ -2,7 +2,8 @@
 
 ## MetaboCoreUtils 1.3.8
 
-- Support for heavy isotopes in `countElements`.
+- Support for heavy isotopes in `countElements`/`pasteElements`/`calculateMass`
+  (issue [#53](https://github.com/rformassspectrometry/MetaboCoreUtils/issues/53)).
 
 ## MetaboCoreUtils 1.3.7
 
