@@ -1,5 +1,9 @@
 # MetaboCoreutils 1.3
 
+## MetaboCoreUtils 1.3.8
+
+- Support for heavy isotopes in `countElements`.
+
 ## MetaboCoreUtils 1.3.7
 
 - Fix bug in `containsElements` function (issue

@@ -23,25 +23,30 @@ countElements <- function(x) {
     ## regex pattern to isolate all elements
     element_pattern <- paste0(
         "(?<Element>",
-            "[A][cglmrstu]|",
-            "[B][aehikr]?|",
-            "[C][adeflmnorsu]?|",
-            "[D][bsy]|",
-            "[E][rsu]|",
-            "[F][elmr]?|",
-            "[G][ade]|",
-            "[H][efgos]?|",
-            "[I][nr]?|",
-            "[K][r]?|",
-            "[L][airuv]|",
-            "[M][cdgnot]|",
-            "[N][abdehiop]?|",
-            "[O][gs]?|",
-            "[P][abdmortu]?|",
-            "[R][abefghnu]|",
-            "[S][bcegimnr]?|",
-            "[T][abcehilms]|",
-            "[U]|[V]|[W]|[X][e]|[Y][b]?|[Z][nr]",
+            paste0("[0-9]*",
+                c(
+                    "[A][cglmrstu]|",
+                    "[B][aehikr]?|",
+                    "[C][adeflmnorsu]?|",
+                    "[D][bsy]|",
+                    "[E][rsu]|",
+                    "[F][elmr]?|",
+                    "[G][ade]|",
+                    "[H][efgos]?|",
+                    "[I][nr]?|",
+                    "[K][r]?|",
+                    "[L][airuv]|",
+                    "[M][cdgnot]|",
+                    "[N][abdehiop]?|",
+                    "[O][gs]?|",
+                    "[P][abdmortu]?|",
+                    "[R][abefghnu]|",
+                    "[S][bcegimnr]?|",
+                    "[T][abcehilms]|",
+                    "[U]|[V]|[W]|[X][e]|[Y][b]?|[Z][nr]"
+                ),
+                collapse = ""
+            ),
         ")",
         "(?<Number>[0-9]*)"
     )
@@ -56,8 +61,28 @@ countElements <- function(x) {
         sbstr[!nchar(sbstr)] <- 1L
         sl <- seq_len(n)
         nm <- sbstr[sl]
-        setNames(as.integer(sbstr[n + sl]), nm)
+        r <- setNames(as.integer(sbstr[n + sl]), nm)
+        valid <- .isValidElementName(nm)
+
+        if (any(!valid)) {
+            warning(
+                "The following names are not valid and are dropped: ",
+                paste0(names(r)[!valid], collapse = ", ")
+            )
+            r <- r[valid]
+        }
+        r
     }, xx = x, rr = rx, SIMPLIFY = FALSE, USE.NAMES = TRUE)
+}
+
+#' Validate element names/heavy isotopes
+#'
+#' @param x `character`, element/heavy isotope names
+#' @return `logical`, `TRUE` for valid name, `FALSE` otherwise
+#'
+#' @noRd
+.isValidElementName <- function(x) {
+    x %in% names(.ISOTOPES)
 }
 
 #' @title Create chemical formula from a named vector

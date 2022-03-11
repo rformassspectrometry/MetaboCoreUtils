@@ -42,6 +42,8 @@ test_that("countElements", {
         countElements(c("C6H12O6", "H2O")),
         list(C6H12O6 = c(C = 6L, H = 12L, O = 6L), H2O = c(H = 2L, O = 1L))
     )
+
+    ## heavy isotopes
     expect_identical(
         countElements(c("[13C3]C3H12O6", "[2H2]O")),
         list(
@@ -49,6 +51,8 @@ test_that("countElements", {
             "[2H2]O" = c("2H" = 2L, O = 1L)
         )
     )
+    expect_warning(r <- countElements("[45C6][10H12]O6"), "not valid")
+    expect_identical(r, list("[45C6][10H12]O6" = c(O = 6L)))
 })
 
 test_that(".isValidElementName",
