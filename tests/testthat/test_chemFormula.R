@@ -123,8 +123,12 @@ test_that("correct calculation of masses", {
     expect_equal(unname(round(calculateMass("C6H12O6"), 4)), 180.0634)
     expect_equal(unname(round(calculateMass("C11H12N2O2"), 4)), 204.0899)
     expect_equal(
-        round(unname(calculateMass(c("C6H12O6", "C11H12N2O2", "blabla"))), 4),
-        c(180.0634, 204.0899, NA))
+        unname(suppressWarnings(
+                calculateMass(c("C6H12O6", "C11H12N2O2", "blabla"))
+        )),
+        c(180.0634, 204.0899, NA),
+        tolerance = 1e-5
+    )
 
     ## calculation of exact masses from named numeric vector
     expect_equal(unname(round(calculateMass(countElements("C6H12O6")), 4)),

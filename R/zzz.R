@@ -17,7 +17,7 @@
     }
 
     # get mono isotopes for exact mass calculation
-    assign(".MONOISOTOPES", .load_isotopes(), envir = asNamespace(pkgname))
+    assign(".ISOTOPES", .load_isotopes(), envir = asNamespace(pkgname))
 }
 
 .load_adducts <- function() {
@@ -29,9 +29,24 @@
 }
 
 .load_isotopes <- function() {
-    mono <- utils::read.table(system.file("isotopes", "isotope_definition.txt",
-                                          package = "MetaboCoreUtils"),
-                              sep = "\t", header = TRUE)
-    vapply(split(mono, mono$element), function(z)
-        z$exact_mass[which.max(z$rel_abundance)], numeric(1))
+    iso <- utils::read.table(
+        system.file(
+            "isotopes", "isotope_definition.txt", package = "MetaboCoreUtils"
+        ),
+        sep = "\t", header = TRUE
+    )
+    ## sort by rel_abundance
+    iso <- iso[order(iso$element, -iso$rel_abundance),]
+    ## swap numbers and elements names
+    iso$isotope <- gsub("([A-z]+)([0-9]*)", "\\2\\1", iso$isotope)
+    ## drop isotope number from most common isotope
+    is_most_common <- !duplicated(iso$element)
+    iso$isotope[is_most_common] <-
+        gsub("^[0-9]+", "", iso$isotope[is_most_common])
+    ## sort according to Hill notation
+    org <- c("C", "H", "N", "O", "S", "P")
+    iso$rank <- match(iso$element, org, nomatch = length(org) + 1L)
+    ## reorder according to Hill notation and non-common isotopes first
+    iso <- iso[order(iso$rank, iso$element, iso$isotope),]
+    setNames(iso$exact_mass, iso$isotope)
 }

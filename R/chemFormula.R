@@ -291,12 +291,12 @@ calculateMass <- function(x) {
     if (!is.list(x))
         stop("x must be either a character or a list with element counts.")
     vapply(x, function(z) {
-        elements <- names(z)
-        if (!all(elements %in% names(.MONOISOTOPES))) {
-            message("not for all elements a monoisotopic mass is found")
+        isotopes <- names(z)
+        if (!length(z) || !all(isotopes %in% names(.ISOTOPES))) {
+            message("not for all isotopes a mass is found")
             return(NA_real_)
         }
-        sum(z * .MONOISOTOPES[elements])
+        sum(z * .ISOTOPES[isotopes])
         ## mass <- 0.0
         ## for (atom in elements) {
         ##     atom_mass <- .MONOISOTOPES[atom]
