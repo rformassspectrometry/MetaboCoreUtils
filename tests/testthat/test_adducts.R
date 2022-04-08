@@ -75,6 +75,20 @@ test_that("correct calculation of neutral mass", {
     expect_error(mz2mass(4, c("some", "[M+H]+")), "Unknown adduct")
 })
 
+test_that("formula2mz works", {
+    formulas <- c("C6H12O6", "[13C3]C3H12O6", "CHNOPS")
+    masses <- formula2mz(formulas, adductNames())
+    expect_equal(nrow(masses), length(formulas))
+    expect_equal(ncol(masses), length(adductNames()))
+    expect_true(is.matrix(masses))
+    
+    #Shoud we raise an error if all formulas are invalid?
+    expect_warning(formula2mz("foo")) 
+    
+    expect_warning(formula2mz(c(formulas, "foo")))
+    expect_error(formula2mz(formulas, adduct = "bar"))
+})
+
 test_that("adducts works", {
     expect_error(adducts(polarity = "some"))
     res <- adducts()
