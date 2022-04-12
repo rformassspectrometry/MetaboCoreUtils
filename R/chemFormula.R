@@ -266,6 +266,36 @@ addElements <- function(x, y) {
     ))
 }
 
+#' @title Multiply chemical formulas by a scalar
+#'
+#' @description
+#'
+#' `multiplyElements` Multiply the number of atoms of each element by a
+#' constant, positive, integer
+#'
+#' @author Roger Gine
+#'
+#' @inheritParams addElements
+#'
+#' @param k `numeric(1)` positive integer by which each formula will be
+#'   multiplied.
+#'
+#' @return `character` strings with the standardized chemical formula.
+#'
+#' @export
+#'
+#' @examples
+#'
+#' multiplyElements("H2O", 3)
+#'
+#' multiplyElements(c("C6H12O6", "Na", "CH4O"), 2)
+#' 
+multiplyElements <- function(x, k){
+    if (length(k) != 1) stop("k must have length one (1)")
+    if (!is.numeric(k) | k <= 0) stop("k must be a positive integer")
+    unlist(lapply(countElements(x), function(xx){.pasteElements(xx * k)}))   
+}
+
 #' @title Calculate exact mass
 #'
 #' @description
