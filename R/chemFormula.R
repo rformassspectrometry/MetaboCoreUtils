@@ -293,7 +293,9 @@ addElements <- function(x, y) {
 multiplyElements <- function(x, k){
     if (length(k) != 1) stop("k must have length one (1)")
     if (!is.numeric(k) | k <= 0) stop("k must be a positive integer")
-    unlist(lapply(countElements(x), function(xx){.pasteElements(xx * k)}))   
+    vapply(countElements(x), function(xx){.pasteElements(xx * k)},
+           FUN.VALUE = character(1),
+           USE.NAMES = FALSE)  
 }
 
 #' @title Calculate exact mass
