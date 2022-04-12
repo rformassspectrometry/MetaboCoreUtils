@@ -89,6 +89,23 @@ test_that("formula2mz works", {
     expect_error(formula2mz(formulas, adduct = "bar"))
 })
 
+test_that("adductFormula works", {
+    expect_equivalent(adductFormula("C6H12O6", c("[M+H]+", "[M+Na]+", "[M+K]+")),
+                      c("[C6H13O6]+", "[C6H12O6Na]+", "[C6H12O6K]+"))
+    
+    expect_error(adductFormula("foo")) #No valid formulas
+    expect_error(adductFormula("H2O", "bar")) #Invalid adduct
+    
+    #Remove bad formula and move on
+    expect_equivalent(adductFormula(c("foo", "H2O"), "[M+H]+"), "[H3O]+") 
+    
+    #Check dimension consistency
+    fs <- c("H2O", "C6H12O6", "[13C2]C4H12O6")
+    output <- adductFormula(fs, adducts())
+    expect_equal(nrow(output), length(fs))
+    expect_equal(ncol(output), nrow(adducts()))
+})
+
 test_that("adducts works", {
     expect_error(adducts(polarity = "some"))
     res <- adducts()
