@@ -93,15 +93,21 @@ test_that("adductFormula works", {
     expect_equivalent(adductFormula("C6H12O6", c("[M+H]+", "[M+Na]+", "[M+K]+")),
                       c("[C6H13O6]+", "[C6H12O6Na]+", "[C6H12O6K]+"))
     
-    expect_error(adductFormula("foo")) #No valid formulas
-    expect_error(adductFormula("H2O", "bar")) #Invalid adduct
+    # No valid formulas: warns that some are invalid and throws error if ALL 
+    # are invalid
+    expect_error(expect_warning(adductFormula("foo", adducts = "[M+H]+"))) 
+    expect_error(adductFormula("H2O", adducts = "bar")) #Invalid adduct
     
-    #Remove bad formula and move on
-    expect_equivalent(adductFormula(c("foo", "H2O"), "[M+H]+"), "[H3O]+") 
+    # Removes bad formula and moves on
+    expect_warning(bad <- adductFormula(c("foo", "H2O"), "[M+H]+"))
+    expect_equivalent(bad, "[H3O]+") 
     
-    #Check dimension consistency
     fs <- c("H2O", "C6H12O6", "[13C2]C4H12O6")
-    output <- adductFormula(fs, adducts())
+    
+    # Raise warnings because NAs will be generated for some adducts
+    expect_warning(output <- adductFormula(fs, adducts())) 
+    
+    # Check dimension consistency
     expect_equal(nrow(output), length(fs))
     expect_equal(ncol(output), nrow(adducts()))
 })
