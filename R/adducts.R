@@ -53,8 +53,8 @@
 #' mass2mz(c(100, 200), adds)
 mass2mz <- function(x, adduct = "[M+H]+") {
     arg <- .process_adduct_arg(adduct)
-    outer(x, arg$mult) +
-        rep(unname(arg$add), each = length(x))
+    outer(x, arg$mass_multi) +
+        rep(unname(arg$mass_add), each = length(x))
 }
 
 #' @title Calculate neutral mass
@@ -105,8 +105,8 @@ mass2mz <- function(x, adduct = "[M+H]+") {
 #' mz2mass(c(100, 200), adds)
 mz2mass <- function(x, adduct = "[M+H]+") {
     arg <- .process_adduct_arg(adduct)
-    outer(x, arg$add, "-") /
-        rep(unname(arg$mult), each = length(x))
+    outer(x, arg$mass_add, "-") /
+        rep(unname(arg$mass_multi), each = length(x))
 }
 
 #' @title Calculate mass-to-charge ratio from a formula
@@ -162,22 +162,25 @@ formula2mz <- function(formula, adduct = "[M+H]+", standardize = TRUE){
 }
 
 
-.process_adduct_arg <- function(adduct) {
+.process_adduct_arg <- function(adduct, columns = c("mass_add", "mass_multi"),
+                                output_type = "list") {
     if (is.character(adduct)) {
         idx <- match(adduct, names(.ADDUCTS_ADD))
         if (any(is.na(idx)))
             stop("Unknown adduct: ", paste0(adduct[is.na(idx)], collapse = ";"))
-        list(add = .ADDUCTS_ADD[idx], mult = .ADDUCTS_MULT[idx])
+        output <- .ADDUCTS[idx, columns]
     } else if (is.data.frame(adduct)) {
-        if (!all(c("mass_add", "mass_multi") %in% colnames(adduct)))
-            stop("columns \"mass_add\" and \"mass_multi\" not found")
-        add <- adduct$mass_add
-        names(add) <- rownames(adduct)
-        mult <- adduct$mass_multi
-        names(mult) <- rownames(adduct)
-        list(add = add, mult = mult)
+        if (!all(columns %in% colnames(adduct)))
+            stop("columns ", paste(columns, collapse = ", "), " not found")
+        output <- adduct[, columns]
     } else stop("'adduct' should be either a name of an adduct or a ",
                 "data.frame with the adduct definition")
+    if (output_type == "list"){
+        adNames <- rownames(output)
+        output <- as.list(output)
+        for (i in names(output)) {names(output[[i]]) <- adNames}
+    }
+    output
 }
 
 #' @title Calculate a table of adduct (ionic) formulas
@@ -219,7 +222,10 @@ formula2mz <- function(formula, adduct = "[M+H]+", standardize = TRUE){
 #' 
 #' @export
 adductFormula <- function(formulas, adduct = "[M+H]+", standardize = TRUE) {
-    adduct <- .process_adducts_arg_full(adduct)
+    adduct <- .process_adduct_arg(adduct,
+                                   c("mass_multi", "charge", "formula_add",
+                                     "formula_sub", "positive"),
+                                   output_type = "data.frame")
     if(standardize){
         formulas <- lapply(formulas, standardizeFormula)
         if(all(formulas == "")){stop("No valid formulas")}
@@ -260,27 +266,10 @@ adductFormula <- function(formulas, adduct = "[M+H]+", standardize = TRUE) {
     }, adduct = adduct)
     ionMatrix <- do.call(rbind, ionMatrix)
     rownames(ionMatrix) <- formulas
+    colnames(ionMatrix) <- rownames(adduct)
     return(ionMatrix)
 }
 
-# Similar to .process_adduct_arg, but returns a data.frame with all columns 
-# needed to calculate adduct formulas
-
-.process_adducts_arg_full <- function(adduct) {
-    if (is.character(adduct)) {
-        idx <- match(adduct, names(.ADDUCTS_ADD))
-        if (any(is.na(idx)))
-            stop("Unknown adduct: ", paste0(adduct[is.na(idx)], collapse = ";"))
-        return(.ADDUCTS[idx, ])
-    } else if (is.data.frame(adduct)) {
-        if (!all(c("name", "mass_multi", "formula_add",
-                   "formula_sub", "charge") %in% colnames(adduct)))
-            stop("columns \"name\", \"mass_multi\",
-                \"formula_add\", \"formula_sub\", \"charge\" not found")
-        return(adduct)
-    } else stop("'adduct' should be either a name of an adduct or a ",
-                "data.frame with the adduct definition")
-}
 
 #' @title Retrieve names of supported adducts
 #'

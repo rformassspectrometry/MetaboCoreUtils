@@ -95,8 +95,8 @@ test_that("adductFormula works", {
     
     # No valid formulas: warns that some are invalid and throws error if ALL 
     # are invalid
-    expect_error(expect_warning(adductFormula("foo", adducts = "[M+H]+"))) 
-    expect_error(adductFormula("H2O", adducts = "bar")) #Invalid adduct
+    expect_error(expect_warning(adductFormula("foo", adduct = "[M+H]+"))) 
+    expect_error(adductFormula("H2O", adduct = "bar")) #Invalid adduct
     
     # Removes bad formula and moves on
     expect_warning(bad <- adductFormula(c("foo", "H2O"), "[M+H]+"))
@@ -133,7 +133,7 @@ test_that(".process_adduct_arg works", {
     b <- adds$mass_multi
     names(a) <- rownames(adds)
     names(b) <- rownames(adds)
-    expect_equal(res, list(add = a, mult = b))
+    expect_equal(res, list(mass_add = a, mass_multi = b))
 
     df <- data.frame(mass_multi = 1:3, mass_add = 4)
     rownames(df) <- c("a", "b", "c")
@@ -142,5 +142,5 @@ test_that(".process_adduct_arg works", {
     b <- df$mass_add
     names(a) <- rownames(df)
     names(b) <- rownames(df)
-    expect_equal(res, list(add = b, mult = a))
+    expect_equal(res, list(mass_add = b, mass_multi = a))
 })
