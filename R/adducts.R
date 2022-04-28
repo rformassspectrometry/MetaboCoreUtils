@@ -187,7 +187,7 @@ formula2mz <- function(formula, adduct = "[M+H]+", standardize = TRUE){
 #'
 #' @param formulas `character` list of molecular formulas.
 #'
-#' @param adducts `character` list or `data.frame` of valid adducts to be used.
+#' @param adduct `character` list or `data.frame` of valid adducts to be used.
 #'   Custom adduct definitions can be provided via a `data.frame` but its format
 #'   must follow [adducts()]
 #'
@@ -218,15 +218,15 @@ formula2mz <- function(formula, adduct = "[M+H]+", standardize = TRUE){
 #' adductFormula("C6H12O6", custom_ads)
 #' 
 #' @export
-adductFormula <- function(formulas, adducts, standardize = TRUE) {
-    adducts <- .process_adducts_arg_full(adducts)
+adductFormula <- function(formulas, adduct = "[M+H]+", standardize = TRUE) {
+    adduct <- .process_adducts_arg_full(adduct)
     if(standardize){
-        formulas <- lapply(formulas, MetaboCoreUtils::standardizeFormula)
+        formulas <- lapply(formulas, standardizeFormula)
         if(all(formulas == "")){stop("No valid formulas")}
         formulas <- formulas[formulas != ""]
     }
-    ionMatrix <- lapply(formulas, function(formula, adducts){
-        formulaAdduct <- apply(adducts, 1, function(x) {
+    ionMatrix <- lapply(formulas, function(formula, adduct){
+        formulaAdduct <- apply(adduct, 1, function(x) {
             current_f <- formula
             multiplicity <- round(as.numeric(x["mass_multi"]) *
                                       as.numeric(x["charge"]))
@@ -255,9 +255,9 @@ adductFormula <- function(formulas, adducts, standardize = TRUE) {
             )
             return(current_f)
         })
-        names(formulaAdduct) <- adducts$name
+        names(formulaAdduct) <- adduct$name
         return(formulaAdduct)
-    }, adducts = adducts)
+    }, adduct = adduct)
     ionMatrix <- do.call(rbind, ionMatrix)
     rownames(ionMatrix) <- formulas
     return(ionMatrix)

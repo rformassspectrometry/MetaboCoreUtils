@@ -4,12 +4,12 @@
 \alias{adductFormula}
 \title{Calculate a table of adduct (ionic) formulas}
 \usage{
-adductFormula(formulas, adducts, standardize = TRUE)
+adductFormula(formulas, adduct = "[M+H]+", standardize = TRUE)
 }
 \arguments{
 \item{formulas}{\code{character} list of molecular formulas.}
 
-\item{adducts}{\code{character} list or \code{data.frame} of valid adducts to be used.
+\item{adduct}{\code{character} list or \code{data.frame} of valid adducts to be used.
 Custom adduct definitions can be provided via a \code{data.frame} but its format
 must follow \code{\link[=adducts]{adducts()}}}
 
