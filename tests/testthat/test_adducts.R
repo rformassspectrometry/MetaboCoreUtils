@@ -75,6 +75,43 @@ test_that("correct calculation of neutral mass", {
     expect_error(mz2mass(4, c("some", "[M+H]+")), "Unknown adduct")
 })
 
+test_that("formula2mz works", {
+    formulas <- c("C6H12O6", "[13C3]C3H12O6", "CHNOPS")
+    masses <- formula2mz(formulas, adductNames())
+    expect_equal(nrow(masses), length(formulas))
+    expect_equal(ncol(masses), length(adductNames()))
+    expect_true(is.matrix(masses))
+    
+    #Shoud we raise an error if all formulas are invalid?
+    expect_warning(formula2mz("foo")) 
+    
+    expect_warning(formula2mz(c(formulas, "foo")))
+    expect_error(formula2mz(formulas, adduct = "bar"))
+})
+
+test_that("adductFormula works", {
+    expect_equivalent(adductFormula("C6H12O6", c("[M+H]+", "[M+Na]+", "[M+K]+")),
+                      c("[C6H13O6]+", "[C6H12O6Na]+", "[C6H12O6K]+"))
+    
+    # No valid formulas: warns that some are invalid and throws error if ALL 
+    # are invalid
+    expect_error(expect_warning(adductFormula("foo", adduct = "[M+H]+"))) 
+    expect_error(adductFormula("H2O", adduct = "bar")) #Invalid adduct
+    
+    # Removes bad formula and moves on
+    expect_warning(bad <- adductFormula(c("foo", "H2O"), "[M+H]+"))
+    expect_equivalent(bad, "[H3O]+") 
+    
+    fs <- c("H2O", "C6H12O6", "[13C2]C4H12O6")
+    
+    # Raise warnings because NAs will be generated for some adducts
+    expect_warning(output <- adductFormula(fs, adducts())) 
+    
+    # Check dimension consistency
+    expect_equal(nrow(output), length(fs))
+    expect_equal(ncol(output), nrow(adducts()))
+})
+
 test_that("adducts works", {
     expect_error(adducts(polarity = "some"))
     res <- adducts()
@@ -96,7 +133,7 @@ test_that(".process_adduct_arg works", {
     b <- adds$mass_multi
     names(a) <- rownames(adds)
     names(b) <- rownames(adds)
-    expect_equal(res, list(add = a, mult = b))
+    expect_equal(res, list(mass_add = a, mass_multi = b))
 
     df <- data.frame(mass_multi = 1:3, mass_add = 4)
     rownames(df) <- c("a", "b", "c")
@@ -105,5 +142,5 @@ test_that(".process_adduct_arg works", {
     b <- df$mass_add
     names(a) <- rownames(df)
     names(b) <- rownames(df)
-    expect_equal(res, list(add = b, mult = a))
+    expect_equal(res, list(mass_add = b, mass_multi = a))
 })

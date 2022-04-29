@@ -122,6 +122,18 @@ test_that("addElements", {
     )
 })
 
+test_that("multiplyElements", {
+    expect_equivalent(multiplyElements("C6H12O6", 1), "C6H12O6")
+    expect_equivalent(multiplyElements("C6H12O6", 2), "C12H24O12")
+    expect_equivalent(multiplyElements(c("C6H12O6", "Na", "CH4O"), 2),
+                      c("C12H24O12", "Na2", "C2H8O2"))
+    
+    expect_error(multiplyElements("H2O", -10))
+    expect_error(multiplyElements("H2O", 0))
+    expect_error(multiplyElements("H2O", c(2,3)))
+    
+})
+
 test_that("correct calculation of masses", {
     ## calculation of exact masses from character
     expect_equal(unname(round(calculateMass("C6H12O6"), 4)), 180.0634)
