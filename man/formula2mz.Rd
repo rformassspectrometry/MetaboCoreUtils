@@ -46,7 +46,7 @@ custom_ads <- data.frame(mass_add = c(1, 2, 3), mass_multi = c(1, 2, 0.5))
 formula2mz(formulas, custom_ads)
 
 ## Use standardize = FALSE to keep formula unaltered
-formula2mz("H12C6O6") 
+formula2mz("H12C6O6")
 formula2mz("H12C6O6", standardize = FALSE)
 }
 \author{

@@ -1,3 +1,10 @@
+# MetaboCoreUtils 1.5
+
+## MetaboCoreUtils 1.5.1
+
+- Add functions `formula2mz`, `adductFormula` and `multiplyElements` (issue
+  [#55](https://github.com/rformassspectrometry/MetaboCoreUtils/issues/55)).
+
 # MetaboCoreutils 1.3
 
 ## MetaboCoreUtils 1.3.8

@@ -1,6 +1,6 @@
 Package: MetaboCoreUtils
 Title: Core Utils for Metabolomics Data
-Version: 1.5.0
+Version: 1.5.1
 Description: MetaboCoreUtils defines metabolomics-related core functionality
     provided as low-level functions to allow a data structure-independent usage
     across various R packages. This includes functions to calculate between ion
@@ -31,7 +31,11 @@ Authors@R:
       person(given = "Michael", family = "Stravs",
                      email = "stravsmi@eawag.ch",
                      role = "ctb",
-                     comment = c(ORCID = "0000-0002-1426-8572")))
+                     comment = c(ORCID = "0000-0002-1426-8572")),
+      person(given = "Roger", family = "Gine",
+                     email = "alrgibe9@gmail.com",
+                     role = c("aut"),
+                     comment = c(ORCID = "0000-0003-0288-9619")))
 Depends:
     R (>= 4.0)
 Imports:

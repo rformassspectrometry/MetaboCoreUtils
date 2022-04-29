@@ -89,6 +89,14 @@ As a result we get a `matrix` with each row representing one compound and each
 column the m/z for one of the defined adducts. With the `mz2mass` we could
 perform the reverse calculation, i.e. from m/z to compound masses.
 
+In addition, it is possible to calculate m/z values from chemical formulas with
+the `formula2mz` function. Below we calculate the m/z values for `[M+H]+` and
+`[M+Na]+` adducts from the chemical formulas of glucose and caffeine.
+
+```{r}
+formula2mz(c("C6H12O6", "C8H10N4O2"), adduct = c("[M+H]+", "[M+Na]+"))
+```
+
 
 ## Working with chemical formulas
 
@@ -119,11 +127,20 @@ frml <- subtractElements(frml, "H")
 frml
 ```
 
-The counts for individual elements in a chemical formula can be calculated with
-the `countElements` function.
+Chemical formulas could also be multiplied with a scalar using the
+`multiplyElements` function. The counts for individual elements in a chemical
+formula can be calculated with the `countElements` function.
 
 ```{r}
 countElements(frml)
+```
+
+The function `adductFormula` allows in addition to create chemical formulas of
+specific adducts of compounds. Below we create chemical formulas for `[M+H]+`
+and `[M+Na]+` adducts for glucose and caffeine.
+
+```{r}
+adductFormula(c("C6H12O6", "C8H10N4O2"), adduct = c("[M+H]+", "[M+Na]+"))
 ```
 
 

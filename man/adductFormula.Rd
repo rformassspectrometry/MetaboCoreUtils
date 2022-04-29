@@ -7,14 +7,15 @@
 adductFormula(formulas, adduct = "[M+H]+", standardize = TRUE)
 }
 \arguments{
-\item{formulas}{\code{character} list of molecular formulas.}
+\item{formulas}{\code{character} with molecular formulas for which adduct
+formulas should be calculated.}
 
-\item{adduct}{\code{character} list or \code{data.frame} of valid adducts to be used.
+\item{adduct}{\code{character} or \code{data.frame} of valid adduct. to be used.
 Custom adduct definitions can be provided via a \code{data.frame} but its format
 must follow \code{\link[=adducts]{adducts()}}}
 
-\item{standardize}{\code{logical} whether to standardize the molecular formulas to
-the Hill notation system before calculating their mass.}
+\item{standardize}{\code{logical(1)} whether to standardize the molecular formulas
+to the Hill notation system before calculating their mass.}
 }
 \value{
 \code{character} matrix with \emph{formula} rows and \emph{adducts} columns
@@ -23,8 +24,8 @@ containing all ion formulas. In case an ion can't be generated (eg.
 instead.
 }
 \description{
-\code{adductFormula} calculates the adduct formulas corresponding
-from the combinations of a list of formulas and a list of adducts.
+\code{adductFormula} calculates the chemical formulas for the specified adducts
+of provided chemical formulas.
 }
 \examples{
 
