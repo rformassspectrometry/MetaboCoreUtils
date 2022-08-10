@@ -227,10 +227,11 @@ subtractElements <- function(x, y) {
     unlist(mapply(
         FUN = function(xx, yy) {
             s <- .sum_elements(c(xx, -yy))
+
             if (any(s < 0))
                 NA_character_
             else
-                .pasteElements(s)
+                .pasteElements(s[s > 0])
         },
         xx = countElements(x), yy = countElements(y),
         SIMPLIFY = FALSE, USE.NAMES = FALSE

@@ -11,6 +11,8 @@ test_that("correct formula mathematics", {
     ## check formula subtraction (single formulae)
     expect_identical(subtractElements("C6H12O6", "H2O"), "C6H10O5")
     expect_identical(subtractElements("C6H12O6", "NH3"), NA_character_)
+    expect_identical(subtractElements("C6H12O6", "C6"), "H12O6")
+    expect_identical(subtractElements("C6H12O6", "C6H12O6"), "")
 
     ## check formula subtration (multiple formulae)
     expect_identical(

@@ -1,5 +1,10 @@
 # MetaboCoreUtils 1.5
 
+## MetaboCoreUtils 1.5.2
+
+- `substractElements` drops elements with zero counts (issue
+  [#57](https://github.com/rformassspectrometry/MetaboCoreUtils/issues/55)).
+
 ## MetaboCoreUtils 1.5.1
 
 - Add functions `formula2mz`, `adductFormula` and `multiplyElements` (issue
