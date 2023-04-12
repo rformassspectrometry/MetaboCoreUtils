@@ -2,7 +2,7 @@
 
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![R-CMD-check-bioc](https://github.com/RforMassSpectrometry/MetaboCoreUtils/workflows/R-CMD-check-bioc/badge.svg)](https://github.com/RforMassSpectrometry/MetaboCoreUtils/actions?query=workflow%3AR-CMD-check-bioc)
-[![codecov](https://codecov.io/gh/rformassspectrometry/MetaboCoreUtils/branch/devel/graph/badge.svg?token=bNwqkn4PKd)](https://codecov.io/gh/rformassspectrometry/MetaboCoreUtils)
+[![codecov](https://codecov.io/gh/rformassspectrometry/MetaboCoreUtils/branch/main/graph/badge.svg?token=bNwqkn4PKd)](https://codecov.io/gh/rformassspectrometry/MetaboCoreUtils)
 [![license](https://img.shields.io/badge/license-Artistic--2.0-brightgreen.svg)](https://opensource.org/licenses/Artistic-2.0)
 [![years in bioc](http://bioconductor.org/shields/years-in-bioc/MetaboCoreUtils.svg)](https://bioconductor.org/packages/release/bioc/html/MetaboCoreUtils.html)
 [![Ranking by downloads](http://bioconductor.org/shields/downloads/release/MetaboCoreUtils.svg)](https://bioconductor.org/packages/stats/bioc/MetaboCoreUtils/)
@@ -15,6 +15,16 @@ across various R packages.
 
 For more information see the package
 [homepage](https://rformassspectrometry.github.io/MetaboCoreUtils).
+
+
+# Installation
+
+The package can be installed with
+
+```r
+install.packages("BiocManager")
+BiocManager::install("MetaboCoreUtils")
+```
 
 
 # Contributions
