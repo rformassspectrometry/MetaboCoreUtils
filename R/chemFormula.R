@@ -50,10 +50,15 @@ countElements <- function(x) {
         ")",
         "(?<Number>[0-9]*)"
     )
+
     rx <- gregexpr(pattern = element_pattern, text = x, perl = TRUE)
 
     mapply(function(xx, rr) {
         n <- length(rr)
+
+        if (is.na(xx))
+            return (NA_integer_)
+
         start <- attr(rr, "capture.start")
         end <- start + attr(rr, "capture.length") - 1L
         sbstr <- substring(xx, start, end)
@@ -170,7 +175,7 @@ standardizeFormula <- function(x) {
 .sum_elements <- function(x) {
     if (!is.character(names(x)))
         stop("element names missing")
-    unlist(lapply(split(x, names(x)), sum))
+    unlist(lapply(split(x, names(x)), sum, na.rm = TRUE))
 }
 
 #' @title Check if one formula is contained in another
@@ -290,13 +295,13 @@ addElements <- function(x, y) {
 #' multiplyElements("H2O", 3)
 #'
 #' multiplyElements(c("C6H12O6", "Na", "CH4O"), 2)
-#' 
+#'
 multiplyElements <- function(x, k){
     if (length(k) != 1) stop("k must have length one (1)")
     if (!is.numeric(k) | k <= 0) stop("k must be a positive integer")
     vapply(countElements(x), function(xx){.pasteElements(xx * k)},
            FUN.VALUE = character(1),
-           USE.NAMES = FALSE)  
+           USE.NAMES = FALSE)
 }
 
 #' @title Calculate exact mass
