@@ -48,7 +48,7 @@ test_that("countElements", {
         countElements(c("C6H12O6", NA, "H2O")),
         structure(
             list(
-                c(C = 6L, H = 12L, O = 6L), NULL,
+                c(C = 6L, H = 12L, O = 6L), NA_integer_,
                 c(H = 2L, O = 1L)
             ), names = c("C6H12O6", NA, "H2O")
         )
@@ -103,6 +103,7 @@ test_that("standardizeFormula", {
 test_that("containsElements", {
     expect_true(containsElements("C6H12O6", "H2O"))
     expect_false(containsElements("C6H12O6", "NH3"))
+    expect_identical(containsElements("C6H12O6", NA), NA)
     expect_identical(
         containsElements("C6H12O6", c("H2O", "NH3")),
         c(TRUE, FALSE)
@@ -111,7 +112,7 @@ test_that("containsElements", {
 
 test_that("subtractElements", {
     expect_identical(subtractElements("C6H12O6", "H2O"), "C6H10O5")
-    expect_identical(subtractElements("C6H12O6", NA), "C6H12O6")
+    expect_identical(subtractElements("C6H12O6", NA), NA_character_)
     expect_identical(
         subtractElements(c("C6H12O6", "C6H12O6"), c("H2O", "NH3")),
         c("C6H10O5", NA_character_)
@@ -124,7 +125,7 @@ test_that("subtractElements", {
 
 test_that("addElements", {
     expect_identical(addElements("C6H12O6", "H2O"), "C6H14O7")
-    expect_identical(addElements("C6H12O6", NA), "C6H12O6")
+    expect_identical(addElements("C6H12O6", NA), NA_character_)
     expect_identical(
         addElements(c("C6H12O6", "C6H12O6"), c("H2O", "NH3")),
         c("C6H14O7", "C6H15NO6")
