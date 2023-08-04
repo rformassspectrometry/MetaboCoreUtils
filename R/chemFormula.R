@@ -50,10 +50,15 @@ countElements <- function(x) {
         ")",
         "(?<Number>[0-9]*)"
     )
+
     rx <- gregexpr(pattern = element_pattern, text = x, perl = TRUE)
 
     mapply(function(xx, rr) {
         n <- length(rr)
+
+        if (is.na(xx))
+            return(NA_integer_)
+
         start <- attr(rr, "capture.start")
         end <- start + attr(rr, "capture.length") - 1L
         sbstr <- substring(xx, start, end)
@@ -112,6 +117,8 @@ pasteElements <- function(x) {
     unlist(lapply(x, .pasteElements))
 }
 .pasteElements <- function(x) {
+    if (anyNA(x))
+        return(NA_character_)
     if (!is.character(names(x)))
         stop("element names missing")
     enms <- .sort_elements(names(x))
@@ -170,6 +177,8 @@ standardizeFormula <- function(x) {
 .sum_elements <- function(x) {
     if (!is.character(names(x)))
         stop("element names missing")
+    if (anyNA(x))
+        return(NA_integer_)
     unlist(lapply(split(x, names(x)), sum))
 }
 
@@ -228,10 +237,10 @@ subtractElements <- function(x, y) {
         FUN = function(xx, yy) {
             s <- .sum_elements(c(xx, -yy))
 
-            if (any(s < 0))
-                NA_character_
-            else
+            if (isTRUE(all(s >= 0)))
                 .pasteElements(s[s > 0])
+            else
+                NA_character_
         },
         xx = countElements(x), yy = countElements(y),
         SIMPLIFY = FALSE, USE.NAMES = FALSE
@@ -290,13 +299,13 @@ addElements <- function(x, y) {
 #' multiplyElements("H2O", 3)
 #'
 #' multiplyElements(c("C6H12O6", "Na", "CH4O"), 2)
-#' 
-multiplyElements <- function(x, k){
+#'
+multiplyElements <- function(x, k) {
     if (length(k) != 1) stop("k must have length one (1)")
     if (!is.numeric(k) | k <= 0) stop("k must be a positive integer")
     vapply(countElements(x), function(xx){.pasteElements(xx * k)},
            FUN.VALUE = character(1),
-           USE.NAMES = FALSE)  
+           USE.NAMES = FALSE)
 }
 
 #' @title Calculate exact mass

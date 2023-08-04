@@ -44,6 +44,15 @@ test_that("countElements", {
         countElements(c("C6H12O6", "H2O")),
         list(C6H12O6 = c(C = 6L, H = 12L, O = 6L), H2O = c(H = 2L, O = 1L))
     )
+    expect_identical(
+        countElements(c("C6H12O6", NA, "H2O")),
+        structure(
+            list(
+                c(C = 6L, H = 12L, O = 6L), NA_integer_,
+                c(H = 2L, O = 1L)
+            ), names = c("C6H12O6", NA, "H2O")
+        )
+    )
 
     ## heavy isotopes
     expect_identical(
@@ -94,6 +103,7 @@ test_that("standardizeFormula", {
 test_that("containsElements", {
     expect_true(containsElements("C6H12O6", "H2O"))
     expect_false(containsElements("C6H12O6", "NH3"))
+    expect_identical(containsElements("C6H12O6", NA), NA)
     expect_identical(
         containsElements("C6H12O6", c("H2O", "NH3")),
         c(TRUE, FALSE)
@@ -102,6 +112,7 @@ test_that("containsElements", {
 
 test_that("subtractElements", {
     expect_identical(subtractElements("C6H12O6", "H2O"), "C6H10O5")
+    expect_identical(subtractElements("C6H12O6", NA), NA_character_)
     expect_identical(
         subtractElements(c("C6H12O6", "C6H12O6"), c("H2O", "NH3")),
         c("C6H10O5", NA_character_)
@@ -114,6 +125,7 @@ test_that("subtractElements", {
 
 test_that("addElements", {
     expect_identical(addElements("C6H12O6", "H2O"), "C6H14O7")
+    expect_identical(addElements("C6H12O6", NA), NA_character_)
     expect_identical(
         addElements(c("C6H12O6", "C6H12O6"), c("H2O", "NH3")),
         c("C6H14O7", "C6H15NO6")
@@ -129,11 +141,11 @@ test_that("multiplyElements", {
     expect_equivalent(multiplyElements("C6H12O6", 2), "C12H24O12")
     expect_equivalent(multiplyElements(c("C6H12O6", "Na", "CH4O"), 2),
                       c("C12H24O12", "Na2", "C2H8O2"))
-    
+
     expect_error(multiplyElements("H2O", -10))
     expect_error(multiplyElements("H2O", 0))
     expect_error(multiplyElements("H2O", c(2,3)))
-    
+
 })
 
 test_that("correct calculation of masses", {

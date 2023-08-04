@@ -1,3 +1,12 @@
+# MetaboCoreUtils 1.9
+
+## MetaboCoreUtils 1.9.1
+
+- `countElements`, `subtractElements` and `addElements` returns `NA` if
+  an input arguments is `NA`
+  (issue [#61](https://github.com/rformassspectrometry/MetaboCoreUtils/issues/61),
+  PR [#62](https://github.com/rformassspectrometry/MetaboCoreUtils/pull/62)).
+
 # MetaboCoreUtils 1.5
 
 ## MetaboCoreUtils 1.5.2
