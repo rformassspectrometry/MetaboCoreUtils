@@ -25,25 +25,25 @@ countElements <- function(x) {
         "(?<Element>",
             paste0("[0-9]*",
                 c(
-                    "[A][cglmrstu]|",
-                    "[B][aehikr]?|",
-                    "[C][adeflmnorsu]?|",
-                    "[D][bsy]|",
-                    "[E][rsu]|",
-                    "[F][elmr]?|",
-                    "[G][ade]|",
-                    "[H][efgos]?|",
-                    "[I][nr]?|",
-                    "[K][r]?|",
-                    "[L][airuv]|",
-                    "[M][cdgnot]|",
-                    "[N][abdehiop]?|",
-                    "[O][gs]?|",
-                    "[P][abdmortu]?|",
-                    "[R][abefghnu]|",
-                    "[S][bcegimnr]?|",
-                    "[T][abcehilms]|",
-                    "[U]|[V]|[W]|[X][e]|[Y][b]?|[Z][nr]"
+                    "A[cglmrstu]|",
+                    "B[aehikr]?|",
+                    "C[adeflmnorsu]?|",
+                    "D[bsy]|",
+                    "E[rsu]|",
+                    "F[elmr]?|",
+                    "G[ade]|",
+                    "H[efgos]?|",
+                    "I[nr]?|",
+                    "Kr?|",
+                    "L[airuv]|",
+                    "M[cdgnot]|",
+                    "N[abdehiop]?|",
+                    "O[gs]?|",
+                    "P[abdmortu]?|",
+                    "R[abefghnu]|",
+                    "S[bcegimnr]?|",
+                    "T[abcehilms]|",
+                    "U|V|W|Xe|Yb?|Z[nr]"
                 ),
                 collapse = ""
             ),
@@ -58,6 +58,10 @@ countElements <- function(x) {
 
         if (is.na(xx))
             return(NA_integer_)
+        if (sum(attr(rr, "match.length")) != nchar(gsub("\\[|\\]", "", xx))) {
+            warning("The given formula '", xx, "' contains invalid symbols.")
+            return(NA_integer_)
+        }
 
         start <- attr(rr, "capture.start")
         end <- start + attr(rr, "capture.length") - 1L
@@ -175,10 +179,10 @@ standardizeFormula <- function(x) {
 #' @examples
 #' .sum_elements(c(H = 6, C = 3, O = 6, C = 3, H = 6))
 .sum_elements <- function(x) {
-    if (!is.character(names(x)))
-        stop("element names missing")
     if (anyNA(x))
         return(NA_integer_)
+    if (!is.character(names(x)))
+        stop("element names missing")
     unlist(lapply(split(x, names(x)), sum))
 }
 
@@ -336,7 +340,9 @@ calculateMass <- function(x) {
         stop("x must be either a character or a list with element counts.")
     vapply(x, function(z) {
         isotopes <- names(z)
-        if (!length(z) || !all(isotopes %in% names(.ISOTOPES))) {
+        if (!length(z) ||
+            is.null(isotopes) ||
+            !all(isotopes %in% names(.ISOTOPES))) {
             message("not for all isotopes a mass is found")
             return(NA_real_)
         }

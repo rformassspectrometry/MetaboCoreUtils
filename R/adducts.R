@@ -233,6 +233,9 @@ adductFormula <- function(formulas, adduct = "[M+H]+", standardize = TRUE) {
     ionMatrix <- lapply(formulas, function(formula, adduct) {
         formulaAdduct <- apply(adduct, 1, function(x) {
             current_f <- formula
+
+            if (is.null(current_f)) return(NULL)
+
             multiplicity <- round(as.numeric(x["mass_multi"]) *
                                       as.numeric(x["charge"]))
             if (multiplicity != 1) {
@@ -264,7 +267,7 @@ adductFormula <- function(formulas, adduct = "[M+H]+", standardize = TRUE) {
         return(formulaAdduct)
     }, adduct = adduct)
     ionMatrix <- do.call(rbind, ionMatrix)
-    rownames(ionMatrix) <- formulas
+    rownames(ionMatrix) <- formulas[as.logical(lengths(formulas))]
     colnames(ionMatrix) <- rownames(adduct)
     return(ionMatrix)
 }

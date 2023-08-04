@@ -53,6 +53,15 @@ test_that("countElements", {
             ), names = c("C6H12O6", NA, "H2O")
         )
     )
+    expect_warning(countElements("Foo"), "invalid")
+    expect_identical(
+        suppressWarnings(countElements(c("C6H12O6", "Foo", "H2O"))),
+        list(
+            "C6H12O6" = c(C = 6L, H = 12L, O = 6L),
+            Foo = NA_integer_,
+            "H2O" = c(H = 2L, O = 1L)
+        )
+    )
 
     ## heavy isotopes
     expect_identical(
