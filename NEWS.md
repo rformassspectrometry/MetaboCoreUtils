@@ -1,5 +1,11 @@
 # MetaboCoreUtils 1.9
 
+## MetaboCoreUtils 1.9.2
+
+- `countElements` returns `NA` for invalid elements instead of silently
+  dropping them (
+  PR [#65](https://github.com/rformassspectrometry/MetaboCoreUtils/pull/65)).
+
 ## MetaboCoreUtils 1.9.1
 
 - `countElements`, `subtractElements` and `addElements` returns `NA` if
