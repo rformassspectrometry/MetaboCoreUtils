@@ -1,5 +1,11 @@
 # MetaboCoreUtils 1.9
 
+## MetaboCoreUtils 1.9.3
+
+- `containsElements` returns `NA` for `NA` and `FALSE` for invalid elements;
+  see issue
+  [#63](https://github.com/rformassspectrometry/MetaboCoreUtils/issues/63).
+
 ## MetaboCoreUtils 1.9.2
 
 - `countElements` returns `NA` for invalid elements instead of silently

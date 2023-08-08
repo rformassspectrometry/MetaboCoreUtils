@@ -208,11 +208,16 @@ standardizeFormula <- function(x) {
 #' containsElements("C6H12O6", "H2O")
 #' containsElements("C6H12O6", "NH3")
 containsElements <- function(x, y) {
-    mapply(
+    r <- mapply(
         FUN = function(xx, yy)all(.sum_elements(c(xx, -yy)) >= 0),
         xx = countElements(x), yy = countElements(y),
         SIMPLIFY = TRUE, USE.NAMES = FALSE
     )
+    ## return FALSE for invalid elements
+    r[is.na(r)] <- FALSE
+    ## return NA for NA as input
+    r[is.na(x) | is.na(y)] <- NA
+    r
 }
 
 #' @title subtract two chemical formula
