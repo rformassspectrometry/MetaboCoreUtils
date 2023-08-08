@@ -228,11 +228,12 @@ adductFormula <- function(formulas, adduct = "[M+H]+", standardize = TRUE) {
     if (standardize) {
         formulas <- lapply(formulas, standardizeFormula)
         if (all(formulas == "")) stop("No valid formulas")
-        formulas <- formulas[formulas != ""]
+        formulas <- formulas[!is.na(formulas)]
     }
     ionMatrix <- lapply(formulas, function(formula, adduct) {
         formulaAdduct <- apply(adduct, 1, function(x) {
             current_f <- formula
+
             multiplicity <- round(as.numeric(x["mass_multi"]) *
                                       as.numeric(x["charge"]))
             if (multiplicity != 1) {
