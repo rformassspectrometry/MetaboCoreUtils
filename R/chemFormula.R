@@ -25,35 +25,44 @@ countElements <- function(x) {
         "(?<Element>",
             paste0("[0-9]*",
                 c(
-                    "[A][cglmrstu]|",
-                    "[B][aehikr]?|",
-                    "[C][adeflmnorsu]?|",
-                    "[D][bsy]|",
-                    "[E][rsu]|",
-                    "[F][elmr]?|",
-                    "[G][ade]|",
-                    "[H][efgos]?|",
-                    "[I][nr]?|",
-                    "[K][r]?|",
-                    "[L][airuv]|",
-                    "[M][cdgnot]|",
-                    "[N][abdehiop]?|",
-                    "[O][gs]?|",
-                    "[P][abdmortu]?|",
-                    "[R][abefghnu]|",
-                    "[S][bcegimnr]?|",
-                    "[T][abcehilms]|",
-                    "[U]|[V]|[W]|[X][e]|[Y][b]?|[Z][nr]"
+                    "A[cglmrstu]|",
+                    "B[aehikr]?|",
+                    "C[adeflmnorsu]?|",
+                    "D[bsy]|",
+                    "E[rsu]|",
+                    "F[elmr]?|",
+                    "G[ade]|",
+                    "H[efgos]?|",
+                    "I[nr]?|",
+                    "Kr?|",
+                    "L[airuv]|",
+                    "M[cdgnot]|",
+                    "N[abdehiop]?|",
+                    "O[gs]?|",
+                    "P[abdmortu]?|",
+                    "R[abefghnu]|",
+                    "S[bcegimnr]?|",
+                    "T[abcehilms]|",
+                    "U|V|W|Xe|Yb?|Z[nr]"
                 ),
                 collapse = ""
             ),
         ")",
         "(?<Number>[0-9]*)"
     )
+
     rx <- gregexpr(pattern = element_pattern, text = x, perl = TRUE)
 
     mapply(function(xx, rr) {
         n <- length(rr)
+
+        if (is.na(xx))
+            return(NA_integer_)
+        if (sum(attr(rr, "match.length")) != nchar(gsub("\\[|\\]", "", xx))) {
+            warning("The given formula '", xx, "' contains invalid symbols.")
+            return(NA_integer_)
+        }
+
         start <- attr(rr, "capture.start")
         end <- start + attr(rr, "capture.length") - 1L
         sbstr <- substring(xx, start, end)
@@ -112,6 +121,8 @@ pasteElements <- function(x) {
     unlist(lapply(x, .pasteElements))
 }
 .pasteElements <- function(x) {
+    if (anyNA(x))
+        return(NA_character_)
     if (!is.character(names(x)))
         stop("element names missing")
     enms <- .sort_elements(names(x))
@@ -168,6 +179,8 @@ standardizeFormula <- function(x) {
 #' @examples
 #' .sum_elements(c(H = 6, C = 3, O = 6, C = 3, H = 6))
 .sum_elements <- function(x) {
+    if (anyNA(x))
+        return(NA_integer_)
     if (!is.character(names(x)))
         stop("element names missing")
     unlist(lapply(split(x, names(x)), sum))
@@ -228,10 +241,10 @@ subtractElements <- function(x, y) {
         FUN = function(xx, yy) {
             s <- .sum_elements(c(xx, -yy))
 
-            if (any(s < 0))
-                NA_character_
-            else
+            if (isTRUE(all(s >= 0)))
                 .pasteElements(s[s > 0])
+            else
+                NA_character_
         },
         xx = countElements(x), yy = countElements(y),
         SIMPLIFY = FALSE, USE.NAMES = FALSE
@@ -290,13 +303,13 @@ addElements <- function(x, y) {
 #' multiplyElements("H2O", 3)
 #'
 #' multiplyElements(c("C6H12O6", "Na", "CH4O"), 2)
-#' 
-multiplyElements <- function(x, k){
+#'
+multiplyElements <- function(x, k) {
     if (length(k) != 1) stop("k must have length one (1)")
     if (!is.numeric(k) | k <= 0) stop("k must be a positive integer")
     vapply(countElements(x), function(xx){.pasteElements(xx * k)},
            FUN.VALUE = character(1),
-           USE.NAMES = FALSE)  
+           USE.NAMES = FALSE)
 }
 
 #' @title Calculate exact mass
@@ -327,7 +340,9 @@ calculateMass <- function(x) {
         stop("x must be either a character or a list with element counts.")
     vapply(x, function(z) {
         isotopes <- names(z)
-        if (!length(z) || !all(isotopes %in% names(.ISOTOPES))) {
+        if (!length(z) ||
+            is.null(isotopes) ||
+            !all(isotopes %in% names(.ISOTOPES))) {
             message("not for all isotopes a mass is found")
             return(NA_real_)
         }
