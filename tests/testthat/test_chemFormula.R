@@ -114,6 +114,10 @@ test_that("containsElements", {
     expect_false(containsElements("C6H12O6", "NH3"))
     expect_identical(containsElements("C6H12O6", NA), NA)
     expect_identical(
+        suppressWarnings(containsElements("C6H12O6", c("", "Z"))),
+        c(NA, NA)
+    )
+    expect_identical(
         containsElements("C6H12O6", c("H2O", "NH3")),
         c(TRUE, FALSE)
     )
