@@ -37,7 +37,10 @@ mclosest <- function(x,
                      tolerance = Inf) {
   
   # sanity checks
-  if (!is.array(x))  # I also tried dimnames == NULL but my table do not work here either. 
+  if (!is.array(x))  
+    # I also tried dimnames == NULL but my table do not work (get logical(0))
+    # here either. but do we want to make it work for table?
+    # i am a bit confused by that, is the ideal to make is work for everything ? 
     stop("'x' needs to be an array")
   if (!is.array(table))
     stop("'table' needs to be an array")
