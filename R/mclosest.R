@@ -23,20 +23,26 @@
 #' 
 #' ## short code test
 #'
-x <- data.frame(a= c(2,6), b= c(1,1))
-table <- data.frame(c= c(1,2),d=  c(3,4))
+x <- data.frame(a= 1:5, b= 3, colnames([a:e]))
+table <- data.frame(c= 2,d=4:8)
 ppm <- 0.5
 #' 
-#' take x row and get absulotue difference with every table row and get another table  
+#' ## take x row and get absulotue difference with every table row and get another table  
+#' look for the outer 
+#' take the first row of X - duplicate it s that it the lenght of the table argument then apply outer(X,Y, FUN=*-* or diff
+#' maybe no need to replicate, i think it is within the function alreadz 
+x1 <- x[1,]
+x <- as.array(x)
+outer(X = as.array(x),Y = as.array(table))
 
 #' 
-#'looping through different rows of X  
+#'## looping through different rows of X  
 #' 
-#' rank / order the column of an array 
+#' ## rank / order the column of an array 
 #' 
 #' 
-#' multiple these rank per row 
-#' 
+#' ## multiple these rank per row 
+#'look for %*% (inner matrix vector multiplication)
 #' 
 #' get index for the minimum
 #' 
