@@ -21,12 +21,10 @@
 #' @export
 #'
 #' @examples
-#' x <- data.frame(a = 1:5, b = 3:7)
-#' table <- data.frame(c = c(11, 23, 3, 5, 1), d = c(32:35, 45))
-#' ppm <- 0.5
+x <- data.frame(a = 1:5, b = 3:7)
+table <- data.frame(c = c(11, 23, 3, 5, 1), d = c(32:35, 45))
+ppm <- 0.5
 #' 
-
-
 
 mclosest <- function(x, 
                      table, 
@@ -46,6 +44,8 @@ mclosest <- function(x,
   if (length(ppm) != ncol(x))
    ppm <- rep(ppm[1], ncol(x))
   
+  # Initialize a vector to store closest row indices
+  closest_indices <- numeric(nrow(x))
   
   for (i in 1:nrow(x)) { 
     x1 <- x[i,, drop=FALSE]
@@ -53,8 +53,8 @@ mclosest <- function(x,
     abdiff <- abs(table - x1)
     ranked <- apply(abdiff, 2, rank)
     rowProd <- apply(ranked, 1, prod)
-    return(which.min(rowProd))
+    closest_indices[i] <- which.min(rowProd)
   }
-  ...
+  return(closest_indices)
 }
 
