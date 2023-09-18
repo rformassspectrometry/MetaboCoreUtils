@@ -1,16 +1,20 @@
-
-
-@title 
+#'@title Extract closest values in a pairwise manner between two matrices
 #'
-#' @description
+#' @description 
 #'
-#' `mclosest` ...
+#' `mclosest` functions calculate the closest rows in a pairwise manner. 
+#' It returns the index of the closest row in 'table' for each row in 'x'
 #'
-#' @param 
+#' @param x `numeric`  matrix or data frame representing the query data. 
 #'
-#' @param 
+#' @param table `numeric` matrix or data frame containing the reference data.
+#' 
+#' @param ppm `numeric` value specifying the parts per million tolerance for 
+#'             considering values as equal (default is 0).
+#' 
+#' @param tolerance ...
 #'
-#' @return 
+#' @return `numeric` vector of indices indicating the closest row of 'table' for each row of 'x'
 #'
 #' @author Philippine Louail
 #'
@@ -20,7 +24,8 @@
 #' x <- data.frame(a = 1:5, b = 3:7)
 #' table <- data.frame(c = c(11, 23, 3, 5, 1), d = c(32:35, 45))
 #' ppm <- 0.5
-#' mclosest(x, table, ppm = 0.5)
+#' 
+
 
 
 mclosest <- function(x, 
