@@ -1,64 +1,72 @@
 library(testthat)
 
 test_that("isotopologues works", {
-  substDef <- cbind(md = rep(c(1, 2), times = c(2, 3)),
-                    leftend = c(c(50, 100), c(70, 100, 150)),
-                    rightend = c(c(100, 150), c(100, 150, 220)),
-                    LBint = c(0:1, 2:4),
-                    LBslope = c(1:2, 3:5),
-                    UBint = c(1:2, 3:5),
-                    UBslope = c(2:3, 4:6))
+    substDef <- cbind(md = rep(c(1, 2), times = c(2, 3)),
+                      leftend = c(c(50, 100), c(70, 100, 150)),
+                      rightend = c(c(100, 150), c(100, 150, 220)),
+                      LBint = c(0:1, 2:4),
+                      LBslope = c(1:2, 3:5),
+                      UBint = c(1:2, 3:5),
+                      UBslope = c(2:3, 4:6))
 
-  bp1 <- data.frame(mz = c(80), intensity = c(80))
-  # construct mz's from md of above substitutions and corresponding intensities
-  # that should be accepted by construction
-  mz <- bp1$mz + c(1, 2)
-  intensity <- bp1$intensity*(c(0.5, 2.5) + bp1$mz * c(1.5, 3.5))
-  p1 <- data.frame(mz = mz, intensity = intensity)
+    bp1 <- data.frame(mz = c(80), intensity = c(80))
+    ## construct mz's from md of above substitutions and corresponding intensities
+    ## that should be accepted by construction
+    mz <- bp1$mz + c(1, 2)
+    intensity <- bp1$intensity*(c(0.5, 2.5) + bp1$mz * c(1.5, 3.5))
+    p1 <- data.frame(mz = mz, intensity = intensity)
 
-  bp2 <- data.frame(mz = c(110), intensity = c(50))
-  # 3rd peak doesn't correspond to any md in substDef
-  mz <- bp2$mz + c(1, 2, 3)
-  # 1st peak intensity incompatible by construction
-  # 2nd peak intensity compatible by construction
-  intensity <- bp2$intensity*(rep(3.5, 3) + bp2$mz * rep(4.5, 3))
-  p2 <- data.frame(mz = mz, intensity = intensity)
-  x <- rbind(bp1, p1, bp2, p2)
+    bp2 <- data.frame(mz = c(110), intensity = c(50))
+    ## 3rd peak doesn't correspond to any md in substDef
+    mz <- bp2$mz + c(1, 2, 3)
+    ## 1st peak intensity incompatible by construction
+    ## 2nd peak intensity compatible by construction
+    intensity <- bp2$intensity*(rep(3.5, 3) + bp2$mz * rep(4.5, 3))
+    p2 <- data.frame(mz = mz, intensity = intensity)
+    x <- rbind(bp1, p1, bp2, p2)
 
-  # search for all the groups
-  res <- isotopologues(x, substDef)
-  expect_equal(res, list(c(1, 2, 3), c(4, 6)))
+    ## Errors
+    x2 <- x[c(2, 3, 1, 6, 5, 7, 4), ]
+    expect_error(isotopologues(x2), "increasingly")
+    expect_equal(isotopologues(x, .check = FALSE), list())
+    x2 <- x
+    x2[4, 1] <- NA
+    expect_error(isotopologues(x2), "increasingly")
 
-  # search for the group with mz compatible with seedMz
-  res <- isotopologues(x, substDef, seedMz = bp2$mz)
-  expect_equal(res, list(c(4,6)))
-  res <- isotopologues(x, substDef, seedMz = c(bp1$mz, bp2$mz))
-  expect_equal(res, list(c(1, 2, 3), c(4, 6)))
+    ## search for all the groups
+    res <- isotopologues(x, substDef)
+    expect_equal(res, list(c(1, 2, 3), c(4, 6)))
 
-  # ppm and tolerance
-  x[2, "mz"] <- x[2, "mz"] * (1 + 30 * 1e-06)
-  res <- isotopologues(x, substDef, seedMz = c(bp1$mz, bp2$mz))
-  # expect_equal(res, list(c(1, 3), c(4, 6))) this gives an error
-  # I think the reason is the problem of closest with duplicates = "closest"
-  # closest(c(81, 82), c(81.1, 82), tolerance = 0, ppm = 20, duplicates = "closest")
-  # returns c(NA, NA)
-  # closest(c(81, 82), c(81, 82), tolerance = 0, ppm = 20, duplicates = "closest")
-  # returns c(1, 2) correctly
-  res <- isotopologues(x, substDef, seedMz = c(bp1$mz, bp2$mz), ppm = 40)
-  expect_equal(res, list(c(1, 2, 3), c(4, 6)))
-  res <- isotopologues(x, substDef, seedMz = c(bp1$mz, bp2$mz), tolerance = 1e-2)
-  expect_equal(res, list(c(1, 2, 3), c(4, 6)))
+    ## search for the group with mz compatible with seedMz
+    res <- isotopologues(x, substDef, seedMz = bp2$mz)
+    expect_equal(res, list(c(4,6)))
+    res <- isotopologues(x, substDef, seedMz = c(bp1$mz, bp2$mz))
+    expect_equal(res, list(c(1, 2, 3), c(4, 6)))
 
-  # charge = 2
-  bp3 <- data.frame(mz = c(40), intensity = c(50))
-  # create mz compatible with the substitutions
-  mz <- bp3$mz + c(0.5, 1)
-  # as well as compatible intensities
-  intensity <- bp3$intensity*(c(0.5, 2.5) + bp3$mz * 2 * c(1.5, 3.5))
-  p3 <- data.frame(mz = mz, intensity = intensity)
-  x <- rbind(bp3, p3, x)
-  res <- isotopologues(x, substDef, charge = 2)
-  expect_equal(res, list(c(1, 2, 3)))
+    ## ppm and tolerance
+    x[2, "mz"] <- x[2, "mz"] * (1 + 30 * 1e-06)
+    res <- isotopologues(x, substDef, seedMz = c(bp1$mz, bp2$mz))
+    ## expect_equal(res, list(c(1, 3), c(4, 6))) this gives an error
+    ## I think the reason is the problem of closest with duplicates = "closest"
+    ## closest(c(81, 82), c(81.1, 82), tolerance = 0, ppm = 20, duplicates = "closest")
+    ## returns c(NA, NA)
+    ## closest(c(81, 82), c(81, 82), tolerance = 0, ppm = 20, duplicates = "closest")
+    ## returns c(1, 2) correctly
+    res <- isotopologues(x, substDef, seedMz = c(bp1$mz, bp2$mz), ppm = 40)
+    expect_equal(res, list(c(1, 2, 3), c(4, 6)))
+    res <- isotopologues(x, substDef, seedMz = c(bp1$mz, bp2$mz), tolerance = 1e-2)
+    expect_equal(res, list(c(1, 2, 3), c(4, 6)))
+
+    ## charge = 2
+    bp3 <- data.frame(mz = c(40), intensity = c(50))
+    ## create mz compatible with the substitutions
+    mz <- bp3$mz + c(0.5, 1)
+    ## as well as compatible intensities
+    intensity <- bp3$intensity*(c(0.5, 2.5) + bp3$mz * 2 * c(1.5, 3.5))
+    p3 <- data.frame(mz = mz, intensity = intensity)
+    x <- rbind(bp3, p3, x)
+    res <- isotopologues(x, substDef, charge = 2)
+    expect_equal(res, list(c(1, 2, 3)))
 })
 
 test_that("isotopicSubstitutionMatrix works", {

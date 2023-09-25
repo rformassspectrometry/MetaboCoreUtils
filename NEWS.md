@@ -1,5 +1,9 @@
 # MetaboCoreUtils 1.9
 
+## MetaboCoreUtils 1.9.3
+
+- `isotopologues` checks if provided m/z values are increasingly ordered.
+
 ## MetaboCoreUtils 1.9.2
 
 - `countElements` returns `NA` for invalid elements instead of silently
