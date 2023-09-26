@@ -6,7 +6,7 @@ test_that("mclosest works", {
   mclosest(x, table, ppm = 0.5)
 })
 
-#one block or multiple ? 
-#testing format: expect warning and ppm multiplication 
-#test that: one row work -> gives info if the basic flow works
-#test that loop works ? 
+
+#testing format:checking error, checking equal  
+# check for input one row (check_equal)
+# check for multiple row (check_equal)
