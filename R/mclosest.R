@@ -12,7 +12,7 @@
 #' @param ppm `numeric` value specifying the parts per million tolerance for
 #'             considering values as equal (default is 0).
 #'
-#' @param tolerance ...
+#' @param tolerance `numeric` value specifiying  
 #'
 #' @return `numeric` vector of indices indicating the closest row of 'table' for each row of 'x'
 #'
@@ -24,6 +24,7 @@
 x <- data.frame(a = 1:5, b = 3:7)
 table <- data.frame(c = c(11, 23, 3, 5, 1), d = c(32:35, 45))
 ppm <- 0.5
+tolerance <- 0.5
 #'
 
 mclosest <- function(x,
@@ -36,12 +37,12 @@ mclosest <- function(x,
   if (is.null(dim(table)))
     stop("'table' needs to be an array")
   if (ncol(x) != ncol(table))
-    stop(" 'x' and 'table' need ot have same number of columns")
+    stop(" 'x' and 'table' need to have same number of columns")
   if (!is.matrix(x))
     x <- as.matrix(x)
   if (!is.matrix(table))
     table <- as.matrix(table)
-  nr <- nrow(x)
+  nr <- nrow(table)
   nc <- ncol(x)
   if (length(ppm) != nc)
    ppm <- rep(ppm[1], nc)
@@ -52,9 +53,9 @@ mclosest <- function(x,
   closest_indices <- numeric(nr)
   for (i in seq_len(nr)) {
     abdiff <- abs(table - rep(x[i, ], each = nr))
-    ranked <- apply(abdiff, 2, rank)
-    ## Remove differences larger than tolerance
-    ranked[abdiff > rep(tolerance, each = nr)] <- NA
+    ## Remove differences lower than tolerance
+    abdiff[abdiff < tolerance] <- NA
+    ranked <- apply(abdiff, 2, rank, na.last="keep")
     rowProd <- apply(ranked, 1, prod)
     closest_indices[i] <- which.min(rowProd)
   }
