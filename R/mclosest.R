@@ -68,9 +68,9 @@ mclosest <- function(x,
   ## Initialize a vector to store closest row indices
   closest_indices <- rep(NA_integer_ , nrow(x))
   for (i in seq_len(nrow(x))) {
-    abdiff <- abs(table - rep(x[i, ], each = nrt))
+    abdiff <- abs(table - rep(x[i, ], each = nr))
     ## Remove differences lower than tolerance
-    abdiff[abdiff > rep((tolerance + ppm(x[i,], ppm)), each = nrt)] <- NA
+    abdiff[abdiff > rep((tolerance + ppm(x[i,], ppm)), each = nr)] <- NA
     ranked <- apply(abdiff, 2, rank, na.last="keep")
     rowProd <- apply(ranked, 1, prod)
     res <- which.min(rowProd)
