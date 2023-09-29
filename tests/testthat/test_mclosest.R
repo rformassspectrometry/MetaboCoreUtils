@@ -11,15 +11,15 @@ test_that("closest checks format", {
     expect_error(mclosest(x, table_bigger), "'x' and 'table' need to have same number of columns")
 })
 
-x <- x[1, drop = FALSE]
+x1 <- x[1,]
 test_that("one row works", {
     expect_equal(mclosest(x1, table), 1)
 })
 
 test_that("loop works", {
-   expect_equal(mclosest(x, table), c(1, 1, 1, 1, 1))
+   expect_equal(mclosest(x, table), c(1, 1, 3, 1, 1))
 })
     
-testthat("tolerance test", {
-    expect_equal(mclosest(x, table, tolerance = 5), c(NA, NA, NA, NA, NA))
+test_that("tolerance test", {
+    expect_equal(mclosest(x, table, tolerance = 5), rep(NA_integer_, 5))
 })   
