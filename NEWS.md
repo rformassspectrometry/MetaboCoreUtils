@@ -1,5 +1,14 @@
 # MetaboCoreUtils 1.9
 
+## MetaboCoreUtils 1.9.4
+
+- Add function `mclosest` (issue 
+  [#20](https://github.com/rformassspectrometry/MetaboCoreUtils/issues/20)).
+
+## MetaboCoreUtils 1.9.3
+
+- `isotopologues` checks if provided m/z values are increasingly ordered.
+
 ## MetaboCoreUtils 1.9.2
 
 - `countElements` returns `NA` for invalid elements instead of silently

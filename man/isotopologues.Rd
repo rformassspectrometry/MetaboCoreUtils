@@ -10,11 +10,15 @@ isotopologues(
   tolerance = 0,
   ppm = 20,
   seedMz = numeric(),
-  charge = 1
+  charge = 1,
+  .check = TRUE
 )
 }
 \arguments{
-\item{x}{\code{matrix} with spectrum data (columns \code{mz} and \code{intensity}).}
+\item{x}{\code{matrix} or \code{data.frame} with spectrum data. The first column is
+expected to contain \emph{m/z} and the second column intensity values. The
+\emph{m/z} values in that matrix are expected to be increasingly ordered
+and no \code{NA} values should be present.}
 
 \item{substDefinition}{\code{matrix} or \code{data.frame} with definition of isotopic
 substitutions (columns \code{"name"} and \code{"md"} are among the mandatory
@@ -37,6 +41,10 @@ ones.}
 
 \item{charge}{\code{numeric(1)} representing the expected charge of the ionized
 compounds.}
+
+\item{.check}{\code{logical(1)} to disable input argument check. Should only be
+set to \code{FALSE} if provided \emph{m/z} values are guaranteed to be increasingly
+ordered and don't contain \code{NA} values.}
 }
 \value{
 \code{list} of \code{integer} vectors. Each \code{integer} vector contains the

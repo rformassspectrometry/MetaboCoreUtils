@@ -16,7 +16,10 @@
 #' upper and lower values to compute bounds for each isotopic substitution
 #' dependent on the peak's mass.
 #'
-#' @param x `matrix` with spectrum data (columns `mz` and `intensity`).
+#' @param x `matrix` or `data.frame` with spectrum data. The first column is
+#'     expected to contain *m/z* and the second column intensity values. The
+#'     *m/z* values in that matrix are expected to be increasingly ordered
+#'     and no `NA` values should be present.
 #'
 #' @param substDefinition `matrix` or `data.frame` with definition of isotopic
 #'     substitutions (columns `"name"` and `"md"` are among the mandatory
@@ -39,6 +42,10 @@
 #'
 #' @param charge `numeric(1)` representing the expected charge of the ionized
 #'     compounds.
+#'
+#' @param .check `logical(1)` to disable input argument check. Should only be
+#'     set to `FALSE` if provided *m/z* values are guaranteed to be increasingly
+#'     ordered and don't contain `NA` values.
 #'
 #' @return `list` of `integer` vectors. Each `integer` vector contains the
 #'     indixes of the rows in `x` with potential isotopologues of the same
@@ -87,10 +94,13 @@
 #' }
 isotopologues <- function(x, substDefinition = isotopicSubstitutionMatrix(),
                           tolerance = 0, ppm = 20, seedMz = numeric(),
-                          charge = 1) {
+                          charge = 1, .check = TRUE) {
     if (is.data.frame(substDefinition))
         substDefinition <- as.matrix(
             substDefinition[, colnames(substDefinition) != "name"])
+    if (.check && (anyNA(x[, 1L]) || is.unsorted(x[, 1L])))
+        stop("m/z values in `x` need to be increasingly ordered and should ",
+             "not be NA")
     .isotope_peaks(x, substDefinition, tolerance, ppm, seedMz, charge)
 }
 
