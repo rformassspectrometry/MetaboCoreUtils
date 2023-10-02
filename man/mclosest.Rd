@@ -36,7 +36,7 @@ of \code{x} and \code{table}. It returns the index of the closest row in \code{t
 each row in \code{x}.
 }
 \details{
-If, for a row of \code{x}, 2 rows of \code{table} are closest only the index of first
+If, for a row of \code{x}, two rows of \code{table} are closest only the index of first
 row will be returned.
 
 For both the \code{tolerance} and \code{ppm} arguments, if their length is different to
@@ -47,12 +47,12 @@ replicated to match it.
 x <- data.frame(a = 1:5, b = 3:7)
 table <- data.frame(c = c(11, 23, 3, 5, 1), d = c(32:35, 45))
 
-## Get for each row of `x` the index of the row in `table` with the smallest difference 
-## of values (per column)
+## Get for each row of `x` the index of the row in `table` with the smallest
+## difference of values (per column)
 mclosest(x, table)
 
 ## If the absolute difference is larger than `tolerance`, return `NA`. Note
-## that the tolerance value of `25` is used for difference for each pairwise 
+## that the tolerance value of `25` is used for difference for each pairwise
 ## column in `x` and `table`.
 mclosest(x, table, tolerance = 25)
 

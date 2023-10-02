@@ -168,7 +168,7 @@ isRkmd(lipid_rkmd)
 ```
 
 
-## Retetion time indexing
+## Retention time indexing
 
 Retention times are often not directly comparable between two LC-MS systems,
 even if nominally the same separation method is used. Conversion of retention
