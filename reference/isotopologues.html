@@ -34,7 +34,7 @@ dependent on the peak's mass."><meta property="og:image" content="https://rforma
     
     <a class="navbar-brand me-2" href="../index.html">MetaboCoreUtils</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.9.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.9.4</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -96,14 +96,18 @@ dependent on the peak's mass.</p>
 <span>  tolerance <span class="op">=</span> <span class="fl">0</span>,</span>
 <span>  ppm <span class="op">=</span> <span class="fl">20</span>,</span>
 <span>  seedMz <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">numeric</a></span><span class="op">(</span><span class="op">)</span>,</span>
-<span>  charge <span class="op">=</span> <span class="fl">1</span></span>
+<span>  charge <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  .check <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>x</dt>
-<dd><p><code>matrix</code> with spectrum data (columns <code>mz</code> and <code>intensity</code>).</p></dd>
+<dd><p><code>matrix</code> or <code>data.frame</code> with spectrum data. The first column is
+expected to contain <em>m/z</em> and the second column intensity values. The
+<em>m/z</em> values in that matrix are expected to be increasingly ordered
+and no <code>NA</code> values should be present.</p></dd>
 
 
 <dt>substDefinition</dt>
@@ -136,6 +140,12 @@ ones.</p></dd>
 <dt>charge</dt>
 <dd><p><code>numeric(1)</code> representing the expected charge of the ionized
 compounds.</p></dd>
+
+
+<dt>.check</dt>
+<dd><p><code>logical(1)</code> to disable input argument check. Should only be
+set to <code>FALSE</code> if provided <em>m/z</em> values are guaranteed to be increasingly
+ordered and don't contain <code>NA</code> values.</p></dd>
 
 </dl></div>
     <div class="section level2">
