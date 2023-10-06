@@ -1,4 +1,4 @@
-#'@title Extract closest values in a pairwise manner between two matrices
+#' @title Extract closest values in a pairwise manner between two matrices
 #'
 #' @description
 #'
@@ -47,7 +47,7 @@
 #' table <- data.frame(c = c(11, 23, 3, 5, 1), d = c(32:35, 45))
 #'
 #' ## Get for each row of `x` the index of the row in `table` with the smallest 
-#' ##difference of values (per column)
+#' ## difference of values (per column)
 #' mclosest(x, table)
 #'
 #' ## If the absolute difference is larger than `tolerance`, return `NA`. Note
