@@ -36,7 +36,7 @@
 #' the number of columns of `x` and `table`, the input argument will be 
 #' replicated to match it. 
 #'
-#' @author Philippine Louail, Johannes Rainer
+#' @author Philippine Louail
 #' 
 #' @importFrom MsCoreUtils ppm
 #'
