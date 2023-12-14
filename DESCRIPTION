@@ -44,14 +44,16 @@ Depends:
     R (>= 4.0)
 Imports:
     utils,
-    MsCoreUtils
+    MsCoreUtils,
+    BiocParallel,
+    methods,
+    stats
 Suggests:
     BiocStyle,
     testthat,
     knitr,
     rmarkdown,
-    robustbase,
-    BiocParallel
+    robustbase
 License: Artistic-2.0
 LazyData: no
 VignetteBuilder: knitr

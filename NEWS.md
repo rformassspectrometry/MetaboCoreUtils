@@ -3,7 +3,8 @@
 ## MetaboCoreUtils 1.11.1
 
 - Add functions to enable linear model-based adjustment of (LC-MS derived)
-  abundance matrices.
+  abundance matrices (issue
+  [#75](https://github.com/rformassspectrometry/MetaboCoreUtils/issues/75)).
 
 # MetaboCoreUtils 1.9
 

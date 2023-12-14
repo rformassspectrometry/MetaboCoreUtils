@@ -77,4 +77,36 @@ test_that(".adjust_with_lm works", {
     expect_true(abs(lm(y ~ sdata$injection_index)$coefficients[2L]) >
                 abs(lm(res ~ sdata$injection_index)$coefficients[2L]))
     expect_equal(mean(res, na.rm = TRUE), mean(y, na.rm = TRUE))
+
+    expect_equal(.adjust_with_lm(y, sdata, NA), y)
+})
+
+test_that("adjust_lm works", {
+    lms <- fit_lm(y ~ injection_index, vals, data = sdata)
+
+    ## Error checks
+    expect_error(adjust_lm(13, data = sdata, lm = lms), "numeric matrix")
+    expect_error(adjust_lm(vals, data = 13, lm = lms), "data.frame")
+    expect_error(adjust_lm(vals, data = sdata, lm = lms[1:3]), "number of rows")
+    expect_error(adjust_lm(vals, data = sdata[1:3, , drop = FALSE],
+                           lm = lms), "columns")
+    res <- adjust_lm(vals, data = sdata, lm = lms)
+    expect_true(is.matrix(res))
+    expect_equal(dimnames(res), dimnames(vals))
+    expect_equal(is.na(vals), is.na(res))
+
+    nas <- is.na(lms)
+    expect_equal(vals[nas, ], res[nas, ])
+
+    ## Fit on a subset.
+    idx <- grep("POOL", colnames(vals))
+    lms <- fit_lm(y ~ injection_index, vals[, idx],
+                  data = sdata[idx, , drop = FALSE])
+    res2 <- adjust_lm(vals, data = sdata, lm = lms)
+    expect_true(is.matrix(res2))
+    expect_equal(dimnames(res2), dimnames(vals))
+    expect_equal(is.na(res2), is.na(vals))
+
+    nas <- is.na(lms)
+    expect_equal(vals[nas, ], res2[nas, ])
 })

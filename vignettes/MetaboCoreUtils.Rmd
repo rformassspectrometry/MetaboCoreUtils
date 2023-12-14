@@ -224,6 +224,322 @@ rtime$rindex_cor <- correctRindex(rtime$rindex_r, ref)
 ```
 
 
+## Linear model-based adjustment of LC-MS feature abundances
+
+Feature abundances from untargeted LC-MS-based metabolomics experiments can be
+affected by technical noise or signal drifts. In particular, some of these
+technical variances can be specific for individual metabolites, requiring hence
+a per-feature adjustment of the abundances. One example of such noise is an
+injection order dependent signal drift that can sometimes be observed in
+untargeted metabolomics data from LC-MS experiments. The `fit_lm` function can
+be used to model such drifts in the observed data of each single feature, for
+example with a model of the form `y ~ injection_index` that models the
+relationship between the measured abundances of a metabolite `y` on the index in
+which the respective sample was injected (`injection_index`). Subsequently, the
+data can be adjusted for the modeled drift with the `adjust_lm` function. This
+approach is similar to the one described by [@wehrens_improved_2016].
+
+Below we perform such an injection order dependent signal adjustment on a small
+test data set representing abundances of LC-MS features from an untargeted
+metabolomics experiment. All samples were measured within the same measurement
+run and QC samples were measured repeatedly after 8 study samples.
+
+```{r}
+vals <- read.table(system.file("txt", "feature_values.txt",
+                               package = "MetaboCoreUtils"), sep = "\t")
+vals <- as.matrix(vals)
+head(vals)
+```
+
+The samples are provided in the columns of the `matrix` `vals`, in the order in
+which they were measured. We next define a `data.frame` with the injection index
+of the individual samples and identify the columns containing the QC samples.
+
+```{r}
+#' Define a data frame with the injection index
+sdata <- data.frame(injection_index = seq_len(ncol(vals)))
+
+#' Identify columns representing QC samples
+qc_index <- grep("^POOL", colnames(vals))
+```
+
+We can next model an injection order dependent signal drift for each feature
+(row) in the data. To ensure independence of the fitted regression models on any
+experimental covariate we estimate the drift on values observed for QC samples
+(which represent repeated injections of the same sample pool and hence any
+differences observed in these are supposed to be of only technical
+nature). Also, we fit the model on log2 transformed abundances assuming hence a
+log linear relationship between abundances and injection index. By setting
+`minVals = 9` we require at least 9 non-missing values in QC samples (n = 11) of
+each row for the model to be fitted - for fewer values, model fitting is skipped
+and an `NA` is returned for the particular feature (row).
+
+```{r}
+#' Fit linear models explaining observed abundances by injection index.
+#' Linear models are fitted row-wise to data of QC samples.
+qc_lm <- fit_lm(y ~ injection_index,
+                data = sdata[qc_index, , drop = FALSE],
+                y = log2(vals[, qc_index]),
+                minVals = 9)
+```
+
+The function returned a `list` of linear models. Each model describing the
+observed relationship between feature abundances and injection index of the
+samples. Below we extract the first of these models.
+
+```{r}
+qc_lm[[1]]
+```
+
+The coefficient for the injection index represents the dependency of the
+measured abundances (in QC samples) for that feature on the index in which the
+samples were injected, with positive coefficients indicating increasing
+abundances with injection index and negative coefficients decreasing
+intensities. The magnitude of the value represents the strength of this
+association.
+
+For some features no model was fitted, because too few non-missing data points
+were available (parameter `minVals` above).
+
+```{r}
+sum(is.na(qc_lm))
+```
+
+We can also plot the data and indicate the fitted model.
+
+```{r, fig.cap = "Abundance of an example feature along injection index. Open circles represent measurements in study samples, filled circles in QC samples. The black solid line represents the estimated signal drift."}
+plot(x = sdata$injection_index, y = log2(vals[1, ]),
+     xlab = "injection_index", ylab = expression(log[2]~abundance))
+#' Indicate QC samples
+points(x = sdata$injection_index[qc_index],
+       y = log2(vals[1, qc_index]), pch = 16, col = "#00000080")
+grid()
+abline(qc_lm[[1]])
+```
+
+For that feature a very slight increase of abundances over the measurement run
+was estimated. In contrast, for the second feature a stronger, but decreasing,
+signal drift was estimated on the QC samples (see below). Also the study samples
+seem to follow this drift.
+
+```{r, fig.cap = "Abundance of an example feature along injection index. Open circles represent measurements in study samples, filled circles in QC samples. The black solid line represents the estimated signal drift."}
+plot(x = sdata$injection_index, y = log2(vals[2, ]),
+     xlab = "injection_index", ylab = expression(log[2]~abundance))
+#' Indicate QC samples
+points(x = sdata$injection_index[qc_index],
+       y = log2(vals[2, qc_index]), pch = 16, col = "#00000080")
+grid()
+abline(qc_lm[[2]])
+```
+
+Thus, generally, for LC-MS data, not all features need be affected by the same
+injection order-dependent signal drift. We next extract the coefficient (or
+slope, representing the magnitude of the association with the injection order),
+its p-value (providing the significance from the hypothesis test that the
+coefficient is different from 0) and the (adjusted) R squared (variance
+explained by the fitted model) for each feature.
+
+```{r}
+#' Extract slope, F-statistic and R squared from each model, skipping
+#' features for which no model was fitted.
+qc_lm_summary <- lapply(qc_lm, function(z) {
+    if (length(z) > 1) {
+        s <- summary(z)
+        c(slope = coefficients(s)[2, "Estimate"],
+          p.value = coefficients(s)[2, 4],
+          adj.r.squared = s$adj.r.squared)
+    } else c(slope = NA_real_, F = NA_real_,
+             adj.r.squared = NA_real_) # returning NA for skipped models
+}) |> do.call(what = rbind)
+
+head(qc_lm_summary)
+```
+
+We below plot the slope (x-axis) against its p-value for the fitted
+models. For the p-values we plot the negative logarithm so that larger values
+represent smaller p-values.
+
+```{r}
+plot(qc_lm_summary[, "slope"], -log10(qc_lm_summary[, "p.value"]),
+     xlab = "injection order dependency", ylab = expression(-log[10](p~value)),
+     pch = 21, col = "#00000080", bg = "#00000040")
+grid()
+abline(h = -log10(0.05))
+```
+
+The p-value represents the significance of the slope being different
+from 0. Large slopes with poor p-values indicate that the measured values (in QC
+samples) don't fit the model well.
+
+We next select the feature with the largest slope (i.e., strongest estimated
+dependency on the injection index) and plot its data.
+
+```{r}
+idx <- which.max(qc_lm_summary[, "slope"])
+plot(x = sdata$injection_index, y = log2(vals[idx, ]),
+     xlab = "injection_index", ylab = expression(log[2]~abundance))
+#' Indicate QC samples
+points(x = sdata$injection_index[qc_index],
+       y = log2(vals[idx, qc_index]), pch = 16, col = "#00000080")
+grid()
+abline(qc_lm[[idx]])
+```
+
+Also for this feature, the study samples show a similar trend (along injection
+index) than the QC samples. The p-value and R squared for this feature are:
+
+```{r}
+qc_lm_summary[idx, ]
+```
+
+As an additional example we plot the data for a model with a large slope, but
+a low p-value.
+
+```{r}
+idx2 <- which(qc_lm_summary[, "slope"] > 0.01 &
+              qc_lm_summary[, "p.value"] > 0.05)
+plot(x = sdata$injection_index, y = log2(vals[idx2, ]),
+     xlab = "injection_index", ylab = expression(log[2]~abundance))
+points(x = sdata$injection_index[qc_index],
+       y = log2(vals[idx2, qc_index]), pch = 16, col = "#00000080")
+grid()
+abline(qc_lm[[idx2]])
+```
+
+For that particular feature no (or only a very low) injection order dependency
+of abundances can be observed in study samples while a rather strong signal
+drift was estimated on the QC samples. This strong dependency was driven mostly
+by 3 QC samples with low intensities at the beginning of the measurement
+run, that might however represent outlier signals. The p-value, slope and R
+squared values for this features are:
+
+```{r}
+qc_lm_summary[idx2, ]
+```
+
+The p-value is much larger for this feature and the R squared lower compared to
+the first feature, which suggests that the fitted model, although the
+coefficient (slope) is different from one, does not describe the data well.
+
+It is thus suggested to not blindly apply these feature-wise adjustments but to
+evaluate the estimated signal drifts (ideally for border cases) to determine
+whether they fit the data or to define strategies to identify cases for which
+the estimated signal drift should be discarded.
+
+As an example, we might want to remove linear model fits with a p-value larger
+0.05. While this cut-off is arbitrary, it will avoid adjusting the data in cases
+for which there is no injection dependent signal drift (i.e. when the
+slope/coefficient is close to 0) or for which the fitted model does not well
+explain the measured abundances (as in our example above).
+
+```{r}
+qc_lm[qc_lm_summary[, "p.value"] > 0.05] <- NA
+```
+
+We can next adjust the data for the estimated signal drifts using the
+`adjust_lm` function. We will thus adjust abundances in all samples (including
+the study samples) using the linear models estimated on the QC samples. For
+features for which no linear model is provided (i.e., with an `NA` in the `list`
+of linear models) the original abundances will be returned *as is*. With
+parameter `data` we need to provide a `data.frame` with all required covariates
+for the fitted models (i.e., defined by the `formula` passed to the `fit_lm`
+call). Also, since we fitted the models to the data in `log2` scale, we need
+also to provide log2 transformed values to the `adjust_lm` function.
+
+```{r}
+#' Adjust the data for the estimated signal drift
+vals_adj <- adjust_lm(log2(vals), data = sdata, lm = qc_lm)
+
+#' Transform data again into natural scale
+vals_adj <- 2^vals_adj
+```
+
+Finally, we can (and should) evaluate the impact of the adjustment by plotting
+the raw and adjusted values into the same plot. Below we plot these values (raw
+values as open circles, adjusted values as filled circles) for the 2nd feature.
+
+```{r, fig.cap = "Feature abundances before (open circles) and after adjustment (filled circles). The grey dashed line represents the injection index dependent signal drift estimated on the raw data and the solid grey line the same model estimated on the adjusted data."}
+plot(x = sdata$injection_index, y = log2(vals[2, ]),
+     xlab = "injection_index", ylab = expression(log[2]~abundance),
+     col = "#00000080")
+points(x = sdata$injection_index, y = log2(vals_adj[2, ]),
+       pch = 16, col = "#00000080")
+grid()
+abline(qc_lm[[2]], col = "grey", lty = 2)
+
+#' fit a model to the QC samples of the adjusted data
+l <- lm(log2(vals_adj[2, qc_index]) ~ sdata$injection_index[qc_index])
+abline(l, col = "grey")
+
+```
+
+As expected, the signal drift was removed by the adjustment.
+
+We can also evaluate the performance of the whole adjustment by comparing the
+correlation of abundances with injection index before and after
+adjustment. Below we calculate the correlation between abundances in QC samples
+and the respective injection index of these samples using the non-parametric
+Spearman method.
+
+
+We restrict the calculation to features that were also adjusted
+using the signal dependent
+
+```{r}
+#' Identify features for which the adjustment was performed
+fts_adj <- which(!is.na(qc_lm))
+
+#' Define a function to calculate the correlation
+cor_fun <- function(i, y) {
+    values <- y[i, qc_index]
+    if (sum(!is.na(values)) >= 9)
+        cor(values, sdata$injection_index[qc_index],
+            method = "spearman", use = "pairwise.complete.obs")
+    else NA_real_
+}
+
+#' Calculate correlations for raw data, skipping features for
+#' with less than 9 non-missing values
+cor_raw <- vapply(seq_along(qc_lm), cor_fun, numeric(1), y = vals)
+```
+
+We repeat the same for the values after adjustment.
+
+```{r}
+#' Calculate correlations for adjusted data
+cor_adj <- vapply(seq_along(qc_lm), cor_fun, numeric(1), y = vals_adj)
+```
+
+We next plot the (ordered) correlation coefficients before and after adjustment
+to globally evaluate the impact of the correction.
+
+```{r, fig.cap = "Correlation between abundances and injection index for QC samples before (black) and after adjustment (red). Filled circles represent the features for which the drift was adjusted for. Correlation coefficients are sorted."}
+plot(sort(cor_raw), col = "#00000080", main = "QC samples", ylab = "rho",
+     xlab = "rank")
+idx <- order(cor_adj)
+bg <- rep(NA, length(cor_adj))
+bg[fts_adj] <- "#ff000040"
+points(cor_adj[idx], pch = 21, col = "#ff000080", bg = bg[idx])
+```
+
+Adjustment, while not completely removing it for all features, globally reduced
+the dependency of abundances on the injection index.
+
+Summarizing, feature-wise biases in LC-MS data can be estimated, and adjusted
+for using the `fit_lm` and `adjust_lm` functions. Ideally, such biases should be
+estimated on (repeatedly measured) QC samples, with the QC samples being
+representative of the study samples (e.g. a pool of all study samples). In
+addition, due to the generally relatively low number of available data points,
+the estimation of the signal drift can be unreliable and it is thus strongly
+suggested to evaluate or visually inspect some of them to derive strategies
+identifying and handling problematic cases and skip adjustment for them. In
+addition or as an alternative, problematic cases could also manually identified
+and flagged or removed.
+
+Generally, injecting study samples in random order can reduce (or even avoid)
+influence of any related technical bias in the downstream analysis and is highly
+suggested to improve and assure data quality.
+
 
 # Contributions
 
