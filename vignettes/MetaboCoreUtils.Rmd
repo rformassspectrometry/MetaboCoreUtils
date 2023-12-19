@@ -261,6 +261,8 @@ sdata <- data.frame(injection_index = seq_len(ncol(vals)))
 
 #' Identify columns representing QC samples
 qc_index <- grep("^POOL", colnames(vals))
+
+length(qc_index)
 ```
 
 We can next model an injection order dependent signal drift for each feature
@@ -272,7 +274,11 @@ nature). Also, we fit the model on log2 transformed abundances assuming hence a
 log linear relationship between abundances and injection index. By setting
 `minVals = 9` we require at least 9 non-missing values in QC samples (n = 11) of
 each row for the model to be fitted - for fewer values, model fitting is skipped
-and an `NA` is returned for the particular feature (row).
+and an `NA` is returned for the particular feature (row). The default for the
+`minVals` parameter is to fit models only for features with at least 75% of
+non-missing values. For lower values of `minVals` model fitting can become
+unstable and users should thus evaluate (and visually inspect) the estimated
+signal drifts.
 
 ```{r}
 #' Fit linear models explaining observed abundances by injection index.
@@ -393,7 +399,7 @@ qc_lm_summary[idx, ]
 ```
 
 As an additional example we plot the data for a model with a large slope, but
-a low p-value.
+a *high* p-value.
 
 ```{r}
 idx2 <- which(qc_lm_summary[, "slope"] > 0.01 &
@@ -498,7 +504,7 @@ cor_fun <- function(i, y) {
     else NA_real_
 }
 
-#' Calculate correlations for raw data, skipping features for
+#' Calculate correlations for raw data, skipping features
 #' with less than 9 non-missing values
 cor_raw <- vapply(seq_along(qc_lm), cor_fun, numeric(1), y = vals)
 ```

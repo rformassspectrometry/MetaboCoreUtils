@@ -96,8 +96,8 @@ The two functions are described in more details below:
 \code{fit_lm} allows to fit a linear regression model (defined with parameter
 \code{formula}) to each row of the numeric data matrix submitted with parameter
 \code{y}. Additional covariates of the linear model defined in \code{formula} are
-expected to be provided as columns in a \code{data.frame} provided with
-parameter \code{data}.
+expected to be provided as columns in a \code{data.frame} supplied \emph{via}
+the \code{data} parameter.
 
 The linear model is expected to be defined by a formula starting with
 \verb{y ~ }. To model for example an injection index dependency of values in

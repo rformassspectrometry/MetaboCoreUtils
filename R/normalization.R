@@ -27,8 +27,8 @@ NULL
 #' `fit_lm` allows to fit a linear regression model (defined with parameter
 #' `formula`) to each row of the numeric data matrix submitted with parameter
 #' `y`. Additional covariates of the linear model defined in `formula` are
-#' expected to be provided as columns in a `data.frame` provided with
-#' parameter `data`.
+#' expected to be provided as columns in a `data.frame` supplied *via*
+#' the `data` parameter.
 #'
 #' The linear model is expected to be defined by a formula starting with
 #' `y ~ `. To model for example an injection index dependency of values in
