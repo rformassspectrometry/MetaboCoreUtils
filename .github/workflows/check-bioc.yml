@@ -165,6 +165,7 @@ jobs:
           ## https://stat.ethz.ch/pipermail/bioc-devel/2020-April/016675.html
           ## https://github.com/r-lib/remotes/issues/296
           ## Ideally, all dependencies should get installed in the first pass.
+          BiocManager::install("rmarkdown")
 
           ## Temporary for now due to https://github.com/ropensci/RefManageR/issues/79
           remotes::install_github("ropensci/bibtex")
