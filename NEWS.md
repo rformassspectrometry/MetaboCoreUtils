@@ -1,8 +1,16 @@
+# MetaboCoreUtils 1.11
+
+## MetaboCoreUtils 1.11.1
+
+- Add functions to enable linear model-based adjustment of (LC-MS derived)
+  abundance matrices (issue
+  [#75](https://github.com/rformassspectrometry/MetaboCoreUtils/issues/75)).
+
 # MetaboCoreUtils 1.9
 
 ## MetaboCoreUtils 1.9.4
 
-- Add function `mclosest` (issue 
+- Add function `mclosest` (issue
   [#20](https://github.com/rformassspectrometry/MetaboCoreUtils/issues/20)).
 
 ## MetaboCoreUtils 1.9.3

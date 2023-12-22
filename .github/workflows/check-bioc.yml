@@ -22,7 +22,8 @@
 
 on:
   push:
-  pull_request:
+    paths-ignore:
+      - 'README.md'
 
 name: R-CMD-check-bioc
 
@@ -52,9 +53,9 @@ jobs:
       fail-fast: false
       matrix:
         config:
-          - { os: ubuntu-latest, r: 'devel', bioc: '3.17', cont: "bioconductor/bioconductor_docker:devel", rspm: "https://packagemanager.rstudio.com/cran/__linux__/focal/latest" }
-          - { os: macOS-latest, r: 'next', bioc: '3.17'}
-          - { os: windows-latest, r: 'next', bioc: '3.17'}
+          - { os: ubuntu-latest, r: 'devel', bioc: '3.19', cont: "bioconductor/bioconductor_docker:devel", rspm: "https://packagemanager.rstudio.com/cran/__linux__/focal/latest" }
+          - { os: macOS-latest, r: 'devel', bioc: '3.19'}
+          - { os: windows-latest, r: 'devel', bioc: '3.19'}
     env:
       R_REMOTES_NO_ERRORS_FROM_WARNINGS: true
       RSPM: ${{ matrix.config.rspm }}
@@ -164,6 +165,7 @@ jobs:
           ## https://stat.ethz.ch/pipermail/bioc-devel/2020-April/016675.html
           ## https://github.com/r-lib/remotes/issues/296
           ## Ideally, all dependencies should get installed in the first pass.
+          BiocManager::install("rmarkdown")
 
           ## Temporary for now due to https://github.com/ropensci/RefManageR/issues/79
           remotes::install_github("ropensci/bibtex")

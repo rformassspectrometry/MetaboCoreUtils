@@ -1,6 +1,6 @@
 Package: MetaboCoreUtils
 Title: Core Utils for Metabolomics Data
-Version: 1.11.0
+Version: 1.11.1
 Description: MetaboCoreUtils defines metabolomics-related core functionality
     provided as low-level functions to allow a data structure-independent usage
     across various R packages. This includes functions to calculate between ion
@@ -44,12 +44,16 @@ Depends:
     R (>= 4.0)
 Imports:
     utils,
-    MsCoreUtils
+    MsCoreUtils,
+    BiocParallel,
+    methods,
+    stats
 Suggests:
     BiocStyle,
     testthat,
     knitr,
-    rmarkdown
+    rmarkdown,
+    robustbase
 License: Artistic-2.0
 LazyData: no
 VignetteBuilder: knitr
