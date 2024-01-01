@@ -1,4 +1,4 @@
-Package: MetaboCoreUtils_adduct
+Package: MetaboCoreUtilsAdduct
 Title: Core Utils for Metabolomics Data
 Version: 1.12.0
 Description: MetaboCoreUtils_adduct includes simplfied and improved functions to calculate between ion
