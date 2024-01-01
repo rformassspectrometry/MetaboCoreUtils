@@ -5,7 +5,11 @@ Description: MetaboCoreUtils_adduct includes simplfied and improved functions to
     (adduct) and compound mass-to-charge ratios and masses or functions to work
     with chemical formulas.
 Authors@R:
-    c(person(given = "Johannes", family = "Rainer",
+    c(person(given = "Jiada", family = "Zhan",
+                     email = "jzha832@emory.edu",
+                     role = c("ctb"),
+                     comment = c(ORCID = "0000-0003-2480-8760")),
+      person(given = "Johannes", family = "Rainer",
                      email = "Johannes.Rainer@eurac.edu",
                      role = c("aut", "cre"),
                      comment = c(ORCID = "0000-0002-6977-7147")),
