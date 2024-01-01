@@ -8,7 +8,7 @@
     assign(".ADDUCTS_MULT", add_multi, envir = asNamespace(pkgname))
     assign(".ADDUCTS_ADD", add_add, envir = asNamespace(pkgname))
 
-    txts <- dir(system.file("substitutions", package = "MetaboCoreUtils"),
+    txts <- dir(system.file("substitutions", package = "MetaboCoreUtilsAdduct"),
                 full.names = TRUE, pattern = "txt$")
     for (txt in txts) {
         substs <- utils::read.table(txt, sep = "\t", header = TRUE)
@@ -22,7 +22,7 @@
 
 .load_adducts <- function() {
     adds <- utils::read.table(system.file("adducts", "adduct_definition.txt",
-                                          package = "MetaboCoreUtils"),
+                                          package = "MetaboCoreUtilsAdduct"),
                               sep = "\t", header = TRUE)
     rownames(adds) <- adds$name
     adds
@@ -31,7 +31,7 @@
 .load_isotopes <- function() {
     iso <- utils::read.table(
         system.file(
-            "isotopes", "isotope_definition.txt", package = "MetaboCoreUtils"
+            "isotopes", "isotope_definition.txt", package = "MetaboCoreUtilsAdduct"
         ),
         sep = "\t", header = TRUE
     )
