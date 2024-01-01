@@ -1,15 +1,15 @@
-Package: MetaboCoreUtils
+Package: MetaboCoreUtils_adduct
 Title: Core Utils for Metabolomics Data
-Version: 1.11.1
-Description: MetaboCoreUtils defines metabolomics-related core functionality
-    provided as low-level functions to allow a data structure-independent usage
-    across various R packages. This includes functions to calculate between ion
+Version: 1.12.0
+Description: MetaboCoreUtils_adduct includes simplfied and improved functions to calculate between ion
     (adduct) and compound mass-to-charge ratios and masses or functions to work
-    with chemical formulas. The package provides also a set of adduct
-    definitions and information on some commercially available internal
-    standard mixes commonly used in MS experiments.
+    with chemical formulas.
 Authors@R:
-    c(person(given = "Johannes", family = "Rainer",
+    c(person(given = "Jiada", family = "Zhan",
+                     email = "jzha832@emory.edu",
+                     role = c("aut", "cre"),
+                     comment = c(ORCID = "0000-0003-2480-8760"))
+      person(given = "Johannes", family = "Rainer",
                      email = "Johannes.Rainer@eurac.edu",
                      role = c("aut", "cre"),
                      comment = c(ORCID = "0000-0002-6977-7147")),
@@ -57,8 +57,7 @@ Suggests:
 License: Artistic-2.0
 LazyData: no
 VignetteBuilder: knitr
-BugReports: https://github.com/RforMassSpectrometry/MetaboCoreUtils/issues
-URL: https://github.com/RforMassSpectrometry/MetaboCoreUtils
+URL: https://github.com/jamesjiadazhan/MetaboCoreUtils_adduct/blob/main/DESCRIPTION
 biocViews: Infrastructure, Metabolomics, MassSpectrometry
 Roxygen: list(markdown=TRUE)
 RoxygenNote: 7.2.3
