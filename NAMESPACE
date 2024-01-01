@@ -2,8 +2,6 @@
 
 export(addElements)
 export(adductFormula)
-export(adductNames)
-export(adducts)
 export(calculateMass)
 export(containsElements)
 export(countElements)
