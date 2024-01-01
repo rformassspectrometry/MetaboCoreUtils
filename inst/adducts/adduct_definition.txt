@@ -1,4 +1,4 @@
-ADDUCT	mass_multi	mass_add	formula_add	formula_sub	charge	positive
+name	mass_multi	mass_add	formula_add	formula_sub	charge	positive
 M+3H	0.333333333	1.007276	H3	C0	3	TRUE
 M+2H+Na	0.333333333	8.334590667	H2Na	C0	3	TRUE
 M+H+Na2	0.333333333	15.66190533	HNa2	C0	3	TRUE
