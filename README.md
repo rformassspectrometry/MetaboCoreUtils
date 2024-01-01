@@ -1,20 +1,6 @@
-# Low level functions for metabolomics data
+# metabolomics adduct mass (m/z) and monoisotopic mass calculator
 
-[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
-[![R-CMD-check-bioc](https://github.com/RforMassSpectrometry/MetaboCoreUtils/workflows/R-CMD-check-bioc/badge.svg)](https://github.com/RforMassSpectrometry/MetaboCoreUtils/actions?query=workflow%3AR-CMD-check-bioc)
-[![codecov](https://codecov.io/gh/rformassspectrometry/MetaboCoreUtils/branch/main/graph/badge.svg?token=bNwqkn4PKd)](https://codecov.io/gh/rformassspectrometry/MetaboCoreUtils)
-[![license](https://img.shields.io/badge/license-Artistic--2.0-brightgreen.svg)](https://opensource.org/licenses/Artistic-2.0)
-[![years in bioc](http://bioconductor.org/shields/years-in-bioc/MetaboCoreUtils.svg)](https://bioconductor.org/packages/release/bioc/html/MetaboCoreUtils.html)
-[![Ranking by downloads](http://bioconductor.org/shields/downloads/release/MetaboCoreUtils.svg)](https://bioconductor.org/packages/stats/bioc/MetaboCoreUtils/)
-[![build release](http://bioconductor.org/shields/build/release/bioc/MetaboCoreUtils.svg)](https://bioconductor.org/checkResults/release/bioc-LATEST/MetaboCoreUtils/)
-[![build devel](http://bioconductor.org/shields/build/devel/bioc/MetaboCoreUtils.svg)](https://bioconductor.org/checkResults/devel/bioc-LATEST/MetaboCoreUtils/)
-
-`MetaboCoreUtils` defines metabolomics-related core functionality which is
-provided as low-level functions to allow a data structure-independent usage
-across various R packages.
-
-For more information see the package
-[homepage](https://rformassspectrometry.github.io/MetaboCoreUtils).
+`MetaboCoreUtilsAdduct` can calculate adduct mass (m/z) based on the monoisotopic mass. It can also calculate monoisotopic mass based on chemical formula or m/z.
 
 
 # Installation
@@ -22,14 +8,6 @@ For more information see the package
 The package can be installed with
 
 ```r
-install.packages("BiocManager")
-BiocManager::install("MetaboCoreUtils")
+install.packages("devtools") #If you don't have "devtools" installed already
+devtools::install_github("jamesjiadazhan/MetaboCoreUtilsAdduct") # Install the package from GitHub
 ```
-
-
-# Contributions
-
-Contributions are highly welcome and should follow the [contribution
-guidelines](https://rformassspectrometry.github.io/RforMassSpectrometry/articles/RforMassSpectrometry.html#contributions).
-Also, please check the coding style guidelines in the [RforMassSpectrometry
-vignette](https://rformassspectrometry.github.io/RforMassSpectrometry/articles/RforMassSpectrometry.html).
