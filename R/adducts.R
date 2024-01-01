@@ -39,24 +39,55 @@
 #' mass2mz(exact_mass, adduct)
 #'
 #' exact_mass <- 100
-#' adduct <- "[M+Na]+"
+#' adduct <- "M+Na"
 #'
-#' ## Calculate m/z of [M+Na]+ adduct from neutral mass
+#' ## Calculate m/z of M+Na adduct from neutral mass
 #' mass2mz(exact_mass, adduct)
 #'
 #' ## Calculate m/z of multiple adducts from neutral mass
 #' mass2mz(exact_mass, adduct = adductNames())
 #'
 #' ## Provide a custom adduct definition.
-#' adds <- data.frame(mass_add = c(1, 2, 3), mass_multi = c(1, 2, 0.5))
-#' rownames(adds) <- c("a", "b", "c")
+#' custom_adduct <- data.frame(name = c("a", "b", "c"), mass_add = c(1, 2, 3), mass_multi = c(1, 2, 0.5))
 #' mass2mz(c(100, 200), adds)
-mass2mz <- function(x, adduct = "[M+H]+") {
-    arg <- .process_adduct_arg(adduct)
-    res <- outer(x, arg$mass_multi) +
-        rep(arg$mass_add, each = length(x))
-    colnames(res) <- rownames(arg)
-    res
+mass2mz <- function(x, adduct = "M+H", custom_adduct = NULL) {
+
+    # if the user provides a custom adduct, use that
+    if (!is.null(custom_adduct)) {
+        adduct_definition = custom_adduct
+    } 
+    # otherwise, use the adduct definition in the package
+    else {
+        data(adduct_definition)
+        adduct_definition = adduct_definition %>% filter(name %in% adduct)
+    }
+
+    # calculate the adduct mass in a wide format
+    res <- outer(x, adduct_definition$mass_multi) +
+        rep(adduct_definition$mass_add, each = length(x))
+
+    # give the columns the name of the adduct
+    colnames(res) <- adduct_definition$name
+
+    # return the result
+    return(res)
+}
+
+mass2mz_df <- function(mass, adduct = "M+H") {
+    data(adduct_definition)
+
+    # create a dataframe with the mass and adduct columns
+    mass_adduct = data.frame(mass=mass, adduct=adduct)
+
+    # left join the mass_adduct dataframe with the adduct_definition dataframe
+    mass_adduct_adduct_definition = left_join(mass_adduct, adduct_definition, by = c("adduct" = "name"))
+    
+    mass_adduct_adduct_definition$adduct_mass = (mass_adduct_adduct_definition$mass + mass_adduct_adduct_definition$mass_add) / mass_adduct_adduct_definition$mass_multi
+
+    # select only the mass, adduct, and adduct_mass columns
+    mass_adduct_adduct_definition = mass_adduct_adduct_definition %>% select(mass, adduct, adduct_mass)
+
+    return(mass_adduct_adduct_definition)
 }
 
 #' @title Calculate neutral mass
@@ -90,27 +121,36 @@ mass2mz <- function(x, adduct = "[M+H]+") {
 #' @examples
 #'
 #' ion_mass <- c(100, 200, 300)
-#' adduct <- "[M+H]+"
+#' adduct <- "M+H"
 #'
 #' ## Calculate m/z of [M+H]+ adduct from neutral mass
 #' mz2mass(ion_mass, adduct)
 #'
 #' ion_mass <- 100
-#' adduct <- "[M+Na]+"
+#' adduct <- "M+Na"
 #'
 #' ## Calculate m/z of [M+Na]+ adduct from neutral mass
 #' mz2mass(ion_mass, adduct)
 #'
-#' ## Provide a custom adduct definition.
-#' adds <- data.frame(mass_add = c(1, 2, 3), mass_multi = c(1, 2, 0.5))
-#' rownames(adds) <- c("a", "b", "c")
-#' mz2mass(c(100, 200), adds)
-mz2mass <- function(x, adduct = "[M+H]+") {
-    arg <- .process_adduct_arg(adduct)
-    res <- outer(x, arg$mass_add, "-") /
-        rep(arg$mass_multi, each = length(x))
-    colnames(res) <- rownames(arg)
-    res
+
+mz2mass <- function(x, adduct = "M+H") {
+    # if the user provides a custom adduct, use that
+    if (!is.null(custom_adduct)) {
+        adduct_definition = custom_adduct
+    } 
+    # otherwise, use the adduct definition in the package
+    else {
+        data(adduct_definition)
+        adduct_definition = adduct_definition %>% filter(name %in% adduct)
+    }
+
+    # calculate the adduct mass in a wide format
+    res <- outer(x, adduct_definition$mass_add, "-") /
+        rep(adduct_definition$mass_multi, each = length(x))
+
+    colnames(res) <- adduct_definition$name
+
+    return(res)
 }
 
 #' @title Calculate mass-to-charge ratio from a formula
@@ -156,7 +196,7 @@ mz2mass <- function(x, adduct = "[M+H]+") {
 #' ## Use standardize = FALSE to keep formula unaltered
 #' formula2mz("H12C6O6")
 #' formula2mz("H12C6O6", standardize = FALSE)
-formula2mz <- function(formula, adduct = "[M+H]+", standardize = TRUE){
+formula2mz <- function(formula, adduct = "M+H", standardize = TRUE){
     if(standardize) {
         formula <- standardizeFormula(formula)
         names(formula) <- formula
@@ -165,20 +205,6 @@ formula2mz <- function(formula, adduct = "[M+H]+", standardize = TRUE){
     mass2mz(masses, adduct)
 }
 
-.process_adduct_arg <- function(adduct, columns = c("mass_add", "mass_multi")) {
-    if (is.character(adduct)) {
-        idx <- match(adduct, names(.ADDUCTS_ADD))
-        if (any(is.na(idx)))
-            stop("Unknown adduct: ", paste0(adduct[is.na(idx)], collapse = ";"))
-        output <- .ADDUCTS[idx, columns]
-    } else if (is.data.frame(adduct)) {
-        if (!all(columns %in% colnames(adduct)))
-            stop("columns ", paste(columns, collapse = ", "), " not found")
-        output <- adduct[, columns]
-    } else stop("'adduct' should be either a name of an adduct or a ",
-                "data.frame with the adduct definition")
-    output
-}
 
 #' @title Calculate a table of adduct (ionic) formulas
 #'
@@ -221,10 +247,11 @@ formula2mz <- function(formula, adduct = "[M+H]+", standardize = TRUE){
 #' adductFormula("C6H12O6", custom_ads)
 #'
 #' @export
-adductFormula <- function(formulas, adduct = "[M+H]+", standardize = TRUE) {
-    adduct <- .process_adduct_arg(adduct,
-                                  c("mass_multi", "charge", "formula_add",
-                                    "formula_sub", "positive"))
+adductFormula <- function(formulas, adduct = "M+H", standardize = TRUE) {
+    data(adduct_definition)
+    
+    adduct = adduct_definition %>% filter(name %in% adduct)
+
     if (standardize) {
         formulas <- lapply(formulas, standardizeFormula)
         if (all(formulas == "")) stop("No valid formulas")
@@ -268,45 +295,4 @@ adductFormula <- function(formulas, adduct = "[M+H]+", standardize = TRUE) {
     rownames(ionMatrix) <- formulas
     colnames(ionMatrix) <- rownames(adduct)
     return(ionMatrix)
-}
-
-
-#' @title Retrieve names of supported adducts
-#'
-#' @description
-#'
-#' `adductNames` returns all supported adduct definitions that can be used by
-#' [mass2mz()] and [mz2mass()].
-#'
-#' `adducts` returns a `data.frame` with the adduct definitions.
-#'
-#' @param polarity `character(1)` defining the ion mode, either `"positive"` or
-#'     `"negative"`.
-#'
-#' @return for `adductNames`: `character` vector with all valid adduct names
-#'     for the selected ion mode. For `adducts`: `data.frame` with the adduct
-#'     definitions.
-#'
-#' @author Michael Witting, Johannes Rainer
-#'
-#' @export
-#'
-#' @examples
-#'
-#' ## retrieve names of adduct names in positive ion mode
-#' adductNames(polarity = "positive")
-#'
-#' ## retrieve names of adduct names in negative ion mode
-#' adductNames(polarity = "negative")
-adductNames <- function(polarity = c("positive", "negative")) {
-    polarity <- match.arg(polarity)
-    rownames(.ADDUCTS)[.ADDUCTS$positive == (polarity == "positive")]
-}
-
-#' @rdname adductNames
-#'
-#' @export
-adducts <- function(polarity = c("positive", "negative")) {
-    polarity <- match.arg(polarity)
-    .ADDUCTS[.ADDUCTS$positive == (polarity == "positive"), ]
 }
