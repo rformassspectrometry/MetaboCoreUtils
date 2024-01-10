@@ -35,7 +35,8 @@ removed prior to the calculations.}
 for non-gaussian distributed data.}
 
 \item{y}{\code{numeric} For \code{rowDratio} and \code{rowBlank}, a numeric matrix
-representing the QC samples and blank samples, respectively.}
+representing feature abundances in QC samples or blank samples,
+respectively.}
 }
 \value{
 See individual function description above for details.
@@ -50,21 +51,26 @@ methods commonly used in the analysis of metabolomics data.
 \item \code{rsd} and \code{rowRsd} are convenience functions to calculate the relative
 standard deviation (i.e. coefficient of variation) of a numerical vector
 or for rows of a numerical matrix, respectively.
-\item \code{rowDratio} computes the D-ratio or "dispersion ratio," defined as the
+\item \code{rowDratio} computes the D-ratio or \emph{dispersion ratio}, defined as the
 standard deviation for QC (Quality Control) samples divided by the
 standard deviation for biological test samples, for each feature (row) in
 the matrix.
 \item \code{percentMissing} and \code{rowPercentMissing} determine the percentage of
 missing values in a vector or for each row of a matrix, respectively.
 \item \code{rowBlank} identifies rows (i.e features) where the mean of test samples
-is greater than twice the mean of blank samples. This can highlights
+is lower than twice the mean of blank samples. This can be used to flag
 features that results from contamination in the solvent of the samples.
-Return a \code{logical} vector
+Returns a \code{logical} vector of length equal to the number of rows of \code{x}.
 }
 
 These functions are based on standard filtering methods described in the
 literature, and they are implemented to assist in preprocessing metabolomics
 data.
+}
+\note{
+For \code{rsd} and \code{rowRsd} the feature abundances are expected to be provided
+in natural scale and not e.g. log2 scale as it may lead to incorrect
+interpretations.
 }
 \examples{
 
@@ -98,7 +104,7 @@ Broadhurst D, Goodacre R, Reinke SN, Kuligowski J, Wilson ID, Lewis MR,
 Dunn WB. Guidelines and considerations for the use of system suitability
 and quality control samples in mass spectrometry assays applied in
 untargeted clinical metabolomic studies. Metabolomics. 2018;14(6):72.
-doi: 10.1007/s11306-018-1367-3. Epub 2018 May 18. PMID: 29805336; \
+doi: 10.1007/s11306-018-1367-3. Epub 2018 May 18. PMID: 29805336;
 PMCID: PMC5960010.
 }
 \author{

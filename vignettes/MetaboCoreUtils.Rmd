@@ -548,7 +548,98 @@ suggested to improve and assure data quality.
 
 ## Filtering data: Identifying measurement error 
 
+When dealing with metabolomics results, it is often necessary to filter
+features based on certain criteria. These criteria are typically derived
+from statistical formulas applied to full rows of data, where each row
+represents a feature. In this tutorial, we'll explore a set of functions
+designed for filtering metabolomics data.
 
+First, to get more information on the available function you can check the documentation 
+
+```{r}
+?filteringFunctions
+```
+
+We will use a matrix representing metabolomics measurements from different
+samples. Let's start by introducing the data:
+
+```{r}
+# Define sample data for metabolomics analysis
+set.seed(123)
+metabolomics_data <- matrix(rnorm(100), nrow = 10)
+colnames(metabolomics_data) <- paste0("Sample", 1:10)
+rownames(metabolomics_data) <- paste0("Feature", 1:10)
+```
+
+We will begin by calculating the coefficient of variation (CV) for each feature.
+This measure helps assess the relative variability of each metabolite across
+different samples.
+
+```{r}
+# Calculate and display the coefficient of variation
+cv_result <- rowRsd(metabolomics_data)
+print(cv_result)
+```
+
+Next, we will compute the D-ratio, a measure of dispersion, by comparing the
+standard deviation of QC samples to that of biological test samples.
+
+```{r}
+# Generate QC samples
+qc_samples <- matrix(rnorm(40), nrow = 10)
+colnames(qc_samples) <- paste0("QC", 1:4)
+
+# Calculate D-ratio and display the result
+dratio_result <- rowDratio(metabolomics_data, qc_samples)
+print(dratio_result)
+```
+
+Now, let's analyze the percentage of missing values for each metabolite.
+This information is crucial for quality control and data preprocessing.
+
+```{r}
+# Introduce missing values in the data
+metabolomics_data[sample(1:100, 10)] <- NA
+
+# Calculate and display the percentage of missing values
+missing_result <- rowPercentMissing(metabolomics_data)
+print(missing_result)
+```
+
+Finally, we will identify features where the mean of test samples is lower
+than twice the mean of blank samples. This can be indicative of significant
+contamination in the solvent of the samples.
+
+```{r}
+# Generate blank samples
+blank_samples <- matrix(rnorm(30), nrow = 10)
+colnames(blank_samples) <- paste0("Blank", 1:3)
+
+# Detect rows where mean(test) > 2 * mean(blank)
+blank_detection_result <- rowBlank(metabolomics_data, blank_samples)
+print(blank_detection_result)
+```
+
+All of these computations can then be used to easily filter our data and remove
+the features that do not fit our quality criteria. Below we remove all features
+that have a D-ratio and coefficeint of variation < 0.8 with no missing values 
+and is not flagged to be a possible solvent contaminant.
+
+```{r}
+# Set filtering thresholds
+cv_threshold <- 8
+dratio_threshold <- 0.8
+
+# Apply filters
+filtered_data <- metabolomics_data[
+  cv_result <= cv_threshold &
+  dratio_result <= dratio_threshold &
+  missing_result <= 10 &
+  !blank_detection_result, , drop = FALSE]
+
+# Display the filtered data
+print(filtered_data)
+```
 
 # Contributions
 

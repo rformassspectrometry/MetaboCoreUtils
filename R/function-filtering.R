@@ -12,7 +12,7 @@
 #'  standard deviation (i.e. coefficient of variation) of a numerical vector
 #'  or for rows of a numerical matrix, respectively.
 #'
-#' - `rowDratio` computes the D-ratio or "dispersion ratio," defined as the
+#' - `rowDratio` computes the D-ratio or *dispersion ratio*, defined as the
 #'  standard deviation for QC (Quality Control) samples divided by the
 #'  standard deviation for biological test samples, for each feature (row) in
 #'  the matrix.
@@ -21,9 +21,9 @@
 #'  missing values in a vector or for each row of a matrix, respectively.
 #'
 #' - `rowBlank` identifies rows (i.e features) where the mean of test samples
-#'  is greater than twice the mean of blank samples. This can highlights
+#'  is lower than twice the mean of blank samples. This can be used to flag
 #'  features that results from contamination in the solvent of the samples.
-#'   Return a `logical` vector
+#'  Returns a `logical` vector of length equal to the number of rows of `x`.
 #'
 #' These functions are based on standard filtering methods described in the
 #' literature, and they are implemented to assist in preprocessing metabolomics
@@ -34,7 +34,8 @@
 #'  matrix representing the biological samples.
 #'
 #' @param y `numeric` For `rowDratio` and `rowBlank`, a numeric matrix
-#'  representing the QC samples and blank samples, respectively.
+#'  representing feature abundances in QC samples or blank samples,
+#'  respectively.
 #'
 #' @param na.rm `logical(1)` indicate whether missing values (`NA`) should be
 #'  removed prior to the calculations.
@@ -42,6 +43,11 @@
 #' @param mad `logical(1)` indicate whether the *Median Absolute Deviation*
 #'  (MAD) should be used instead of the standard deviation. This is suggested
 #'  for non-gaussian distributed data.
+#'
+#' @note
+#' For `rsd` and `rowRsd` the feature abundances are expected to be provided
+#' in natural scale and not e.g. log2 scale as it may lead to incorrect
+#'  interpretations.
 #'
 #' @return  See individual function description above for details.
 #'
@@ -92,8 +98,6 @@ NULL
 
 #' @export
 #' @rdname filteringFunctions
-#'
-
 rsd <- function(x, na.rm = TRUE, mad = FALSE) {
     if (mad)
         mad(x, na.rm = na.rm) / abs(median(x, na.rm = na.rm))
@@ -101,16 +105,13 @@ rsd <- function(x, na.rm = TRUE, mad = FALSE) {
         sd(x, na.rm = na.rm) / abs(mean(x, na.rm = na.rm))
 }
 
-#' @rdname filteringFunctions
 #' @export
+#' @rdname filteringFunctions
 rowRsd <- function(x, na.rm = TRUE, mad = FALSE)
     apply(x, MARGIN = 1, rsd, na.rm = na.rm, mad = mad)
 
-
 #' @export
 #' @rdname filteringFunctions
-#'
-
 rowDratio <- function(x, y, na.rm = TRUE, mad = FALSE){
     if (mad)
         vec <- apply(y, 1, mad, na.rm = na.rm) /
@@ -120,28 +121,22 @@ rowDratio <- function(x, y, na.rm = TRUE, mad = FALSE){
         apply(x, 1, sd, na.rm = na.rm)
 }
 
-
 #' @export
 #' @rdname filteringFunctions
-
 percentMissing <- function(x){
    ((sum(is.na(x))) / length(x))*100
 }
 
 #' @export
 #' @rdname filteringFunctions
-#'
 rowPercentMissing <- function(x){
     apply(x, MARGIN = 1, percentMissing)
 }
 
-
 #' @export
 #' @rdname filteringFunctions
-#'
-
 rowBlank <- function(x, y, na.rm = TRUE){
     m_samples <- apply(x, 1, mean, na.rm = na.rm)
     m_blank <- apply(y, 1, mean, na.rm = na.rm)
-    vec <- m_samples > 2 * m_blank
+    m_samples < 2 * m_blank
 }

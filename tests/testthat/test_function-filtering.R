@@ -1,4 +1,3 @@
-# Create a test context
 test_that("Metabolomics Filtering Functions", {
 
     # Define some sample data for testing
@@ -12,9 +11,16 @@ test_that("Metabolomics Filtering Functions", {
     # Test rsd function
     expect_equal(rsd(a), sd(a) / mean(a))
     expect_equal(rowRsd(A), apply(A, 1, function(row) sd(row) / mean(row)))
+    expect_equal(rsd(a, mad = TRUE), mad(a, na.rm = TRUE) /
+                     abs(median(a, na.rm = TRUE)))
+    expect_equal(rowRsd(A, mad = TRUE),
+                 apply(A, 1, function(row) mad(row, na.rm = TRUE) /
+                           abs(median(row, na.rm = TRUE))))
+
 
     # Test rowDratio function
     expect_equal(as.numeric(rowDratio(A, A)), rep(1, nrow(A)))
+    expect_equal(as.numeric(rowDratio(A, A, mad = TRUE)), rep(1, nrow(A)))
 
     # Test percentMissing function
     expect_equal(percentMissing(b), 40)
@@ -22,5 +28,5 @@ test_that("Metabolomics Filtering Functions", {
     expect_equal(rowPercentMissing(B), rep(20, nrow(B)))
 
     # Test rowBlank function
-    expect_equal(rowBlank(test_samples, blank_samples), c(TRUE, TRUE, FALSE))
+    expect_equal(rowBlank(test_samples, blank_samples), c(FALSE, FALSE, TRUE))
     })
