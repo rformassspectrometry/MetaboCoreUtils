@@ -124,7 +124,6 @@ rowDratio <- function(x, y, na.rm = TRUE, mad = FALSE){
 #' @export
 #' @rdname filteringFunctions
 
-
 percentMissing <- function(x){
    ((sum(is.na(x))) / length(x))*100
 }

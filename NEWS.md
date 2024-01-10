@@ -1,5 +1,10 @@
 # MetaboCoreUtils 1.11
 
+## MetaboCoreUtils 1.11.2
+
+- Add function to compute quality check of the data (issue
+  [#77]((https://github.com/rformassspectrometry/MetaboCoreUtils/issues/77))
+
 ## MetaboCoreUtils 1.11.1
 
 - Add functions to enable linear model-based adjustment of (LC-MS derived)
