@@ -1,12 +1,12 @@
-#' @title Basic filtering functions for metabolomics
+#' @title Basic quality assessment functions for metabolomics
 #'
 #' @description
 #'
-#' When dealing with metabolomics results, it is often necessary to filter
-#' features based on certain criteria. These criteria are typically derived
-#' from statistical formulas applied to full rows of data, where each row
-#' represents a feature. The following functions provide basic filtering
-#' methods commonly used in the analysis of metabolomics data.
+#' The following functions allow to calculate basic quality assessment estimates
+#' typically employed in the analysis of metabolomics data. These functions are
+#' designed to be applied to entire rows of data, where each row corresponds to
+#' a feature. Subsequently, these estimates can serve as a foundation for
+#' feature filtering.
 #'
 #' - `rsd` and `rowRsd` are convenience functions to calculate the relative
 #'  standard deviation (i.e. coefficient of variation) of a numerical vector
@@ -45,9 +45,9 @@
 #'  for non-gaussian distributed data.
 #'
 #' @note
-#' For `rsd` and `rowRsd` the feature abundances are expected to be provided
-#' in natural scale and not e.g. log2 scale as it may lead to incorrect
-#'  interpretations.
+#' For `rsd` and `rowRsd` the feature abundances are expected to be provided in
+#' natural scale and not e.g. log2 scale as it may lead to incorrect
+#' interpretations.
 #'
 #' @return  See individual function description above for details.
 #'
@@ -57,7 +57,7 @@
 #'
 #' @importFrom stats sd mad median
 #'
-#' @name filteringFunctions
+#' @name quality_assessment
 #'
 #' @references
 #'
@@ -97,7 +97,7 @@
 NULL
 
 #' @export
-#' @rdname filteringFunctions
+#' @rdname quality_assessment
 rsd <- function(x, na.rm = TRUE, mad = FALSE) {
     if (mad)
         mad(x, na.rm = na.rm) / abs(median(x, na.rm = na.rm))
@@ -106,12 +106,12 @@ rsd <- function(x, na.rm = TRUE, mad = FALSE) {
 }
 
 #' @export
-#' @rdname filteringFunctions
+#' @rdname quality_assessment
 rowRsd <- function(x, na.rm = TRUE, mad = FALSE)
     apply(x, MARGIN = 1, rsd, na.rm = na.rm, mad = mad)
 
 #' @export
-#' @rdname filteringFunctions
+#' @rdname quality_assessment
 rowDratio <- function(x, y, na.rm = TRUE, mad = FALSE){
     if (mad)
         vec <- apply(y, 1, mad, na.rm = na.rm) /
@@ -122,19 +122,20 @@ rowDratio <- function(x, y, na.rm = TRUE, mad = FALSE){
 }
 
 #' @export
-#' @rdname filteringFunctions
+#' @rdname quality_assessment
 percentMissing <- function(x){
    ((sum(is.na(x))) / length(x))*100
 }
 
 #' @export
-#' @rdname filteringFunctions
+#' @rdname quality_assessment
 rowPercentMissing <- function(x){
     apply(x, MARGIN = 1, percentMissing)
 }
 
 #' @export
-#' @rdname filteringFunctions
+#' @rdname quality_assessment
+
 rowBlank <- function(x, y, na.rm = TRUE){
     m_samples <- apply(x, 1, mean, na.rm = na.rm)
     m_blank <- apply(y, 1, mean, na.rm = na.rm)

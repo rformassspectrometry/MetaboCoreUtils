@@ -546,18 +546,19 @@ Generally, injecting study samples in random order can reduce (or even avoid)
 influence of any related technical bias in the downstream analysis and is highly
 suggested to improve and assure data quality.
 
-## Filtering data: Identifying measurement error 
+## Basic quality assessment and pre-filtering of metabolomics data
 
 When dealing with metabolomics results, it is often necessary to filter
 features based on certain criteria. These criteria are typically derived
 from statistical formulas applied to full rows of data, where each row
 represents a feature. In this tutorial, we'll explore a set of functions
-designed for filtering metabolomics data.
+designed designed to calculate basic quality assessment metrics on which
+metabolomics data can subsequently be filtered.
 
 First, to get more information on the available function you can check the documentation 
 
 ```{r}
-?filteringFunctions
+?quality_assessment
 ```
 
 We will use a matrix representing metabolomics measurements from different
@@ -581,8 +582,9 @@ cv_result <- rowRsd(metabolomics_data)
 print(cv_result)
 ```
 
-Next, we will compute the D-ratio, a measure of dispersion, by comparing the
-standard deviation of QC samples to that of biological test samples.
+Next, we will compute the D-ratio [@broadhurst_guidelines_2018], a measure of
+dispersion, by comparing the standard deviation of QC samples to that of
+biological test samples.
 
 ```{r}
 # Generate QC samples
