@@ -20,23 +20,30 @@ percentMissing(x)
 
 rowPercentMissing(x)
 
-rowBlank(x, y, na.rm = TRUE)
+rowBlank(x, y, threshold = 2, na.rm = TRUE)
 }
 \arguments{
 \item{x}{\code{numeric} For \code{rsd}, a numeric vector;
 for \code{rowRsd}, \code{rowDratio}, \code{percentMissing} and \code{rowBlank}, a numeric
 matrix representing the biological samples.}
 
-\item{na.rm}{\code{logical(1)} indicate whether missing values (\code{NA}) should be
+\item{na.rm}{\code{logical(1)} indicates whether missing values (\code{NA}) should be
 removed prior to the calculations.}
 
-\item{mad}{\code{logical(1)} indicate whether the \emph{Median Absolute Deviation}
+\item{mad}{\code{logical(1)} indicates whether the \emph{Median Absolute Deviation}
 (MAD) should be used instead of the standard deviation. This is suggested
 for non-gaussian distributed data.}
 
 \item{y}{\code{numeric} For \code{rowDratio} and \code{rowBlank}, a numeric matrix
 representing feature abundances in QC samples or blank samples,
 respectively.}
+
+\item{threshold}{\code{numeric} For \code{rowBlank}, indicates the minimum difference
+required between the mean of a feature in samples compared to the mean of
+the same feature in blanks for it to not be considered a possible
+contaminant. For example, the default threshold of 2 signifies that the mean
+of the features in samples has to be at least twice the mean in blanks for
+it not to be flagged as a possible contaminant.}
 }
 \value{
 See individual function description above for details.

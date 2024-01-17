@@ -37,12 +37,19 @@
 #'  representing feature abundances in QC samples or blank samples,
 #'  respectively.
 #'
-#' @param na.rm `logical(1)` indicate whether missing values (`NA`) should be
+#' @param na.rm `logical(1)` indicates whether missing values (`NA`) should be
 #'  removed prior to the calculations.
 #'
-#' @param mad `logical(1)` indicate whether the *Median Absolute Deviation*
+#' @param mad `logical(1)` indicates whether the *Median Absolute Deviation*
 #'  (MAD) should be used instead of the standard deviation. This is suggested
 #'  for non-gaussian distributed data.
+#'
+#' @param threshold `numeric` For `rowBlank`, indicates the minimum difference
+#' required between the mean of a feature in samples compared to the mean of
+#' the same feature in blanks for it to not be considered a possible
+#' contaminant. For example, the default threshold of 2 signifies that the mean
+#' of the features in samples has to be at least twice the mean in blanks for
+#' it not to be flagged as a possible contaminant.
 #'
 #' @note
 #' For `rsd` and `rowRsd` the feature abundances are expected to be provided in
@@ -136,8 +143,8 @@ rowPercentMissing <- function(x){
 #' @export
 #' @rdname quality_assessment
 
-rowBlank <- function(x, y, na.rm = TRUE){
+rowBlank <- function(x, y, threshold = 2, na.rm = TRUE){
     m_samples <- apply(x, 1, mean, na.rm = na.rm)
     m_blank <- apply(y, 1, mean, na.rm = na.rm)
-    m_samples < 2 * m_blank
+    m_samples < threshold * m_blank
 }
