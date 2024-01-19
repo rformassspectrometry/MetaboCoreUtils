@@ -14,8 +14,8 @@
 <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png">
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="../deps/bootstrap-5.2.2/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.2.2/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Core Utils for Metabolomics Data">
 <meta property="og:description" content="MetaboCoreUtils">
@@ -33,7 +33,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">MetaboCoreUtils</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.11.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.11.2</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -95,13 +95,13 @@ document.addEventListener("DOMContentLoaded", function() {
     if (links[i].hostname != window.location.hostname)
       links[i].target = '_blank';
 });
-</script><p><strong>Package</strong>: <em><a href="https://bioconductor.org/packages/3.18/MetaboCoreUtils" class="external-link">MetaboCoreUtils</a></em><br><strong>Authors</strong>: Johannes Rainer [aut, cre] (<a href="https://orcid.org/0000-0002-6977-7147" class="external-link uri">https://orcid.org/0000-0002-6977-7147</a>), Michael Witting
+</script><p><strong>Package</strong>: <em><a href="https://bioconductor.org/packages/3.19/MetaboCoreUtils" class="external-link">MetaboCoreUtils</a></em><br><strong>Authors</strong>: Johannes Rainer [aut, cre] (<a href="https://orcid.org/0000-0002-6977-7147" class="external-link uri">https://orcid.org/0000-0002-6977-7147</a>), Michael Witting
 [aut] (<a href="https://orcid.org/0000-0002-1462-4426" class="external-link uri">https://orcid.org/0000-0002-1462-4426</a>), Andrea Vicini
 [aut], Liesa Salzer [ctb] (<a href="https://orcid.org/0000-0003-0761-0656" class="external-link uri">https://orcid.org/0000-0003-0761-0656</a>), Sebastian Gibb
 [aut] (<a href="https://orcid.org/0000-0001-7406-4443" class="external-link uri">https://orcid.org/0000-0001-7406-4443</a>), Michael Stravs
 [ctb] (<a href="https://orcid.org/0000-0002-1426-8572" class="external-link uri">https://orcid.org/0000-0002-1426-8572</a>), Roger Gine [aut]
 (<a href="https://orcid.org/0000-0003-0288-9619" class="external-link uri">https://orcid.org/0000-0003-0288-9619</a>), Philippine
-Louail [aut] (<a href="https://orcid.org/0009-0007-5429-6846" class="external-link uri">https://orcid.org/0009-0007-5429-6846</a>)<br><strong>Last modified:</strong> 2023-11-02 12:32:42.12651<br><strong>Compiled</strong>: Thu Nov 2 12:43:04 2023</p>
+Louail [aut] (<a href="https://orcid.org/0009-0007-5429-6846" class="external-link uri">https://orcid.org/0009-0007-5429-6846</a>)<br><strong>Last modified:</strong> 2024-01-19 09:05:52.084654<br><strong>Compiled</strong>: Fri Jan 19 09:14:22 2024</p>
 <div class="section level2">
 <h2 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
 </h2>
@@ -118,17 +118,21 @@ available internal standard mixes commonly used in MS experiments.</p>
 <span><span class="fu"><a href="https://rdrr.io/r/base/ls.html" class="external-link">ls</a></span><span class="op">(</span>pos <span class="op">=</span> <span class="st">"package:MetaboCoreUtils"</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">##  [1] "addElements"                "adductFormula"             </span></span>
 <span><span class="co">##  [3] "adductNames"                "adducts"                   </span></span>
-<span><span class="co">##  [5] "calculateKm"                "calculateKmd"              </span></span>
-<span><span class="co">##  [7] "calculateMass"              "calculateRkmd"             </span></span>
-<span><span class="co">##  [9] "containsElements"           "convertMtime"              </span></span>
-<span><span class="co">## [11] "correctRindex"              "countElements"             </span></span>
-<span><span class="co">## [13] "formula2mz"                 "indexRtime"                </span></span>
-<span><span class="co">## [15] "internalStandardMixNames"   "internalStandards"         </span></span>
-<span><span class="co">## [17] "isotopicSubstitutionMatrix" "isotopologues"             </span></span>
-<span><span class="co">## [19] "isRkmd"                     "mass2mz"                   </span></span>
-<span><span class="co">## [21] "mclosest"                   "multiplyElements"          </span></span>
-<span><span class="co">## [23] "mz2mass"                    "pasteElements"             </span></span>
-<span><span class="co">## [25] "standardizeFormula"         "subtractElements"</span></span></code></pre>
+<span><span class="co">##  [5] "adjust_lm"                  "calculateKm"               </span></span>
+<span><span class="co">##  [7] "calculateKmd"               "calculateMass"             </span></span>
+<span><span class="co">##  [9] "calculateRkmd"              "containsElements"          </span></span>
+<span><span class="co">## [11] "convertMtime"               "correctRindex"             </span></span>
+<span><span class="co">## [13] "countElements"              "fit_lm"                    </span></span>
+<span><span class="co">## [15] "formula2mz"                 "indexRtime"                </span></span>
+<span><span class="co">## [17] "internalStandardMixNames"   "internalStandards"         </span></span>
+<span><span class="co">## [19] "isotopicSubstitutionMatrix" "isotopologues"             </span></span>
+<span><span class="co">## [21] "isRkmd"                     "mass2mz"                   </span></span>
+<span><span class="co">## [23] "mclosest"                   "multiplyElements"          </span></span>
+<span><span class="co">## [25] "mz2mass"                    "pasteElements"             </span></span>
+<span><span class="co">## [27] "percentMissing"             "rowBlank"                  </span></span>
+<span><span class="co">## [29] "rowDratio"                  "rowPercentMissing"         </span></span>
+<span><span class="co">## [31] "rowRsd"                     "rsd"                       </span></span>
+<span><span class="co">## [33] "standardizeFormula"         "subtractElements"</span></span></code></pre>
 <p>or the <a href="https://rformassspectrometry.github.io/MetaboCoreUtils/reference/index.html">reference
 page</a> on the package webpage.</p>
 </div>
@@ -329,6 +333,552 @@ standards and their measured RIs and reference RIs.</p>
 <span></span>
 <span><span class="va">rtime</span><span class="op">$</span><span class="va">rindex_cor</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/correctRindex.html">correctRindex</a></span><span class="op">(</span><span class="va">rtime</span><span class="op">$</span><span class="va">rindex_r</span>, <span class="va">ref</span><span class="op">)</span></span></code></pre></div>
 </div>
+<div class="section level3">
+<h3 id="linear-model-based-adjustment-of-lc-ms-feature-abundances">Linear model-based adjustment of LC-MS feature abundances<a class="anchor" aria-label="anchor" href="#linear-model-based-adjustment-of-lc-ms-feature-abundances"></a>
+</h3>
+<p>Feature abundances from untargeted LC-MS-based metabolomics
+experiments can be affected by technical noise or signal drifts. In
+particular, some of these technical variances can be specific for
+individual metabolites, requiring hence a per-feature adjustment of the
+abundances. One example of such noise is an injection order dependent
+signal drift that can sometimes be observed in untargeted metabolomics
+data from LC-MS experiments. The <code>fit_lm</code> function can be
+used to model such drifts in the observed data of each single feature,
+for example with a model of the form <code>y ~ injection_index</code>
+that models the relationship between the measured abundances of a
+metabolite <code>y</code> on the index in which the respective sample
+was injected (<code>injection_index</code>). Subsequently, the data can
+be adjusted for the modeled drift with the <code>adjust_lm</code>
+function. This approach is similar to the one described by <span class="citation">(Wehrens et al. 2016)</span>.</p>
+<p>Below we perform such an injection order dependent signal adjustment
+on a small test data set representing abundances of LC-MS features from
+an untargeted metabolomics experiment. All samples were measured within
+the same measurement run and QC samples were measured repeatedly after 8
+study samples.</p>
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">vals</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.table</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"txt"</span>, <span class="st">"feature_values.txt"</span>,</span>
+<span>                               package <span class="op">=</span> <span class="st">"MetaboCoreUtils"</span><span class="op">)</span>, sep <span class="op">=</span> <span class="st">"\t"</span><span class="op">)</span></span>
+<span><span class="va">vals</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">as.matrix</a></span><span class="op">(</span><span class="va">vals</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">vals</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">##         POOL_01   study_01  study_02   study_03  study_04   study_05   study_06</span></span>
+<span><span class="co">## FT0040       NA 33421.8749        NA 34888.9370 14482.848 34693.7447 13830.2906</span></span>
+<span><span class="co">## FT0094 3318.389  1752.9716 2971.4475  1802.9617  2714.101         NA  1651.2575</span></span>
+<span><span class="co">## FT0291 1964.315  2914.6981 2368.9870  2152.2494  2309.761  3399.3081  2629.2645</span></span>
+<span><span class="co">## FT0312 4577.200  4576.6186 2839.5201  3034.1878  2683.836  4391.6857  2989.9640</span></span>
+<span><span class="co">## FT0319 1517.397  2802.2043 1472.8231  1456.2739  1560.336  2363.6854  1255.3216</span></span>
+<span><span class="co">## FT0339       NA   591.5768  562.4941   637.7392        NA   722.7031   614.6914</span></span>
+<span><span class="co">##          study_07 study_08   study_09   study_10    POOL_02   study_11</span></span>
+<span><span class="co">## FT0040 42099.1184       NA 62721.7802 11716.2416 16558.1926 37534.9453</span></span>
+<span><span class="co">## FT0094  1471.7595 7193.307  1885.1614  2559.1546  2548.5665  2517.1615</span></span>
+<span><span class="co">## FT0291  2310.2777       NA  2923.0293  2564.9679  2141.5598  2428.5513</span></span>
+<span><span class="co">## FT0312  3594.0882 2479.273  3016.0911  2764.7268  3489.7400  3868.2540</span></span>
+<span><span class="co">## FT0319   986.9245       NA  1874.5481  1027.9120  1604.5124   785.6436</span></span>
+<span><span class="co">## FT0339   514.4863       NA   691.1081   669.4697   609.0221         NA</span></span>
+<span><span class="co">##          study_12  study_13  study_14   study_15  study_16  study_17   study_18</span></span>
+<span><span class="co">## FT0040 47129.9469 37549.363 42738.436 40987.3042 76164.279        NA 66415.0158</span></span>
+<span><span class="co">## FT0094  1792.8034  2143.162  1968.257  2229.7991  2948.312 2043.6598  2138.3743</span></span>
+<span><span class="co">## FT0291  2220.7451  2583.182        NA  2748.1731  3551.301 2305.9652  2090.3821</span></span>
+<span><span class="co">## FT0312  3233.1222  5458.136  3057.953  2641.6739  1365.517 2652.3533  2564.1248</span></span>
+<span><span class="co">## FT0319  1260.4340  1881.102   919.180  1543.7853        NA 1630.3486   784.4748</span></span>
+<span><span class="co">## FT0339   495.7719        NA        NA   637.3097  1198.408  679.8128   657.2353</span></span>
+<span><span class="co">##         study_19   study_20   POOL_03    study_21  study_22  study_23 study_24</span></span>
+<span><span class="co">## FT0040 64852.952 42975.8912 15782.767 111441.4151 44396.862 9898.4582       NA</span></span>
+<span><span class="co">## FT0094  1819.282  2149.3079  2898.980   1408.7862  2140.328 2123.7659 5972.890</span></span>
+<span><span class="co">## FT0291        NA  2502.2464  2076.463   4070.0369  2727.386 2231.3063       NA</span></span>
+<span><span class="co">## FT0312  4195.946  5029.4841  4386.052   2888.4274  3216.775 3629.9067 5749.252</span></span>
+<span><span class="co">## FT0319  1202.754  1932.3339  1488.995   2273.0881  1394.703 1057.6662 1225.244</span></span>
+<span><span class="co">## FT0339        NA   598.6028   644.402    890.8353        NA  580.1335       NA</span></span>
+<span><span class="co">##        study_25   study_26   study_27 study_28   study_29  study_30  POOL_04</span></span>
+<span><span class="co">## FT0040       NA 32609.0777 44176.8270       NA 29815.3433 17542.958       NA</span></span>
+<span><span class="co">## FT0094 5963.154  1558.3835  1881.3461 8169.489   714.4880        NA 2354.397</span></span>
+<span><span class="co">## FT0291       NA  2259.1059  3057.0478       NA  2925.3559  2971.364 1926.468</span></span>
+<span><span class="co">## FT0312 8500.468  1978.6276  1534.6658 8217.338  3978.7115  3150.521 4924.327</span></span>
+<span><span class="co">## FT0319       NA   770.5572  1412.9109       NA  1375.1655  1626.885 1493.527</span></span>
+<span><span class="co">## FT0339       NA   577.8615   732.5314       NA   627.1692   676.699  586.689</span></span>
+<span><span class="co">##         study_31  study_32   study_33   study_34   study_35   study_36</span></span>
+<span><span class="co">## FT0040        NA 9303.2550 57262.4310 12229.3152 21840.4434 35967.1447</span></span>
+<span><span class="co">## FT0094 2253.2225 1118.9082  2277.9351  1983.8818  2086.2680  1795.8683</span></span>
+<span><span class="co">## FT0291 1824.1714 2470.9075  2180.8980  3191.5980  2784.4740  2723.8941</span></span>
+<span><span class="co">## FT0312 3137.0267 2986.9033  1949.2864  2853.1837  2494.5363  2921.9569</span></span>
+<span><span class="co">## FT0319 1216.7942  706.5504   955.0879  1207.1138  1902.6631  1397.5654</span></span>
+<span><span class="co">## FT0339  525.1465  584.8484         NA   559.4653   501.5349   574.9044</span></span>
+<span><span class="co">##         study_37   study_38   study_39   study_40   POOL_05   study_41</span></span>
+<span><span class="co">## FT0040 16550.220 69832.6339 14726.1963 27431.2148 24325.411 59191.9549</span></span>
+<span><span class="co">## FT0094  3032.945  1053.1620  2186.6016  1358.9347  2890.318  1586.9084</span></span>
+<span><span class="co">## FT0291  2248.440  2741.2333  2644.3897  2460.0206  1911.649  3519.4588</span></span>
+<span><span class="co">## FT0312  1523.665  4496.9107  2567.5767  2803.0060  4597.090  4545.5802</span></span>
+<span><span class="co">## FT0319        NA  1195.1294  1184.8338  1068.1333  1621.064  1794.4214</span></span>
+<span><span class="co">## FT0339        NA   664.9422   729.5731   740.2341        NA   828.5343</span></span>
+<span><span class="co">##          study_42   study_43  study_44   study_45  study_46   study_47</span></span>
+<span><span class="co">## FT0040 27913.0568 49294.9953 19090.101 15281.1149 33492.704 24328.1191</span></span>
+<span><span class="co">## FT0094         NA  1927.3145  3882.824  1195.0421  2496.047  1303.3380</span></span>
+<span><span class="co">## FT0291  1937.5389  4001.5733  4013.018  3114.2550  2186.218  3121.4275</span></span>
+<span><span class="co">## FT0312  3792.3431  3853.6429  3503.540  3558.3291  3818.942  3913.8612</span></span>
+<span><span class="co">## FT0319   665.2814  2407.1731  2560.211   940.6862  1483.900  1426.9040</span></span>
+<span><span class="co">## FT0339   573.7103   932.0891  1069.446   629.6415        NA   608.8032</span></span>
+<span><span class="co">##         study_48 study_49   study_50    POOL_06   study_51   study_52</span></span>
+<span><span class="co">## FT0040        NA       NA 30400.1311 22651.9582 28651.1589 26356.0212</span></span>
+<span><span class="co">## FT0094 1967.6163 5202.328  1890.0850  2401.7994  1880.4819  1727.9309</span></span>
+<span><span class="co">## FT0291 2390.5679       NA  3202.3235  2101.6028  2593.9382  2834.0614</span></span>
+<span><span class="co">## FT0312 4532.2282 9704.224  2493.3784  3545.2516  3223.0982  7181.0782</span></span>
+<span><span class="co">## FT0319 1885.6900 1724.252  1309.7133  1533.3747  2053.0178  1554.5474</span></span>
+<span><span class="co">## FT0339  634.8694       NA   709.7217   661.4703   513.1259   478.1243</span></span>
+<span><span class="co">##          study_53  study_54   study_55   study_56 study_57   study_58</span></span>
+<span><span class="co">## FT0040 10456.1420 36240.842 23546.5286 26260.1408       NA 26022.6292</span></span>
+<span><span class="co">## FT0094  1637.6124  1703.262  1831.3715   651.3137 4999.264  1790.9265</span></span>
+<span><span class="co">## FT0291  3456.7103  2909.209  2858.8937  2490.4221       NA  3223.3600</span></span>
+<span><span class="co">## FT0312  3037.9072  4367.416  2733.0167  3148.7019 7052.950  5177.9266</span></span>
+<span><span class="co">## FT0319  1710.0488  2214.488  1261.6172  1358.2602       NA  2460.3422</span></span>
+<span><span class="co">## FT0339   725.9346        NA   711.0999   604.9715       NA   758.5105</span></span>
+<span><span class="co">##          study_59 study_60  POOL_07   study_61   study_62   study_63   study_64</span></span>
+<span><span class="co">## FT0040 67289.3789       NA 8072.505 31619.7595 16027.3709 51822.3466 18790.6518</span></span>
+<span><span class="co">## FT0094  1267.2578 5540.048 2037.228   795.1432  1886.8641  1377.9130  2016.0004</span></span>
+<span><span class="co">## FT0291  2821.2006       NA 1971.419  2930.1502  2856.4932  3040.2141  2139.8260</span></span>
+<span><span class="co">## FT0312  4377.6509 3372.552 5884.745  3508.9896  4802.3997  2500.0334  2920.7262</span></span>
+<span><span class="co">## FT0319  1972.7426       NA 1482.501  1776.7047  1872.9448  1374.1580  1362.5122</span></span>
+<span><span class="co">## FT0339   717.7913       NA       NA   748.4201   650.5845   908.1775   638.0796</span></span>
+<span><span class="co">##        study_65   study_66   study_67   study_68   study_69   study_70</span></span>
+<span><span class="co">## FT0040       NA 36613.7317 76360.7440 15979.6071 19244.0489 56263.6600</span></span>
+<span><span class="co">## FT0094 3065.384  1866.1872  1057.9295  1551.0503  1167.0373  1921.6288</span></span>
+<span><span class="co">## FT0291       NA  2639.7663  2794.3347  2559.4344  2656.7542         NA</span></span>
+<span><span class="co">## FT0312 3966.601  2401.4650  3271.3162  4071.4323  3418.1176  3361.1508</span></span>
+<span><span class="co">## FT0319 1249.530  1583.8277  1318.9805  1484.2703  1073.4185  1404.2646</span></span>
+<span><span class="co">## FT0339       NA   615.5771   613.7087   689.1856   644.0605   801.4608</span></span>
+<span><span class="co">##          POOL_08   study_71  study_72   study_73   study_74  study_75  study_76</span></span>
+<span><span class="co">## FT0040 26189.144 82620.0510 53903.827 30790.6283 58052.0021 14858.280 93242.782</span></span>
+<span><span class="co">## FT0094  1855.005  1773.5056  2383.863   993.9147  1536.1126  3743.294  1594.888</span></span>
+<span><span class="co">## FT0291  2019.198  2843.8269  4308.339  2561.4050  3325.8861  3835.169  3144.408</span></span>
+<span><span class="co">## FT0312  4400.496  3343.0720  5821.110  3942.4958  2690.6603  4941.808  3165.302</span></span>
+<span><span class="co">## FT0319  1445.116  1710.7587  3984.479  1544.9007  2521.3296  2928.769  1874.990</span></span>
+<span><span class="co">## FT0339        NA   766.7796  1242.263   743.4456   786.7057  1106.543   762.748</span></span>
+<span><span class="co">##          study_77   study_78   study_79   study_80    POOL_09   study_81</span></span>
+<span><span class="co">## FT0040 32813.0484 41469.0471 31438.9755 51246.7054 16197.4787 23592.8419</span></span>
+<span><span class="co">## FT0094   807.1626  1179.5614  1340.5517         NA  2181.5091  2313.0852</span></span>
+<span><span class="co">## FT0291  2936.3027  2111.4602  2347.6592  4509.4846  1940.6213  2546.6638</span></span>
+<span><span class="co">## FT0312  2730.6546  3737.2820  2997.2542  2978.5494  4381.6347  3590.1376</span></span>
+<span><span class="co">## FT0319  1458.1911  1823.3412  1812.4952  1254.5991  1559.7199  1610.4226</span></span>
+<span><span class="co">## FT0339   765.5338   666.8978   572.0936   944.1905   586.2496   652.3124</span></span>
+<span><span class="co">##          study_82  study_83   study_84   study_85   study_86  study_87</span></span>
+<span><span class="co">## FT0040 80101.1475 37119.475 22263.1847 27033.2602 30109.8050        NA</span></span>
+<span><span class="co">## FT0094  1081.0726  1758.792   895.3124         NA  2453.3466  831.2306</span></span>
+<span><span class="co">## FT0291  3409.8485  2908.354  3161.5198  3457.9679  1970.5368 3154.1650</span></span>
+<span><span class="co">## FT0312  3199.2731  5584.014  2785.2191  3473.2288  2533.0203 3732.9573</span></span>
+<span><span class="co">## FT0319  2500.6798  1922.035  1838.9530  1263.1056   926.6014 2657.7605</span></span>
+<span><span class="co">## FT0339   740.3379        NA   670.8597   608.9832   837.1074  725.9649</span></span>
+<span><span class="co">##          POOL_10   study_88   study_89   study_90   study_91   study_92</span></span>
+<span><span class="co">## FT0040 23962.084 61837.2091 32377.1730 32439.4524 24012.0652 39597.0892</span></span>
+<span><span class="co">## FT0094  2204.750  1331.7937  1668.8801  1410.0527  1925.2850  1540.6500</span></span>
+<span><span class="co">## FT0291  1902.566  2905.3271  3187.0283  2533.9604  3063.0096  2558.1285</span></span>
+<span><span class="co">## FT0312  5496.504  4381.3988  2466.6801  3536.2193  3228.3657  2342.0506</span></span>
+<span><span class="co">## FT0319  1516.650  1443.5203  1853.9952  1811.4278  1717.6488  2294.2605</span></span>
+<span><span class="co">## FT0339        NA   683.7459   772.8748   573.6352   782.7831   661.8547</span></span>
+<span><span class="co">##          study_93  study_94    POOL_11</span></span>
+<span><span class="co">## FT0040 79366.9568 38650.393 16487.0867</span></span>
+<span><span class="co">## FT0094  1695.5372  1804.578  2300.9370</span></span>
+<span><span class="co">## FT0291  3381.0408  2353.378  1751.7661</span></span>
+<span><span class="co">## FT0312  2036.8603  4016.502  3249.0962</span></span>
+<span><span class="co">## FT0319  1196.5777  1770.076  1473.6806</span></span>
+<span><span class="co">## FT0339   926.6332        NA   597.9774</span></span></code></pre>
+<p>The samples are provided in the columns of the <code>matrix</code>
+<code>vals</code>, in the order in which they were measured. We next
+define a <code>data.frame</code> with the injection index of the
+individual samples and identify the columns containing the QC
+samples.</p>
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#' Define a data frame with the injection index</span></span>
+<span><span class="va">sdata</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>injection_index <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq_len</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">ncol</a></span><span class="op">(</span><span class="va">vals</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#' Identify columns representing QC samples</span></span>
+<span><span class="va">qc_index</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">grep</a></span><span class="op">(</span><span class="st">"^POOL"</span>, <span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">vals</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">qc_index</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## [1] 11</span></span></code></pre>
+<p>We can next model an injection order dependent signal drift for each
+feature (row) in the data. To ensure independence of the fitted
+regression models on any experimental covariate we estimate the drift on
+values observed for QC samples (which represent repeated injections of
+the same sample pool and hence any differences observed in these are
+supposed to be of only technical nature). Also, we fit the model on log2
+transformed abundances assuming hence a log linear relationship between
+abundances and injection index. By setting <code>minVals = 9</code> we
+require at least 9 non-missing values in QC samples (n = 11) of each row
+for the model to be fitted - for fewer values, model fitting is skipped
+and an <code>NA</code> is returned for the particular feature (row). The
+default for the <code>minVals</code> parameter is to fit models only for
+features with at least 75% of non-missing values. For lower values of
+<code>minVals</code> model fitting can become unstable and users should
+thus evaluate (and visually inspect) the estimated signal drifts.</p>
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#' Fit linear models explaining observed abundances by injection index.</span></span>
+<span><span class="co">#' Linear models are fitted row-wise to data of QC samples.</span></span>
+<span><span class="va">qc_lm</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fit_lm.html">fit_lm</a></span><span class="op">(</span><span class="va">y</span> <span class="op">~</span> <span class="va">injection_index</span>,</span>
+<span>                data <span class="op">=</span> <span class="va">sdata</span><span class="op">[</span><span class="va">qc_index</span>, , drop <span class="op">=</span> <span class="cn">FALSE</span><span class="op">]</span>,</span>
+<span>                y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log2</a></span><span class="op">(</span><span class="va">vals</span><span class="op">[</span>, <span class="va">qc_index</span><span class="op">]</span><span class="op">)</span>,</span>
+<span>                minVals <span class="op">=</span> <span class="fl">9</span><span class="op">)</span></span></code></pre></div>
+<p>The function returned a <code>list</code> of linear models. Each
+model describing the observed relationship between feature abundances
+and injection index of the samples. Below we extract the first of these
+models.</p>
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">qc_lm</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span></code></pre></div>
+<pre><code><span><span class="co">## </span></span>
+<span><span class="co">## Call:</span></span>
+<span><span class="co">## lm(formula = formula, data = data, model = model)</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## Coefficients:</span></span>
+<span><span class="co">##     (Intercept)  injection_index  </span></span>
+<span><span class="co">##       14.043284         0.001409</span></span></code></pre>
+<p>The coefficient for the injection index represents the dependency of
+the measured abundances (in QC samples) for that feature on the index in
+which the samples were injected, with positive coefficients indicating
+increasing abundances with injection index and negative coefficients
+decreasing intensities. The magnitude of the value represents the
+strength of this association.</p>
+<p>For some features no model was fitted, because too few non-missing
+data points were available (parameter <code>minVals</code> above).</p>
+<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">qc_lm</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## [1] 18</span></span></code></pre>
+<p>We can also plot the data and indicate the fitted model.</p>
+<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">sdata</span><span class="op">$</span><span class="va">injection_index</span>, y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log2</a></span><span class="op">(</span><span class="va">vals</span><span class="op">[</span><span class="fl">1</span>, <span class="op">]</span><span class="op">)</span>,</span>
+<span>     xlab <span class="op">=</span> <span class="st">"injection_index"</span>, ylab <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/expression.html" class="external-link">expression</a></span><span class="op">(</span><span class="va">log</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">~</span><span class="va">abundance</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#' Indicate QC samples</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/points.html" class="external-link">points</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">sdata</span><span class="op">$</span><span class="va">injection_index</span><span class="op">[</span><span class="va">qc_index</span><span class="op">]</span>,</span>
+<span>       y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log2</a></span><span class="op">(</span><span class="va">vals</span><span class="op">[</span><span class="fl">1</span>, <span class="va">qc_index</span><span class="op">]</span><span class="op">)</span>, pch <span class="op">=</span> <span class="fl">16</span>, col <span class="op">=</span> <span class="st">"#00000080"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/grid.html" class="external-link">grid</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/abline.html" class="external-link">abline</a></span><span class="op">(</span><span class="va">qc_lm</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span></code></pre></div>
+<div class="figure">
+<img src="MetaboCoreUtils_files/figure-html/unnamed-chunk-23-1.png" alt="Abundance of an example feature along injection index. Open circles represent measurements in study samples, filled circles in QC samples. The black solid line represents the estimated signal drift." width="700"><p class="caption">
+Abundance of an example feature along injection index. Open circles
+represent measurements in study samples, filled circles in QC samples.
+The black solid line represents the estimated signal drift.
+</p>
+</div>
+<p>For that feature a very slight increase of abundances over the
+measurement run was estimated. In contrast, for the second feature a
+stronger, but decreasing, signal drift was estimated on the QC samples
+(see below). Also the study samples seem to follow this drift.</p>
+<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">sdata</span><span class="op">$</span><span class="va">injection_index</span>, y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log2</a></span><span class="op">(</span><span class="va">vals</span><span class="op">[</span><span class="fl">2</span>, <span class="op">]</span><span class="op">)</span>,</span>
+<span>     xlab <span class="op">=</span> <span class="st">"injection_index"</span>, ylab <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/expression.html" class="external-link">expression</a></span><span class="op">(</span><span class="va">log</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">~</span><span class="va">abundance</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#' Indicate QC samples</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/points.html" class="external-link">points</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">sdata</span><span class="op">$</span><span class="va">injection_index</span><span class="op">[</span><span class="va">qc_index</span><span class="op">]</span>,</span>
+<span>       y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log2</a></span><span class="op">(</span><span class="va">vals</span><span class="op">[</span><span class="fl">2</span>, <span class="va">qc_index</span><span class="op">]</span><span class="op">)</span>, pch <span class="op">=</span> <span class="fl">16</span>, col <span class="op">=</span> <span class="st">"#00000080"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/grid.html" class="external-link">grid</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/abline.html" class="external-link">abline</a></span><span class="op">(</span><span class="va">qc_lm</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span></code></pre></div>
+<div class="figure">
+<img src="MetaboCoreUtils_files/figure-html/unnamed-chunk-24-1.png" alt="Abundance of an example feature along injection index. Open circles represent measurements in study samples, filled circles in QC samples. The black solid line represents the estimated signal drift." width="700"><p class="caption">
+Abundance of an example feature along injection index. Open circles
+represent measurements in study samples, filled circles in QC samples.
+The black solid line represents the estimated signal drift.
+</p>
+</div>
+<p>Thus, generally, for LC-MS data, not all features need be affected by
+the same injection order-dependent signal drift. We next extract the
+coefficient (or slope, representing the magnitude of the association
+with the injection order), its p-value (providing the significance from
+the hypothesis test that the coefficient is different from 0) and the
+(adjusted) R squared (variance explained by the fitted model) for each
+feature.</p>
+<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#' Extract slope, F-statistic and R squared from each model, skipping</span></span>
+<span><span class="co">#' features for which no model was fitted.</span></span>
+<span><span class="va">qc_lm_summary</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">qc_lm</span>, <span class="kw">function</span><span class="op">(</span><span class="va">z</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">z</span><span class="op">)</span> <span class="op">&gt;</span> <span class="fl">1</span><span class="op">)</span> <span class="op">{</span></span>
+<span>        <span class="va">s</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">z</span><span class="op">)</span></span>
+<span>        <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>slope <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/coef.html" class="external-link">coefficients</a></span><span class="op">(</span><span class="va">s</span><span class="op">)</span><span class="op">[</span><span class="fl">2</span>, <span class="st">"Estimate"</span><span class="op">]</span>,</span>
+<span>          p.value <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/coef.html" class="external-link">coefficients</a></span><span class="op">(</span><span class="va">s</span><span class="op">)</span><span class="op">[</span><span class="fl">2</span>, <span class="fl">4</span><span class="op">]</span>,</span>
+<span>          adj.r.squared <span class="op">=</span> <span class="va">s</span><span class="op">$</span><span class="va">adj.r.squared</span><span class="op">)</span></span>
+<span>    <span class="op">}</span> <span class="kw">else</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>slope <span class="op">=</span> <span class="cn">NA_real_</span>, F <span class="op">=</span> <span class="cn">NA_real_</span>,</span>
+<span>             adj.r.squared <span class="op">=</span> <span class="cn">NA_real_</span><span class="op">)</span> <span class="co"># returning NA for skipped models</span></span>
+<span><span class="op">}</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/do.call.html" class="external-link">do.call</a></span><span class="op">(</span>what <span class="op">=</span> <span class="va">rbind</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">qc_lm_summary</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">##              slope     p.value adj.r.squared</span></span>
+<span><span class="co">## [1,]  0.0014086822 0.823300855  -0.134149225</span></span>
+<span><span class="co">## [2,] -0.0051564665 0.009186877   0.497723379</span></span>
+<span><span class="co">## [3,] -0.0013415890 0.057567953   0.271883394</span></span>
+<span><span class="co">## [4,]  0.0002856518 0.912327619  -0.109530299</span></span>
+<span><span class="co">## [5,] -0.0004721848 0.331239768   0.005438684</span></span>
+<span><span class="co">## [6,]            NA          NA            NA</span></span></code></pre>
+<p>We below plot the slope (x-axis) against its p-value for the fitted
+models. For the p-values we plot the negative logarithm so that larger
+values represent smaller p-values.</p>
+<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">qc_lm_summary</span><span class="op">[</span>, <span class="st">"slope"</span><span class="op">]</span>, <span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log10</a></span><span class="op">(</span><span class="va">qc_lm_summary</span><span class="op">[</span>, <span class="st">"p.value"</span><span class="op">]</span><span class="op">)</span>,</span>
+<span>     xlab <span class="op">=</span> <span class="st">"injection order dependency"</span>, ylab <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/expression.html" class="external-link">expression</a></span><span class="op">(</span><span class="op">-</span><span class="va">log</span><span class="op">[</span><span class="fl">10</span><span class="op">]</span><span class="op">(</span><span class="va">p</span><span class="op">~</span><span class="va">value</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>     pch <span class="op">=</span> <span class="fl">21</span>, col <span class="op">=</span> <span class="st">"#00000080"</span>, bg <span class="op">=</span> <span class="st">"#00000040"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/grid.html" class="external-link">grid</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/abline.html" class="external-link">abline</a></span><span class="op">(</span>h <span class="op">=</span> <span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log10</a></span><span class="op">(</span><span class="fl">0.05</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p><img src="MetaboCoreUtils_files/figure-html/unnamed-chunk-26-1.png" width="700"></p>
+<p>The p-value represents the significance of the slope being different
+from 0. Large slopes with poor p-values indicate that the measured
+values (in QC samples) don’t fit the model well.</p>
+<p>We next select the feature with the largest slope (i.e., strongest
+estimated dependency on the injection index) and plot its data.</p>
+<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">idx</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/which.min.html" class="external-link">which.max</a></span><span class="op">(</span><span class="va">qc_lm_summary</span><span class="op">[</span>, <span class="st">"slope"</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">sdata</span><span class="op">$</span><span class="va">injection_index</span>, y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log2</a></span><span class="op">(</span><span class="va">vals</span><span class="op">[</span><span class="va">idx</span>, <span class="op">]</span><span class="op">)</span>,</span>
+<span>     xlab <span class="op">=</span> <span class="st">"injection_index"</span>, ylab <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/expression.html" class="external-link">expression</a></span><span class="op">(</span><span class="va">log</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">~</span><span class="va">abundance</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#' Indicate QC samples</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/points.html" class="external-link">points</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">sdata</span><span class="op">$</span><span class="va">injection_index</span><span class="op">[</span><span class="va">qc_index</span><span class="op">]</span>,</span>
+<span>       y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log2</a></span><span class="op">(</span><span class="va">vals</span><span class="op">[</span><span class="va">idx</span>, <span class="va">qc_index</span><span class="op">]</span><span class="op">)</span>, pch <span class="op">=</span> <span class="fl">16</span>, col <span class="op">=</span> <span class="st">"#00000080"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/grid.html" class="external-link">grid</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/abline.html" class="external-link">abline</a></span><span class="op">(</span><span class="va">qc_lm</span><span class="op">[[</span><span class="va">idx</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span></code></pre></div>
+<p><img src="MetaboCoreUtils_files/figure-html/unnamed-chunk-27-1.png" width="700"></p>
+<p>Also for this feature, the study samples show a similar trend (along
+injection index) than the QC samples. The p-value and R squared for this
+feature are:</p>
+<div class="sourceCode" id="cb46"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">qc_lm_summary</span><span class="op">[</span><span class="va">idx</span>, <span class="op">]</span></span></code></pre></div>
+<pre><code><span><span class="co">##         slope       p.value adj.r.squared </span></span>
+<span><span class="co">##    0.01815223    0.01568322    0.53095805</span></span></code></pre>
+<p>As an additional example we plot the data for a model with a large
+slope, but a <em>high</em> p-value.</p>
+<div class="sourceCode" id="cb48"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">idx2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/which.html" class="external-link">which</a></span><span class="op">(</span><span class="va">qc_lm_summary</span><span class="op">[</span>, <span class="st">"slope"</span><span class="op">]</span> <span class="op">&gt;</span> <span class="fl">0.01</span> <span class="op">&amp;</span></span>
+<span>              <span class="va">qc_lm_summary</span><span class="op">[</span>, <span class="st">"p.value"</span><span class="op">]</span> <span class="op">&gt;</span> <span class="fl">0.05</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">sdata</span><span class="op">$</span><span class="va">injection_index</span>, y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log2</a></span><span class="op">(</span><span class="va">vals</span><span class="op">[</span><span class="va">idx2</span>, <span class="op">]</span><span class="op">)</span>,</span>
+<span>     xlab <span class="op">=</span> <span class="st">"injection_index"</span>, ylab <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/expression.html" class="external-link">expression</a></span><span class="op">(</span><span class="va">log</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">~</span><span class="va">abundance</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/points.html" class="external-link">points</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">sdata</span><span class="op">$</span><span class="va">injection_index</span><span class="op">[</span><span class="va">qc_index</span><span class="op">]</span>,</span>
+<span>       y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log2</a></span><span class="op">(</span><span class="va">vals</span><span class="op">[</span><span class="va">idx2</span>, <span class="va">qc_index</span><span class="op">]</span><span class="op">)</span>, pch <span class="op">=</span> <span class="fl">16</span>, col <span class="op">=</span> <span class="st">"#00000080"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/grid.html" class="external-link">grid</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/abline.html" class="external-link">abline</a></span><span class="op">(</span><span class="va">qc_lm</span><span class="op">[[</span><span class="va">idx2</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span></code></pre></div>
+<p><img src="MetaboCoreUtils_files/figure-html/unnamed-chunk-29-1.png" width="700"></p>
+<p>For that particular feature no (or only a very low) injection order
+dependency of abundances can be observed in study samples while a rather
+strong signal drift was estimated on the QC samples. This strong
+dependency was driven mostly by 3 QC samples with low intensities at the
+beginning of the measurement run, that might however represent outlier
+signals. The p-value, slope and R squared values for this features
+are:</p>
+<div class="sourceCode" id="cb49"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">qc_lm_summary</span><span class="op">[</span><span class="va">idx2</span>, <span class="op">]</span></span></code></pre></div>
+<pre><code><span><span class="co">##         slope       p.value adj.r.squared </span></span>
+<span><span class="co">##    0.01066873    0.06839199    0.24720649</span></span></code></pre>
+<p>The p-value is much larger for this feature and the R squared lower
+compared to the first feature, which suggests that the fitted model,
+although the coefficient (slope) is different from one, does not
+describe the data well.</p>
+<p>It is thus suggested to not blindly apply these feature-wise
+adjustments but to evaluate the estimated signal drifts (ideally for
+border cases) to determine whether they fit the data or to define
+strategies to identify cases for which the estimated signal drift should
+be discarded.</p>
+<p>As an example, we might want to remove linear model fits with a
+p-value larger 0.05. While this cut-off is arbitrary, it will avoid
+adjusting the data in cases for which there is no injection dependent
+signal drift (i.e. when the slope/coefficient is close to 0) or for
+which the fitted model does not well explain the measured abundances (as
+in our example above).</p>
+<div class="sourceCode" id="cb51"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">qc_lm</span><span class="op">[</span><span class="va">qc_lm_summary</span><span class="op">[</span>, <span class="st">"p.value"</span><span class="op">]</span> <span class="op">&gt;</span> <span class="fl">0.05</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="cn">NA</span></span></code></pre></div>
+<p>We can next adjust the data for the estimated signal drifts using the
+<code>adjust_lm</code> function. We will thus adjust abundances in all
+samples (including the study samples) using the linear models estimated
+on the QC samples. For features for which no linear model is provided
+(i.e., with an <code>NA</code> in the <code>list</code> of linear
+models) the original abundances will be returned <em>as is</em>. With
+parameter <code>data</code> we need to provide a <code>data.frame</code>
+with all required covariates for the fitted models (i.e., defined by the
+<code>formula</code> passed to the <code>fit_lm</code> call). Also,
+since we fitted the models to the data in <code>log2</code> scale, we
+need also to provide log2 transformed values to the
+<code>adjust_lm</code> function.</p>
+<div class="sourceCode" id="cb52"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#' Adjust the data for the estimated signal drift</span></span>
+<span><span class="va">vals_adj</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fit_lm.html">adjust_lm</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log2</a></span><span class="op">(</span><span class="va">vals</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">sdata</span>, lm <span class="op">=</span> <span class="va">qc_lm</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#' Transform data again into natural scale</span></span>
+<span><span class="va">vals_adj</span> <span class="op">&lt;-</span> <span class="fl">2</span><span class="op">^</span><span class="va">vals_adj</span></span></code></pre></div>
+<p>Finally, we can (and should) evaluate the impact of the adjustment by
+plotting the raw and adjusted values into the same plot. Below we plot
+these values (raw values as open circles, adjusted values as filled
+circles) for the 2nd feature.</p>
+<div class="sourceCode" id="cb53"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">sdata</span><span class="op">$</span><span class="va">injection_index</span>, y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log2</a></span><span class="op">(</span><span class="va">vals</span><span class="op">[</span><span class="fl">2</span>, <span class="op">]</span><span class="op">)</span>,</span>
+<span>     xlab <span class="op">=</span> <span class="st">"injection_index"</span>, ylab <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/expression.html" class="external-link">expression</a></span><span class="op">(</span><span class="va">log</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">~</span><span class="va">abundance</span><span class="op">)</span>,</span>
+<span>     col <span class="op">=</span> <span class="st">"#00000080"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/points.html" class="external-link">points</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">sdata</span><span class="op">$</span><span class="va">injection_index</span>, y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log2</a></span><span class="op">(</span><span class="va">vals_adj</span><span class="op">[</span><span class="fl">2</span>, <span class="op">]</span><span class="op">)</span>,</span>
+<span>       pch <span class="op">=</span> <span class="fl">16</span>, col <span class="op">=</span> <span class="st">"#00000080"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/grid.html" class="external-link">grid</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/abline.html" class="external-link">abline</a></span><span class="op">(</span><span class="va">qc_lm</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span>, col <span class="op">=</span> <span class="st">"grey"</span>, lty <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#' fit a model to the QC samples of the adjusted data</span></span>
+<span><span class="va">l</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log2</a></span><span class="op">(</span><span class="va">vals_adj</span><span class="op">[</span><span class="fl">2</span>, <span class="va">qc_index</span><span class="op">]</span><span class="op">)</span> <span class="op">~</span> <span class="va">sdata</span><span class="op">$</span><span class="va">injection_index</span><span class="op">[</span><span class="va">qc_index</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/abline.html" class="external-link">abline</a></span><span class="op">(</span><span class="va">l</span>, col <span class="op">=</span> <span class="st">"grey"</span><span class="op">)</span></span></code></pre></div>
+<div class="figure">
+<img src="MetaboCoreUtils_files/figure-html/unnamed-chunk-33-1.png" alt="Feature abundances before (open circles) and after adjustment (filled circles). The grey dashed line represents the injection index dependent signal drift estimated on the raw data and the solid grey line the same model estimated on the adjusted data." width="700"><p class="caption">
+Feature abundances before (open circles) and after adjustment (filled
+circles). The grey dashed line represents the injection index dependent
+signal drift estimated on the raw data and the solid grey line the same
+model estimated on the adjusted data.
+</p>
+</div>
+<p>As expected, the signal drift was removed by the adjustment.</p>
+<p>We can also evaluate the performance of the whole adjustment by
+comparing the correlation of abundances with injection index before and
+after adjustment. Below we calculate the correlation between abundances
+in QC samples and the respective injection index of these samples using
+the non-parametric Spearman method.</p>
+<p>We restrict the calculation to features that were also adjusted using
+the signal dependent</p>
+<div class="sourceCode" id="cb54"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#' Identify features for which the adjustment was performed</span></span>
+<span><span class="va">fts_adj</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/which.html" class="external-link">which</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">qc_lm</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#' Define a function to calculate the correlation</span></span>
+<span><span class="va">cor_fun</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">i</span>, <span class="va">y</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="va">values</span> <span class="op">&lt;-</span> <span class="va">y</span><span class="op">[</span><span class="va">i</span>, <span class="va">qc_index</span><span class="op">]</span></span>
+<span>    <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">values</span><span class="op">)</span><span class="op">)</span> <span class="op">&gt;=</span> <span class="fl">9</span><span class="op">)</span></span>
+<span>        <span class="fu"><a href="https://rdrr.io/r/stats/cor.html" class="external-link">cor</a></span><span class="op">(</span><span class="va">values</span>, <span class="va">sdata</span><span class="op">$</span><span class="va">injection_index</span><span class="op">[</span><span class="va">qc_index</span><span class="op">]</span>,</span>
+<span>            method <span class="op">=</span> <span class="st">"spearman"</span>, use <span class="op">=</span> <span class="st">"pairwise.complete.obs"</span><span class="op">)</span></span>
+<span>    <span class="kw">else</span> <span class="cn">NA_real_</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="co">#' Calculate correlations for raw data, skipping features</span></span>
+<span><span class="co">#' with less than 9 non-missing values</span></span>
+<span><span class="va">cor_raw</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">vapply</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq_along</a></span><span class="op">(</span><span class="va">qc_lm</span><span class="op">)</span>, <span class="va">cor_fun</span>, <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">numeric</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span>, y <span class="op">=</span> <span class="va">vals</span><span class="op">)</span></span></code></pre></div>
+<p>We repeat the same for the values after adjustment.</p>
+<div class="sourceCode" id="cb55"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#' Calculate correlations for adjusted data</span></span>
+<span><span class="va">cor_adj</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">vapply</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq_along</a></span><span class="op">(</span><span class="va">qc_lm</span><span class="op">)</span>, <span class="va">cor_fun</span>, <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">numeric</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span>, y <span class="op">=</span> <span class="va">vals_adj</span><span class="op">)</span></span></code></pre></div>
+<p>We next plot the (ordered) correlation coefficients before and after
+adjustment to globally evaluate the impact of the correction.</p>
+<div class="sourceCode" id="cb56"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sort.html" class="external-link">sort</a></span><span class="op">(</span><span class="va">cor_raw</span><span class="op">)</span>, col <span class="op">=</span> <span class="st">"#00000080"</span>, main <span class="op">=</span> <span class="st">"QC samples"</span>, ylab <span class="op">=</span> <span class="st">"rho"</span>,</span>
+<span>     xlab <span class="op">=</span> <span class="st">"rank"</span><span class="op">)</span></span>
+<span><span class="va">idx</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/order.html" class="external-link">order</a></span><span class="op">(</span><span class="va">cor_adj</span><span class="op">)</span></span>
+<span><span class="va">bg</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="cn">NA</span>, <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">cor_adj</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">bg</span><span class="op">[</span><span class="va">fts_adj</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="st">"#ff000040"</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/points.html" class="external-link">points</a></span><span class="op">(</span><span class="va">cor_adj</span><span class="op">[</span><span class="va">idx</span><span class="op">]</span>, pch <span class="op">=</span> <span class="fl">21</span>, col <span class="op">=</span> <span class="st">"#ff000080"</span>, bg <span class="op">=</span> <span class="va">bg</span><span class="op">[</span><span class="va">idx</span><span class="op">]</span><span class="op">)</span></span></code></pre></div>
+<div class="figure">
+<img src="MetaboCoreUtils_files/figure-html/unnamed-chunk-36-1.png" alt="Correlation between abundances and injection index for QC samples before (black) and after adjustment (red). Filled circles represent the features for which the drift was adjusted for. Correlation coefficients are sorted." width="700"><p class="caption">
+Correlation between abundances and injection index for QC samples before
+(black) and after adjustment (red). Filled circles represent the
+features for which the drift was adjusted for. Correlation coefficients
+are sorted.
+</p>
+</div>
+<p>Adjustment, while not completely removing it for all features,
+globally reduced the dependency of abundances on the injection
+index.</p>
+<p>Summarizing, feature-wise biases in LC-MS data can be estimated, and
+adjusted for using the <code>fit_lm</code> and <code>adjust_lm</code>
+functions. Ideally, such biases should be estimated on (repeatedly
+measured) QC samples, with the QC samples being representative of the
+study samples (e.g. a pool of all study samples). In addition, due to
+the generally relatively low number of available data points, the
+estimation of the signal drift can be unreliable and it is thus strongly
+suggested to evaluate or visually inspect some of them to derive
+strategies identifying and handling problematic cases and skip
+adjustment for them. In addition or as an alternative, problematic cases
+could also manually identified and flagged or removed.</p>
+<p>Generally, injecting study samples in random order can reduce (or
+even avoid) influence of any related technical bias in the downstream
+analysis and is highly suggested to improve and assure data quality.</p>
+</div>
+<div class="section level3">
+<h3 id="basic-quality-assessment-and-pre-filtering-of-metabolomics-data">Basic quality assessment and pre-filtering of metabolomics data<a class="anchor" aria-label="anchor" href="#basic-quality-assessment-and-pre-filtering-of-metabolomics-data"></a>
+</h3>
+<p>When dealing with metabolomics results, it is often necessary to
+filter features based on certain criteria. These criteria are typically
+derived from statistical formulas applied to full rows of data, where
+each row represents a feature. In this tutorial, we’ll explore a set of
+functions designed designed to calculate basic quality assessment
+metrics on which metabolomics data can subsequently be filtered.</p>
+<p>First, to get more information on the available function you can
+check the documentation</p>
+<div class="sourceCode" id="cb57"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="op">?</span><span class="va">quality_assessment</span></span></code></pre></div>
+<p>We will use a matrix representing metabolomics measurements from
+different samples. Let’s start by introducing the data:</p>
+<div class="sourceCode" id="cb58"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Define sample data for metabolomics analysis</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span>
+<span><span class="va">metabolomics_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">100</span><span class="op">)</span>, nrow <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">metabolomics_data</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"Sample"</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">rownames</a></span><span class="op">(</span><span class="va">metabolomics_data</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"Feature"</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span></span></code></pre></div>
+<p>We will begin by calculating the coefficient of variation (CV) for
+each feature. This measure helps assess the relative variability of each
+metabolite across different samples.</p>
+<div class="sourceCode" id="cb59"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Calculate and display the coefficient of variation</span></span>
+<span><span class="va">cv_result</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/quality_assessment.html">rowRsd</a></span><span class="op">(</span><span class="va">metabolomics_data</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">cv_result</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">##   Feature1   Feature2   Feature3   Feature4   Feature5   Feature6   Feature7 </span></span>
+<span><span class="co">##  15.951884   3.206017   8.460667   4.833961  63.729823   3.043874   2.573664 </span></span>
+<span><span class="co">##   Feature8   Feature9  Feature10 </span></span>
+<span><span class="co">##   4.645802 413.603555   4.537980</span></span></code></pre>
+<p>Next, we will compute the D-ratio <span class="citation">(Broadhurst
+et al. 2018)</span>, a measure of dispersion, by comparing the standard
+deviation of QC samples to that of biological test samples.</p>
+<div class="sourceCode" id="cb61"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Generate QC samples</span></span>
+<span><span class="va">qc_samples</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">40</span><span class="op">)</span>, nrow <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">qc_samples</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"QC"</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Calculate D-ratio and display the result</span></span>
+<span><span class="va">dratio_result</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/quality_assessment.html">rowDratio</a></span><span class="op">(</span><span class="va">metabolomics_data</span>, <span class="va">qc_samples</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">dratio_result</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">##  Feature1  Feature2  Feature3  Feature4  Feature5  Feature6  Feature7  Feature8 </span></span>
+<span><span class="co">## 1.3188058 0.8839695 0.8090550 0.1521119 2.0146250 0.6179021 0.8058826 0.9989249 </span></span>
+<span><span class="co">##  Feature9 Feature10 </span></span>
+<span><span class="co">## 2.0101193 1.0940812</span></span></code></pre>
+<p>Now, let’s analyze the percentage of missing values for each
+metabolite. This information is crucial for quality control and data
+preprocessing.</p>
+<div class="sourceCode" id="cb63"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Introduce missing values in the data</span></span>
+<span><span class="va">metabolomics_data</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">100</span>, <span class="fl">10</span><span class="op">)</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="cn">NA</span></span>
+<span></span>
+<span><span class="co"># Calculate and display the percentage of missing values</span></span>
+<span><span class="va">missing_result</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/quality_assessment.html">rowPercentMissing</a></span><span class="op">(</span><span class="va">metabolomics_data</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">missing_result</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">##  Feature1  Feature2  Feature3  Feature4  Feature5  Feature6  Feature7  Feature8 </span></span>
+<span><span class="co">##         0        20         0        20        10        10        30         0 </span></span>
+<span><span class="co">##  Feature9 Feature10 </span></span>
+<span><span class="co">##         0        10</span></span></code></pre>
+<p>Finally, we will identify features where the mean of test samples is
+lower than twice the mean of blank samples. This can be indicative of
+significant contamination in the solvent of the samples.</p>
+<div class="sourceCode" id="cb65"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Generate blank samples</span></span>
+<span><span class="va">blank_samples</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">30</span><span class="op">)</span>, nrow <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">blank_samples</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"Blank"</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Detect rows where mean(test) &gt; 2 * mean(blank)</span></span>
+<span><span class="va">blank_detection_result</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/quality_assessment.html">rowBlank</a></span><span class="op">(</span><span class="va">metabolomics_data</span>, <span class="va">blank_samples</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">blank_detection_result</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">##  Feature1  Feature2  Feature3  Feature4  Feature5  Feature6  Feature7  Feature8 </span></span>
+<span><span class="co">##     FALSE      TRUE      TRUE     FALSE      TRUE     FALSE     FALSE     FALSE </span></span>
+<span><span class="co">##  Feature9 Feature10 </span></span>
+<span><span class="co">##     FALSE      TRUE</span></span></code></pre>
+<p>All of these computations can then be used to easily filter our data
+and remove the features that do not fit our quality criteria. Below we
+remove all features that have a D-ratio and coefficeint of variation
+&lt; 0.8 with no missing values and is not flagged to be a possible
+solvent contaminant.</p>
+<div class="sourceCode" id="cb67"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Set filtering thresholds</span></span>
+<span><span class="va">cv_threshold</span> <span class="op">&lt;-</span> <span class="fl">8</span></span>
+<span><span class="va">dratio_threshold</span> <span class="op">&lt;-</span> <span class="fl">0.8</span></span>
+<span></span>
+<span><span class="co"># Apply filters</span></span>
+<span><span class="va">filtered_data</span> <span class="op">&lt;-</span> <span class="va">metabolomics_data</span><span class="op">[</span></span>
+<span>  <span class="va">cv_result</span> <span class="op">&lt;=</span> <span class="va">cv_threshold</span> <span class="op">&amp;</span></span>
+<span>  <span class="va">dratio_result</span> <span class="op">&lt;=</span> <span class="va">dratio_threshold</span> <span class="op">&amp;</span></span>
+<span>  <span class="va">missing_result</span> <span class="op">&lt;=</span> <span class="fl">10</span> <span class="op">&amp;</span></span>
+<span>  <span class="op">!</span><span class="va">blank_detection_result</span>, , drop <span class="op">=</span> <span class="cn">FALSE</span><span class="op">]</span></span>
+<span></span>
+<span><span class="co"># Display the filtered data</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">filtered_data</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">##           Sample1  Sample2 Sample3   Sample4   Sample5  Sample6   Sample7</span></span>
+<span><span class="co">## Feature6 1.715065 1.786913      NA 0.6886403 -1.123109 1.516471 0.3035286</span></span>
+<span><span class="co">##           Sample8  Sample9   Sample10</span></span>
+<span><span class="co">## Feature6 1.025571 0.331782 -0.6002596</span></span></code></pre>
+</div>
 </div>
 <div class="section level2">
 <h2 id="contributions">Contributions<a class="anchor" aria-label="anchor" href="#contributions"></a>
@@ -345,8 +895,8 @@ a GitHub issue</a>.</p>
 <div class="section level2">
 <h2 class="unnumbered" id="session-information">Session information<a class="anchor" aria-label="anchor" href="#session-information"></a>
 </h2>
-<pre><code><span><span class="co">## R version 4.3.1 (2023-06-16)</span></span>
-<span><span class="co">## Platform: x86_64-pc-linux-gnu (64-bit)</span></span>
+<pre><code><span><span class="co">## R Under development (unstable) (2024-01-09 r85796)</span></span>
+<span><span class="co">## Platform: x86_64-pc-linux-gnu</span></span>
 <span><span class="co">## Running under: Ubuntu 22.04.3 LTS</span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## Matrix products: default</span></span>
@@ -368,34 +918,50 @@ a GitHub issue</a>.</p>
 <span><span class="co">## [1] stats     graphics  grDevices utils     datasets  methods   base     </span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## other attached packages:</span></span>
-<span><span class="co">## [1] MetaboCoreUtils_1.11.0 BiocStyle_2.30.0      </span></span>
+<span><span class="co">## [1] MetaboCoreUtils_1.11.2 BiocStyle_2.31.0      </span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## loaded via a namespace (and not attached):</span></span>
-<span><span class="co">##  [1] jsonlite_1.8.7      compiler_4.3.1      BiocManager_1.30.22</span></span>
-<span><span class="co">##  [4] stringr_1.5.0       cluster_2.1.4       jquerylib_0.1.4    </span></span>
-<span><span class="co">##  [7] systemfonts_1.0.5   textshaping_0.3.7   yaml_2.3.7         </span></span>
-<span><span class="co">## [10] fastmap_1.1.1       R6_2.5.1            knitr_1.45         </span></span>
-<span><span class="co">## [13] BiocGenerics_0.48.0 MASS_7.3-60         bookdown_0.36      </span></span>
-<span><span class="co">## [16] desc_1.4.2          rprojroot_2.0.3     bslib_0.5.1        </span></span>
-<span><span class="co">## [19] rlang_1.1.1         cachem_1.0.8        stringi_1.7.12     </span></span>
-<span><span class="co">## [22] xfun_0.41           fs_1.6.3            MsCoreUtils_1.14.0 </span></span>
-<span><span class="co">## [25] sass_0.4.7          memoise_2.0.1       cli_3.6.1          </span></span>
-<span><span class="co">## [28] pkgdown_2.0.7.9000  magrittr_2.0.3      digest_0.6.33      </span></span>
-<span><span class="co">## [31] lifecycle_1.0.3     clue_0.3-65         S4Vectors_0.40.1   </span></span>
-<span><span class="co">## [34] vctrs_0.6.4         evaluate_0.23       glue_1.6.2         </span></span>
-<span><span class="co">## [37] ragg_1.2.6          stats4_4.3.1        rmarkdown_2.25     </span></span>
-<span><span class="co">## [40] purrr_1.0.2         tools_4.3.1         htmltools_0.5.6.1</span></span></code></pre>
+<span><span class="co">##  [1] jsonlite_1.8.8      highr_0.10          compiler_4.4.0     </span></span>
+<span><span class="co">##  [4] BiocManager_1.30.22 stringr_1.5.1       parallel_4.4.0     </span></span>
+<span><span class="co">##  [7] cluster_2.1.6       jquerylib_0.1.4     systemfonts_1.0.5  </span></span>
+<span><span class="co">## [10] textshaping_0.3.7   BiocParallel_1.37.0 yaml_2.3.8         </span></span>
+<span><span class="co">## [13] fastmap_1.1.1       R6_2.5.1            knitr_1.45         </span></span>
+<span><span class="co">## [16] BiocGenerics_0.49.1 MASS_7.3-60.2       bookdown_0.37      </span></span>
+<span><span class="co">## [19] desc_1.4.3          bslib_0.6.1         rlang_1.1.3        </span></span>
+<span><span class="co">## [22] cachem_1.0.8        stringi_1.8.3       xfun_0.41          </span></span>
+<span><span class="co">## [25] fs_1.6.3            MsCoreUtils_1.15.2  sass_0.4.8         </span></span>
+<span><span class="co">## [28] memoise_2.0.1       cli_3.6.2           pkgdown_2.0.7.9000 </span></span>
+<span><span class="co">## [31] magrittr_2.0.3      digest_0.6.34       lifecycle_1.0.4    </span></span>
+<span><span class="co">## [34] clue_0.3-65         S4Vectors_0.41.3    vctrs_0.6.5        </span></span>
+<span><span class="co">## [37] evaluate_0.23       glue_1.7.0          codetools_0.2-19   </span></span>
+<span><span class="co">## [40] ragg_1.2.7          stats4_4.4.0        rmarkdown_2.25     </span></span>
+<span><span class="co">## [43] purrr_1.0.2         tools_4.4.0         htmltools_0.5.7</span></span></code></pre>
 </div>
 <div class="section level2">
 <h2 class="unnumbered" id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
 </h2>
 <div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-broadhurst_guidelines_2018" class="csl-entry">
+Broadhurst, David, Royston Goodacre, Stacey N. Reinke, Julia Kuligowski,
+Ian D. Wilson, Matthew R. Lewis, and Warwick B. Dunn. 2018.
+<span>“Guidelines and Considerations for the Use of System Suitability
+and Quality Control Samples in Mass Spectrometry Assays Applied in
+Untargeted Clinical Metabolomic Studies.”</span> <em>Metabolomics</em>
+14 (6): 72. <a href="https://doi.org/10.1007/s11306-018-1367-3" class="external-link">https://doi.org/10.1007/s11306-018-1367-3</a>.
+</div>
 <div id="ref-rainer_modular_2022" class="csl-entry">
 Rainer, Johannes, Andrea Vicini, Liesa Salzer, Jan Stanstrup, Josep M.
 Badia, Steffen Neumann, Michael A. Stravs, et al. 2022. <span>“A
 <span>Modular</span> and <span>Expandable</span> <span>Ecosystem</span>
 for <span>Metabolomics</span> <span>Data</span> <span>Annotation</span>
 in <span>R</span>.”</span> <em>Metabolites</em> 12 (2): 173. <a href="https://doi.org/10.3390/metabo12020173" class="external-link">https://doi.org/10.3390/metabo12020173</a>.
+</div>
+<div id="ref-wehrens_improved_2016" class="csl-entry">
+Wehrens, Ron, Jos A. Hageman, Fred van Eeuwijk, Rik Kooke, Pádraic J.
+Flood, Erik Wijnker, Joost J. B. Keurentjes, et al. 2016.
+<span>“Improved Batch Correction in Untargeted <span>MS</span>-Based
+Metabolomics.”</span> <em>Metabolomics : Official Journal of the
+Metabolomic Society</em> 12 (5): 88. <a href="https://doi.org/10.1007/s11306-016-1015-8" class="external-link">https://doi.org/10.1007/s11306-016-1015-8</a>.
 </div>
 </div>
 </div>

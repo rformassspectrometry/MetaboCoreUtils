@@ -46,6 +46,9 @@
     <loc>https://rformassspectrometry.github.io/MetaboCoreUtils/reference/countElements.html</loc>
   </url>
   <url>
+    <loc>https://rformassspectrometry.github.io/MetaboCoreUtils/reference/fit_lm.html</loc>
+  </url>
+  <url>
     <loc>https://rformassspectrometry.github.io/MetaboCoreUtils/reference/formula2mz.html</loc>
   </url>
   <url>
@@ -80,6 +83,9 @@
   </url>
   <url>
     <loc>https://rformassspectrometry.github.io/MetaboCoreUtils/reference/pasteElements.html</loc>
+  </url>
+  <url>
+    <loc>https://rformassspectrometry.github.io/MetaboCoreUtils/reference/quality_assessment.html</loc>
   </url>
   <url>
     <loc>https://rformassspectrometry.github.io/MetaboCoreUtils/reference/standardizeFormula.html</loc>
