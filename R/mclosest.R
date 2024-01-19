@@ -76,7 +76,6 @@ mclosest <- function(x,
         ppm <- rep(ppm[1], nc)
     if (length(tolerance) != nc)
         tolerance <- rep(tolerance[1], nc)
-
     ## Initialize a vector to store closest row indices
     closest_indices <- rep(NA_integer_ , nrow(x))
     for (i in seq_len(nrow(x))) {
