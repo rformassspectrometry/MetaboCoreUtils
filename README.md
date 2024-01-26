@@ -121,3 +121,8 @@ r$> formula_exp = c("C6H13NO2", "C2H7NO3S")
 C6H13NO2 "[C6H14NO2]+"
 C2H7NO3S "[C2H8NO3S]+"
 ```
+
+
+References:
+- https://fiehnlab.ucdavis.edu/staff/kind/metabolomics/ms-adduct-calculator/
+- https://github.com/rformassspectrometry/MetaboCoreUtils
