@@ -44,7 +44,6 @@ Depends:
     R (>= 4.0)
 Imports:
     utils,
-    MsCoreUtils,
     BiocParallel,
     methods,
     stats
