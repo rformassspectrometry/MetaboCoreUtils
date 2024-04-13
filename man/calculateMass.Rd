@@ -8,20 +8,30 @@ calculateMass(x)
 }
 \arguments{
 \item{x}{\code{character} representing chemical formula(s) or a \code{list } of
-\code{numeric} with element counts such as returned by \code{\link[=countElements]{countElements()}}.}
+\code{numeric} with element counts such as returned by \code{\link[=countElements]{countElements()}}.
+Isotopes and deuterated elements are supported (see examples below).}
 }
 \value{
 \code{numeric} Resulting exact mass.
 }
 \description{
-\code{calculateMass} calculates the exact mass from a formula.
+\code{calculateMass} calculates the exact mass from a formula. Isotopes are also
+supported. For isotopes, the isotope type needs to be specified as an
+element's prefix, e.g. \code{"[13C]"} for carbon 13 or \code{"[2H]"} for deuterium.
+A formula with 2 carbon 13 isotopes and 3 carbons would thus contain e.g.
+\code{"[13C2]C3"}.
 }
 \examples{
 
 calculateMass("C6H12O6")
 calculateMass("NH3")
 calculateMass(c("C6H12O6", "NH3"))
+
+## Calculate masses for formulas containing isotope information.
 calculateMass(c("C6H12O6", "[13C3]C3H12O6"))
+
+## Calculate mass for a chemical with 5 deuterium.
+calculateMass("C11[2H5]H7N2O2")
 }
 \author{
 Michael Witting

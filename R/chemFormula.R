@@ -316,10 +316,15 @@ multiplyElements <- function(x, k) {
 #'
 #' @description
 #'
-#' `calculateMass` calculates the exact mass from a formula.
+#' `calculateMass` calculates the exact mass from a formula. Isotopes are also
+#' supported. For isotopes, the isotope type needs to be specified as an
+#' element's prefix, e.g. `"[13C]"` for carbon 13 or `"[2H]"` for deuterium.
+#' A formula with 2 carbon 13 isotopes and 3 carbons would thus contain e.g.
+#' `"[13C2]C3"`.
 #'
 #' @param x `character` representing chemical formula(s) or a `list ` of
 #'     `numeric` with element counts such as returned by [countElements()].
+#'     Isotopes and deuterated elements are supported (see examples below).
 #'
 #' @return `numeric` Resulting exact mass.
 #'
@@ -332,7 +337,12 @@ multiplyElements <- function(x, k) {
 #' calculateMass("C6H12O6")
 #' calculateMass("NH3")
 #' calculateMass(c("C6H12O6", "NH3"))
+#'
+#' ## Calculate masses for formulas containing isotope information.
 #' calculateMass(c("C6H12O6", "[13C3]C3H12O6"))
+#'
+#' ## Calculate mass for a chemical with 5 deuterium.
+#' calculateMass("C11[2H5]H7N2O2")
 calculateMass <- function(x) {
     if (is.character(x))
         x <- countElements(x)

@@ -1,6 +1,6 @@
 Package: MetaboCoreUtils
 Title: Core Utils for Metabolomics Data
-Version: 1.11.2
+Version: 1.11.3
 Description: MetaboCoreUtils defines metabolomics-related core functionality
     provided as low-level functions to allow a data structure-independent usage
     across various R packages. This includes functions to calculate between ion
@@ -61,4 +61,4 @@ BugReports: https://github.com/RforMassSpectrometry/MetaboCoreUtils/issues
 URL: https://github.com/RforMassSpectrometry/MetaboCoreUtils
 biocViews: Infrastructure, Metabolomics, MassSpectrometry
 Roxygen: list(markdown=TRUE)
-RoxygenNote: 7.2.3
+RoxygenNote: 7.3.1

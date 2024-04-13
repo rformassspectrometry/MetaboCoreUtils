@@ -1,5 +1,11 @@
 # MetaboCoreUtils 1.11
 
+## MetaboCoreUtils 1.11.3
+
+- Add examples on isotopes (including deuterium) can be used with
+  `calculateMass` (issue
+  [#81](https://github.com/rformassspectrometry/MetaboCoreUtils/issues/81))
+
 ## MetaboCoreUtils 1.11.2
 
 - Add functions to compute quality check of the data (issue

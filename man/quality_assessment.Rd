@@ -64,10 +64,10 @@ standard deviation for biological test samples, for each feature (row) in
 the matrix.
 \item \code{percentMissing} and \code{rowPercentMissing} determine the percentage of
 missing values in a vector or for each row of a matrix, respectively.
-\item \code{rowBlank} identifies rows (i.e features) where the mean of test samples
-is lower than twice the mean of blank samples. This can be used to flag
-features that results from contamination in the solvent of the samples.
-Returns a \code{logical} vector of length equal to the number of rows of \code{x}.
+\item \code{rowBlank} identifies rows (i.e., features) where the mean of test samples
+is lower than a specified multiple (defined by the \code{threshold} parameter)
+of the mean of blank samples. This can be used to flag features that result
+from contamination in the solvent of the samples.
 }
 
 These functions are based on standard filtering methods described in the
