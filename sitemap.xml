@@ -1,96 +1,34 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://rformassspectrometry.github.io/MetaboCoreUtils/404.html</loc>
-  </url>
-  <url>
-    <loc>https://rformassspectrometry.github.io/MetaboCoreUtils/articles/MetaboCoreUtils.html</loc>
-  </url>
-  <url>
-    <loc>https://rformassspectrometry.github.io/MetaboCoreUtils/articles/index.html</loc>
-  </url>
-  <url>
-    <loc>https://rformassspectrometry.github.io/MetaboCoreUtils/authors.html</loc>
-  </url>
-  <url>
-    <loc>https://rformassspectrometry.github.io/MetaboCoreUtils/index.html</loc>
-  </url>
-  <url>
-    <loc>https://rformassspectrometry.github.io/MetaboCoreUtils/news/index.html</loc>
-  </url>
-  <url>
-    <loc>https://rformassspectrometry.github.io/MetaboCoreUtils/reference/addElements.html</loc>
-  </url>
-  <url>
-    <loc>https://rformassspectrometry.github.io/MetaboCoreUtils/reference/adductFormula.html</loc>
-  </url>
-  <url>
-    <loc>https://rformassspectrometry.github.io/MetaboCoreUtils/reference/adductNames.html</loc>
-  </url>
-  <url>
-    <loc>https://rformassspectrometry.github.io/MetaboCoreUtils/reference/calculateKendrickMass.html</loc>
-  </url>
-  <url>
-    <loc>https://rformassspectrometry.github.io/MetaboCoreUtils/reference/calculateMass.html</loc>
-  </url>
-  <url>
-    <loc>https://rformassspectrometry.github.io/MetaboCoreUtils/reference/containsElements.html</loc>
-  </url>
-  <url>
-    <loc>https://rformassspectrometry.github.io/MetaboCoreUtils/reference/convertMtime.html</loc>
-  </url>
-  <url>
-    <loc>https://rformassspectrometry.github.io/MetaboCoreUtils/reference/correctRindex.html</loc>
-  </url>
-  <url>
-    <loc>https://rformassspectrometry.github.io/MetaboCoreUtils/reference/countElements.html</loc>
-  </url>
-  <url>
-    <loc>https://rformassspectrometry.github.io/MetaboCoreUtils/reference/fit_lm.html</loc>
-  </url>
-  <url>
-    <loc>https://rformassspectrometry.github.io/MetaboCoreUtils/reference/formula2mz.html</loc>
-  </url>
-  <url>
-    <loc>https://rformassspectrometry.github.io/MetaboCoreUtils/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>https://rformassspectrometry.github.io/MetaboCoreUtils/reference/indexRtime.html</loc>
-  </url>
-  <url>
-    <loc>https://rformassspectrometry.github.io/MetaboCoreUtils/reference/internalStandardMixNames.html</loc>
-  </url>
-  <url>
-    <loc>https://rformassspectrometry.github.io/MetaboCoreUtils/reference/internalStandards.html</loc>
-  </url>
-  <url>
-    <loc>https://rformassspectrometry.github.io/MetaboCoreUtils/reference/isotopicSubstitutionMatrix.html</loc>
-  </url>
-  <url>
-    <loc>https://rformassspectrometry.github.io/MetaboCoreUtils/reference/isotopologues.html</loc>
-  </url>
-  <url>
-    <loc>https://rformassspectrometry.github.io/MetaboCoreUtils/reference/mass2mz.html</loc>
-  </url>
-  <url>
-    <loc>https://rformassspectrometry.github.io/MetaboCoreUtils/reference/mclosest.html</loc>
-  </url>
-  <url>
-    <loc>https://rformassspectrometry.github.io/MetaboCoreUtils/reference/multiplyElements.html</loc>
-  </url>
-  <url>
-    <loc>https://rformassspectrometry.github.io/MetaboCoreUtils/reference/mz2mass.html</loc>
-  </url>
-  <url>
-    <loc>https://rformassspectrometry.github.io/MetaboCoreUtils/reference/pasteElements.html</loc>
-  </url>
-  <url>
-    <loc>https://rformassspectrometry.github.io/MetaboCoreUtils/reference/quality_assessment.html</loc>
-  </url>
-  <url>
-    <loc>https://rformassspectrometry.github.io/MetaboCoreUtils/reference/standardizeFormula.html</loc>
-  </url>
-  <url>
-    <loc>https://rformassspectrometry.github.io/MetaboCoreUtils/reference/subtractElements.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>https://rformassspectrometry.github.io/MetaboCoreUtils/404.html</loc></url>
+<url><loc>https://rformassspectrometry.github.io/MetaboCoreUtils/articles/MetaboCoreUtils.html</loc></url>
+<url><loc>https://rformassspectrometry.github.io/MetaboCoreUtils/articles/index.html</loc></url>
+<url><loc>https://rformassspectrometry.github.io/MetaboCoreUtils/authors.html</loc></url>
+<url><loc>https://rformassspectrometry.github.io/MetaboCoreUtils/index.html</loc></url>
+<url><loc>https://rformassspectrometry.github.io/MetaboCoreUtils/news/index.html</loc></url>
+<url><loc>https://rformassspectrometry.github.io/MetaboCoreUtils/reference/addElements.html</loc></url>
+<url><loc>https://rformassspectrometry.github.io/MetaboCoreUtils/reference/adductFormula.html</loc></url>
+<url><loc>https://rformassspectrometry.github.io/MetaboCoreUtils/reference/adductNames.html</loc></url>
+<url><loc>https://rformassspectrometry.github.io/MetaboCoreUtils/reference/calculateKendrickMass.html</loc></url>
+<url><loc>https://rformassspectrometry.github.io/MetaboCoreUtils/reference/calculateMass.html</loc></url>
+<url><loc>https://rformassspectrometry.github.io/MetaboCoreUtils/reference/containsElements.html</loc></url>
+<url><loc>https://rformassspectrometry.github.io/MetaboCoreUtils/reference/convertMtime.html</loc></url>
+<url><loc>https://rformassspectrometry.github.io/MetaboCoreUtils/reference/correctRindex.html</loc></url>
+<url><loc>https://rformassspectrometry.github.io/MetaboCoreUtils/reference/countElements.html</loc></url>
+<url><loc>https://rformassspectrometry.github.io/MetaboCoreUtils/reference/fit_lm.html</loc></url>
+<url><loc>https://rformassspectrometry.github.io/MetaboCoreUtils/reference/formula2mz.html</loc></url>
+<url><loc>https://rformassspectrometry.github.io/MetaboCoreUtils/reference/index.html</loc></url>
+<url><loc>https://rformassspectrometry.github.io/MetaboCoreUtils/reference/indexRtime.html</loc></url>
+<url><loc>https://rformassspectrometry.github.io/MetaboCoreUtils/reference/internalStandardMixNames.html</loc></url>
+<url><loc>https://rformassspectrometry.github.io/MetaboCoreUtils/reference/internalStandards.html</loc></url>
+<url><loc>https://rformassspectrometry.github.io/MetaboCoreUtils/reference/isotopicSubstitutionMatrix.html</loc></url>
+<url><loc>https://rformassspectrometry.github.io/MetaboCoreUtils/reference/isotopologues.html</loc></url>
+<url><loc>https://rformassspectrometry.github.io/MetaboCoreUtils/reference/mass2mz.html</loc></url>
+<url><loc>https://rformassspectrometry.github.io/MetaboCoreUtils/reference/mclosest.html</loc></url>
+<url><loc>https://rformassspectrometry.github.io/MetaboCoreUtils/reference/multiplyElements.html</loc></url>
+<url><loc>https://rformassspectrometry.github.io/MetaboCoreUtils/reference/mz2mass.html</loc></url>
+<url><loc>https://rformassspectrometry.github.io/MetaboCoreUtils/reference/pasteElements.html</loc></url>
+<url><loc>https://rformassspectrometry.github.io/MetaboCoreUtils/reference/quality_assessment.html</loc></url>
+<url><loc>https://rformassspectrometry.github.io/MetaboCoreUtils/reference/standardizeFormula.html</loc></url>
+<url><loc>https://rformassspectrometry.github.io/MetaboCoreUtils/reference/subtractElements.html</loc></url>
 </urlset>
+
