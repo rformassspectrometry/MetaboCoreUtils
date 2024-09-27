@@ -357,3 +357,81 @@ performanceTest <- function() {
     ## - exhaustive is exact but slow.
     ## - grouped is faster than exhaustive, but can yield different results.
 }
+
+test_that(".isotope_peaks_reverse works", {
+    x <- read.table(system.file("exampleSpectra",
+                                "serine-alpha-lactose-caffeine.txt",
+                                package = "MetaboCoreUtils"),
+                    header = TRUE)
+    x <- x[order(x$mz), ]
+    rownames(x) <- NULL
+    expected_groups <- lapply(unique(x$compound),
+                              function(f) which(x[, "compound"] == f))
+    subst_def <- isotopicSubstitutionMatrix("HMDB_NEUTRAL")
+
+    i_groups <- .isotope_peaks(x[, 1:2],
+                               substDefinition = subst_def,
+                               ppm = 10)
+    expect_equal(expected_groups[1], i_groups[1])
+    expect_equal(expected_groups[2], i_groups[2])
+    ## closest has again problems if there are two "best matching" peaks.
+    expect_true(all(i_groups[[3L]] %in% expected_groups[[3L]]))
+
+    res <- .isotope_peaks_reverse(x[, 1:2],
+                                  substDefinition = subst_def,
+                                  ppm = 10)
+    expect_equal(res[[1L]], i_groups[[1L]])
+    res_2 <- .isotope_peaks_reverse(x[, 1:2],
+                                    substDefinition = subst_def,
+                                    ppm = 10, seedMz = 105.0426)
+    expect_equal(res[[1L]], res_2[[1L]])
+    expect_true(length(res_2) == 1L)
+})
+
+test_that(".isotope_peaks_exhaustive seedMz works", {
+    x <- read.table(system.file("exampleSpectra",
+                                "serine-alpha-lactose-caffeine.txt",
+                                package = "MetaboCoreUtils"),
+                    header = TRUE)
+    x <- x[order(x$mz), ]
+    rownames(x) <- NULL
+    expected_groups <- lapply(unique(x$compound),
+                              function(f) which(x[, "compound"] == f))
+    subst_def <- isotopicSubstitutionMatrix("HMDB_NEUTRAL")
+
+    ref <- .isotope_peaks_exhaustive(x[, 1:2], subst_def)
+    res <- .isotope_peaks_exhaustive(x[, 1:2], subst_def,
+                                     seedMz = 105.0426)
+    expect_equal(res, ref[1])
+
+    res <- .isotope_peaks_exhaustive(x[, 1:2], subst_def,
+                                     seedMz = 194.0804)
+    expect_equal(res, ref[2])
+    res <- .isotope_peaks_exhaustive(x[, 1:2], subst_def,
+                                     seedMz = 342.1163)
+    expect_equal(res, ref[3])
+})
+
+test_that(".isotope_peaks_grouped seedMz works", {
+    x <- read.table(system.file("exampleSpectra",
+                                "serine-alpha-lactose-caffeine.txt",
+                                package = "MetaboCoreUtils"),
+                    header = TRUE)
+    x <- x[order(x$mz), ]
+    rownames(x) <- NULL
+    expected_groups <- lapply(unique(x$compound),
+                              function(f) which(x[, "compound"] == f))
+    subst_def <- isotopicSubstitutionMatrix("HMDB_NEUTRAL")
+
+    ref <- .isotope_peaks_grouped(x[, 1:2], subst_def)
+    res <- .isotope_peaks_grouped(x[, 1:2], subst_def,
+                                  seedMz = 105.0426)
+    expect_equal(res, ref[1])
+
+    res <- .isotope_peaks_grouped(x[, 1:2], subst_def,
+                                  seedMz = 194.0804)
+    expect_equal(res, ref[2])
+    res <- .isotope_peaks_grouped(x[, 1:2], subst_def,
+                                  seedMz = 342.1163)
+    expect_equal(res, ref[3])
+})

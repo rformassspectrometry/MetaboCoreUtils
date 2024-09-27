@@ -92,6 +92,11 @@ test_that("pasteElements", {
     expect_identical(pasteElements(c(C = 1, "13C" = 2)), "[13C2]C")
 })
 
+test_that(".pasteElements works", {
+    expect_equal(.pasteElements(c(H = 2, O = 1)), "H2O")
+    expect_error(.pasteElements(c(4, 3)), "element names missing")
+})
+
 test_that(".sort_elements", {
     expect_identical(
         .sort_elements(c("H", "O", "S", "P", "C", "N", "Na", "Fe")),
@@ -179,4 +184,16 @@ test_that("correct calculation of masses", {
     expect_equal(unname(round(calculateMass(countElements("C11H12N2O2")), 4)),
                  204.0899)
     expect_gt(calculateMass("[13C]C5H12O6"), calculateMass("C6H12O6"))
+})
+
+test_that(".sum_elements works", {
+    expect_error(.sum_elements(c(1, 45)), "element names missing")
+    res <- .sum_elements(c(a = NA, b = 3))
+    expect_equal(res, NA_integer_)
+    res <- .sum_elements(c(a = 3, b = 3, a = 2))
+    expect_equal(res, c(a = 5, b = 3))
+})
+
+test_that("calculateMass works", {
+    expect_error(calculateMass(1:3), "character or a list")
 })

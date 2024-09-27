@@ -109,4 +109,9 @@ test_that("adjust_lm works", {
 
     nas <- is.na(lms)
     expect_equal(vals[nas, ], res2[nas, ])
+
+    ref <- adjust_lm(vals, data = sdata, lm = lms)
+    res <- adjust_lm(vals[1, , drop = FALSE], data = sdata, lm = lms[[1L]])
+    expect_true(nrow(res) == 1)
+    expect_equal(res, ref[1, , drop = FALSE])
 })
