@@ -1,23 +1,27 @@
 .onLoad <- function(libname, pkgname) {
     adds <- .load_adducts()
-    assign(".ADDUCTS", adds, envir = asNamespace(pkgname))
+    assign(".ADDUCTS", adds, envir = .get_envir(pkgname))
     add_multi <- adds$mass_multi
     add_add <- adds$mass_add
     names(add_multi) <- rownames(adds)
     names(add_add) <- rownames(adds)
-    assign(".ADDUCTS_MULT", add_multi, envir = asNamespace(pkgname))
-    assign(".ADDUCTS_ADD", add_add, envir = asNamespace(pkgname))
+    assign(".ADDUCTS_MULT", add_multi, envir = .get_envir(pkgname))
+    assign(".ADDUCTS_ADD", add_add, envir = .get_envir(pkgname))
 
     txts <- dir(system.file("substitutions", package = "MetaboCoreUtils"),
                 full.names = TRUE, pattern = "txt$")
     for (txt in txts) {
         substs <- utils::read.table(txt, sep = "\t", header = TRUE)
         assign(paste0(".", toupper(sub(".txt", "", basename(txt)))),
-               substs, envir = asNamespace(pkgname))
+               substs, envir = .get_envir(pkgname))
     }
 
     # get mono isotopes for exact mass calculation
-    assign(".ISOTOPES", .load_isotopes(), envir = asNamespace(pkgname))
+    assign(".ISOTOPES", .load_isotopes(), envir = .get_envir(pkgname))
+}
+
+.get_envir <- function(x) {
+    asNamespace(x)
 }
 
 .load_adducts <- function() {

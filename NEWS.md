@@ -1,3 +1,9 @@
+# MetaboCoreUtils 1.13
+
+## Changes in 1.13.1
+
+- Complete unit tests.
+
 # MetaboCoreUtils 1.11
 
 ## MetaboCoreUtils 1.11.4

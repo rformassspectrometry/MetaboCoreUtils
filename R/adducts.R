@@ -227,7 +227,7 @@ adductFormula <- function(formulas, adduct = "[M+H]+", standardize = TRUE) {
                                     "formula_sub", "positive"))
     if (standardize) {
         formulas <- lapply(formulas, standardizeFormula)
-        if (all(formulas == "")) stop("No valid formulas")
+        if (all(is.na(formulas))) stop("No valid formulas")
         formulas <- formulas[!is.na(formulas)]
     }
     ionMatrix <- lapply(formulas, function(formula, adduct) {

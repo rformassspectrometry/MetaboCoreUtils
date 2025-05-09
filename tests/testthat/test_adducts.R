@@ -91,6 +91,8 @@ test_that("formula2mz works", {
 })
 
 test_that("adductFormula works", {
+    expect_error(adductFormula("a"), "No valid formulas")
+
     expect_equivalent(adductFormula("C6H12O6", c("[M+H]+", "[M+Na]+", "[M+K]+")),
                       c("[C6H13O6]+", "[C6H12O6Na]+", "[C6H12O6K]+"))
 
