@@ -1,14 +1,14 @@
 # MetaboCoreUtils 1.13
 
+## Changes in 1.13.2
+
+- Fix adductFormula() for negative adducts. and added respective unit test. 
+
 ## Changes in 1.13.1
 
 - Complete unit tests.
 
 # MetaboCoreUtils 1.11
-
-## MetaboCoreUtils 1.11.4
-
-- Fix adductFormula() for negative adducts. and added respective unit test. 
 
 ## MetaboCoreUtils 1.11.3
 
