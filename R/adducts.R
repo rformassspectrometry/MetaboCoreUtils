@@ -236,6 +236,7 @@ adductFormula <- function(formulas, adduct = "[M+H]+", standardize = TRUE) {
 
             multiplicity <- round(as.numeric(x["mass_multi"]) *
                                       as.numeric(x["charge"]))
+            multiplicity <- abs(multiplicity)
             if (multiplicity != 1) {
                 current_f <- multiplyElements(current_f, multiplicity)
             }

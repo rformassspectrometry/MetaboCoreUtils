@@ -113,6 +113,11 @@ test_that("adductFormula works", {
     # Check dimension consistency
     expect_equal(nrow(output), length(fs))
     expect_equal(ncol(output), nrow(adducts()))
+
+    # negative adducts works
+    expect_equivalent(adductFormula("C6H12O6", c("[M-H]-", "[M+CHO2]-")),
+                      c("[C6H11O6]-", "[C7H13O8]-"))
+
 })
 
 test_that("adducts works", {
