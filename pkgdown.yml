@@ -1,9 +1,9 @@
-pandoc: '3.3'
-pkgdown: 2.1.1.9000
-pkgdown_sha: 0a18bc718640aee7160a0ebbcdef5ecaae2ac4a4
+pandoc: 3.6.4
+pkgdown: 2.1.2.9000
+pkgdown_sha: 99457e7fa7f36696ae743b06aca59c0fdd97a7d6
 articles:
   MetaboCoreUtils: MetaboCoreUtils.html
-last_built: 2024-09-27T19:49Z
+last_built: 2025-05-09T09:31Z
 urls:
   reference: https://rformassspectrometry.github.io/MetaboCoreUtils/reference
   article: https://rformassspectrometry.github.io/MetaboCoreUtils/articles
