@@ -1,5 +1,9 @@
 # MetaboCoreUtils 1.11
 
+## MetaboCoreUtils 1.11.4
+
+- Fix adductFormula() for negative adducts. and added respective unit test. 
+
 ## MetaboCoreUtils 1.11.3
 
 - Add examples on isotopes (including deuterium) can be used with
