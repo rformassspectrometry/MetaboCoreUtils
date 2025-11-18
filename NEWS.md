@@ -1,3 +1,9 @@
+# MetaboCoreUtils 1.19
+
+## Changes in 1.19.1
+
+- Update unit tests to replace deprecated functions.
+
 # MetaboCoreUtils 1.17
 
 ## Changes in 1.17.1

@@ -56,7 +56,7 @@ returned linear models. Passed to the \code{lm} or \code{lmrob} functions.}
 \item{...}{for \code{fit_lm}: additional parameters to be passed to the
 downstream calls to \code{lm} or \code{lmrob}. For \code{adjust_lm}: ignored.}
 
-\item{BPPARAM}{parallel processing setup. See \code{\link[=bpparam]{bpparam()}} for more
+\item{BPPARAM}{parallel processing setup. See \code{\link[BiocParallel:register]{BiocParallel::bpparam()}} for more
 information. Parallel processing can improve performance especially
 for \code{method = "lmrob"}.}
 

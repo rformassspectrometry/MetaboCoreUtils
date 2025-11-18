@@ -7,9 +7,9 @@ test_that(".onLoad works", {
     expect_true(length(MetaboCoreUtils:::.ADDUCTS_ADD) > 0)
 
     my_env <- new.env()
-    with_mock(
-        "MetaboCoreUtils:::.get_envir" = function(x) my_env,
-        res <- .onLoad("MetaboCoreUtils", "MetaboCoreUtils")
+    res <- with_mocked_bindings(
+        ".get_envir" = function(x) my_env,
+        code = .onLoad("MetaboCoreUtils", "MetaboCoreUtils")
     )
     expect_true(all(c(".ADDUCTS", ".ISOTOPES", ".HMDB") %in% names(my_env)))
 })
