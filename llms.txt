@@ -1,0 +1,111 @@
+# Low level functions for metabolomics data
+
+[![Project Status: Active – The project has reached a stable, usable
+state and is being actively
+developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
+[![R-CMD-check-bioc](https://github.com/RforMassSpectrometry/MetaboCoreUtils/workflows/R-CMD-check-bioc/badge.svg)](https://github.com/RforMassSpectrometry/MetaboCoreUtils/actions?query=workflow%3AR-CMD-check-bioc)
+[![codecov](https://codecov.io/gh/rformassspectrometry/MetaboCoreUtils/branch/main/graph/badge.svg?token=bNwqkn4PKd)](https://codecov.io/gh/rformassspectrometry/MetaboCoreUtils)
+[![license](https://img.shields.io/badge/license-Artistic--2.0-brightgreen.svg)](https://opensource.org/licenses/Artistic-2.0)
+[![years in
+bioc](http://bioconductor.org/shields/years-in-bioc/MetaboCoreUtils.svg)](https://bioconductor.org/packages/release/bioc/html/MetaboCoreUtils.html)
+[![Ranking by
+downloads](http://bioconductor.org/shields/downloads/release/MetaboCoreUtils.svg)](https://bioconductor.org/packages/stats/bioc/MetaboCoreUtils/)
+[![build
+release](http://bioconductor.org/shields/build/release/bioc/MetaboCoreUtils.svg)](https://bioconductor.org/checkResults/release/bioc-LATEST/MetaboCoreUtils/)
+[![build
+devel](http://bioconductor.org/shields/build/devel/bioc/MetaboCoreUtils.svg)](https://bioconductor.org/checkResults/devel/bioc-LATEST/MetaboCoreUtils/)
+
+`MetaboCoreUtils` defines metabolomics-related core functionality which
+is provided as low-level functions to allow a data structure-independent
+usage across various R packages.
+
+For more information see the package
+[homepage](https://rformassspectrometry.github.io/MetaboCoreUtils).
+
+# Installation
+
+The package can be installed with
+
+``` r
+
+install.packages("BiocManager")
+BiocManager::install("MetaboCoreUtils")
+```
+
+# Contributions
+
+Contributions are highly welcome and should follow the [contribution
+guidelines](https://rformassspectrometry.github.io/RforMassSpectrometry/articles/RforMassSpectrometry.html#contributions).
+Also, please check the coding style guidelines in the
+[RforMassSpectrometry
+vignette](https://rformassspectrometry.github.io/RforMassSpectrometry/articles/RforMassSpectrometry.html).
+
+# Package index
+
+## All functions
+
+- [`addElements()`](https://rformassspectrometry.github.io/MetaboCoreUtils/reference/addElements.md)
+  : Combine chemical formulae
+- [`adductFormula()`](https://rformassspectrometry.github.io/MetaboCoreUtils/reference/adductFormula.md)
+  : Calculate a table of adduct (ionic) formulas
+- [`adductNames()`](https://rformassspectrometry.github.io/MetaboCoreUtils/reference/adductNames.md)
+  [`adducts()`](https://rformassspectrometry.github.io/MetaboCoreUtils/reference/adductNames.md)
+  : Retrieve names of supported adducts
+- [`calculateKm()`](https://rformassspectrometry.github.io/MetaboCoreUtils/reference/calculateKendrickMass.md)
+  [`calculateKmd()`](https://rformassspectrometry.github.io/MetaboCoreUtils/reference/calculateKendrickMass.md)
+  [`calculateRkmd()`](https://rformassspectrometry.github.io/MetaboCoreUtils/reference/calculateKendrickMass.md)
+  [`isRkmd()`](https://rformassspectrometry.github.io/MetaboCoreUtils/reference/calculateKendrickMass.md)
+  : Kendrick mass defects
+- [`calculateMass()`](https://rformassspectrometry.github.io/MetaboCoreUtils/reference/calculateMass.md)
+  : Calculate exact mass
+- [`containsElements()`](https://rformassspectrometry.github.io/MetaboCoreUtils/reference/containsElements.md)
+  : Check if one formula is contained in another
+- [`convertMtime()`](https://rformassspectrometry.github.io/MetaboCoreUtils/reference/convertMtime.md)
+  : Convert migration times to effective mobility
+- [`correctRindex()`](https://rformassspectrometry.github.io/MetaboCoreUtils/reference/correctRindex.md)
+  : 2-point correction of RIs
+- [`countElements()`](https://rformassspectrometry.github.io/MetaboCoreUtils/reference/countElements.md)
+  : Count elements in a chemical formula
+- [`fit_lm()`](https://rformassspectrometry.github.io/MetaboCoreUtils/reference/fit_lm.md)
+  [`adjust_lm()`](https://rformassspectrometry.github.io/MetaboCoreUtils/reference/fit_lm.md)
+  : Linear model-based normalization of abundance matrices
+- [`formula2mz()`](https://rformassspectrometry.github.io/MetaboCoreUtils/reference/formula2mz.md)
+  : Calculate mass-to-charge ratio from a formula
+- [`indexRtime()`](https://rformassspectrometry.github.io/MetaboCoreUtils/reference/indexRtime.md)
+  : Convert retention times to retention indices
+- [`internalStandardMixNames()`](https://rformassspectrometry.github.io/MetaboCoreUtils/reference/internalStandardMixNames.md)
+  : Get names of internal standard mixes provided by the package
+- [`internalStandards()`](https://rformassspectrometry.github.io/MetaboCoreUtils/reference/internalStandards.md)
+  : Get definitions for internal standards
+- [`isotopicSubstitutionMatrix()`](https://rformassspectrometry.github.io/MetaboCoreUtils/reference/isotopicSubstitutionMatrix.md)
+  : Definitions of isotopic substitutions
+- [`isotopologues()`](https://rformassspectrometry.github.io/MetaboCoreUtils/reference/isotopologues.md)
+  : Identfying isotopologue peaks in MS data
+- [`mass2mz()`](https://rformassspectrometry.github.io/MetaboCoreUtils/reference/mass2mz.md)
+  : Calculate mass-to-charge ratio
+- [`mclosest()`](https://rformassspectrometry.github.io/MetaboCoreUtils/reference/mclosest.md)
+  : Extract closest values in a pairwise manner between two matrices
+- [`multiplyElements()`](https://rformassspectrometry.github.io/MetaboCoreUtils/reference/multiplyElements.md)
+  : Multiply chemical formulas by a scalar
+- [`mz2mass()`](https://rformassspectrometry.github.io/MetaboCoreUtils/reference/mz2mass.md)
+  : Calculate neutral mass
+- [`pasteElements()`](https://rformassspectrometry.github.io/MetaboCoreUtils/reference/pasteElements.md)
+  : Create chemical formula from a named vector
+- [`rsd()`](https://rformassspectrometry.github.io/MetaboCoreUtils/reference/quality_assessment.md)
+  [`rowRsd()`](https://rformassspectrometry.github.io/MetaboCoreUtils/reference/quality_assessment.md)
+  [`rowDratio()`](https://rformassspectrometry.github.io/MetaboCoreUtils/reference/quality_assessment.md)
+  [`percentMissing()`](https://rformassspectrometry.github.io/MetaboCoreUtils/reference/quality_assessment.md)
+  [`rowPercentMissing()`](https://rformassspectrometry.github.io/MetaboCoreUtils/reference/quality_assessment.md)
+  [`rowBlank()`](https://rformassspectrometry.github.io/MetaboCoreUtils/reference/quality_assessment.md)
+  : Basic quality assessment functions for metabolomics
+- [`standardizeFormula()`](https://rformassspectrometry.github.io/MetaboCoreUtils/reference/standardizeFormula.md)
+  : Standardize a chemical formula
+- [`subtractElements()`](https://rformassspectrometry.github.io/MetaboCoreUtils/reference/subtractElements.md)
+  : subtract two chemical formula
+
+# Articles
+
+### All vignettes
+
+- [Core Utils for Metabolomics
+  Data](https://rformassspectrometry.github.io/MetaboCoreUtils/articles/MetaboCoreUtils.md):
