@@ -1,6 +1,6 @@
 Package: MetaboCoreUtils
 Title: Core Utils for Metabolomics Data
-Version: 1.19.1
+Version: 1.19.2
 Description: MetaboCoreUtils defines metabolomics-related core functionality
     provided as low-level functions to allow a data structure-independent usage
     across various R packages. This includes functions to calculate between ion
@@ -36,6 +36,10 @@ Authors@R:
                      email = "alrgibe9@gmail.com",
                      role = c("aut"),
                      comment = c(ORCID = "0000-0003-0288-9619")),
+	  person(given = "William", family = "Kumler",
+	                 email = "wkumler@uw.edu",
+                     role = "aut",
+	                 comment = c(ORCID = "0000-0002-5022-8009")),
       person(given = "Philippine", family = "Louail",
                      email = "philippine.louail@eurac.edu",
                      role = c("aut"),
@@ -55,6 +59,7 @@ Suggests:
     rmarkdown,
     robustbase
 License: Artistic-2.0
+Encoding: UTF-8
 LazyData: no
 VignetteBuilder: knitr
 BugReports: https://github.com/RforMassSpectrometry/MetaboCoreUtils/issues

@@ -1,5 +1,9 @@
 # MetaboCoreUtils 1.19
 
+## Changes in 1.19.2
+
+- Add `beta_values()` function for chromatographic peak quality assessment.
+
 ## Changes in 1.19.1
 
 - Update unit tests to replace deprecated functions.
