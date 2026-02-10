@@ -2,10 +2,16 @@
 #'
 #' @description
 #'
-#' Calculate beta parameters for a chromatographic peak, both its similarity
-#' to a bell curve of varying degrees of skew and the standard deviation of the
-#' residuals after the best-fit bell is normalized and subtracted. This function
+#' Calculate *beta* parameters for a chromatographic peak, both its similarity
+#' to a bell curve of varying degrees of skew (i.e., assymmetry or
+#' *tailing factor*) and the standard deviation of the residuals after the
+#' best-fit bell is normalized and subtracted. This function
 #' requires at least 5 scans or it will return `NA` for both parameters.
+#'
+#' @details
+#'
+#' The function compares the actual chromatographic peak to *Beta* distribution
+#' curves calculated with the [dbeta()] function.
 #'
 #' @param intensity A `numeric` vector corresponding to the peak intensities
 #'     with a minimum length of 5.
@@ -15,20 +21,25 @@
 #'     without duplicates. If not provided, intensities will be assumed to be
 #'     equally spaced.
 #'
-#' @param skews A `numeric` vector of the skews to try, corresponding to the
-#'     shape1 of dbeta with a shape2 of 5. Values less than 5 will be
-#'     increasingly right-skewed, while values greater than 5 will be
-#'     left-skewed.
+#' @param skews A `numeric` vector of the skews to try. These values will be
+#'     passed to `shape1` parameter of the `dbeta()` function (with its
+#'     `shape2` parameter set to `5`). Values less than 5 will generated
+#'     increasingly right-skewed curves, while values greater than 5 will result
+#'     in left-skewed curves.
+#'     See [Figure 8](https://link.springer.com/article/10.1186/s12859-023-05533-4/figures/8)
+#'     in the original manuscript for visual examples.
 #'
-#' @param zero.rm `logical(1)` controlling whether "missing" scans are dropped
+#' @param zero.rm `logical(1)` controlling whether *missing* scans are dropped
 #'     prior to curve fitting. The default, `zero.rm = TRUE`, will remove
-#'     intensities of zero or NA.
+#'     intensities of zero or `NA`.
 #'
 #' @return `numeric` of length 2.
 #'
 #' @author William Kumler
 #'
 #' @md
+#'
+#' @seealso [dbeta()] for the function to calculate the Beta distribution.
 #'
 #' @references
 #'
@@ -54,11 +65,11 @@
 #'
 #' ## Calculate beta parameters for the full region including noise signal
 #' ## around the peak
-#' res <- beta_values(skinny_peak, skinny_peak_rt)
+#' res <- betaValues(skinny_peak, skinny_peak_rt)
 #' res
 #'
 #' ## Calculate beta parameters for peak signal
-#' res <- beta_values(skinny_peak[20:40], skinny_peak_rt[20:40])
+#' res <- betaValues(skinny_peak[20:40], skinny_peak_rt[20:40])
 #' res
 #'
 #' ## Define noisy chromatographic signal
@@ -76,13 +87,13 @@
 #'                 0.131, 0.653, 0.344, 0.657, 0.32, 0.188, 0.782, 0.094,
 #'                 0.467, 0.512)
 #' noise_peak_rt <- seq_along(noise_peak) + 10
-#' res <- beta_values(noise_peak, noise_peak_rt)
+#' res <- betaValues(noise_peak, noise_peak_rt)
 #' res
 #'
 #' @importFrom stats dbeta cor
 #'
 #' @export
-beta_values <- function(intensity = numeric(), rtime = seq_along(intensity),
+betaValues <- function(intensity = numeric(), rtime = seq_along(intensity),
                         skews = c(3, 3.5, 4, 4.5, 5), zero.rm = TRUE){
     if (zero.rm) {
         ## remove 0 or NA intensities
