@@ -19,6 +19,8 @@
 
 - **Roger Gine**. Author. [](https://orcid.org/0000-0003-0288-9619)
 
+- **William Kumler**. Author. [](https://orcid.org/0000-0002-5022-8009)
+
 - **Philippine Louail**. Author.
   [](https://orcid.org/0009-0007-5429-6846)
 

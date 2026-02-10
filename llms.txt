@@ -51,6 +51,8 @@ vignette](https://rformassspectrometry.github.io/RforMassSpectrometry/articles/R
 - [`adductNames()`](https://rformassspectrometry.github.io/MetaboCoreUtils/reference/adductNames.md)
   [`adducts()`](https://rformassspectrometry.github.io/MetaboCoreUtils/reference/adductNames.md)
   : Retrieve names of supported adducts
+- [`betaValues()`](https://rformassspectrometry.github.io/MetaboCoreUtils/reference/betaValues.md)
+  : Peak shape quality: beta parameters
 - [`calculateKm()`](https://rformassspectrometry.github.io/MetaboCoreUtils/reference/calculateKendrickMass.md)
   [`calculateKmd()`](https://rformassspectrometry.github.io/MetaboCoreUtils/reference/calculateKendrickMass.md)
   [`calculateRkmd()`](https://rformassspectrometry.github.io/MetaboCoreUtils/reference/calculateKendrickMass.md)
