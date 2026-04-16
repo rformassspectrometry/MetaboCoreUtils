@@ -12,8 +12,8 @@ Roger Gine \[aut\] (ORCID: <https://orcid.org/0000-0003-0288-9619>),
 William Kumler \[aut\] (ORCID: <https://orcid.org/0000-0002-5022-8009>),
 Philippine Louail \[aut\] (ORCID:
 <https://orcid.org/0009-0007-5429-6846>)\
-**Last modified:** 2026-02-10 10:06:12.135993\
-**Compiled**: Tue Feb 10 10:11:59 2026
+**Last modified:** 2026-04-16 14:21:46.725398\
+**Compiled**: Thu Apr 16 14:31:26 2026
 
 ## Introduction
 
@@ -43,16 +43,18 @@ ls(pos = "package:MetaboCoreUtils")
     ## [11] "containsElements"           "convertMtime"              
     ## [13] "correctRindex"              "countElements"             
     ## [15] "fit_lm"                     "formula2mz"                
-    ## [17] "indexRtime"                 "internalStandardMixNames"  
-    ## [19] "internalStandards"          "isotopicSubstitutionMatrix"
-    ## [21] "isotopologues"              "isRkmd"                    
-    ## [23] "mass2mz"                    "mclosest"                  
-    ## [25] "multiplyElements"           "mz2mass"                   
-    ## [27] "pasteElements"              "percentMissing"            
-    ## [29] "rowBlank"                   "rowDratio"                 
-    ## [31] "rowPercentMissing"          "rowRsd"                    
-    ## [33] "rsd"                        "standardizeFormula"        
-    ## [35] "subtractElements"
+    ## [17] "guessSource"                "indexRtime"                
+    ## [19] "internalStandardMixNames"   "internalStandards"         
+    ## [21] "isotopicSubstitutionMatrix" "isotopologues"             
+    ## [23] "isRkmd"                     "mass2mz"                   
+    ## [25] "mclosest"                   "multiplyElements"          
+    ## [27] "mz2mass"                    "nameMapping"               
+    ## [29] "pasteElements"              "percentMissing"            
+    ## [31] "rowBlank"                   "rowDratio"                 
+    ## [33] "rowPercentMissing"          "rowRsd"                    
+    ## [35] "rsd"                        "softwareMapping"           
+    ## [37] "softwareMappingSchema"      "standardizeFormula"        
+    ## [39] "subtractElements"           "translate"
 
 or the [reference
 page](https://rformassspectrometry.github.io/MetaboCoreUtils/reference/index.html)
@@ -1055,9 +1057,9 @@ issue](https://github.com/RforMassSpectrometry/MetaboCoreUtils/issues).
 
 ## Session information
 
-    ## R Under development (unstable) (2026-02-08 r89382)
+    ## R Under development (unstable) (2026-04-12 r89873)
     ## Platform: x86_64-pc-linux-gnu
-    ## Running under: Ubuntu 24.04.3 LTS
+    ## Running under: Ubuntu 24.04.4 LTS
     ## 
     ## Matrix products: default
     ## BLAS:   /usr/lib/x86_64-linux-gnu/openblas-pthread/libblas.so.3 
@@ -1081,18 +1083,18 @@ issue](https://github.com/RforMassSpectrometry/MetaboCoreUtils/issues).
     ## [1] MetaboCoreUtils_1.19.2 BiocStyle_2.39.0      
     ## 
     ## loaded via a namespace (and not attached):
-    ##  [1] cli_3.6.5           knitr_1.51          rlang_1.1.7        
-    ##  [4] xfun_0.56           otel_0.2.0          generics_0.1.4     
-    ##  [7] textshaping_1.0.4   clue_0.3-66         jsonlite_2.0.0     
-    ## [10] S4Vectors_0.49.0    htmltools_0.5.9     stats4_4.6.0       
-    ## [13] ragg_1.5.0          sass_0.4.10         rmarkdown_2.30     
+    ##  [1] cli_3.6.6           knitr_1.51          rlang_1.2.0        
+    ##  [4] xfun_0.57           otel_0.2.0          generics_0.1.4     
+    ##  [7] textshaping_1.0.5   clue_0.3-68         jsonlite_2.0.0     
+    ## [10] S4Vectors_0.49.1-1  htmltools_0.5.9     stats4_4.7.0       
+    ## [13] ragg_1.5.2          sass_0.4.10         rmarkdown_2.31     
     ## [16] evaluate_1.0.5      jquerylib_0.1.4     MASS_7.3-65        
     ## [19] fastmap_1.2.0       yaml_2.3.12         lifecycle_1.0.5    
-    ## [22] bookdown_0.46       MsCoreUtils_1.23.2  BiocManager_1.30.27
-    ## [25] cluster_2.1.8.2     compiler_4.6.0      codetools_0.2-20   
-    ## [28] fs_1.6.6            htmlwidgets_1.6.4   BiocParallel_1.45.0
-    ## [31] systemfonts_1.3.1   digest_0.6.39       R6_2.6.1           
-    ## [34] parallel_4.6.0      bslib_0.10.0        tools_4.6.0        
+    ## [22] bookdown_0.46       MsCoreUtils_1.23.9  BiocManager_1.30.27
+    ## [25] cluster_2.1.8.2     compiler_4.7.0      codetools_0.2-20   
+    ## [28] fs_2.0.1            htmlwidgets_1.6.4   BiocParallel_1.45.0
+    ## [31] systemfonts_1.3.2   digest_0.6.39       R6_2.6.1           
+    ## [34] parallel_4.7.0      bslib_0.10.0        tools_4.7.0        
     ## [37] BiocGenerics_0.57.0 pkgdown_2.2.0.9000  cachem_1.1.0       
     ## [40] desc_1.4.3
 

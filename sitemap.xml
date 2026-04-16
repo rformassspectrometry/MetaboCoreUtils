@@ -17,6 +17,7 @@
 <url><loc>https://rformassspectrometry.github.io/MetaboCoreUtils/reference/countElements.html</loc></url>
 <url><loc>https://rformassspectrometry.github.io/MetaboCoreUtils/reference/fit_lm.html</loc></url>
 <url><loc>https://rformassspectrometry.github.io/MetaboCoreUtils/reference/formula2mz.html</loc></url>
+<url><loc>https://rformassspectrometry.github.io/MetaboCoreUtils/reference/guessSource.html</loc></url>
 <url><loc>https://rformassspectrometry.github.io/MetaboCoreUtils/reference/index.html</loc></url>
 <url><loc>https://rformassspectrometry.github.io/MetaboCoreUtils/reference/indexRtime.html</loc></url>
 <url><loc>https://rformassspectrometry.github.io/MetaboCoreUtils/reference/internalStandardMixNames.html</loc></url>
@@ -27,9 +28,13 @@
 <url><loc>https://rformassspectrometry.github.io/MetaboCoreUtils/reference/mclosest.html</loc></url>
 <url><loc>https://rformassspectrometry.github.io/MetaboCoreUtils/reference/multiplyElements.html</loc></url>
 <url><loc>https://rformassspectrometry.github.io/MetaboCoreUtils/reference/mz2mass.html</loc></url>
+<url><loc>https://rformassspectrometry.github.io/MetaboCoreUtils/reference/nameMapping.html</loc></url>
 <url><loc>https://rformassspectrometry.github.io/MetaboCoreUtils/reference/pasteElements.html</loc></url>
 <url><loc>https://rformassspectrometry.github.io/MetaboCoreUtils/reference/quality_assessment.html</loc></url>
+<url><loc>https://rformassspectrometry.github.io/MetaboCoreUtils/reference/softwareMapping.html</loc></url>
+<url><loc>https://rformassspectrometry.github.io/MetaboCoreUtils/reference/softwareMappingSchema.html</loc></url>
 <url><loc>https://rformassspectrometry.github.io/MetaboCoreUtils/reference/standardizeFormula.html</loc></url>
 <url><loc>https://rformassspectrometry.github.io/MetaboCoreUtils/reference/subtractElements.html</loc></url>
+<url><loc>https://rformassspectrometry.github.io/MetaboCoreUtils/reference/translate.html</loc></url>
 </urlset>
 

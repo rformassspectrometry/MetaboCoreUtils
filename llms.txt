@@ -73,6 +73,8 @@ vignette](https://rformassspectrometry.github.io/RforMassSpectrometry/articles/R
   : Linear model-based normalization of abundance matrices
 - [`formula2mz()`](https://rformassspectrometry.github.io/MetaboCoreUtils/reference/formula2mz.md)
   : Calculate mass-to-charge ratio from a formula
+- [`guessSource()`](https://rformassspectrometry.github.io/MetaboCoreUtils/reference/guessSource.md)
+  : Guess the source of names
 - [`indexRtime()`](https://rformassspectrometry.github.io/MetaboCoreUtils/reference/indexRtime.md)
   : Convert retention times to retention indices
 - [`internalStandardMixNames()`](https://rformassspectrometry.github.io/MetaboCoreUtils/reference/internalStandardMixNames.md)
@@ -91,6 +93,8 @@ vignette](https://rformassspectrometry.github.io/RforMassSpectrometry/articles/R
   : Multiply chemical formulas by a scalar
 - [`mz2mass()`](https://rformassspectrometry.github.io/MetaboCoreUtils/reference/mz2mass.md)
   : Calculate neutral mass
+- [`nameMapping()`](https://rformassspectrometry.github.io/MetaboCoreUtils/reference/nameMapping.md)
+  : Get mapping vector between two software
 - [`pasteElements()`](https://rformassspectrometry.github.io/MetaboCoreUtils/reference/pasteElements.md)
   : Create chemical formula from a named vector
 - [`rsd()`](https://rformassspectrometry.github.io/MetaboCoreUtils/reference/quality_assessment.md)
@@ -100,10 +104,16 @@ vignette](https://rformassspectrometry.github.io/RforMassSpectrometry/articles/R
   [`rowPercentMissing()`](https://rformassspectrometry.github.io/MetaboCoreUtils/reference/quality_assessment.md)
   [`rowBlank()`](https://rformassspectrometry.github.io/MetaboCoreUtils/reference/quality_assessment.md)
   : Basic quality assessment functions for metabolomics
+- [`softwareMapping()`](https://rformassspectrometry.github.io/MetaboCoreUtils/reference/softwareMapping.md)
+  : Get supported software for name translation
+- [`softwareMappingSchema()`](https://rformassspectrometry.github.io/MetaboCoreUtils/reference/softwareMappingSchema.md)
+  : Get mapping schema for name translation
 - [`standardizeFormula()`](https://rformassspectrometry.github.io/MetaboCoreUtils/reference/standardizeFormula.md)
   : Standardize a chemical formula
 - [`subtractElements()`](https://rformassspectrometry.github.io/MetaboCoreUtils/reference/subtractElements.md)
   : subtract two chemical formula
+- [`translate()`](https://rformassspectrometry.github.io/MetaboCoreUtils/reference/translate.md)
+  : Translate names based on a provided mapping
 
 # Articles
 
