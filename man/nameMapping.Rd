@@ -4,7 +4,11 @@
 \alias{nameMapping}
 \title{Get mapping vector between two software}
 \usage{
-nameMapping(from = character(), to = character(), map = NULL)
+nameMapping(
+  from = character(),
+  to = character(),
+  map = softwareMappingSchema()
+)
 }
 \arguments{
 \item{from}{\code{character(1)} with the name of the source software.}

@@ -52,9 +52,9 @@ test_that("nameMapping works", {
     expect_error(nameMapping(from = "MS-Dial", to = "MS-Dial"),
                  "must be different.")
     expect_error(nameMapping(from = "Invalid", to = "mzTab-M"),
-                 "must be valid software names")
+                 "must contain columns")
     expect_error(nameMapping(from = "MS-Dial", to = "Invalid"),
-                 "must be valid software names")
+                 "must contain columns")
 
     ## Test default mapping schema
     map_vec <- nameMapping(from = "MS-Dial", to = "mzTab-M")

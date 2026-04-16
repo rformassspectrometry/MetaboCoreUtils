@@ -4,7 +4,7 @@
 \alias{guessSource}
 \title{Guess the source of names}
 \usage{
-guessSource(x = character(), map = NULL)
+guessSource(x = character(), map = softwareMappingSchema())
 }
 \arguments{
 \item{x}{A \code{character} vector of names for which the source should be

@@ -100,22 +100,17 @@ softwareMappingSchema <- function(path = NULL) {
 #' x <- c("Average Rt(min)", "Alignment ID", "Average Mz")
 #' guessSource(x)
 #'
-guessSource <- function(x = character(), map = NULL) {
+guessSource <- function(x = character(), map = softwareMappingSchema()) {
     if (length(x) == 0) {
         stop("'x' must not be empty.")
     }
 
-    if (!is.null(map)) {
-        if (!is.data.frame(map)) {
-            stop("'map' must be a data.frame.")
-        }
-        mapping_df <- map
-    } else {
-        mapping_df <- softwareMappingSchema()
+    if (!is.data.frame(map)) {
+        stop("'map' must be a data.frame.")
     }
 
     ## Count matches for each mapping
-    match_counts <- vapply(mapping_df, function(mapping) {sum(x %in% mapping)},
+    match_counts <- vapply(map, function(mapping) {sum(x %in% mapping)},
                            FUN.VALUE = numeric(1))
 
     ## Return the source with the highest match count
@@ -152,7 +147,8 @@ guessSource <- function(x = character(), map = NULL) {
 #'
 #' nameMapping(from = "MS-Dial", to = "mzTab-M")
 #'
-nameMapping <- function(from = character(), to = character(), map = NULL) {
+nameMapping <- function(from = character(), to = character(),
+                        map = softwareMappingSchema()) {
     if (length(from) == 0 || length(to) == 0) {
         stop("Both 'from' and 'to' must be specified.")
     }
@@ -161,24 +157,14 @@ nameMapping <- function(from = character(), to = character(), map = NULL) {
         stop("'from' and 'to' must be different.")
     }
 
-    if (!is.null(map)) {
-        if (!is.data.frame(map)) {
-            stop("'map' must be a data.frame.")
-        }
-        if (!all(c(from, to) %in% names(map))) {
-            stop("'map' must contain columns named '", from, "' and '", to,
-                 "'.")
-        }
-        mapping_df <- map
-    } else {
-        if (!all(c(from, to) %in% softwareMapping())) {
-            stop("Both 'from' and 'to' must be valid software names. Use ",
-                 "'softwareMapping()' to see available options.")
-        }
-        mapping_df <- softwareMappingSchema()
+    if (!is.data.frame(map)) {
+        stop("'map' must be a data.frame.")
+    }
+    if (!all(c(from, to) %in% names(map))) {
+        stop("'map' must contain columns named '", from, "' or '", to, "'.")
     }
 
-    mapping <- setNames(mapping_df[[to]], mapping_df[[from]])
+    mapping <- setNames(map[[to]], map[[from]])
     mapping <- mapping[!(is.na(names(mapping)) & is.na(mapping))]
     mapping
 }
