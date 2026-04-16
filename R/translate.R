@@ -19,11 +19,15 @@
 #' softwareMapping()
 #'
 softwareMapping <- function() {
-    mapping_df <- read.delim(system.file("extdata", "mappingSchema",
-                                         "software_mapping_schema.tsv",
-                                         package = "MetaboCoreUtils"),
-                             header = TRUE, sep = "\t", check.names = FALSE)
-    names(mapping_df)
+    names(.software_mapping_df())
+}
+
+.software_mapping_df <- function() {
+    read.delim(system.file("extdata", "mappingSchema",
+                           "software_mapping_schema.tsv",
+                           package = "MetaboCoreUtils"),
+               header = TRUE, sep = "\t", check.names = FALSE,
+               na.strings = c("", "NA"))
 }
 
 #' @title Get mapping schema for name translation
@@ -57,16 +61,9 @@ softwareMappingSchema <- function(path = NULL) {
         if (!file.exists(path)) {
             stop("The provided file does not exist: '", path, "'.")
         }
-        mapping_df <- read.delim(path, header = TRUE, sep = "\t",
-                                 check.names = FALSE, na.strings = "")
-    } else {
-        mapping_df <- read.delim(system.file("extdata", "mappingSchema",
-                                             "software_mapping_schema.tsv",
-                                             package = "MetaboCoreUtils"),
-                                header = TRUE, sep = "\t", check.names = FALSE,
-                                na.strings = "")
-    }
-    mapping_df
+        read.delim(path, header = TRUE, sep = "\t",
+                   check.names = FALSE, na.strings = "")
+    } else .software_mapping_df()
 }
 
 #' @title Guess the source of names
@@ -211,14 +208,14 @@ translate <- function(x = character(), mapping = NULL) {
 
     translated <- vapply(x, function(name) {
         if(name %in% names(mapping)) {
-            if(is.na(mapping[[name]])) {
+            if (is.na(mapping[[name]])) {
                 warning(paste0("Mapping for: '", name, "' is \"NA\" - ",
                                 "returning original name."))
                 name
             } else {
                 mapping[[name]]
             }
-        } else{
+        } else {
             warning(paste0("No mapping found for: '", name, "' - ",
                             "returning original name."))
             name

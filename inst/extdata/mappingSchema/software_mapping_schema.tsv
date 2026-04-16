@@ -1,20 +1,20 @@
-RforMassSpectrometry 	MS-Dial	MetaboScape	mzMine	mzTab-M	xcms	Sirius <v6.0	Sirius >v6.0	MetFamily QFeatures	Ontology Term
+RforMassSpectrometry	MS-Dial	MetaboScape	mzMine	mzTab-M	xcms	Sirius <v6.0	Sirius >v6.0	MetFamily QFeatures	Ontology Term
 organism_name									
 organism_lineage									
 sample_link									
 sample									
-	Alignment ID	Feature ID		SMF_ID		irgendwas	wasanderes		
+	Alignment ID	Feature ID		SMF_ID	feature_id	irgendwas	wasanderes		
 	Average Mz	m/z meas.		exp_mass_to_charge	mzmed				
 	MS/MS included	MS/MS							
-retention_time	Average Rt(min)	RT [min]		retention_time_in_seconds					
+retention_time	Average Rt(min)	RT [min]		retention_time_in_seconds	rtmed				
 				retention_time_in_seconds_start					
 				retention_time_in_seconds_end					
 retention_index									
 Abundance				abundance_assay[1]					
 name	Metabolite name	Name		chemical_name					
 				database_identifier					
-				inchi					
-inchikey?	INCHIKEY								
+inchi				inchi					
+inchikey	INCHIKEY								
 smiles	SMILES			smiles					
 formula		Molecular Formula		chemical_formula					
 	Fill %								
