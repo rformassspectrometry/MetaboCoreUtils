@@ -2,6 +2,11 @@
 
 ## MetaboCoreUtils 1.19
 
+### Changes in 1.19.3
+
+- Add functionality to translate between naming schemes used by
+  different software.
+
 ### Changes in 1.19.2
 
 - Add `beta_values()` function for chromatographic peak quality

@@ -54,8 +54,8 @@ softwareMappingSchema()
 #> 12            Abundance                         <NA>              <NA>     NA
 #> 13                 name              Metabolite name              Name     NA
 #> 14                 <NA>                         <NA>              <NA>     NA
-#> 15                 <NA>                         <NA>              <NA>     NA
-#> 16            inchikey?                     INCHIKEY              <NA>     NA
+#> 15                inchi                         <NA>              <NA>     NA
+#> 16             inchikey                     INCHIKEY              <NA>     NA
 #> 17               smiles                       SMILES              <NA>     NA
 #> 18              formula                         <NA> Molecular Formula     NA
 #> 19                 <NA>                       Fill %              <NA>     NA
@@ -70,37 +70,37 @@ softwareMappingSchema()
 #> 28                 <NA>                         <NA>           Boxplot     NA
 #> 29                 <NA>                         <NA>             Flags     NA
 #> 30                 <NA>                         <NA>           Include     NA
-#>                            mzTab-M  xcms Sirius <v6.0 Sirius >v6.0
-#> 1                             <NA>  <NA>         <NA>         <NA>
-#> 2                             <NA>  <NA>         <NA>         <NA>
-#> 3                             <NA>  <NA>         <NA>         <NA>
-#> 4                             <NA>  <NA>         <NA>         <NA>
-#> 5                           SMF_ID  <NA>    irgendwas   wasanderes
-#> 6               exp_mass_to_charge mzmed         <NA>         <NA>
-#> 7                             <NA>  <NA>         <NA>         <NA>
-#> 8        retention_time_in_seconds  <NA>         <NA>         <NA>
-#> 9  retention_time_in_seconds_start  <NA>         <NA>         <NA>
-#> 10   retention_time_in_seconds_end  <NA>         <NA>         <NA>
-#> 11                            <NA>  <NA>         <NA>         <NA>
-#> 12              abundance_assay[1]  <NA>         <NA>         <NA>
-#> 13                   chemical_name  <NA>         <NA>         <NA>
-#> 14             database_identifier  <NA>         <NA>         <NA>
-#> 15                           inchi  <NA>         <NA>         <NA>
-#> 16                            <NA>  <NA>         <NA>         <NA>
-#> 17                          smiles  <NA>         <NA>         <NA>
-#> 18                chemical_formula  <NA>         <NA>         <NA>
-#> 19                            <NA>  <NA>         <NA>         <NA>
-#> 20                            <NA>  <NA>         <NA>         <NA>
-#> 21                            <NA>  <NA>         <NA>         <NA>
-#> 22                            <NA>  <NA>         <NA>         <NA>
-#> 23                            <NA>  <NA>         <NA>         <NA>
-#> 24                            <NA>  <NA>         <NA>         <NA>
-#> 25                            <NA>  <NA>         <NA>         <NA>
-#> 26                            <NA>  <NA>         <NA>         <NA>
-#> 27                            <NA>  <NA>         <NA>         <NA>
-#> 28                            <NA>  <NA>         <NA>         <NA>
-#> 29                            <NA>  <NA>         <NA>         <NA>
-#> 30                            <NA>  <NA>         <NA>         <NA>
+#>                            mzTab-M       xcms Sirius <v6.0 Sirius >v6.0
+#> 1                             <NA>       <NA>         <NA>         <NA>
+#> 2                             <NA>       <NA>         <NA>         <NA>
+#> 3                             <NA>       <NA>         <NA>         <NA>
+#> 4                             <NA>       <NA>         <NA>         <NA>
+#> 5                           SMF_ID feature_id    irgendwas   wasanderes
+#> 6               exp_mass_to_charge      mzmed         <NA>         <NA>
+#> 7                             <NA>       <NA>         <NA>         <NA>
+#> 8        retention_time_in_seconds      rtmed         <NA>         <NA>
+#> 9  retention_time_in_seconds_start       <NA>         <NA>         <NA>
+#> 10   retention_time_in_seconds_end       <NA>         <NA>         <NA>
+#> 11                            <NA>       <NA>         <NA>         <NA>
+#> 12              abundance_assay[1]       <NA>         <NA>         <NA>
+#> 13                   chemical_name       <NA>         <NA>         <NA>
+#> 14             database_identifier       <NA>         <NA>         <NA>
+#> 15                           inchi       <NA>         <NA>         <NA>
+#> 16                            <NA>       <NA>         <NA>         <NA>
+#> 17                          smiles       <NA>         <NA>         <NA>
+#> 18                chemical_formula       <NA>         <NA>         <NA>
+#> 19                            <NA>       <NA>         <NA>         <NA>
+#> 20                            <NA>       <NA>         <NA>         <NA>
+#> 21                            <NA>       <NA>         <NA>         <NA>
+#> 22                            <NA>       <NA>         <NA>         <NA>
+#> 23                            <NA>       <NA>         <NA>         <NA>
+#> 24                            <NA>       <NA>         <NA>         <NA>
+#> 25                            <NA>       <NA>         <NA>         <NA>
+#> 26                            <NA>       <NA>         <NA>         <NA>
+#> 27                            <NA>       <NA>         <NA>         <NA>
+#> 28                            <NA>       <NA>         <NA>         <NA>
+#> 29                            <NA>       <NA>         <NA>         <NA>
+#> 30                            <NA>       <NA>         <NA>         <NA>
 #>    MetFamily QFeatures Ontology Term
 #> 1                   NA            NA
 #> 2                   NA            NA

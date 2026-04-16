@@ -11,9 +11,12 @@ Michael Stravs \[ctb\] (ORCID: <https://orcid.org/0000-0002-1426-8572>),
 Roger Gine \[aut\] (ORCID: <https://orcid.org/0000-0003-0288-9619>),
 William Kumler \[aut\] (ORCID: <https://orcid.org/0000-0002-5022-8009>),
 Philippine Louail \[aut\] (ORCID:
-<https://orcid.org/0009-0007-5429-6846>)\
-**Last modified:** 2026-04-16 14:21:46.725398\
-**Compiled**: Thu Apr 16 14:31:26 2026
+<https://orcid.org/0009-0007-5429-6846>), Gabriele Tomè \[aut\] (ORCID:
+<https://orcid.org/0000-0002-3976-6068>, fnd: MetaRbolomics4Galaxy
+project (CUP: D53C25001030003) co-funded by the Autonomous Province of
+Bolzano under the Joint Projects South Tyrol–Germany 2025 program.)\
+**Last modified:** 2026-04-16 15:07:09.961891\
+**Compiled**: Thu Apr 16 15:15:12 2026
 
 ## Introduction
 
@@ -1080,7 +1083,7 @@ issue](https://github.com/RforMassSpectrometry/MetaboCoreUtils/issues).
     ## [1] stats     graphics  grDevices utils     datasets  methods   base     
     ## 
     ## other attached packages:
-    ## [1] MetaboCoreUtils_1.19.2 BiocStyle_2.39.0      
+    ## [1] MetaboCoreUtils_1.19.3 BiocStyle_2.39.0      
     ## 
     ## loaded via a namespace (and not attached):
     ##  [1] cli_3.6.6           knitr_1.51          rlang_1.2.0        

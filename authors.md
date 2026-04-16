@@ -24,6 +24,11 @@
 - **Philippine Louail**. Author.
   [](https://orcid.org/0009-0007-5429-6846)
 
+- **Gabriele Tomè**. Author. [](https://orcid.org/0000-0002-3976-6068)\
+  MetaRbolomics4Galaxy project (CUP: D53C25001030003) co-funded by the
+  Autonomous Province of Bolzano under the Joint Projects South
+  Tyrol–Germany 2025 program.
+
 ## Citation
 
 Source:
