@@ -2,7 +2,7 @@
 % Please edit documentation in R/translate.R
 \name{softwareMapping}
 \alias{softwareMapping}
-\title{Get supported software for column name translation}
+\title{Get supported software for name translation}
 \usage{
 softwareMapping()
 }
@@ -10,13 +10,21 @@ softwareMapping()
 A \code{character} vector with the names of the supported software.
 }
 \description{
-Get the names of the supported software defined in the mapping schema
+Get the names of the supported software defined in the default mapping schema
 }
 \examples{
 
 softwareMapping()
 
 }
+\seealso{
+Other name translation functions: 
+\code{\link{guessSource}()},
+\code{\link{nameMapping}()},
+\code{\link{softwareMappingSchema}()},
+\code{\link{translate}()}
+}
 \author{
 Gabriele Tomè
 }
+\concept{name translation functions}

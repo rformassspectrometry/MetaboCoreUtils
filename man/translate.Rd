@@ -2,34 +2,42 @@
 % Please edit documentation in R/translate.R
 \name{translate}
 \alias{translate}
-\title{Translate column names based on a provided mapping}
+\title{Translate names based on a provided mapping}
 \usage{
 translate(x = character(), mapping = NULL)
 }
 \arguments{
-\item{x}{\code{character} vector of column names to be translated.}
+\item{x}{\code{character} vector of names to be translated.}
 
 \item{mapping}{A named \code{character} vector that defines the mapping for
-translation. The names of the vector should be the original column names
-and the values should be the translated column names.}
+translation. The names of the vector should be the original names
+and the values should be the translated names.}
 }
 \value{
-A \code{character} vector with the translated column names.
+A \code{character} vector with the translated names.
 }
 \description{
-Map column names from one software to another. The function replaces elements
+Map names from one software to another. The function replaces elements
 in the input vector \code{x} with their corresponding values in the mapping if a
 match is found. If an element in \code{x} does not have a corresponding mapping,
 it is returned unchanged with a warning.
 }
 \examples{
 
-## MS-D column names
+## MS-Dial names
 x <- c("Average Rt(min)", "Alignment ID", "Average Mz")
 map_vec <- nameMapping(from = "MS-Dial", to = "mzTab-M")
 translate(x, mapping = map_vec)
 
 }
+\seealso{
+Other name translation functions: 
+\code{\link{guessSource}()},
+\code{\link{nameMapping}()},
+\code{\link{softwareMapping}()},
+\code{\link{softwareMappingSchema}()}
+}
 \author{
 Gabriele Tomè
 }
+\concept{name translation functions}

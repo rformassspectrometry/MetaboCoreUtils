@@ -2,22 +2,27 @@
 % Please edit documentation in R/translate.R
 \name{guessSource}
 \alias{guessSource}
-\title{Guess the source of column names}
+\title{Guess the source of names}
 \usage{
-guessSource(x = character())
+guessSource(x = character(), map = NULL)
 }
 \arguments{
-\item{x}{A \code{character} vector of column names for which the source should be
+\item{x}{A \code{character} vector of names for which the source should be
 guessed.}
+
+\item{map}{Optional \code{data.frame} with a custom mapping schema. If not
+provided, the default mapping schema defined in the package will be
+used. The \code{data.frame} must contain the software names as column names
+and the corresponding names as values.}
 }
 \value{
 A \code{character(1)} with the name of the guessed source software.
 }
 \description{
-Guess the source of column names based on predefined mappings. The function
-counts how many elements in the input vector \code{x} match the column names
-defined in the mapping schema for each software and returns the software with
-the highest match count.
+Guess the source of names based on predefined mappings. The function counts
+how many elements in the input vector \code{x} match the names defined in the
+mapping schema for each software and returns the software with the highest
+match count.
 }
 \examples{
 
@@ -26,6 +31,14 @@ x <- c("Average Rt(min)", "Alignment ID", "Average Mz")
 guessSource(x)
 
 }
+\seealso{
+Other name translation functions: 
+\code{\link{nameMapping}()},
+\code{\link{softwareMapping}()},
+\code{\link{softwareMappingSchema}()},
+\code{\link{translate}()}
+}
 \author{
 Gabriele Tomè
 }
+\concept{name translation functions}

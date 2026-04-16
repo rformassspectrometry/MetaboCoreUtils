@@ -4,27 +4,40 @@
 \alias{nameMapping}
 \title{Get mapping vector between two software}
 \usage{
-nameMapping(from = character(), to = character())
+nameMapping(from = character(), to = character(), map = NULL)
 }
 \arguments{
 \item{from}{\code{character(1)} with the name of the source software.}
 
 \item{to}{\code{character(1)} with the name of the target software.}
+
+\item{map}{Optional \code{data.frame} with a custom mapping schema. If not
+provided, the default mapping schema defined in the package will be
+used. The \code{data.frame} must contain the \code{from} and \code{to} parameter as
+columns names.}
 }
 \value{
 A named \code{character} vector with the mapping between the two software.
 }
 \description{
-Get a named \code{character} vector that defines the mapping between column names
-of two software based on the mapping schema. The names of the returned vector
-are the column names of the \code{from} software and the values are the
-corresponding column names of the \code{to} software.
+Get a named \code{character} vector that defines the mapping between names of two
+software based on the mapping schema. The names of the returned vector are
+the names of the \code{from} software and the values are the corresponding names
+of the \code{to} software.
 }
 \examples{
 
 nameMapping(from = "MS-Dial", to = "mzTab-M")
 
 }
+\seealso{
+Other name translation functions: 
+\code{\link{guessSource}()},
+\code{\link{softwareMapping}()},
+\code{\link{softwareMappingSchema}()},
+\code{\link{translate}()}
+}
 \author{
 Gabriele Tomè
 }
+\concept{name translation functions}
