@@ -49,6 +49,16 @@ formula2mz(formulas, custom_ads)
 formula2mz("H12C6O6")
 formula2mz("H12C6O6", standardize = FALSE)
 }
+\seealso{
+Other adduct related functions: 
+\code{\link{adductCharge}()},
+\code{\link{adductFormula}()},
+\code{\link{adductNames}()},
+\code{\link{mass2mz}()},
+\code{\link{mz2mass}()},
+\code{\link{standardizeSingleCharge}()}
+}
 \author{
 Roger Gine
 }
+\concept{adduct related functions}

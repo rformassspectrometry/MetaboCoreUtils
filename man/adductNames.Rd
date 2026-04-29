@@ -14,12 +14,12 @@ adducts(polarity = c("positive", "negative"))
 \code{"negative"}.}
 }
 \value{
-for \code{adductNames}: \code{character} vector with all valid adduct names
+for \code{adductNames()}: \code{character} vector with all valid adduct names
 for the selected ion mode. For \code{adducts}: \code{data.frame} with the adduct
 definitions.
 }
 \description{
-\code{adductNames} returns all supported adduct definitions that can be used by
+\code{adductNames()} returns all supported adduct definitions that can be used by
 \code{\link[=mass2mz]{mass2mz()}} and \code{\link[=mz2mass]{mz2mass()}}.
 
 \code{adducts} returns a \code{data.frame} with the adduct definitions.
@@ -32,6 +32,16 @@ adductNames(polarity = "positive")
 ## retrieve names of adduct names in negative ion mode
 adductNames(polarity = "negative")
 }
+\seealso{
+Other adduct related functions: 
+\code{\link{adductCharge}()},
+\code{\link{adductFormula}()},
+\code{\link{formula2mz}()},
+\code{\link{mass2mz}()},
+\code{\link{mz2mass}()},
+\code{\link{standardizeSingleCharge}()}
+}
 \author{
 Michael Witting, Johannes Rainer
 }
+\concept{adduct related functions}

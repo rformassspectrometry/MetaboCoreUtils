@@ -44,7 +44,16 @@ adductFormula("C6H12O6", custom_ads)
 \seealso{
 \code{\link[=adductNames]{adductNames()}} for a list of all available predefined adducts and
 \code{\link[=adducts]{adducts()}} for the adduct \code{data.frame} definition style.
+
+Other adduct related functions: 
+\code{\link{adductCharge}()},
+\code{\link{adductNames}()},
+\code{\link{formula2mz}()},
+\code{\link{mass2mz}()},
+\code{\link{mz2mass}()},
+\code{\link{standardizeSingleCharge}()}
 }
 \author{
 Roger Gine
 }
+\concept{adduct related functions}

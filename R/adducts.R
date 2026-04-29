@@ -28,6 +28,8 @@
 #' @seealso [mz2mass()] for the reverse calculation, [adductNames()] for
 #'     supported adduct definitions.
 #'
+#' @family adduct related functions
+#'
 #' @export
 #'
 #' @examples
@@ -85,6 +87,8 @@ mass2mz <- function(x, adduct = "[M+H]+") {
 #' @seealso [mass2mz()] for the reverse calculation, [adductNames()] for
 #'     supported adduct definitions.
 #'
+#' @family adduct related functions
+#'
 #' @export
 #'
 #' @examples
@@ -139,6 +143,8 @@ mz2mass <- function(x, adduct = "[M+H]+") {
 #'   for each defined `adduct`.
 #'
 #' @author Roger Gine
+#'
+#' @family adduct related functions
 #'
 #' @export
 #'
@@ -204,6 +210,8 @@ formula2mz <- function(formula, adduct = "[M+H]+", standardize = TRUE){
 #'
 #' @seealso [adductNames()] for a list of all available predefined adducts and
 #'   [adducts()] for the adduct `data.frame` definition style.
+#'
+#' @family adduct related functions
 #'
 #' @author Roger Gine
 #'
@@ -276,7 +284,7 @@ adductFormula <- function(formulas, adduct = "[M+H]+", standardize = TRUE) {
 #'
 #' @description
 #'
-#' `adductNames` returns all supported adduct definitions that can be used by
+#' `adductNames()` returns all supported adduct definitions that can be used by
 #' [mass2mz()] and [mz2mass()].
 #'
 #' `adducts` returns a `data.frame` with the adduct definitions.
@@ -284,11 +292,13 @@ adductFormula <- function(formulas, adduct = "[M+H]+", standardize = TRUE) {
 #' @param polarity `character(1)` defining the ion mode, either `"positive"` or
 #'     `"negative"`.
 #'
-#' @return for `adductNames`: `character` vector with all valid adduct names
+#' @return for `adductNames()`: `character` vector with all valid adduct names
 #'     for the selected ion mode. For `adducts`: `data.frame` with the adduct
 #'     definitions.
 #'
 #' @author Michael Witting, Johannes Rainer
+#'
+#' @family adduct related functions
 #'
 #' @export
 #'
@@ -310,4 +320,60 @@ adductNames <- function(polarity = c("positive", "negative")) {
 adducts <- function(polarity = c("positive", "negative")) {
     polarity <- match.arg(polarity)
     .ADDUCTS[.ADDUCTS$positive == (polarity == "positive"), ]
+}
+
+#' @title Get the charge of an adduct
+#'
+#' @description
+#'
+#' `adductCharge()` returns the charge of an adduct.
+#'
+#' @param x `character` with the adduct definition
+#'
+#' @return `integer` of length equal to `x` with the charge of the adduct/ion.
+#'
+#' @family adduct related functions
+#'
+#' @export
+#'
+#' @examples
+#'
+#' a <- c("[M+3H]3+", "[M+H]+", "[M-2H]2-", "[M-H]-")
+#' adductCharge(a)
+adductCharge <- function(x) {
+    ch <- sub(".*\\](.*)$", "\\1", x)
+    nch <- nchar(ch)
+    sign <- substr(ch, nch, nch)
+    if (any(!sign %in% c("+", "-")))
+        stop("Unexpected adduct format", call. = FALSE)
+    ch <- substr(ch, 1, nch - 1)
+    ch[ch == ""] <- "1"
+    as.integer(paste0(sign, ch))
+}
+
+#' @title Fix short-hand charge notation in adduct definition
+#'
+#' @description
+#'
+#' `standardizeSingleCharge()` replaces the short-hand notation of single
+#' charges eventually present in adduct definition with the *standard*
+#' notion, i.e., it replaces `"+"` with `"1+"` in e.g. `"[M+H]+"` and `"-"`
+#' with `"1-"` in `"[M-H]-"`.
+#'
+#' @param x `character` with adduct definitions
+#'
+#' @return `character` with standardized single charge definitions.
+#'
+#' @family adduct related functions
+#'
+#' @export
+#'
+#' @examples
+#'
+#' a <- c("[M+H]+", "[M-H]-", "[M+H]1+")
+#' standardizeSingleCharge(a)
+standardizeSingleCharge <- function(x) {
+    x <- sub("\\]\\+$", "]1+", x)
+    x <- sub("\\]\\-$", "]1-", x)
+    x
 }
