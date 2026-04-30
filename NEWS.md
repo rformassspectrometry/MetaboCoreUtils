@@ -1,3 +1,9 @@
+# MetaboCoreUtils 1.20
+
+## Changes in 1.20.1
+
+- Add `adductCharge()` and `standardizeSingleCharge()` functions.
+
 # MetaboCoreUtils 1.19
 
 ## Changes in 1.19.3

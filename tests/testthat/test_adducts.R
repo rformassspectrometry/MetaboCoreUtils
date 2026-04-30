@@ -147,3 +147,16 @@ test_that(".process_adduct_arg works", {
     res <- .process_adduct_arg(df)
     expect_equal(res, df[, c("mass_add", "mass_multi")])
 })
+
+test_that("adductCharge works", {
+    a <- c("[M]+", "[A]2+", "Nothing really", "[M-H]-", "[M-2H]2-")
+    expect_error(adductCharge(a), "Unexpected adduct format")
+    a <- c("[M]+", "[A]2+", "[M-H]-", "[M-2H]2-")
+    expect_equal(adductCharge(a), c(1L, 2L, -1L, -2L))
+})
+
+test_that("standardizeSingleCharge works", {
+    a <- c("[M+H]1+", "[M+H]+", "[M-H]-", "[M-H]1-")
+    expect_equal(standardizeSingleCharge(a), c("[M+H]1+", "[M+H]1+",
+                                               "[M-H]1-", "[M-H]1-"))
+})
