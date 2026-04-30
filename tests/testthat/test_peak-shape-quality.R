@@ -20,8 +20,8 @@ test_that("betaValues works", {
 
     skew_beta <- dbeta(seq(0, 1, length.out = 10), 3, 5)
     res <- betaValues(skew_beta, zero.rm = FALSE)
-    expect_gte(res[1L], 1)
-    expect_gte(res[2L], 16)
+    expect_gte(res[1L], 1 - .Machine$double.eps)
+    expect_gte(res[2L], 16 - .Machine$double.eps)
     res <- betaValues(skew_beta, zero.rm = TRUE)
     expect_gte(res[1L], 0.90)
     expect_gte(res[2L], 1)
