@@ -41,6 +41,14 @@ for a list of all available predefined adducts and
 [`adducts()`](https://rformassspectrometry.github.io/MetaboCoreUtils/reference/adductNames.md)
 for the adduct `data.frame` definition style.
 
+Other adduct related functions:
+[`adductCharge()`](https://rformassspectrometry.github.io/MetaboCoreUtils/reference/adductCharge.md),
+[`adductNames()`](https://rformassspectrometry.github.io/MetaboCoreUtils/reference/adductNames.md),
+[`formula2mz()`](https://rformassspectrometry.github.io/MetaboCoreUtils/reference/formula2mz.md),
+[`mass2mz()`](https://rformassspectrometry.github.io/MetaboCoreUtils/reference/mass2mz.md),
+[`mz2mass()`](https://rformassspectrometry.github.io/MetaboCoreUtils/reference/mz2mass.md),
+[`standardizeSingleCharge()`](https://rformassspectrometry.github.io/MetaboCoreUtils/reference/standardizeSingleCharge.md)
+
 ## Author
 
 Roger Gine

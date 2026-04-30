@@ -45,6 +45,14 @@ for the reverse calculation,
 [`adductNames()`](https://rformassspectrometry.github.io/MetaboCoreUtils/reference/adductNames.md)
 for supported adduct definitions.
 
+Other adduct related functions:
+[`adductCharge()`](https://rformassspectrometry.github.io/MetaboCoreUtils/reference/adductCharge.md),
+[`adductFormula()`](https://rformassspectrometry.github.io/MetaboCoreUtils/reference/adductFormula.md),
+[`adductNames()`](https://rformassspectrometry.github.io/MetaboCoreUtils/reference/adductNames.md),
+[`formula2mz()`](https://rformassspectrometry.github.io/MetaboCoreUtils/reference/formula2mz.md),
+[`mass2mz()`](https://rformassspectrometry.github.io/MetaboCoreUtils/reference/mass2mz.md),
+[`standardizeSingleCharge()`](https://rformassspectrometry.github.io/MetaboCoreUtils/reference/standardizeSingleCharge.md)
+
 ## Author
 
 Michael Witting, Johannes Rainer

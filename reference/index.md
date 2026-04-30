@@ -4,6 +4,8 @@
 
 - [`addElements()`](https://rformassspectrometry.github.io/MetaboCoreUtils/reference/addElements.md)
   : Combine chemical formulae
+- [`adductCharge()`](https://rformassspectrometry.github.io/MetaboCoreUtils/reference/adductCharge.md)
+  : Get the charge of an adduct
 - [`adductFormula()`](https://rformassspectrometry.github.io/MetaboCoreUtils/reference/adductFormula.md)
   : Calculate a table of adduct (ionic) formulas
 - [`adductNames()`](https://rformassspectrometry.github.io/MetaboCoreUtils/reference/adductNames.md)
@@ -68,6 +70,8 @@
   : Get mapping schema for name translation
 - [`standardizeFormula()`](https://rformassspectrometry.github.io/MetaboCoreUtils/reference/standardizeFormula.md)
   : Standardize a chemical formula
+- [`standardizeSingleCharge()`](https://rformassspectrometry.github.io/MetaboCoreUtils/reference/standardizeSingleCharge.md)
+  : Fix short-hand charge notation in adduct definition
 - [`subtractElements()`](https://rformassspectrometry.github.io/MetaboCoreUtils/reference/subtractElements.md)
   : subtract two chemical formula
 - [`translate()`](https://rformassspectrometry.github.io/MetaboCoreUtils/reference/translate.md)

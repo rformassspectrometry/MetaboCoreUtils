@@ -1,7 +1,7 @@
 # Core Utils for Metabolomics Data
 
 **Package**:
-*[MetaboCoreUtils](https://bioconductor.org/packages/3.23/MetaboCoreUtils)*\
+*[MetaboCoreUtils](https://bioconductor.org/packages/3.24/MetaboCoreUtils)*\
 **Authors**: Johannes Rainer \[aut, cre\] (ORCID:
 <https://orcid.org/0000-0002-6977-7147>), Michael Witting \[aut\]
 (ORCID: <https://orcid.org/0000-0002-1462-4426>), Andrea Vicini \[aut\],
@@ -15,13 +15,13 @@ Philippine Louail \[aut\] (ORCID:
 <https://orcid.org/0000-0002-3976-6068>, fnd: MetaRbolomics4Galaxy
 project (CUP: D53C25001030003) co-funded by the Autonomous Province of
 Bolzano under the Joint Projects South Tyrol–Germany 2025 program.)\
-**Last modified:** 2026-04-16 15:07:09.961891\
-**Compiled**: Thu Apr 16 15:15:12 2026
+**Last modified:** 2026-04-30 05:28:47.208027\
+**Compiled**: Thu Apr 30 05:34:04 2026
 
 ## Introduction
 
 The
-*[MetaboCoreUtils](https://bioconductor.org/packages/3.23/MetaboCoreUtils)*
+*[MetaboCoreUtils](https://bioconductor.org/packages/3.24/MetaboCoreUtils)*
 package defines metabolomics-related core functionality provided as
 low-level functions to allow a data structure-independent usage across
 various R packages (Rainer et al. 2022). This includes functions to
@@ -38,26 +38,27 @@ library("MetaboCoreUtils")
 ls(pos = "package:MetaboCoreUtils")
 ```
 
-    ##  [1] "addElements"                "adductFormula"             
-    ##  [3] "adductNames"                "adducts"                   
-    ##  [5] "adjust_lm"                  "betaValues"                
-    ##  [7] "calculateKm"                "calculateKmd"              
-    ##  [9] "calculateMass"              "calculateRkmd"             
-    ## [11] "containsElements"           "convertMtime"              
-    ## [13] "correctRindex"              "countElements"             
-    ## [15] "fit_lm"                     "formula2mz"                
-    ## [17] "guessSource"                "indexRtime"                
-    ## [19] "internalStandardMixNames"   "internalStandards"         
-    ## [21] "isotopicSubstitutionMatrix" "isotopologues"             
-    ## [23] "isRkmd"                     "mass2mz"                   
-    ## [25] "mclosest"                   "multiplyElements"          
-    ## [27] "mz2mass"                    "nameMapping"               
-    ## [29] "pasteElements"              "percentMissing"            
-    ## [31] "rowBlank"                   "rowDratio"                 
-    ## [33] "rowPercentMissing"          "rowRsd"                    
-    ## [35] "rsd"                        "softwareMapping"           
-    ## [37] "softwareMappingSchema"      "standardizeFormula"        
-    ## [39] "subtractElements"           "translate"
+    ##  [1] "addElements"                "adductCharge"              
+    ##  [3] "adductFormula"              "adductNames"               
+    ##  [5] "adducts"                    "adjust_lm"                 
+    ##  [7] "betaValues"                 "calculateKm"               
+    ##  [9] "calculateKmd"               "calculateMass"             
+    ## [11] "calculateRkmd"              "containsElements"          
+    ## [13] "convertMtime"               "correctRindex"             
+    ## [15] "countElements"              "fit_lm"                    
+    ## [17] "formula2mz"                 "guessSource"               
+    ## [19] "indexRtime"                 "internalStandardMixNames"  
+    ## [21] "internalStandards"          "isotopicSubstitutionMatrix"
+    ## [23] "isotopologues"              "isRkmd"                    
+    ## [25] "mass2mz"                    "mclosest"                  
+    ## [27] "multiplyElements"           "mz2mass"                   
+    ## [29] "nameMapping"                "pasteElements"             
+    ## [31] "percentMissing"             "rowBlank"                  
+    ## [33] "rowDratio"                  "rowPercentMissing"         
+    ## [35] "rowRsd"                     "rsd"                       
+    ## [37] "softwareMapping"            "softwareMappingSchema"     
+    ## [39] "standardizeFormula"         "standardizeSingleCharge"   
+    ## [41] "subtractElements"           "translate"
 
 or the [reference
 page](https://rformassspectrometry.github.io/MetaboCoreUtils/reference/index.html)
@@ -1060,7 +1061,7 @@ issue](https://github.com/RforMassSpectrometry/MetaboCoreUtils/issues).
 
 ## Session information
 
-    ## R Under development (unstable) (2026-04-12 r89873)
+    ## R version 4.6.0 (2026-04-24)
     ## Platform: x86_64-pc-linux-gnu
     ## Running under: Ubuntu 24.04.4 LTS
     ## 
@@ -1083,22 +1084,22 @@ issue](https://github.com/RforMassSpectrometry/MetaboCoreUtils/issues).
     ## [1] stats     graphics  grDevices utils     datasets  methods   base     
     ## 
     ## other attached packages:
-    ## [1] MetaboCoreUtils_1.19.3 BiocStyle_2.39.0      
+    ## [1] MetaboCoreUtils_1.21.1 BiocStyle_2.41.0      
     ## 
     ## loaded via a namespace (and not attached):
     ##  [1] cli_3.6.6           knitr_1.51          rlang_1.2.0        
     ##  [4] xfun_0.57           otel_0.2.0          generics_0.1.4     
     ##  [7] textshaping_1.0.5   clue_0.3-68         jsonlite_2.0.0     
-    ## [10] S4Vectors_0.49.1-1  htmltools_0.5.9     stats4_4.7.0       
+    ## [10] S4Vectors_0.51.0    htmltools_0.5.9     stats4_4.6.0       
     ## [13] ragg_1.5.2          sass_0.4.10         rmarkdown_2.31     
     ## [16] evaluate_1.0.5      jquerylib_0.1.4     MASS_7.3-65        
     ## [19] fastmap_1.2.0       yaml_2.3.12         lifecycle_1.0.5    
-    ## [22] bookdown_0.46       MsCoreUtils_1.23.9  BiocManager_1.30.27
-    ## [25] cluster_2.1.8.2     compiler_4.7.0      codetools_0.2-20   
-    ## [28] fs_2.0.1            htmlwidgets_1.6.4   BiocParallel_1.45.0
+    ## [22] bookdown_0.46       MsCoreUtils_1.25.0  BiocManager_1.30.27
+    ## [25] cluster_2.1.8.2     compiler_4.6.0      codetools_0.2-20   
+    ## [28] fs_2.1.0            htmlwidgets_1.6.4   BiocParallel_1.47.0
     ## [31] systemfonts_1.3.2   digest_0.6.39       R6_2.6.1           
-    ## [34] parallel_4.7.0      bslib_0.10.0        tools_4.7.0        
-    ## [37] BiocGenerics_0.57.0 pkgdown_2.2.0.9000  cachem_1.1.0       
+    ## [34] parallel_4.6.0      bslib_0.10.0        tools_4.6.0        
+    ## [37] BiocGenerics_0.59.0 pkgdown_2.2.0.9000  cachem_1.1.0       
     ## [40] desc_1.4.3
 
 ## References

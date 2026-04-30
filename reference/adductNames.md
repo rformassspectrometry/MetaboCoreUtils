@@ -1,7 +1,7 @@
 # Retrieve names of supported adducts
 
-`adductNames` returns all supported adduct definitions that can be used
-by
+`adductNames()` returns all supported adduct definitions that can be
+used by
 [`mass2mz()`](https://rformassspectrometry.github.io/MetaboCoreUtils/reference/mass2mz.md)
 and
 [`mz2mass()`](https://rformassspectrometry.github.io/MetaboCoreUtils/reference/mz2mass.md).
@@ -25,9 +25,19 @@ adducts(polarity = c("positive", "negative"))
 
 ## Value
 
-for `adductNames`: `character` vector with all valid adduct names for
+for `adductNames()`: `character` vector with all valid adduct names for
 the selected ion mode. For `adducts`: `data.frame` with the adduct
 definitions.
+
+## See also
+
+Other adduct related functions:
+[`adductCharge()`](https://rformassspectrometry.github.io/MetaboCoreUtils/reference/adductCharge.md),
+[`adductFormula()`](https://rformassspectrometry.github.io/MetaboCoreUtils/reference/adductFormula.md),
+[`formula2mz()`](https://rformassspectrometry.github.io/MetaboCoreUtils/reference/formula2mz.md),
+[`mass2mz()`](https://rformassspectrometry.github.io/MetaboCoreUtils/reference/mass2mz.md),
+[`mz2mass()`](https://rformassspectrometry.github.io/MetaboCoreUtils/reference/mz2mass.md),
+[`standardizeSingleCharge()`](https://rformassspectrometry.github.io/MetaboCoreUtils/reference/standardizeSingleCharge.md)
 
 ## Author
 

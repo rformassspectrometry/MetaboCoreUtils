@@ -1,5 +1,15 @@
 # Changelog
 
+## MetaboCoreUtils 1.21
+
+### Changes in 1.21.1
+
+- Add
+  [`adductCharge()`](https://rformassspectrometry.github.io/MetaboCoreUtils/reference/adductCharge.md)
+  and
+  [`standardizeSingleCharge()`](https://rformassspectrometry.github.io/MetaboCoreUtils/reference/standardizeSingleCharge.md)
+  functions.
+
 ## MetaboCoreUtils 1.19
 
 ### Changes in 1.19.3

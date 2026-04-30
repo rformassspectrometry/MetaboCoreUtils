@@ -6,6 +6,7 @@
 <url><loc>https://rformassspectrometry.github.io/MetaboCoreUtils/index.html</loc></url>
 <url><loc>https://rformassspectrometry.github.io/MetaboCoreUtils/news/index.html</loc></url>
 <url><loc>https://rformassspectrometry.github.io/MetaboCoreUtils/reference/addElements.html</loc></url>
+<url><loc>https://rformassspectrometry.github.io/MetaboCoreUtils/reference/adductCharge.html</loc></url>
 <url><loc>https://rformassspectrometry.github.io/MetaboCoreUtils/reference/adductFormula.html</loc></url>
 <url><loc>https://rformassspectrometry.github.io/MetaboCoreUtils/reference/adductNames.html</loc></url>
 <url><loc>https://rformassspectrometry.github.io/MetaboCoreUtils/reference/betaValues.html</loc></url>
@@ -34,6 +35,7 @@
 <url><loc>https://rformassspectrometry.github.io/MetaboCoreUtils/reference/softwareMapping.html</loc></url>
 <url><loc>https://rformassspectrometry.github.io/MetaboCoreUtils/reference/softwareMappingSchema.html</loc></url>
 <url><loc>https://rformassspectrometry.github.io/MetaboCoreUtils/reference/standardizeFormula.html</loc></url>
+<url><loc>https://rformassspectrometry.github.io/MetaboCoreUtils/reference/standardizeSingleCharge.html</loc></url>
 <url><loc>https://rformassspectrometry.github.io/MetaboCoreUtils/reference/subtractElements.html</loc></url>
 <url><loc>https://rformassspectrometry.github.io/MetaboCoreUtils/reference/translate.html</loc></url>
 </urlset>
