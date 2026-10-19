@@ -33,13 +33,13 @@ adductNames(polarity = "positive")
 adductNames(polarity = "negative")
 }
 \seealso{
-Other adduct related functions: 
-\code{\link{adductCharge}()},
-\code{\link{adductFormula}()},
-\code{\link{formula2mz}()},
-\code{\link{mass2mz}()},
-\code{\link{mz2mass}()},
-\code{\link{standardizeSingleCharge}()}
+Other adduct related functions:
+\code{\link[=adductCharge]{adductCharge()}},
+\code{\link[=adductFormula]{adductFormula()}},
+\code{\link[=formula2mz]{formula2mz()}},
+\code{\link[=mass2mz]{mass2mz()}},
+\code{\link[=mz2mass]{mz2mass()}},
+\code{\link[=standardizeSingleCharge]{standardizeSingleCharge()}}
 }
 \author{
 Michael Witting, Johannes Rainer

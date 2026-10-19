@@ -50,13 +50,13 @@ formula2mz("H12C6O6")
 formula2mz("H12C6O6", standardize = FALSE)
 }
 \seealso{
-Other adduct related functions: 
-\code{\link{adductCharge}()},
-\code{\link{adductFormula}()},
-\code{\link{adductNames}()},
-\code{\link{mass2mz}()},
-\code{\link{mz2mass}()},
-\code{\link{standardizeSingleCharge}()}
+Other adduct related functions:
+\code{\link[=adductCharge]{adductCharge()}},
+\code{\link[=adductFormula]{adductFormula()}},
+\code{\link[=adductNames]{adductNames()}},
+\code{\link[=mass2mz]{mass2mz()}},
+\code{\link[=mz2mass]{mz2mass()}},
+\code{\link[=standardizeSingleCharge]{standardizeSingleCharge()}}
 }
 \author{
 Roger Gine

@@ -88,16 +88,24 @@ test_that("translate works", {
                  "Mapping vector must be provided")
 
     map_vec <- nameMapping(from = "MS-Dial", to = "mzTab-M")
-    expect_warning(translate(x = c("Unknown Column", "Alignment ID"),
-                             mapping = map_vec),
+    expect_warning(res <- translate(x = c("Unknown Column", "Alignment ID"),
+                                    mapping = map_vec),
                    "No mapping found for:")
-    expect_warning(translate(x = c("Average Mz", "MS/MS included"),
-                             mapping = map_vec),
-                   "Mapping for:")
+    expect_equal(res, c(`Unknown Column` = "Unknown Column",
+                        `Alignment ID` = "SMF_ID"))
+    expect_warning(res <- translate(x = c("Average Mz", "MS/MS included"),
+                                    mapping = map_vec), "Mapping for")
+    expect_equal(res, c(`Average Mz` = "exp_mass_to_charge",
+                        `MS/MS included` = "MS/MS included"))
 
     x <- c("Average Rt(min)", "Alignment ID", "Average Mz")
     translated <- translate(x, mapping = map_vec)
     expect_equal(translated, c("Average Rt(min)" = "retention_time_in_seconds",
                                "Alignment ID" = "SMF_ID",
                                "Average Mz" = "exp_mass_to_charge"))
+    expect_no_warning(
+        res <- translate(c("a", "b", "d"),
+                         mapping = c(a = "A", b = "B", c = "C"),
+                         warning = FALSE, nomatch = NA_character_))
+    expect_equal(res, c(a = "A", b = "B", d = NA_character_))
 })
