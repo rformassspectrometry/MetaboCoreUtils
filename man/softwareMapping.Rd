@@ -18,11 +18,11 @@ softwareMapping()
 
 }
 \seealso{
-Other name translation functions: 
-\code{\link{guessSource}()},
-\code{\link{nameMapping}()},
-\code{\link{softwareMappingSchema}()},
-\code{\link{translate}()}
+Other name translation functions:
+\code{\link[=guessSource]{guessSource()}},
+\code{\link[=nameMapping]{nameMapping()}},
+\code{\link[=softwareMappingSchema]{softwareMappingSchema()}},
+\code{\link[=translate]{translate()}}
 }
 \author{
 Gabriele Tomè

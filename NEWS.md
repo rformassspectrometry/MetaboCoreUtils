@@ -1,5 +1,10 @@
 # MetaboCoreUtils 1.21
 
+## Changes in 1.21.2
+
+- `translate()` gains parameter `nomatch` to configure behavior when names
+  can not be translated.
+
 ## Changes in 1.21.1
 
 - Add `adductCharge()` and `standardizeSingleCharge()` functions.

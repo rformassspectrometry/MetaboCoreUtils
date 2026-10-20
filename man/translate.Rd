@@ -4,7 +4,12 @@
 \alias{translate}
 \title{Translate names based on a provided mapping}
 \usage{
-translate(x = character(), mapping = NULL)
+translate(
+  x = character(),
+  mapping = NULL,
+  nomatch = "original",
+  warning = TRUE
+)
 }
 \arguments{
 \item{x}{\code{character} vector of names to be translated.}
@@ -12,6 +17,15 @@ translate(x = character(), mapping = NULL)
 \item{mapping}{A named \code{character} vector that defines the mapping for
 translation. The names of the vector should be the original names
 and the values should be the translated names.}
+
+\item{nomatch}{\code{character(1)} defining the value to be returned if a
+value in \code{x} can not be translated. The default \code{nomatch = "original"}
+returns the original value in \code{x}, while any other value for \code{nomatch}
+would report that value instead (e.g. \code{nomatch = NA_character_} would
+return an \code{NA} for each value that can not be translated).}
+
+\item{warning}{\code{logical(1)} whether a warning should be reported if values
+in \code{x} can not be translated.}
 }
 \value{
 A \code{character} vector with the translated names.
@@ -31,11 +45,11 @@ translate(x, mapping = map_vec)
 
 }
 \seealso{
-Other name translation functions: 
-\code{\link{guessSource}()},
-\code{\link{nameMapping}()},
-\code{\link{softwareMapping}()},
-\code{\link{softwareMappingSchema}()}
+Other name translation functions:
+\code{\link[=guessSource]{guessSource()}},
+\code{\link[=nameMapping]{nameMapping()}},
+\code{\link[=softwareMapping]{softwareMapping()}},
+\code{\link[=softwareMappingSchema]{softwareMappingSchema()}}
 }
 \author{
 Gabriele Tomè

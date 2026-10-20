@@ -42,21 +42,29 @@ export(standardizeFormula)
 export(standardizeSingleCharge)
 export(subtractElements)
 export(translate)
-importFrom(BiocParallel,SerialParam)
-importFrom(BiocParallel,bplapply)
-importFrom(MsCoreUtils,closest)
-importFrom(MsCoreUtils,group)
-importFrom(MsCoreUtils,ppm)
+importFrom(BiocParallel,
+  SerialParam,
+  bplapply
+)
+importFrom(MsCoreUtils,
+  closest,
+  group,
+  ppm
+)
 importFrom(methods,is)
-importFrom(stats,approx)
-importFrom(stats,cor)
-importFrom(stats,dbeta)
-importFrom(stats,lm)
-importFrom(stats,mad)
-importFrom(stats,median)
-importFrom(stats,na.omit)
-importFrom(stats,predict)
-importFrom(stats,sd)
-importFrom(stats,setNames)
-importFrom(utils,read.delim)
-importFrom(utils,read.table)
+importFrom(stats,
+  approx,
+  cor,
+  dbeta,
+  lm,
+  mad,
+  median,
+  na.omit,
+  predict,
+  sd,
+  setNames
+)
+importFrom(utils,
+  read.delim,
+  read.table
+)

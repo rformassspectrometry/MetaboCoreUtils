@@ -24,12 +24,12 @@ a <- c("[M+H]+", "[M-H]-", "[M+H]1+")
 standardizeSingleCharge(a)
 }
 \seealso{
-Other adduct related functions: 
-\code{\link{adductCharge}()},
-\code{\link{adductFormula}()},
-\code{\link{adductNames}()},
-\code{\link{formula2mz}()},
-\code{\link{mass2mz}()},
-\code{\link{mz2mass}()}
+Other adduct related functions:
+\code{\link[=adductCharge]{adductCharge()}},
+\code{\link[=adductFormula]{adductFormula()}},
+\code{\link[=adductNames]{adductNames()}},
+\code{\link[=formula2mz]{formula2mz()}},
+\code{\link[=mass2mz]{mass2mz()}},
+\code{\link[=mz2mass]{mz2mass()}}
 }
 \concept{adduct related functions}

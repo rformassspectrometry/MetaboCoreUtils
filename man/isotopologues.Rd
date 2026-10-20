@@ -27,12 +27,12 @@ in increasing order. See \code{\link[=isotopicSubstitutionMatrix]{isotopicSubsti
 information on the format and content.}
 
 \item{tolerance}{\code{numeric(1)} representing the absolute tolerance for the
-relaxed matching of m/z values of peaks. See \code{\link[MsCoreUtils:matching]{MsCoreUtils::closest()}} for
+relaxed matching of m/z values of peaks. See \code{\link[MsCoreUtils:closest]{MsCoreUtils::closest()}} for
 details.}
 
 \item{ppm}{\code{numeric(1)} representing a relative, value-specific
 parts-per-million (PPM) tolerance for the relaxed matching of m/z values
-of peaks. See \code{\link[MsCoreUtils:matching]{MsCoreUtils::closest()}} for details.}
+of peaks. See \code{\link[MsCoreUtils:closest]{MsCoreUtils::closest()}} for details.}
 
 \item{seedMz}{\code{numeric} vector of \strong{ordered} m/z values. If provided,
 the function checks if there are peaks in \code{x} which m/z match them.

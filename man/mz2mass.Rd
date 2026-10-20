@@ -53,13 +53,13 @@ mz2mass(c(100, 200), adds)
 \code{\link[=mass2mz]{mass2mz()}} for the reverse calculation, \code{\link[=adductNames]{adductNames()}} for
 supported adduct definitions.
 
-Other adduct related functions: 
-\code{\link{adductCharge}()},
-\code{\link{adductFormula}()},
-\code{\link{adductNames}()},
-\code{\link{formula2mz}()},
-\code{\link{mass2mz}()},
-\code{\link{standardizeSingleCharge}()}
+Other adduct related functions:
+\code{\link[=adductCharge]{adductCharge()}},
+\code{\link[=adductFormula]{adductFormula()}},
+\code{\link[=adductNames]{adductNames()}},
+\code{\link[=formula2mz]{formula2mz()}},
+\code{\link[=mass2mz]{mass2mz()}},
+\code{\link[=standardizeSingleCharge]{standardizeSingleCharge()}}
 }
 \author{
 Michael Witting, Johannes Rainer

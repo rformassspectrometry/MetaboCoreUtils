@@ -21,12 +21,12 @@ a <- c("[M+3H]3+", "[M+H]+", "[M-2H]2-", "[M-H]-")
 adductCharge(a)
 }
 \seealso{
-Other adduct related functions: 
-\code{\link{adductFormula}()},
-\code{\link{adductNames}()},
-\code{\link{formula2mz}()},
-\code{\link{mass2mz}()},
-\code{\link{mz2mass}()},
-\code{\link{standardizeSingleCharge}()}
+Other adduct related functions:
+\code{\link[=adductFormula]{adductFormula()}},
+\code{\link[=adductNames]{adductNames()}},
+\code{\link[=formula2mz]{formula2mz()}},
+\code{\link[=mass2mz]{mass2mz()}},
+\code{\link[=mz2mass]{mz2mass()}},
+\code{\link[=standardizeSingleCharge]{standardizeSingleCharge()}}
 }
 \concept{adduct related functions}

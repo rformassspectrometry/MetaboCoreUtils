@@ -181,6 +181,15 @@ nameMapping <- function(from = character(), to = character(),
 #'     translation. The names of the vector should be the original names
 #'     and the values should be the translated names.
 #'
+#' @param nomatch `character(1)` defining the value to be returned if a
+#'     value in `x` can not be translated. The default `nomatch = "original"`
+#'     returns the original value in `x`, while any other value for `nomatch`
+#'     would report that value instead (e.g. `nomatch = NA_character_` would
+#'     return an `NA` for each value that can not be translated).
+#'
+#' @param warning `logical(1)` whether a warning should be reported if values
+#'     in `x` can not be translated.
+#'
 #' @return A `character` vector with the translated names.
 #'
 #' @export
@@ -196,30 +205,29 @@ nameMapping <- function(from = character(), to = character(),
 #' map_vec <- nameMapping(from = "MS-Dial", to = "mzTab-M")
 #' translate(x, mapping = map_vec)
 #'
-translate <- function(x = character(), mapping = NULL) {
-    if (length(x) == 0) {
+translate <- function(x = character(), mapping = NULL,
+                      nomatch = "original", warning = TRUE) {
+    if (length(x) == 0)
         stop("'x' must not be empty.")
-    }
-
-    if (is.null(mapping)) {
+    if (is.null(mapping))
         stop("Mapping vector must be provided for translation. Use ",
              "'nameMapping()' to get the mapping.")
+    mapping <- mapping[!is.na(names(mapping))]
+    translated <- mapping[x]
+    ## Two possible missing values: name not found or value for name is NA
+    nanames <- is.na(names(translated))
+    navals <- is.na(translated) & !nanames
+    names(translated) <- x
+    if (warning && any(nanames))
+        warning("No mapping found for: ",
+                paste0("\"", x[nanames], "\"", collapse = ", "))
+    if (warning && any(navals))
+        warning("Mapping for ",
+                paste0("\"", x[navals], "\"", collapse = ", "), " is NA")
+    if (!is.na(nomatch) && any(nas <- is.na(translated))) {
+        if (nomatch == "original")
+            translated[nas] <- x[nas]
+        else translated[nas] <- nomatch
     }
-
-    translated <- vapply(x, function(name) {
-        if(name %in% names(mapping)) {
-            if (is.na(mapping[[name]])) {
-                warning(paste0("Mapping for: '", name, "' is \"NA\" - ",
-                                "returning original name."))
-                name
-            } else {
-                mapping[[name]]
-            }
-        } else {
-            warning(paste0("No mapping found for: '", name, "' - ",
-                            "returning original name."))
-            name
-        }
-    }, FUN.VALUE = character(1))
     translated
 }

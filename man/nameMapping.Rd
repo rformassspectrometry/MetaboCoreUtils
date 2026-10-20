@@ -35,11 +35,11 @@ nameMapping(from = "MS-Dial", to = "mzTab-M")
 
 }
 \seealso{
-Other name translation functions: 
-\code{\link{guessSource}()},
-\code{\link{softwareMapping}()},
-\code{\link{softwareMappingSchema}()},
-\code{\link{translate}()}
+Other name translation functions:
+\code{\link[=guessSource]{guessSource()}},
+\code{\link[=softwareMapping]{softwareMapping()}},
+\code{\link[=softwareMappingSchema]{softwareMappingSchema()}},
+\code{\link[=translate]{translate()}}
 }
 \author{
 Gabriele Tomè

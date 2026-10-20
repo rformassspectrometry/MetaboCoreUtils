@@ -32,11 +32,11 @@ guessSource(x)
 
 }
 \seealso{
-Other name translation functions: 
-\code{\link{nameMapping}()},
-\code{\link{softwareMapping}()},
-\code{\link{softwareMappingSchema}()},
-\code{\link{translate}()}
+Other name translation functions:
+\code{\link[=nameMapping]{nameMapping()}},
+\code{\link[=softwareMapping]{softwareMapping()}},
+\code{\link[=softwareMappingSchema]{softwareMappingSchema()}},
+\code{\link[=translate]{translate()}}
 }
 \author{
 Gabriele Tomè
