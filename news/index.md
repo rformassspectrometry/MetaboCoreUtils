@@ -2,6 +2,12 @@
 
 ## MetaboCoreUtils 1.21
 
+### Changes in 1.21.2
+
+- [`translate()`](https://rformassspectrometry.github.io/MetaboCoreUtils/reference/translate.md)
+  gains parameter `nomatch` to configure behavior when names can not be
+  translated.
+
 ### Changes in 1.21.1
 
 - Add

@@ -122,8 +122,8 @@ adjust_lm(y = matrix(), data = data.frame(), lm = list(), ...)
 - BPPARAM:
 
   parallel processing setup. See
-  [`BiocParallel::bpparam()`](https://rdrr.io/pkg/BiocParallel/man/register.html)
-  for more information. Parallel processing can improve performance
+  [`bpparam()`](https://rdrr.io/pkg/BiocParallel/man/register.html) for
+  more information. Parallel processing can improve performance
   especially for `method = "lmrob"`.
 
 - lm:

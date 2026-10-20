@@ -8,7 +8,12 @@ mapping, it is returned unchanged with a warning.
 ## Usage
 
 ``` r
-translate(x = character(), mapping = NULL)
+translate(
+  x = character(),
+  mapping = NULL,
+  nomatch = "original",
+  warning = TRUE
+)
 ```
 
 ## Arguments
@@ -22,6 +27,19 @@ translate(x = character(), mapping = NULL)
   A named `character` vector that defines the mapping for translation.
   The names of the vector should be the original names and the values
   should be the translated names.
+
+- nomatch:
+
+  `character(1)` defining the value to be returned if a value in `x` can
+  not be translated. The default `nomatch = "original"` returns the
+  original value in `x`, while any other value for `nomatch` would
+  report that value instead (e.g. `nomatch = NA_character_` would return
+  an `NA` for each value that can not be translated).
+
+- warning:
+
+  `logical(1)` whether a warning should be reported if values in `x` can
+  not be translated.
 
 ## Value
 
